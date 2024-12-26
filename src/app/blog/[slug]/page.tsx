@@ -8,7 +8,11 @@ import remarkGfm from "remark-gfm";
 import rehypePrism from "rehype-prism-plus";
 import remarkBreaks from "remark-breaks";
 import rehypeRaw from "rehype-raw";
+// import remarkSlug from "remark-slug";
+// import remarkUnwrapImages from "remark-unwrap-images";
 import blogData from "@/data/blog.json";
+
+import "./blog.css";
 
 interface PageProps {
     params: {

@@ -3,6 +3,7 @@ import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/layout/header";
+
 import "./globals.css";
 
 export const metadata: Metadata = {

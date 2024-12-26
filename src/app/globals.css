@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -68,5 +64,115 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .prose {
+    @apply max-w-none text-base leading-7;
+  }
+
+  .prose :where(h1, h2, h3, h4) {
+    @apply font-bold text-foreground scroll-mt-20 font-sans;
+  }
+
+  .prose :where(h1) {
+    @apply text-4xl mt-12 mb-6;
+  }
+
+  .prose :where(h2) {
+    @apply text-3xl mt-10 mb-4;
+  }
+
+  .prose :where(h3) {
+    @apply text-2xl mt-8 mb-3;
+  }
+
+  .prose :where(p) {
+    @apply my-6;
+  }
+
+  .prose :where(img) {
+    @apply rounded-lg my-8 mx-auto shadow-md;
+    max-height: 60vh;
+    object-fit: contain;
+  }
+
+  .prose :where(img + em) {
+    @apply block text-center text-sm text-muted-foreground -mt-6 mb-8;
+  }
+
+  .prose :where(blockquote) {
+    @apply border-l-4 border-muted pl-6 italic my-8 text-muted-foreground;
+  }
+
+  .prose :where(a) {
+    @apply text-primary underline-offset-4 decoration-primary/50 hover:decoration-primary transition-colors;
+  }
+
+  .prose :where(ul) {
+    @apply my-6 list-disc list-outside pl-8;
+  }
+
+  .prose :where(ol) {
+    @apply my-6 list-decimal list-outside pl-8;
+  }
+
+  .prose :where(ol > li > ol) {
+    @apply list-[lower-alpha];
+  }
+
+  .prose :where(li) {
+    @apply my-2;
+  }
+
+  .prose :where(code):not(:where(pre *)) {
+    @apply bg-muted px-1.5 py-0.5 rounded text-sm font-mono;
+  }
+
+  .prose :where(pre) {
+    @apply bg-muted p-4 rounded-lg overflow-x-auto my-6;
+  }
+
+  .prose :where(pre code) {
+    @apply bg-transparent p-0 text-sm;
+  }
+
+  .prose :where(hr) {
+    @apply my-8 border-muted;
+  }
+
+  /* Tables */
+  .prose :where(table) {
+    @apply w-full my-8;
+  }
+
+  .prose :where(thead) {
+    @apply bg-muted/50;
+  }
+
+  .prose :where(th, td) {
+    @apply border border-border p-2 text-left;
+  }
+
+  .prose :where(th) {
+    @apply font-semibold;
+  }
+
+  /* Dark mode adjustments */
+  .dark .prose :where(code):not(:where(pre *)) {
+    @apply bg-muted/50;
+  }
+
+  .dark .prose :where(pre) {
+    @apply bg-muted/50;
+  }
+
+  .dark .prose :where(img) {
+    @apply brightness-90;
+  }
+
+  .dark .prose :where(thead) {
+    @apply bg-muted/20;
   }
 }
