@@ -13,6 +13,7 @@ import rehypeRaw from "rehype-raw";
 import blogData from "@/data/blog.json";
 
 import "./blog.css";
+import Comments from "@/components/comments";
 
 interface PageProps {
     params: {
@@ -90,6 +91,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                 </div>
             </header>
 
+            {/* <Card className="p-8 mb-8"> */}
             <div className="prose prose-gray dark:prose-invert max-w-none">
                 <MDXRemote
                     source={post.content ?? ""}
@@ -101,6 +103,8 @@ export default async function BlogPostPage({ params }: PageProps) {
                     }}
                 />
             </div>
+
+            <Comments slug={params.slug} />
         </article>
     );
 }
