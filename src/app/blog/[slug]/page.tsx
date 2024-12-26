@@ -104,7 +104,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                 />
             </div>
 
-            <Comments slug={params.slug} />
+            <Comments slug={params.slug} title={post.title} />
         </article>
     );
 }
