@@ -8,18 +8,15 @@ const navigation = [
     { name: "Blog", href: "/blog" },
     { name: "Projects", href: "/projects" },
     { name: "Design", href: "/design" },
-    { name: "Travel", href: "/travel" },
-    { name: "Music", href: "/music" },
     { name: "About", href: "/about" },
 ] as const;
 
 const EMOJIS = ["🤠", "🐢", "👾", "🤖", "⚡", "🦅", "🦕", "🐧"] as const;
 
 export default function Header() {
-    const [emoji, setEmoji] = useState("👋"); // Default emoji during SSR
+    const [emoji, setEmoji] = useState<string>("👋");
 
     useEffect(() => {
-        // Only run emoji randomization on client side
         setEmoji(EMOJIS[Math.floor(Math.random() * EMOJIS.length)]);
     }, []);
 
@@ -34,7 +31,6 @@ export default function Header() {
                         <span>{emoji}</span>
                         <span>michaeldemar.co</span>
                     </Link>
-
                     <nav className="flex items-center gap-4 sm:gap-6">
                         <div className="hidden md:flex items-center gap-4">
                             {navigation.map((item) => (
