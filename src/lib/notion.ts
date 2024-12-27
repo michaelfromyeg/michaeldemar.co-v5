@@ -27,6 +27,7 @@ export interface BlogPost {
     description: string;
     createdDate: string;
     editedDate: string | null;
+    publishedDate: string | null;
     tags: string[];
     status: string;
     content?: string;
@@ -111,6 +112,7 @@ function parseNotionPageToPost(page: DatabaseObjectResponse): BlogPost {
         description: getRichTextContent(properties['One Liner']?.['rich_text'] ?? []),
         createdDate: properties.Created?.['created_time'] ?? "",
         editedDate: properties.Edited?.['last_edited_time'] ?? null,
+        publishedDate: properties.Published?.['date'] ?? null,
         tags: properties.Tags?.['multi_select']?.map((tag: any) => tag.name) ?? [],
         status: properties.Status?.['status']?.name ?? "",
     };
@@ -132,7 +134,7 @@ export async function generateBlogData(): Promise<{
         },
         sorts: [
             {
-                property: "Created",
+                property: "Published",
                 direction: "descending",
             },
         ],
