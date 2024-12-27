@@ -1,48 +1,33 @@
+// scripts/generate-data.ts
 import 'dotenv/config';
-import { generateBlogData } from '../src/lib/notion';
-import { generateDesignData } from '../src/lib/notion-design';
+import { generateNotionData } from '../src/lib/notion';
 import fs from 'fs/promises';
 import path from 'path';
 
-async function ensureDataDirectory() {
-    const dataDir = path.join(process.cwd(), 'src/data');
-    await fs.mkdir(dataDir, { recursive: true });
-    return dataDir;
-}
-
-async function writeJsonToFile(filePath: string, data: any) {
-    await fs.writeFile(
-        filePath,
-        JSON.stringify(data, null, 2)
-    );
-}
-
 async function main() {
-    console.log('🚀 Starting data generation process...');
-    const dataDir = await ensureDataDirectory();
-    
     try {
-        // Generate blog data
-        console.log('\n📝 Generating blog data...');
-        const blogData = await generateBlogData();
-        await writeJsonToFile(
+        console.log('Generating data from Notion...');
+        const data = await generateNotionData();
+
+        // Ensure the data directory exists
+        const dataDir = path.join(process.cwd(), 'src/data');
+        await fs.mkdir(dataDir, { recursive: true });
+
+        // Write blog data
+        await fs.writeFile(
             path.join(dataDir, 'blog.json'),
-            blogData
+            JSON.stringify(data.blog, null, 2)
         );
-        console.log('✅ Blog data generated successfully!');
-        
-        // Generate design data
-        console.log('\n🎨 Generating design data...');
-        const designData = await generateDesignData();
-        await writeJsonToFile(
+
+        // Write design data
+        await fs.writeFile(
             path.join(dataDir, 'design.json'),
-            designData
+            JSON.stringify(data.design, null, 2)
         );
-        console.log('✅ Design data generated successfully!');
-        
-        console.log('\n✨ All data generated successfully!');
+
+        console.log('✨ Data generated successfully!');
     } catch (error) {
-        console.error('\n❌ Error during data generation:', error);
+        console.error('Error generating data:', error);
         process.exit(1);
     }
 }

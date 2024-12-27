@@ -24,7 +24,7 @@ export default function DesignPage() {
 
             <div className="grid gap-8">
                 {designData.projects.map((project) => (
-                    <Link key={project.id} href={`/design/${project.id}`}>
+                    <Link key={project.id} href={`/design/${project.slug}`}>
                         <Card className="transition-colors hover:bg-muted/50 overflow-hidden group">
                             {project.images[0] ? (
                                 <div className="relative w-full h-64">
@@ -50,6 +50,9 @@ export default function DesignPage() {
                                             formatDate(project.createdDate)
                                         }
                                     </div>
+                                    {project.description && (
+                                        <p className="text-muted-foreground">{project.description}</p>
+                                    )}
                                 </CardDescription>
                             </CardHeader>
                             <CardContent>
