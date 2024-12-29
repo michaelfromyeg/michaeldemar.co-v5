@@ -13,10 +13,11 @@ import travelData from '@/data/travel.json'
 
 import './travel.css'
 
-interface PageProps {
+type PageProps = {
   params: {
     slug: string
   }
+  searchParams?: { [key: string]: string | string[] | undefined }
 }
 
 export async function generateStaticParams() {

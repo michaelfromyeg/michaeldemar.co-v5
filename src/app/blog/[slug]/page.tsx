@@ -13,10 +13,11 @@ import blogData from '@/data/blog.json'
 import './blog.css'
 import Comments from '@/components/comments'
 
-interface PageProps {
+type PageProps = {
   params: {
     slug: string
   }
+  searchParams?: { [key: string]: string | string[] | undefined }
 }
 
 export async function generateStaticParams() {
@@ -47,7 +48,7 @@ export async function generateMetadata({
 }
 
 export default async function BlogPostPage({ params }: PageProps) {
-  const post: any = await new Promise(async (resolve) => {
+  const post: any = await new Promise((resolve) => {
     resolve(
       blogData.postsBySlug[params.slug as keyof typeof blogData.postsBySlug]
     )

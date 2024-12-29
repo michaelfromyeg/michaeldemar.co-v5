@@ -11,10 +11,11 @@ import rehypeRaw from 'rehype-raw'
 import designData from '@/data/design.json'
 import { ImageGallery } from '@/components/image-gallery'
 
-interface PageProps {
+type PageProps = {
   params: {
     slug: string
   }
+  searchParams?: { [key: string]: string | string[] | undefined }
 }
 
 export async function generateStaticParams() {
