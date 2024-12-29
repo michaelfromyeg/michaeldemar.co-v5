@@ -7,15 +7,13 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import remarkGfm from 'remark-gfm'
 import rehypePrism from 'rehype-prism-plus'
 import remarkBreaks from 'remark-breaks'
-import rehypeRaw from 'rehype-raw'
 import designData from '@/data/design.json'
 import { ImageGallery } from '@/components/image-gallery'
 
 type PageProps = {
-  params: {
+  params: Promise<{
     slug: string
-  }
-  searchParams?: { [key: string]: string | string[] | undefined }
+  }>
 }
 
 export async function generateStaticParams() {
@@ -27,13 +25,9 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const project: any = await new Promise((resolve) => {
-    resolve(
-      designData.projectsBySlug[
-        params.slug as keyof typeof designData.projectsBySlug
-      ]
-    )
-  })
+  const slug = (await params).slug
+  const project: any =
+    designData.projectsBySlug[slug as keyof typeof designData.projectsBySlug]
 
   if (!project) {
     return {
@@ -50,13 +44,9 @@ export async function generateMetadata({
 }
 
 export default async function DesignProjectPage({ params }: PageProps) {
-  const project: any = await new Promise((resolve) => {
-    resolve(
-      designData.projectsBySlug[
-        params.slug as keyof typeof designData.projectsBySlug
-      ]
-    )
-  })
+  const slug = (await params).slug
+  const project: any =
+    designData.projectsBySlug[slug as keyof typeof designData.projectsBySlug]
 
   if (!project) {
     notFound()
@@ -104,7 +94,7 @@ export default async function DesignProjectPage({ params }: PageProps) {
             options={{
               mdxOptions: {
                 remarkPlugins: [remarkGfm, remarkBreaks],
-                rehypePlugins: [rehypePrism, rehypeRaw],
+                rehypePlugins: [rehypePrism],
               },
             }}
           />

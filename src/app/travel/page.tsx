@@ -10,8 +10,8 @@ import {
 } from '@/components/ui/card'
 import { ChevronRight, Calendar, Clock, MapPin } from 'lucide-react'
 import Link from 'next/link'
-import TravelGlobe from '@/components/globe'
 import travelData from '@/data/travel.json'
+import TravelGlobe from '@/components/globe'
 
 export const metadata: Metadata = {
   title: 'Travel | Michael DeMarco',

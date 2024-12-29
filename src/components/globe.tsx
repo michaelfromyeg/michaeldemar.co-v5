@@ -1,10 +1,20 @@
 'use client'
 
 import React, { useEffect, useRef, useState, useMemo } from 'react'
-import Globe from 'react-globe.gl'
+import dynamic from 'next/dynamic'
 import { useTheme } from 'next-themes'
 import { Card, CardContent } from '@/components/ui/card'
 import { TravelItinerary } from '@/lib/notion/types'
+
+// Lazy load the Globe component
+const Globe = dynamic(() => import('react-globe.gl'), {
+  ssr: false,
+  loading: () => (
+    <div className="flex h-[400px] items-center justify-center">
+      <div className="text-muted-foreground">Loading globe...</div>
+    </div>
+  ),
+})
 
 interface Arc {
   startLat: number
@@ -185,7 +195,7 @@ export default function TravelGlobe({ itineraries }: TravelGlobeProps) {
         htmlElementsData={visiblePoints}
         htmlElement={(d: object) => {
           const el = document.createElement('div')
-          el.innerHTML = `<div class="absolute px-2 py-1 text-xs font-semibold rounded-md bg-background/80 
+          el.innerHTML = `<div class="absolute px-2 py-1 text-xs font-semibold rounded-md bg-background/80
                         backdrop-blur-sm border shadow-sm -translate-x-1/2 -translate-y-full pointer-events-none">
                         ${(d as GlobePoint).name}
                     </div>`

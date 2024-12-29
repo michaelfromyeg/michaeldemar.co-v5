@@ -7,17 +7,15 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import remarkGfm from 'remark-gfm'
 import rehypePrism from 'rehype-prism-plus'
 import remarkBreaks from 'remark-breaks'
-import rehypeRaw from 'rehype-raw'
 import blogData from '@/data/blog.json'
 
 import './blog.css'
 import Comments from '@/components/comments'
 
 type PageProps = {
-  params: {
+  params: Promise<{
     slug: string
-  }
-  searchParams?: { [key: string]: string | string[] | undefined }
+  }>
 }
 
 export async function generateStaticParams() {
@@ -29,11 +27,9 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const post: any = await new Promise((resolve) => {
-    resolve(
-      blogData.postsBySlug[params.slug as keyof typeof blogData.postsBySlug]
-    )
-  })
+  const slug = (await params).slug
+  const post: any =
+    blogData.postsBySlug[slug as keyof typeof blogData.postsBySlug]
 
   if (!post) {
     return {
@@ -48,11 +44,9 @@ export async function generateMetadata({
 }
 
 export default async function BlogPostPage({ params }: PageProps) {
-  const post: any = await new Promise((resolve) => {
-    resolve(
-      blogData.postsBySlug[params.slug as keyof typeof blogData.postsBySlug]
-    )
-  })
+  const slug = (await params).slug
+  const post: any =
+    blogData.postsBySlug[slug as keyof typeof blogData.postsBySlug]
 
   if (!post) {
     notFound()
@@ -98,12 +92,12 @@ export default async function BlogPostPage({ params }: PageProps) {
           options={{
             mdxOptions: {
               remarkPlugins: [remarkGfm, remarkBreaks],
-              rehypePlugins: [rehypePrism, rehypeRaw],
+              rehypePlugins: [rehypePrism],
             },
           }}
         />
       </div>
-      <Comments slug={params.slug} title={post.title} />
+      <Comments slug={slug} title={post.title} />
     </article>
   )
 }

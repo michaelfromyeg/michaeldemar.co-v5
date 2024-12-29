@@ -6,6 +6,7 @@
     "dev": "next dev --turbopack",
     "prebuild": "tsx scripts/generate-data.ts",
     "build": "next build",
+    "quickbuild": "npm run build --ignore-scripts",
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",

@@ -8,16 +8,14 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import remarkGfm from 'remark-gfm'
 import rehypePrism from 'rehype-prism-plus'
 import remarkBreaks from 'remark-breaks'
-import rehypeRaw from 'rehype-raw'
 import travelData from '@/data/travel.json'
 
 import './travel.css'
 
 type PageProps = {
-  params: {
+  params: Promise<{
     slug: string
-  }
-  searchParams?: { [key: string]: string | string[] | undefined }
+  }>
 }
 
 export async function generateStaticParams() {
@@ -29,13 +27,11 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const itinerary: any = await new Promise((resolve) => {
-    resolve(
-      travelData.itinerariesBySlug[
-        params.slug as keyof typeof travelData.itinerariesBySlug
-      ]
-    )
-  })
+  const slug = (await params).slug
+  const itinerary: any =
+    travelData.itinerariesBySlug[
+      slug as keyof typeof travelData.itinerariesBySlug
+    ]
 
   if (!itinerary) {
     return {
@@ -50,17 +46,21 @@ export async function generateMetadata({
 }
 
 export default async function TravelPage({ params }: PageProps) {
-  const itinerary: any = await new Promise((resolve) => {
-    resolve(
-      travelData.itinerariesBySlug[
-        params.slug as keyof typeof travelData.itinerariesBySlug
-      ]
-    )
-  })
+  const slug = (await params).slug
+  const itinerary: any =
+    travelData.itinerariesBySlug[
+      slug as keyof typeof travelData.itinerariesBySlug
+    ]
 
   if (!itinerary) {
     notFound()
   }
+
+  // This is a hack-y workaround until I add LaTeX support!
+  const processedContent = itinerary.content.replace(
+    /\$\\text\{([^}]+)\}\^2\$/g,
+    '$1²'
+  )
 
   return (
     <article className="min-h-screen">
@@ -127,11 +127,11 @@ export default async function TravelPage({ params }: PageProps) {
         </Card>
         <div className="prose prose-gray max-w-none dark:prose-invert">
           <MDXRemote
-            source={itinerary.content ?? ''}
+            source={processedContent ?? ''}
             options={{
               mdxOptions: {
                 remarkPlugins: [remarkGfm, remarkBreaks],
-                rehypePlugins: [rehypePrism, rehypeRaw],
+                rehypePlugins: [rehypePrism],
               },
             }}
           />
