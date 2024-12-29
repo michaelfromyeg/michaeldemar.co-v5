@@ -1,15 +1,32 @@
 {
   "projects": [
     {
+      "id": "16bc4188-fa0e-80f7-ad6a-e4aa97326a5b",
+      "slug": "hockey-poster",
+      "title": "Hockey Poster",
+      "description": "",
+      "createdDate": "2024-12-29T00:34:00.000Z",
+      "editedDate": "2024-12-29T00:35:00.000Z",
+      "publishedDate": "2024-12-28",
+      "status": "Done",
+      "content": "Did this as a secret santa gift for one of the guys on my fraternity hockey team.\n\n\n### Poster",
+      "images": [
+        {
+          "url": "/design-images/hockey-poster/000-labelle.jpg",
+          "alt": "Design image"
+        }
+      ]
+    },
+    {
       "id": "169c4188-fa0e-8084-905e-e8005bb5762c",
       "slug": "orchard-commons",
       "title": "Orchard Commons",
       "description": "",
       "createdDate": "2024-12-27T21:06:00.000Z",
-      "editedDate": "2024-12-27T21:20:00.000Z",
+      "editedDate": "2024-12-27T23:50:00.000Z",
       "publishedDate": "2020-05-02",
       "status": "Done",
-      "content": "\nI served on my residence's house council in first year and did a lot of neat graphic design projects!\n\n\n### Campaign Poster\n\n\n### Treehouse of Horror\n\n\n### TikTok Challenge\n\n\n### Cats\n\n\n",
+      "content": "I served on my residence's house council in first year and did a lot of neat graphic design projects!\n\n\n### Campaign Poster\n\n\n\n### Treehouse of Horror\n\n\n\n### TikTok Challenge\n\n\n\n### Cats",
       "images": [
         {
           "url": "/design-images/orchard-commons/000-house-prez.jpg",
@@ -35,10 +52,10 @@
       "title": "Science Undergraduate Society",
       "description": "",
       "createdDate": "2024-12-27T21:12:00.000Z",
-      "editedDate": "2024-12-27T21:20:00.000Z",
+      "editedDate": "2024-12-27T23:50:00.000Z",
       "publishedDate": "2020-04-30",
       "status": "Done",
-      "content": "\nI joined SUS FYC in my first-year at UBC. Here are some cool things I made planning events with them!\n\n\n",
+      "content": "I joined SUS FYC in my first-year at UBC. Here are some cool things I made planning events with them!",
       "images": [
         {
           "url": "/design-images/science-undergraduate-society/000-glow-dj.jpg",
@@ -72,10 +89,10 @@
       "title": "The Gateway",
       "description": "",
       "createdDate": "2024-12-27T20:59:00.000Z",
-      "editedDate": "2024-12-27T21:17:00.000Z",
+      "editedDate": "2024-12-27T23:50:00.000Z",
       "publishedDate": "2020-03-02",
       "status": "Done",
-      "content": "\nThe Gateway is the University of Alberta's student-run newspaper. I assisted on their campaign for additional funding.\n\n\n### Poster (1)\n\n\n### Poster (2)\n\n\n",
+      "content": "The Gateway is the University of Alberta's student-run newspaper. I assisted on their campaign for additional funding.\n\n\n### Poster (1)\n\n\n\n### Poster (2)",
       "images": [
         {
           "url": "/design-images/the-gateway/000-poster.png",
@@ -93,10 +110,10 @@
       "title": "SUNIA",
       "description": "",
       "createdDate": "2024-12-27T21:10:00.000Z",
-      "editedDate": "2024-12-27T21:20:00.000Z",
+      "editedDate": "2024-12-27T23:50:00.000Z",
       "publishedDate": "2019-12-01",
       "status": "Done",
-      "content": "\nI served as SUNIA's Marketing for our 2018/19 year. Here's some things I made in the role!\n\n\n### Banner (1)\n\n\n### Banner (2)\n\n\n### Banner (3)\n\n\n### Field Law Ad\n\n\n### Discourse Ad (1)\n\n\n### Photos Ad\n\n\n### Poster\n\n\n### Discourse Ad (2)\n\n\n### Staff Speaks\n\n\n### Generic Ad\n\n\n### Discourse Ad (3)\n\n\n### Poster\n\n\n### Security Council\n\n\n",
+      "content": "I served as SUNIA's Marketing for our 2018/19 year. Here's some things I made in the role!\n\n\n### Banner (1)\n\n\n\n### Banner (2)\n\n\n\n### Banner (3)\n\n\n\n### Field Law Ad\n\n\n\n### Discourse Ad (1)\n\n\n\n### Photos Ad\n\n\n\n### Poster\n\n\n\n### Discourse Ad (2)\n\n\n\n### Staff Speaks\n\n\n\n### Generic Ad\n\n\n\n### Discourse Ad (3)\n\n\n\n### Poster\n\n\n\n### Security Council",
       "images": [
         {
           "url": "/design-images/sunia/000-abstract-banner.jpg",
@@ -158,10 +175,10 @@
       "title": "The Canadian Student Leadership Conference",
       "description": "",
       "createdDate": "2024-12-27T20:59:00.000Z",
-      "editedDate": "2024-12-27T21:20:00.000Z",
+      "editedDate": "2024-12-27T23:50:00.000Z",
       "publishedDate": "2019-09-27",
       "status": "Done",
-      "content": "\nCSLC is an event I helped organize. At the beginning of the year, we had a logo contest. My submission was used to inspire the final design.\n\n\n### Logo\n\n\n",
+      "content": "CSLC is an event I helped organize. At the beginning of the year, we had a logo contest. My submission was used to inspire the final design.\n\n\n### Logo",
       "images": [
         {
           "url": "/design-images/the-canadian-student-leadership-conference/000-cslc-logo-portfolio-01.jpg",
@@ -175,10 +192,10 @@
       "title": "McNally, Graduation 2019",
       "description": "",
       "createdDate": "2024-12-27T21:01:00.000Z",
-      "editedDate": "2024-12-27T21:19:00.000Z",
+      "editedDate": "2024-12-27T23:50:00.000Z",
       "publishedDate": "2019-05-30",
       "status": "Done",
-      "content": "\nI created advertising to support funding our high school graduation, a Snapchat filter for our prom, and the pamphlet distributed at commencement.\n\n\n### Pamphlet (front)\n\n\n### Pamphlet (back)\n\n\n### Geo-filter\n\n\n### Tiger Takeover\n\n\n",
+      "content": "I created advertising to support funding our high school graduation, a Snapchat filter for our prom, and the pamphlet distributed at commencement.\n\n\n### Pamphlet (front)\n\n\n\n### Pamphlet (back)\n\n\n\n### Geo-filter\n\n\n\n### Tiger Takeover",
       "images": [
         {
           "url": "/design-images/mcnally-graduation-2019/000-grad.png",
@@ -204,10 +221,10 @@
       "title": "McNally, Wrestling Club",
       "description": "",
       "createdDate": "2024-12-27T21:13:00.000Z",
-      "editedDate": "2024-12-27T21:20:00.000Z",
+      "editedDate": "2024-12-27T23:50:00.000Z",
       "publishedDate": "2019-04-05",
       "status": "Done",
-      "content": "\n### Logo (1)\n\n\n### Logo (2)\n\n\n### Logo (3)\n\n\nThis one was used!\n\n\n### Logo (4)\n\n\n### Logo (5)\n\n\n### Athlete of the Month\n\n\n",
+      "content": "### Logo (1)\n\n\n\n### Logo (2)\n\n\n\n### Logo (3)\n\n\nThis one was used!\n\n\n### Logo (4)\n\n\n\n### Logo (5)\n\n\n\n### Athlete of the Month",
       "images": [
         {
           "url": "/design-images/mcnally-wrestling-club/000-barsclaw-01.jpg",
@@ -241,10 +258,10 @@
       "title": "Edmonton Public School Board (EPSB), Student Senate",
       "description": "",
       "createdDate": "2024-12-27T21:09:00.000Z",
-      "editedDate": "2024-12-27T21:20:00.000Z",
+      "editedDate": "2024-12-27T23:50:00.000Z",
       "publishedDate": "2019-03-05",
       "status": "Done",
-      "content": "\nIn grade 11 and 12 I served on my school board's Student Senate. In grade 11, I did graphic design work for my committee; I created brochures about time management.\n\n\n",
+      "content": "In grade 11 and 12 I served on my school board's Student Senate. In grade 11, I did graphic design work for my committee; I created brochures about time management.",
       "images": [
         {
           "url": "/design-images/edmonton-public-school-board-epsb-student-senate/000-finding-time1.png",
@@ -278,10 +295,10 @@
       "title": "McNally, Massive Volunteering (Club)",
       "description": "",
       "createdDate": "2024-12-27T21:04:00.000Z",
-      "editedDate": "2024-12-27T21:20:00.000Z",
+      "editedDate": "2024-12-27T23:50:00.000Z",
       "publishedDate": "2018-09-15",
       "status": "Done",
-      "content": "\nI assisted managing a student volunteer club in high school. Here's some example advertising I created.\n\n\nNote that I didn't design this version of the logo; a close friend of mine did!\n\n\n",
+      "content": "I assisted managing a student volunteer club in high school. Here's some example advertising I created.\n\nNote that I didn't design this version of the logo; a close friend of mine did!",
       "images": [
         {
           "url": "/design-images/mcnally-massive-volunteering-club/000-logo-facebook-banner.jpg",
@@ -295,10 +312,10 @@
       "title": "McNally, Miscellaneous Projects",
       "description": "",
       "createdDate": "2024-12-27T21:04:00.000Z",
-      "editedDate": "2024-12-27T21:20:00.000Z",
+      "editedDate": "2024-12-27T23:50:00.000Z",
       "publishedDate": "2018-09-07",
       "status": "Done",
-      "content": "\nI occasionally did graphic design for school projects. Some of them turned out okay!\n\n\n### English 10\n\n\n### French 20\n\n\n",
+      "content": "I occasionally did graphic design for school projects. Some of them turned out okay!\n\n\n### English 10\n\n\n\n### French 20",
       "images": [
         {
           "url": "/design-images/mcnally-miscellaneous-projects/000-a-boat-01-edit.jpg",
@@ -316,10 +333,10 @@
       "title": "McNally, Bike-a-thon",
       "description": "",
       "createdDate": "2024-12-27T20:57:00.000Z",
-      "editedDate": "2024-12-27T21:19:00.000Z",
+      "editedDate": "2024-12-27T23:50:00.000Z",
       "publishedDate": "2018-05-24",
       "status": "Done",
-      "content": "\nMcNally's Bike-a-thon is an annual fundraiser for Kids With Cancer. Here are a couple of designs I made for the initiative and for my team!\n\n\n### Event Geo-filter\n\n\nA Snapchat geo-filter for the event.\n\n\n### Team Logo\n\n\nOur team’s logo!\n\n\n",
+      "content": "McNally's Bike-a-thon is an annual fundraiser for Kids With Cancer. Here are a couple of designs I made for the initiative and for my team!\n\n\n### Event Geo-filter\n\n\nA Snapchat geo-filter for the event.\n\n\n### Team Logo\n\n\nOur team’s logo!",
       "images": [
         {
           "url": "/design-images/mcnally-bike-a-thon/000-bikeathon-geofilter-01.jpg",
@@ -337,10 +354,10 @@
       "title": "McNally, MVPLead",
       "description": "",
       "createdDate": "2024-12-27T21:05:00.000Z",
-      "editedDate": "2024-12-27T21:19:00.000Z",
+      "editedDate": "2024-12-27T23:50:00.000Z",
       "publishedDate": "2018-04-28",
       "status": "Done",
-      "content": "\nMVPLead was a junior-high leadership conference I helped organized in grade 10. I was tasked with creating the logo—here's how it went!\n\n\n### Logo\n\n\n### Banner\n\n\n",
+      "content": "MVPLead was a junior-high leadership conference I helped organized in grade 10. I was tasked with creating the logo—here's how it went!\n\n\n### Logo\n\n\n\n### Banner",
       "images": [
         {
           "url": "/design-images/mcnally-mvplead/000-mvplead-logo.jpg",
@@ -358,10 +375,10 @@
       "title": "McNally, Photography",
       "description": "",
       "createdDate": "2024-12-27T21:08:00.000Z",
-      "editedDate": "2024-12-27T21:20:00.000Z",
+      "editedDate": "2024-12-27T23:50:00.000Z",
       "publishedDate": "2017-10-13",
       "status": "Done",
-      "content": "\nTo date, this is probably my favorite thing I've ever designed. I made a logo for my school's photography club.\n\n\n### Logo\n\n\n",
+      "content": "To date, this is probably my favorite thing I've ever designed. I made a logo for my school's photography club.\n\n\n### Logo",
       "images": [
         {
           "url": "/design-images/mcnally-photography/000-photography-logo.jpg",
@@ -375,10 +392,10 @@
       "title": "McNally, Heritage Festival",
       "description": "",
       "createdDate": "2024-12-27T21:03:00.000Z",
-      "editedDate": "2024-12-27T21:20:00.000Z",
+      "editedDate": "2024-12-27T23:50:00.000Z",
       "publishedDate": "2017-05-04",
       "status": "Done",
-      "content": "\nI created a infographic for my Heritage Festival booth and posters to be displayed at the other countries.\n\n\n### Greece\n\n\n### Italy\n\n\n",
+      "content": "I created a infographic for my Heritage Festival booth and posters to be displayed at the other countries.\n\n\n### Greece\n\n\n\n### Italy",
       "images": [
         {
           "url": "/design-images/mcnally-heritage-festival/000-greece.png",
@@ -392,16 +409,33 @@
     }
   ],
   "projectsBySlug": {
+    "hockey-poster": {
+      "id": "16bc4188-fa0e-80f7-ad6a-e4aa97326a5b",
+      "slug": "hockey-poster",
+      "title": "Hockey Poster",
+      "description": "",
+      "createdDate": "2024-12-29T00:34:00.000Z",
+      "editedDate": "2024-12-29T00:35:00.000Z",
+      "publishedDate": "2024-12-28",
+      "status": "Done",
+      "content": "Did this as a secret santa gift for one of the guys on my fraternity hockey team.\n\n\n### Poster",
+      "images": [
+        {
+          "url": "/design-images/hockey-poster/000-labelle.jpg",
+          "alt": "Design image"
+        }
+      ]
+    },
     "orchard-commons": {
       "id": "169c4188-fa0e-8084-905e-e8005bb5762c",
       "slug": "orchard-commons",
       "title": "Orchard Commons",
       "description": "",
       "createdDate": "2024-12-27T21:06:00.000Z",
-      "editedDate": "2024-12-27T21:20:00.000Z",
+      "editedDate": "2024-12-27T23:50:00.000Z",
       "publishedDate": "2020-05-02",
       "status": "Done",
-      "content": "\nI served on my residence's house council in first year and did a lot of neat graphic design projects!\n\n\n### Campaign Poster\n\n\n### Treehouse of Horror\n\n\n### TikTok Challenge\n\n\n### Cats\n\n\n",
+      "content": "I served on my residence's house council in first year and did a lot of neat graphic design projects!\n\n\n### Campaign Poster\n\n\n\n### Treehouse of Horror\n\n\n\n### TikTok Challenge\n\n\n\n### Cats",
       "images": [
         {
           "url": "/design-images/orchard-commons/000-house-prez.jpg",
@@ -427,10 +461,10 @@
       "title": "Science Undergraduate Society",
       "description": "",
       "createdDate": "2024-12-27T21:12:00.000Z",
-      "editedDate": "2024-12-27T21:20:00.000Z",
+      "editedDate": "2024-12-27T23:50:00.000Z",
       "publishedDate": "2020-04-30",
       "status": "Done",
-      "content": "\nI joined SUS FYC in my first-year at UBC. Here are some cool things I made planning events with them!\n\n\n",
+      "content": "I joined SUS FYC in my first-year at UBC. Here are some cool things I made planning events with them!",
       "images": [
         {
           "url": "/design-images/science-undergraduate-society/000-glow-dj.jpg",
@@ -464,10 +498,10 @@
       "title": "The Gateway",
       "description": "",
       "createdDate": "2024-12-27T20:59:00.000Z",
-      "editedDate": "2024-12-27T21:17:00.000Z",
+      "editedDate": "2024-12-27T23:50:00.000Z",
       "publishedDate": "2020-03-02",
       "status": "Done",
-      "content": "\nThe Gateway is the University of Alberta's student-run newspaper. I assisted on their campaign for additional funding.\n\n\n### Poster (1)\n\n\n### Poster (2)\n\n\n",
+      "content": "The Gateway is the University of Alberta's student-run newspaper. I assisted on their campaign for additional funding.\n\n\n### Poster (1)\n\n\n\n### Poster (2)",
       "images": [
         {
           "url": "/design-images/the-gateway/000-poster.png",
@@ -485,10 +519,10 @@
       "title": "SUNIA",
       "description": "",
       "createdDate": "2024-12-27T21:10:00.000Z",
-      "editedDate": "2024-12-27T21:20:00.000Z",
+      "editedDate": "2024-12-27T23:50:00.000Z",
       "publishedDate": "2019-12-01",
       "status": "Done",
-      "content": "\nI served as SUNIA's Marketing for our 2018/19 year. Here's some things I made in the role!\n\n\n### Banner (1)\n\n\n### Banner (2)\n\n\n### Banner (3)\n\n\n### Field Law Ad\n\n\n### Discourse Ad (1)\n\n\n### Photos Ad\n\n\n### Poster\n\n\n### Discourse Ad (2)\n\n\n### Staff Speaks\n\n\n### Generic Ad\n\n\n### Discourse Ad (3)\n\n\n### Poster\n\n\n### Security Council\n\n\n",
+      "content": "I served as SUNIA's Marketing for our 2018/19 year. Here's some things I made in the role!\n\n\n### Banner (1)\n\n\n\n### Banner (2)\n\n\n\n### Banner (3)\n\n\n\n### Field Law Ad\n\n\n\n### Discourse Ad (1)\n\n\n\n### Photos Ad\n\n\n\n### Poster\n\n\n\n### Discourse Ad (2)\n\n\n\n### Staff Speaks\n\n\n\n### Generic Ad\n\n\n\n### Discourse Ad (3)\n\n\n\n### Poster\n\n\n\n### Security Council",
       "images": [
         {
           "url": "/design-images/sunia/000-abstract-banner.jpg",
@@ -550,10 +584,10 @@
       "title": "The Canadian Student Leadership Conference",
       "description": "",
       "createdDate": "2024-12-27T20:59:00.000Z",
-      "editedDate": "2024-12-27T21:20:00.000Z",
+      "editedDate": "2024-12-27T23:50:00.000Z",
       "publishedDate": "2019-09-27",
       "status": "Done",
-      "content": "\nCSLC is an event I helped organize. At the beginning of the year, we had a logo contest. My submission was used to inspire the final design.\n\n\n### Logo\n\n\n",
+      "content": "CSLC is an event I helped organize. At the beginning of the year, we had a logo contest. My submission was used to inspire the final design.\n\n\n### Logo",
       "images": [
         {
           "url": "/design-images/the-canadian-student-leadership-conference/000-cslc-logo-portfolio-01.jpg",
@@ -567,10 +601,10 @@
       "title": "McNally, Graduation 2019",
       "description": "",
       "createdDate": "2024-12-27T21:01:00.000Z",
-      "editedDate": "2024-12-27T21:19:00.000Z",
+      "editedDate": "2024-12-27T23:50:00.000Z",
       "publishedDate": "2019-05-30",
       "status": "Done",
-      "content": "\nI created advertising to support funding our high school graduation, a Snapchat filter for our prom, and the pamphlet distributed at commencement.\n\n\n### Pamphlet (front)\n\n\n### Pamphlet (back)\n\n\n### Geo-filter\n\n\n### Tiger Takeover\n\n\n",
+      "content": "I created advertising to support funding our high school graduation, a Snapchat filter for our prom, and the pamphlet distributed at commencement.\n\n\n### Pamphlet (front)\n\n\n\n### Pamphlet (back)\n\n\n\n### Geo-filter\n\n\n\n### Tiger Takeover",
       "images": [
         {
           "url": "/design-images/mcnally-graduation-2019/000-grad.png",
@@ -596,10 +630,10 @@
       "title": "McNally, Wrestling Club",
       "description": "",
       "createdDate": "2024-12-27T21:13:00.000Z",
-      "editedDate": "2024-12-27T21:20:00.000Z",
+      "editedDate": "2024-12-27T23:50:00.000Z",
       "publishedDate": "2019-04-05",
       "status": "Done",
-      "content": "\n### Logo (1)\n\n\n### Logo (2)\n\n\n### Logo (3)\n\n\nThis one was used!\n\n\n### Logo (4)\n\n\n### Logo (5)\n\n\n### Athlete of the Month\n\n\n",
+      "content": "### Logo (1)\n\n\n\n### Logo (2)\n\n\n\n### Logo (3)\n\n\nThis one was used!\n\n\n### Logo (4)\n\n\n\n### Logo (5)\n\n\n\n### Athlete of the Month",
       "images": [
         {
           "url": "/design-images/mcnally-wrestling-club/000-barsclaw-01.jpg",
@@ -633,10 +667,10 @@
       "title": "Edmonton Public School Board (EPSB), Student Senate",
       "description": "",
       "createdDate": "2024-12-27T21:09:00.000Z",
-      "editedDate": "2024-12-27T21:20:00.000Z",
+      "editedDate": "2024-12-27T23:50:00.000Z",
       "publishedDate": "2019-03-05",
       "status": "Done",
-      "content": "\nIn grade 11 and 12 I served on my school board's Student Senate. In grade 11, I did graphic design work for my committee; I created brochures about time management.\n\n\n",
+      "content": "In grade 11 and 12 I served on my school board's Student Senate. In grade 11, I did graphic design work for my committee; I created brochures about time management.",
       "images": [
         {
           "url": "/design-images/edmonton-public-school-board-epsb-student-senate/000-finding-time1.png",
@@ -670,10 +704,10 @@
       "title": "McNally, Massive Volunteering (Club)",
       "description": "",
       "createdDate": "2024-12-27T21:04:00.000Z",
-      "editedDate": "2024-12-27T21:20:00.000Z",
+      "editedDate": "2024-12-27T23:50:00.000Z",
       "publishedDate": "2018-09-15",
       "status": "Done",
-      "content": "\nI assisted managing a student volunteer club in high school. Here's some example advertising I created.\n\n\nNote that I didn't design this version of the logo; a close friend of mine did!\n\n\n",
+      "content": "I assisted managing a student volunteer club in high school. Here's some example advertising I created.\n\nNote that I didn't design this version of the logo; a close friend of mine did!",
       "images": [
         {
           "url": "/design-images/mcnally-massive-volunteering-club/000-logo-facebook-banner.jpg",
@@ -687,10 +721,10 @@
       "title": "McNally, Miscellaneous Projects",
       "description": "",
       "createdDate": "2024-12-27T21:04:00.000Z",
-      "editedDate": "2024-12-27T21:20:00.000Z",
+      "editedDate": "2024-12-27T23:50:00.000Z",
       "publishedDate": "2018-09-07",
       "status": "Done",
-      "content": "\nI occasionally did graphic design for school projects. Some of them turned out okay!\n\n\n### English 10\n\n\n### French 20\n\n\n",
+      "content": "I occasionally did graphic design for school projects. Some of them turned out okay!\n\n\n### English 10\n\n\n\n### French 20",
       "images": [
         {
           "url": "/design-images/mcnally-miscellaneous-projects/000-a-boat-01-edit.jpg",
@@ -708,10 +742,10 @@
       "title": "McNally, Bike-a-thon",
       "description": "",
       "createdDate": "2024-12-27T20:57:00.000Z",
-      "editedDate": "2024-12-27T21:19:00.000Z",
+      "editedDate": "2024-12-27T23:50:00.000Z",
       "publishedDate": "2018-05-24",
       "status": "Done",
-      "content": "\nMcNally's Bike-a-thon is an annual fundraiser for Kids With Cancer. Here are a couple of designs I made for the initiative and for my team!\n\n\n### Event Geo-filter\n\n\nA Snapchat geo-filter for the event.\n\n\n### Team Logo\n\n\nOur team’s logo!\n\n\n",
+      "content": "McNally's Bike-a-thon is an annual fundraiser for Kids With Cancer. Here are a couple of designs I made for the initiative and for my team!\n\n\n### Event Geo-filter\n\n\nA Snapchat geo-filter for the event.\n\n\n### Team Logo\n\n\nOur team’s logo!",
       "images": [
         {
           "url": "/design-images/mcnally-bike-a-thon/000-bikeathon-geofilter-01.jpg",
@@ -729,10 +763,10 @@
       "title": "McNally, MVPLead",
       "description": "",
       "createdDate": "2024-12-27T21:05:00.000Z",
-      "editedDate": "2024-12-27T21:19:00.000Z",
+      "editedDate": "2024-12-27T23:50:00.000Z",
       "publishedDate": "2018-04-28",
       "status": "Done",
-      "content": "\nMVPLead was a junior-high leadership conference I helped organized in grade 10. I was tasked with creating the logo—here's how it went!\n\n\n### Logo\n\n\n### Banner\n\n\n",
+      "content": "MVPLead was a junior-high leadership conference I helped organized in grade 10. I was tasked with creating the logo—here's how it went!\n\n\n### Logo\n\n\n\n### Banner",
       "images": [
         {
           "url": "/design-images/mcnally-mvplead/000-mvplead-logo.jpg",
@@ -750,10 +784,10 @@
       "title": "McNally, Photography",
       "description": "",
       "createdDate": "2024-12-27T21:08:00.000Z",
-      "editedDate": "2024-12-27T21:20:00.000Z",
+      "editedDate": "2024-12-27T23:50:00.000Z",
       "publishedDate": "2017-10-13",
       "status": "Done",
-      "content": "\nTo date, this is probably my favorite thing I've ever designed. I made a logo for my school's photography club.\n\n\n### Logo\n\n\n",
+      "content": "To date, this is probably my favorite thing I've ever designed. I made a logo for my school's photography club.\n\n\n### Logo",
       "images": [
         {
           "url": "/design-images/mcnally-photography/000-photography-logo.jpg",
@@ -767,10 +801,10 @@
       "title": "McNally, Heritage Festival",
       "description": "",
       "createdDate": "2024-12-27T21:03:00.000Z",
-      "editedDate": "2024-12-27T21:20:00.000Z",
+      "editedDate": "2024-12-27T23:50:00.000Z",
       "publishedDate": "2017-05-04",
       "status": "Done",
-      "content": "\nI created a infographic for my Heritage Festival booth and posters to be displayed at the other countries.\n\n\n### Greece\n\n\n### Italy\n\n\n",
+      "content": "I created a infographic for my Heritage Festival booth and posters to be displayed at the other countries.\n\n\n### Greece\n\n\n\n### Italy",
       "images": [
         {
           "url": "/design-images/mcnally-heritage-festival/000-greece.png",
