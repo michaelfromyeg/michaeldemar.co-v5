@@ -1,24 +1,26 @@
-import type { Metadata } from "next";
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
-import { ThemeProvider } from "@/components/theme-provider";
-import Header from "@/components/layout/header";
+import type { Metadata } from 'next'
+import { GeistSans } from 'geist/font/sans'
+import { GeistMono } from 'geist/font/mono'
+import { ThemeProvider } from '@/components/theme-provider'
+import Header from '@/components/layout/header'
 
-import "./globals.css";
+import './globals.css'
 
 export const metadata: Metadata = {
-  title: "Michael DeMarco",
-  description: "Software engineer, teacher, and perpetual learner.",
-};
+  title: 'Michael DeMarco',
+  description: 'Software engineer, teacher, and perpetual learner.',
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${GeistSans.variable} ${GeistMono.variable} antialiased min-h-screen flex flex-col`}>
+      <body
+        className={`${GeistSans.variable} ${GeistMono.variable} flex min-h-screen flex-col antialiased`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -26,11 +28,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <main className="flex-grow">
-            {children}
-          </main>
+          <main className="flex-grow">{children}</main>
         </ThemeProvider>
       </body>
     </html>
-  );
+  )
 }

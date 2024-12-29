@@ -75,19 +75,19 @@
   }
 
   .prose :where(h1, h2, h3, h4) {
-    @apply font-bold text-foreground scroll-mt-20 font-sans;
+    @apply scroll-mt-20 font-sans font-bold text-foreground;
   }
 
   .prose :where(h1) {
-    @apply text-4xl mt-12 mb-6;
+    @apply mb-6 mt-12 text-4xl;
   }
 
   .prose :where(h2) {
-    @apply text-3xl mt-10 mb-4;
+    @apply mb-4 mt-10 text-3xl;
   }
 
   .prose :where(h3) {
-    @apply text-2xl mt-8 mb-3;
+    @apply mb-3 mt-8 text-2xl;
   }
 
   .prose :where(p) {
@@ -95,29 +95,29 @@
   }
 
   .prose :where(img) {
-    @apply rounded-lg my-8 mx-auto shadow-md;
+    @apply mx-auto my-8 rounded-lg shadow-md;
     max-height: 60vh;
     object-fit: contain;
   }
 
   .prose :where(img + em) {
-    @apply block text-center text-sm text-muted-foreground -mt-6 mb-8;
+    @apply -mt-6 mb-8 block text-center text-sm text-muted-foreground;
   }
 
   .prose :where(blockquote) {
-    @apply border-l-4 border-muted pl-6 italic my-8 text-muted-foreground;
+    @apply my-8 border-l-4 border-muted pl-6 italic text-muted-foreground;
   }
 
   .prose :where(a) {
-    @apply text-primary underline-offset-4 decoration-primary/50 hover:decoration-primary transition-colors;
+    @apply text-primary decoration-primary/50 underline-offset-4 transition-colors hover:decoration-primary;
   }
 
   .prose :where(ul) {
-    @apply my-6 list-disc list-outside pl-8;
+    @apply my-6 list-outside list-disc pl-8;
   }
 
   .prose :where(ol) {
-    @apply my-6 list-decimal list-outside pl-8;
+    @apply my-6 list-outside list-decimal pl-8;
   }
 
   .prose :where(ol > li > ol) {
@@ -129,11 +129,11 @@
   }
 
   .prose :where(code):not(:where(pre *)) {
-    @apply bg-muted px-1.5 py-0.5 rounded text-sm font-mono;
+    @apply rounded bg-muted px-1.5 py-0.5 font-mono text-sm;
   }
 
   .prose :where(pre) {
-    @apply bg-muted p-4 rounded-lg overflow-x-auto my-6;
+    @apply my-6 overflow-x-auto rounded-lg bg-muted p-4;
   }
 
   .prose :where(pre code) {
@@ -146,7 +146,7 @@
 
   /* Tables */
   .prose :where(table) {
-    @apply w-full my-8;
+    @apply my-8 w-full;
   }
 
   .prose :where(thead) {
