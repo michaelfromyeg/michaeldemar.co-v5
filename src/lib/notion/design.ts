@@ -106,7 +106,15 @@ export async function generateDesignData(): Promise<{
 
       const images = await getImagesFromPage(page.id)
 
+      // Remove image markdown
       markdown = markdown.replace(/!\[([^\]]*)\]\([^)]+\)\n*/g, '')
+      // Remove H3 headers and all content up to the next header or end of document
+      markdown = markdown.replace(
+        /### [^\n]+\n+((?!#{1,3} ).*\n*)*(?:\n|$)/gm,
+        ''
+      )
+      // Additional cleanup for any remaining newlines
+      markdown = markdown.replace(/\n{3,}/g, '\n\n').trim()
 
       const processedImages = await Promise.all(
         images.map(async (image, index) => ({

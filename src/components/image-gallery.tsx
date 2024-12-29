@@ -3,7 +3,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X } from 'lucide-react'
+import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 import type { DesignImage } from '@/lib/notion/types'
 
 interface ImageGalleryProps {
@@ -11,9 +11,55 @@ interface ImageGalleryProps {
 }
 
 export function ImageGallery({ images }: ImageGalleryProps) {
-  const [selectedImage, setSelectedImage] = React.useState<DesignImage | null>(
-    null
+  const [selectedIndex, setSelectedIndex] = React.useState<number | null>(null)
+
+  const handleKeyDown = React.useCallback(
+    (e: KeyboardEvent) => {
+      if (selectedIndex === null) return
+
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault()
+        setSelectedIndex((prev) =>
+          prev === 0 ? images.length - 1 : (prev ?? 0) - 1
+        )
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault()
+        setSelectedIndex((prev) =>
+          prev === images.length - 1 ? 0 : (prev ?? 0) + 1
+        )
+      } else if (e.key === 'Escape') {
+        setSelectedIndex(null)
+      }
+    },
+    [selectedIndex, images.length]
   )
+
+  React.useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [handleKeyDown])
+
+  const selectedImage = selectedIndex !== null ? images[selectedIndex] : null
+
+  const handleImageClick = (index: number) => {
+    setSelectedIndex(index)
+  }
+
+  const handleNavigation = (
+    direction: 'prev' | 'next',
+    e: React.MouseEvent
+  ) => {
+    e.stopPropagation()
+    if (direction === 'prev') {
+      setSelectedIndex((prev) =>
+        prev === 0 || prev === null ? images.length - 1 : prev - 1
+      )
+    } else {
+      setSelectedIndex((prev) =>
+        prev === images.length - 1 || prev === null ? 0 : prev + 1
+      )
+    }
+  }
 
   return (
     <>
@@ -25,7 +71,7 @@ export function ImageGallery({ images }: ImageGalleryProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
             className="group relative aspect-square cursor-pointer"
-            onClick={() => setSelectedImage(image)}
+            onClick={() => handleImageClick(index)}
           >
             <Image
               src={image.url}
@@ -49,14 +95,30 @@ export function ImageGallery({ images }: ImageGalleryProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/90 p-4 md:p-8"
-            onClick={() => setSelectedImage(null)}
+            onClick={() => setSelectedIndex(null)}
           >
             <button
-              onClick={() => setSelectedImage(null)}
+              onClick={() => setSelectedIndex(null)}
               className="absolute right-4 top-4 text-white transition-colors hover:text-gray-300"
             >
               <X className="h-6 w-6" />
               <span className="sr-only">Close</span>
+            </button>
+
+            <button
+              onClick={(e) => handleNavigation('prev', e)}
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-white transition-colors hover:text-gray-300"
+            >
+              <ChevronLeft className="h-8 w-8" />
+              <span className="sr-only">Previous image</span>
+            </button>
+
+            <button
+              onClick={(e) => handleNavigation('next', e)}
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-white transition-colors hover:text-gray-300"
+            >
+              <ChevronRight className="h-8 w-8" />
+              <span className="sr-only">Next image</span>
             </button>
 
             <div className="relative h-[80vh] w-full">
