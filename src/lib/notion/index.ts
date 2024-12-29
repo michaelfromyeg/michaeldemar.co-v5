@@ -4,6 +4,7 @@ import type { DatabaseObjectResponse } from '@notionhq/client/build/src/api-endp
 import fs from 'fs/promises'
 import path from 'path'
 import fetch from 'node-fetch'
+import sharp from 'sharp'
 
 // Validate environment variables
 const requiredEnvVars = {
@@ -77,8 +78,11 @@ export async function downloadAndSaveImage(
 ): Promise<string> {
   try {
     const originalFilename = extractS3Filename(imageUrl)
-    const extension = path.extname(originalFilename)
-    const basename = path.basename(originalFilename, extension)
+    const extension = '.webp' // We'll convert everything to WebP
+    const basename = path.basename(
+      originalFilename,
+      path.extname(originalFilename)
+    )
     const filename = `${index.toString().padStart(3, '0')}-${basename}${extension}`
 
     const imageDir = path.join(
@@ -101,8 +105,22 @@ export async function downloadAndSaveImage(
       throw new Error(`Failed to fetch image: ${response.statusText}`)
 
     const buffer = await response.buffer()
-    await fs.writeFile(imagePath, buffer)
-    console.log(`Downloaded image: ${publicPath}`)
+
+    // Process with Sharp
+    await sharp(buffer)
+      .resize({
+        width: 1920,
+        height: 1080,
+        fit: 'inside', // Maintain aspect ratio
+        withoutEnlargement: true, // Don't upscale small images
+      })
+      .webp({
+        quality: 80, // Good balance of quality and file size
+        effort: 6, // Higher compression effort
+      })
+      .toFile(imagePath)
+
+    console.log(`Processed and saved image: ${publicPath}`)
 
     return publicPath
   } catch (error) {
