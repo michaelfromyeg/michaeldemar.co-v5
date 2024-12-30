@@ -5,6 +5,7 @@ import { ThemeProvider } from '@/components/theme-provider'
 import { Providers } from './providers'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import './globals.css'
 
@@ -51,6 +52,7 @@ export default function RootLayout({
             <Footer />
           </ThemeProvider>
         </Providers>
+        <SpeedInsights />
       </body>
     </html>
   )
