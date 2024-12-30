@@ -1,5 +1,5 @@
 // src/lib/notion/design.ts
-import type { DatabaseObjectResponse } from '@notionhq/client/build/src/api-endpoints'
+import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 import {
   notion,
   n2m,
@@ -8,6 +8,7 @@ import {
   normalizeContent,
   downloadAndSaveImage,
 } from './index'
+import { getPageCoverImage } from './cover'
 import type { DesignProject, DesignImage } from './types'
 
 async function getImagesFromPage(pageId: string): Promise<DesignImage[]> {
@@ -17,7 +18,6 @@ async function getImagesFromPage(pageId: string): Promise<DesignImage[]> {
   })
 
   const images: DesignImage[] = []
-  // let imageIndex = 0
 
   for (const block of response.results) {
     if ('type' in block && block.type === 'image') {
@@ -30,7 +30,6 @@ async function getImagesFromPage(pageId: string): Promise<DesignImage[]> {
         alt: block.image.caption?.[0]?.plain_text || 'Design image',
       }
       images.push(image)
-      // imageIndex++
     }
   }
 
@@ -38,25 +37,23 @@ async function getImagesFromPage(pageId: string): Promise<DesignImage[]> {
 }
 
 export function parseNotionPageToDesignProject(
-  page: DatabaseObjectResponse
-): Omit<DesignProject, 'images'> {
+  page: any
+): Omit<DesignProject, 'content' | 'coverImage' | 'images'> {
   if (!isFullPage(page)) {
     throw new Error('Invalid page object from Notion API')
   }
 
-  const properties = (page as any).properties
+  const properties = page.properties
 
   return {
-    id: (page as any).id,
-    slug: properties.Slug?.['formula']?.string ?? '',
-    title: getRichTextContent(properties.Name?.['title'] ?? []),
-    description: getRichTextContent(
-      properties.Description?.['rich_text'] ?? []
-    ),
-    createdDate: properties.Created?.['created_time'] ?? '',
-    editedDate: properties.Edited?.['last_edited_time'] ?? null,
-    publishedDate: properties.Published?.['date']?.start ?? null,
-    status: properties.Status?.['status']?.name ?? '',
+    id: page.id,
+    slug: properties.Slug?.formula?.string ?? '',
+    title: getRichTextContent(properties.Name?.title ?? []),
+    description: getRichTextContent(properties.Description?.rich_text ?? []),
+    createdDate: properties.Created?.created_time ?? '',
+    editedDate: properties.Edited?.last_edited_time ?? null,
+    publishedDate: properties.Published?.date?.start ?? null,
+    status: properties.Status?.status?.name ?? '',
   }
 }
 
@@ -99,7 +96,14 @@ export async function generateDesignData(): Promise<{
   const projects = await Promise.all(
     response.results.map(async (page) => {
       console.log(`Processing design project ${page.id}...`)
-      const project = parseNotionPageToDesignProject(page as any)
+      const project = parseNotionPageToDesignProject(page as PageObjectResponse)
+
+      // Get cover image
+      const coverImage = await getPageCoverImage(
+        page as PageObjectResponse,
+        'design',
+        project.slug
+      )
 
       const mdBlocks = await n2m.pageToMarkdown(page.id)
       let markdown = n2m.toMarkdownString(mdBlocks).parent
@@ -123,7 +127,8 @@ export async function generateDesignData(): Promise<{
             image.url,
             'design',
             project.slug,
-            index
+            index,
+            'content'
           ),
         }))
       )
@@ -131,6 +136,7 @@ export async function generateDesignData(): Promise<{
       return {
         ...project,
         content: normalizeContent(markdown),
+        coverImage,
         images: processedImages,
       }
     })

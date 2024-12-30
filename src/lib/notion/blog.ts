@@ -1,5 +1,5 @@
 // src/lib/notion/blog.ts
-import type { DatabaseObjectResponse } from '@notionhq/client/build/src/api-endpoints'
+import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 import {
   notion,
   n2m,
@@ -8,29 +8,28 @@ import {
   normalizeContent,
   processImages,
 } from './index'
+import { getPageCoverImage } from './cover'
 import type { BlogPost } from './types'
 
 export function parseNotionPageToBlogPost(
-  page: DatabaseObjectResponse
-): BlogPost {
+  page: any
+): Omit<BlogPost, 'content' | 'coverImage'> {
   if (!isFullPage(page)) {
     throw new Error('Invalid page object from Notion API')
   }
 
-  const properties = (page as any).properties
+  const properties = page.properties
 
   return {
-    id: (page as any).id,
-    slug: properties.Slug?.['formula']?.string ?? '',
-    title: getRichTextContent(properties.Name?.['title'] ?? []),
-    description: getRichTextContent(
-      properties['One Liner']?.['rich_text'] ?? []
-    ),
-    createdDate: properties.Created?.['created_time'] ?? '',
-    editedDate: properties.Edited?.['last_edited_time'] ?? null,
-    publishedDate: properties.Published?.['date']?.start ?? null,
-    tags: properties.Tags?.['multi_select']?.map((tag: any) => tag.name) ?? [],
-    status: properties.Status?.['status']?.name ?? '',
+    id: page.id,
+    slug: properties.Slug?.formula?.string ?? '',
+    title: getRichTextContent(properties.Name?.title ?? []),
+    description: getRichTextContent(properties['One Liner']?.rich_text ?? []),
+    createdDate: properties.Created?.created_time ?? '',
+    editedDate: properties.Edited?.last_edited_time ?? null,
+    publishedDate: properties.Published?.date?.start ?? null,
+    tags: properties.Tags?.multi_select?.map((tag: any) => tag.name) ?? [],
+    status: properties.Status?.status?.name ?? '',
   }
 }
 
@@ -73,7 +72,14 @@ export async function generateBlogData(): Promise<{
   const posts = await Promise.all(
     response.results.map(async (page) => {
       console.log(`Processing blog post ${page.id}...`)
-      const post = parseNotionPageToBlogPost(page as any)
+      const post = parseNotionPageToBlogPost(page as PageObjectResponse)
+
+      // Get cover image
+      const coverImage = await getPageCoverImage(
+        page as PageObjectResponse,
+        'blog',
+        post.slug
+      )
 
       const mdBlocks = await n2m.pageToMarkdown(page.id)
       let markdown = n2m.toMarkdownString(mdBlocks).parent
@@ -83,6 +89,7 @@ export async function generateBlogData(): Promise<{
 
       return {
         ...post,
+        coverImage,
         content: markdown,
       }
     })

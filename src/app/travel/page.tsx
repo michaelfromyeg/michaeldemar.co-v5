@@ -8,8 +8,15 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { ChevronRight, Calendar, Clock, MapPin } from 'lucide-react'
+import {
+  ChevronRight,
+  Calendar,
+  Clock,
+  MapPin,
+  Image as ImageIcon,
+} from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 import travelData from '@/data/travel.json'
 import TravelGlobe from '@/components/globe'
 
@@ -57,8 +64,23 @@ export default function TravelPage() {
             {upcomingTrips.map((itinerary) => (
               <Card
                 key={itinerary.id}
-                className="border-primary/20 transition-colors hover:bg-muted/50"
+                className="group overflow-hidden border-primary/20 transition-colors hover:bg-muted/50"
               >
+                {/* Cover Image Section */}
+                {itinerary.coverImage ? (
+                  <div className="relative h-64 w-full">
+                    <Image
+                      src={itinerary.coverImage}
+                      alt={`Cover image for ${itinerary.title}`}
+                      fill
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </div>
+                ) : (
+                  <div className="flex h-64 w-full items-center justify-center bg-muted">
+                    <ImageIcon className="h-12 w-12 text-muted-foreground" />
+                  </div>
+                )}
                 <CardHeader>
                   <div className="flex items-start justify-between">
                     <div>
@@ -100,7 +122,22 @@ export default function TravelPage() {
       <div className="grid gap-6">
         {pastTrips.map((itinerary) => (
           <Link key={itinerary.id} href={`/travel/${itinerary.slug}`}>
-            <Card className="transition-colors hover:bg-muted/50">
+            <Card className="group overflow-hidden transition-colors hover:bg-muted/50">
+              {/* Cover Image Section */}
+              {itinerary.coverImage ? (
+                <div className="relative h-64 w-full">
+                  <Image
+                    src={itinerary.coverImage}
+                    alt={`Cover image for ${itinerary.title}`}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+              ) : (
+                <div className="flex h-64 w-full items-center justify-center bg-muted">
+                  <ImageIcon className="h-12 w-12 text-muted-foreground" />
+                </div>
+              )}
               <CardHeader>
                 <div className="flex items-start justify-between">
                   <div>

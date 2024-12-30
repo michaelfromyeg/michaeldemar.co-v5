@@ -74,7 +74,8 @@ export async function downloadAndSaveImage(
   imageUrl: string,
   category: 'blog' | 'design' | 'travel',
   itemId: string,
-  index: number
+  index: number,
+  prefix: 'cover' | 'content' = 'content'
 ): Promise<string> {
   try {
     const originalFilename = extractS3Filename(imageUrl)
@@ -83,7 +84,12 @@ export async function downloadAndSaveImage(
       originalFilename,
       path.extname(originalFilename)
     )
-    const filename = `${index.toString().padStart(3, '0')}-${basename}${extension}`
+
+    // Add prefix to filename if it's a cover image
+    const filename =
+      prefix === 'cover'
+        ? `cover-${basename}${extension}`
+        : `${index.toString().padStart(3, '0')}-${basename}${extension}`
 
     const imageDir = path.join(
       process.cwd(),
@@ -109,8 +115,8 @@ export async function downloadAndSaveImage(
     // Process with Sharp
     await sharp(buffer)
       .resize({
-        width: 1920,
-        height: 1080,
+        width: prefix === 'cover' ? 1920 : 1920,
+        height: prefix === 'cover' ? 1080 : 1080,
         fit: 'inside', // Maintain aspect ratio
         withoutEnlargement: true, // Don't upscale small images
       })

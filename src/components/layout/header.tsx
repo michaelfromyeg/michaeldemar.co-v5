@@ -5,10 +5,10 @@ import { ModeToggle } from '@/components/mode-toggle'
 import { useEffect, useState } from 'react'
 
 const navigation = [
-  { name: 'Blog', href: '/blog' },
-  { name: 'Design', href: '/design' },
-  { name: 'Travel', href: '/travel' },
-  { name: 'About', href: '/about' },
+  { name: 'blog', href: '/blog' },
+  { name: 'design', href: '/design' },
+  { name: 'travel', href: '/travel' },
+  { name: 'about', href: '/about' },
 ] as const
 
 const EMOJIS = ['🤠', '🐢', '👾', '🤖', '⚡', '🦅', '🦕', '🐧'] as const
@@ -21,12 +21,12 @@ export default function Header() {
   }, [])
 
   return (
-    <header className="border-b">
+    <header className="border-gruvbox border-b">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Link
             href="/"
-            className="flex items-center gap-2 text-lg font-semibold transition-opacity hover:opacity-80"
+            className="flex items-center gap-2 text-lg font-semibold text-foreground transition-colors hover:text-primary"
           >
             <span>{emoji}</span>
             <span>michaeldemar.co</span>

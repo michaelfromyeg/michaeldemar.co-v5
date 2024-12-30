@@ -1,5 +1,5 @@
 // src/lib/notion/travel.ts
-import type { DatabaseObjectResponse } from '@notionhq/client/build/src/api-endpoints'
+import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 import {
   notion,
   n2m,
@@ -8,11 +8,12 @@ import {
   normalizeContent,
   processImages,
 } from './index'
+import { getPageCoverImage } from './cover'
 import type { TravelItinerary } from './types'
 
 export function parseNotionPageToTravelItinerary(
-  page: DatabaseObjectResponse
-): TravelItinerary {
+  page: any
+): Omit<TravelItinerary, 'content' | 'coverImage'> {
   if (!isFullPage(page)) {
     throw new Error('Invalid page object from Notion API')
   }
@@ -32,7 +33,6 @@ export function parseNotionPageToTravelItinerary(
 
   return {
     id: page.id,
-    // Handle explicit Slug field, fallback to formula if not present
     slug:
       properties.Slug?.['rich_text']?.[0]?.plain_text ??
       properties.Slug?.['formula']?.string ??
@@ -52,7 +52,6 @@ export function parseNotionPageToTravelItinerary(
     editedDate: properties.Edited?.['last_edited_time'] ?? null,
     publishedDate: null, // Travel itineraries don't use this field
     status: properties.Done?.['checkbox'] ? 'Completed' : 'Planned',
-    content: '', // Will be populated later if needed
   }
 }
 
@@ -84,7 +83,16 @@ export async function generateTravelData(): Promise<{
   const itineraries = await Promise.all(
     response.results.map(async (page) => {
       console.log(`Processing travel itinerary ${page.id}...`)
-      const itinerary = parseNotionPageToTravelItinerary(page as any)
+      const itinerary = parseNotionPageToTravelItinerary(
+        page as PageObjectResponse
+      )
+
+      // Get cover image
+      const coverImage = await getPageCoverImage(
+        page as PageObjectResponse,
+        'travel',
+        itinerary.slug
+      )
 
       const mdBlocks = await n2m.pageToMarkdown(page.id)
       let markdown = n2m.toMarkdownString(mdBlocks).parent
@@ -94,6 +102,7 @@ export async function generateTravelData(): Promise<{
 
       return {
         ...itinerary,
+        coverImage,
         content: markdown,
       }
     })

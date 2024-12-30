@@ -30,11 +30,16 @@ export default function DesignPage() {
         {designData.projects.map((project) => (
           <Link key={project.id} href={`/design/${project.slug}`}>
             <Card className="group overflow-hidden transition-colors hover:bg-muted/50">
-              {project.images[0] ? (
+              {/* Image Section - Use cover image first, fall back to first project image, then placeholder */}
+              {project.coverImage || project.images[0] ? (
                 <div className="relative h-64 w-full">
                   <Image
-                    src={project.images[0].url}
-                    alt={project.images[0].alt || project.title}
+                    src={project.coverImage || project.images[0].url}
+                    alt={
+                      project.coverImage
+                        ? `Cover image for ${project.title}`
+                        : project.images[0].alt || project.title
+                    }
                     fill
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />

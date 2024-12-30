@@ -10,8 +10,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-geist-sans)'],
-        mono: ['var(--font-geist-mono)'],
+        sans: ['var(--font-ubuntu)'],
+        heading: ['var(--font-teko)'],
       },
       lineHeight: {
         tight: '1.2',
@@ -26,9 +26,29 @@ export default {
             '--tw-prose-headings': 'hsl(var(--foreground))',
             '--tw-prose-links': 'hsl(var(--primary))',
             '--tw-prose-code': 'hsl(var(--foreground))',
-            fontFamily: 'var(--font-geist-sans)',
+            fontFamily: 'var(--font-ubuntu)',
+            h1: {
+              fontFamily: 'var(--font-teko)',
+              fontWeight: '600',
+              lineHeight: '1.2',
+            },
+            h2: {
+              fontFamily: 'var(--font-teko)',
+              fontWeight: '600',
+              lineHeight: '1.2',
+            },
+            h3: {
+              fontFamily: 'var(--font-teko)',
+              fontWeight: '600',
+              lineHeight: '1.2',
+            },
+            h4: {
+              fontFamily: 'var(--font-teko)',
+              fontWeight: '600',
+              lineHeight: '1.2',
+            },
             'code, pre': {
-              fontFamily: 'var(--font-geist-mono)',
+              fontFamily: 'var(--font-ubuntu)',
             },
             'code::before': {
               content: '""',
