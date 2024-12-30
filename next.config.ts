@@ -11,6 +11,23 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  redirects: async () => [
+    {
+      source: '/bookmarks',
+      destination: 'https://notions.michaeldemar.co/bookmarks',
+      permanent: true,
+    },
+    {
+      source: '/wikipedia',
+      destination: 'https://notions.michaeldemar.co/wikipedia',
+      permanent: true,
+    },
+    {
+      source: '/uses',
+      destination: 'https://notions.michaeldemar.co/uses',
+      permanent: true,
+    },
+  ],
 }
 
 export default nextConfig
