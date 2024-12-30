@@ -15,27 +15,33 @@ export default async function DynamicResume({ cvData, resumeData }: Props) {
   const workExperiences = await Promise.all(
     cvData.work
       .filter((exp: any) => resumeData.work.includes(exp.id))
-      .map(async (exp: any) => ({
-        ...processEntry(exp, 'work'),
-        highlightsHtml: await Promise.all(
-          exp.highlights.map((highlight: string) => (
-            <MDXRemote key={highlight} source={highlight} />
-          ))
-        ),
-      }))
+      .map(async (exp: any) => {
+        return {
+          ...processEntry(exp, 'work'),
+          logoPath: `/logos/${exp.id}.svg`,
+          highlightsHtml: await Promise.all(
+            exp.highlights.map((highlight: string) => (
+              <MDXRemote key={highlight} source={highlight} />
+            ))
+          ),
+        }
+      })
   )
 
   // Process education
   const education = await Promise.all(
     cvData.education
       .filter((edu: any) => resumeData.education.includes(edu.id))
-      .map(async (edu: any) => ({
-        ...processEntry(edu, 'education'),
-        highlightsHtml: [
-          <span key="area">Area: {edu.area}</span>,
-          <span key="score">Grade: {edu.score}</span>,
-        ],
-      }))
+      .map(async (edu: any) => {
+        return {
+          ...processEntry(edu, 'education'),
+          logoPath: `/logos/${edu.id}.svg`,
+          highlightsHtml: [
+            <span key="area">Area: {edu.area}</span>,
+            <span key="score">Grade: {edu.score}</span>,
+          ],
+        }
+      })
   )
 
   // Process projects

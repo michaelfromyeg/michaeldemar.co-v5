@@ -77,6 +77,8 @@ export function ImageGallery({ images }: ImageGalleryProps) {
               src={image.url}
               alt={image.alt || 'Design image'}
               fill
+              placeholder="blur"
+              blurDataURL={image.blurDataURL ?? ''}
               className="rounded-lg object-cover transition-transform group-hover:scale-105"
             />
             {image.caption && (
@@ -126,6 +128,8 @@ export function ImageGallery({ images }: ImageGalleryProps) {
                 src={selectedImage.url}
                 alt={selectedImage.alt || 'Design image'}
                 fill
+                placeholder="blur"
+                blurDataURL={selectedImage.blurDataURL ?? ''}
                 className="object-contain"
               />
             </div>

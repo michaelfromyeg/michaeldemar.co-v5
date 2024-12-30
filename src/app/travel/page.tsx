@@ -46,6 +46,8 @@ export default function TravelPage() {
             src={itinerary.coverImage}
             alt={`Cover image for ${itinerary.title}`}
             fill
+            placeholder="blur"
+            blurDataURL={itinerary.blurDataURL}
             className="object-cover transition-transform duration-300 group-hover:scale-105"
           />
         </div>

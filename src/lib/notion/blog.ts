@@ -13,7 +13,7 @@ import type { BlogPost } from './types'
 
 export function parseNotionPageToBlogPost(
   page: any
-): Omit<BlogPost, 'content' | 'coverImage'> {
+): Omit<BlogPost, 'content' | 'coverImage' | 'blurDataURL'> {
   if (!isFullPage(page)) {
     throw new Error('Invalid page object from Notion API')
   }
@@ -74,8 +74,8 @@ export async function generateBlogData(): Promise<{
       console.log(`Processing blog post ${page.id}...`)
       const post = parseNotionPageToBlogPost(page as PageObjectResponse)
 
-      // Get cover image
-      const coverImage = await getPageCoverImage(
+      // Get cover image with blur data URL
+      const { url: coverImage, blurDataURL } = await getPageCoverImage(
         page as PageObjectResponse,
         'blog',
         post.slug
@@ -90,6 +90,7 @@ export async function generateBlogData(): Promise<{
       return {
         ...post,
         coverImage,
+        blurDataURL,
         content: markdown,
       }
     })

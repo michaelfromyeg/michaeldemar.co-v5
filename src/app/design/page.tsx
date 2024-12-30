@@ -64,6 +64,8 @@ export default async function DesignPage({
                         : latestProject.images[0].alt || latestProject.title
                     }
                     fill
+                    placeholder="blur"
+                    blurDataURL={latestProject.blurDataURL}
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                 ) : (
@@ -117,6 +119,8 @@ export default async function DesignPage({
                         : project.images[0].alt || project.title
                     }
                     fill
+                    placeholder="blur"
+                    blurDataURL={project.blurDataURL}
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                 ) : (

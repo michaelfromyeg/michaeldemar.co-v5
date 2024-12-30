@@ -9,6 +9,8 @@ export interface BaseNotionItem {
   publishedDate: string | null
   status: string
   content?: string
+  coverImage: string | null
+  blurDataURL: string | null
 }
 
 export interface BlogPost extends BaseNotionItem {
@@ -20,6 +22,7 @@ export interface DesignImage {
   url: string
   caption?: string
   alt?: string
+  blurDataURL: string | null
 }
 
 export interface DesignProject extends BaseNotionItem {

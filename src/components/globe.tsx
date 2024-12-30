@@ -10,7 +10,7 @@ import { TravelItinerary } from '@/lib/notion/types'
 const Globe = dynamic(() => import('react-globe.gl'), {
   ssr: false,
   loading: () => (
-    <div className="flex h-[400px] items-center justify-center">
+    <div className="flex h-[600px] items-center justify-center">
       <div className="text-muted-foreground">Loading globe...</div>
     </div>
   ),

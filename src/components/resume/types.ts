@@ -14,4 +14,5 @@ export interface ResumeEntryProps extends BaseEntry {
     href: string
     label: string
   }>
+  logoPath?: string
 }

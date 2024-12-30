@@ -13,7 +13,7 @@ import type { TravelItinerary } from './types'
 
 export function parseNotionPageToTravelItinerary(
   page: any
-): Omit<TravelItinerary, 'content' | 'coverImage'> {
+): Omit<TravelItinerary, 'content' | 'coverImage' | 'blurDataURL'> {
   if (!isFullPage(page)) {
     throw new Error('Invalid page object from Notion API')
   }
@@ -86,7 +86,8 @@ export async function generateTravelData(): Promise<{
         page as PageObjectResponse
       )
 
-      const coverImage = await getPageCoverImage(
+      // Get cover image with blur data URL
+      const { url: coverImage, blurDataURL } = await getPageCoverImage(
         page as PageObjectResponse,
         'travel',
         itinerary.slug
@@ -101,6 +102,7 @@ export async function generateTravelData(): Promise<{
       return {
         ...itinerary,
         coverImage,
+        blurDataURL,
         content: markdown,
       }
     })

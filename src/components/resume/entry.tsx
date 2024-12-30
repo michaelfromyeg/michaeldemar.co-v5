@@ -1,6 +1,6 @@
 'use client'
-
 import React from 'react'
+import Image from 'next/image'
 import {
   Collapsible,
   CollapsibleContent,
@@ -20,18 +20,37 @@ export function ResumeEntry({
   highlightsHtml,
   tags,
   links,
+  logoPath,
 }: ResumeEntryProps) {
   return (
-    <Card className="group shadow-sm transition-shadow hover:shadow">
+    <Card className="group relative shadow-sm transition-shadow hover:shadow">
       <Collapsible>
         <CollapsibleTrigger className="w-full">
           <CardContent className="p-6">
             <div className="flex items-start justify-between">
               <div className="flex-1 space-y-1">
-                <h3 className="text-left text-xl font-semibold leading-tight">
-                  {title} |{' '}
-                  <span className="text-muted-foreground">{subtitle}</span>
-                </h3>
+                <div className="flex items-start align-middle">
+                  <h3 className="text-left text-xl font-semibold leading-tight">
+                    {title} | <span>{subtitle}</span>
+                  </h3>
+                  {logoPath && (
+                    <div className="ml-2 inline-flex items-center">
+                      <Image
+                        src={logoPath}
+                        alt={`${subtitle} logo`}
+                        width={0}
+                        height={16}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        style={{
+                          width: 'auto',
+                          height: '16px',
+                          objectFit: 'contain',
+                        }}
+                        className="mt-0.5 align-middle"
+                      />
+                    </div>
+                  )}
+                </div>
                 <div className="flex items-center space-x-4 text-sm text-muted-foreground">
                   <div className="flex items-center">
                     <Calendar className="mr-1 h-4 w-4" />
@@ -65,7 +84,6 @@ export function ResumeEntry({
                 ))}
               </div>
             )}
-
             {links && links.length > 0 && (
               <div className="mt-4 flex gap-4 text-sm">
                 {links.map((link, i) => (
