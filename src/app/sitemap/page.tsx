@@ -56,7 +56,7 @@ async function getRoutes(
       .replace(/\/page$/, '')
 
     if (entry.isDirectory()) {
-      let children = await getRoutes(fullPath, routePath)
+      const children = await getRoutes(fullPath, routePath)
 
       // Special handling for blog directory
       if (entry.name === 'blog') {
@@ -88,6 +88,7 @@ async function getRoutes(
             children: blogPosts,
           })
         } catch (e) {
+          console.error(e)
           // [slug] directory doesn't exist, skip
         }
       }
@@ -119,6 +120,7 @@ async function getRoutes(
             children: designProjects,
           })
         } catch (e) {
+          console.error(e)
           // [slug] directory doesn't exist, skip
         }
       }
@@ -150,6 +152,7 @@ async function getRoutes(
             children: travelPosts,
           })
         } catch (e) {
+          console.error(e)
           // [slug] directory doesn't exist, skip
         }
       }

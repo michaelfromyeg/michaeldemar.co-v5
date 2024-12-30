@@ -1,6 +1,134 @@
 {
   "posts": [
     {
+      "id": "16ac4188-fa0e-8039-af80-e08e9185783d",
+      "slug": "rapviz",
+      "title": "RapViz",
+      "description": "Explore how RapViz uses NLP and web technologies to break down rap lyrics and highlight rhymes in real-time!",
+      "createdDate": "2024-12-28T00:01:00.000Z",
+      "editedDate": "2024-12-30T01:58:00.000Z",
+      "publishedDate": "2024-12-29T18:58:00.000-07:00",
+      "tags": [
+        "Project",
+        "Technical"
+      ],
+      "status": "Published",
+      "coverImage": "/blog-images/rapviz/cover-rapviz-negative-logo.webp",
+      "content": "See your bars broken down right in the browser. Powered by Spotify, Genius, and Google Cloud. Check out the GitHub repository [here](https://github.com/michaelfromyeg)!\n\n![rapviz-main.png](/blog-images/rapviz/000-rapviz-main.webp)\n\n![rapviz-mfdoom.png](/blog-images/rapviz/001-rapviz-mfdoom.webp)\n\n\n### Background\n\n\nThere are loads of videos online that inspired this project. Take a look at Genius' version, [Check The Rhyme](https://youtube.com/watch?v=1VNHp_flJKE), or Vox's, [Rapping, deconstructed: The best rhymers of all time](https://youtube.com/watch?v=QWveXdj6oZU). These videos get millions, and I mean millions of hits online. Why? Well, it's fun! And it's cool. The basic concept is that rap lyrics are \"broken down\" and the rhyming groups are highlighted. Often the videos will do this on a syllable-by-syllable basis, but also sometimes do multi-word rhymes! For this project, we wanted to start simple and focus on single, whole word rhymes.\n\nWe thought we could leverage NLP, a couple of freely available APIs, and some basic React so create a website that generates these kinds of \"highlighted\" rhymes. So what happened?\n\n\n### Usage\n\n\nThe user is presented with one of two options. They may either submit their own bars into a text field, or they can sign into Spotify and have their current song's lyrics analyzed. The lyrics are printed out with the rhyme scheme highlighted.\n\n\n### How it's made\n\n\nWe used a Flask backend to write a couple of endpoints to help us LyricsGenius, an API for scraping lyrics from Genius. We also wrote our NLP-based rhyme detection algorithm in Python and processed all of that data on the backend. Spotify authentication and the UI was all handled by React. We eventually deployed our app to Google Cloud so other users could try it.\n\n\n### Challenges\n\n\nDeveloping the rhyme algorithm was really tricky, especially getting it to be fast enough (eventually down to O(n) time!). We also ran into issues integrating Spotify into our app, but eventually got it sorted.\n\n\n### Accomplishments\n\n\nWe are able to programmatically generate what would take a video editor likely a couple of hours to do! Leveraging modern web technologies and NLP, displaying the rhyme scheme of a song proved to be a challenging but very possible feat.\n\n\n### Future\n\n\nCheck out our [issues](https://github.com/michaelfromyeg/RapViz/issues) on GitHub! Though it was built at a hackathon (and there's quite a bit of spaghetti code) this is definitely a project I want to continue developing in the future."
+    },
+    {
+      "id": "169c4188-fa0e-80a9-b30a-fbd22565ada7",
+      "slug": "predicting-credit-card-defaults",
+      "title": "Predicting Credit Card Defaults",
+      "description": "This blog post explores how machine learning can predict credit card defaults, utilizing a LightGBM model to analyze demographic and financial data.",
+      "createdDate": "2024-12-27T23:58:00.000Z",
+      "editedDate": "2024-12-30T01:58:00.000Z",
+      "publishedDate": "2024-12-29T18:58:00.000-07:00",
+      "tags": [
+        "Project",
+        "Technical"
+      ],
+      "status": "Published",
+      "coverImage": "/blog-images/predicting-credit-card-defaults/cover-ales-nesetril-credit-card-unsplash.webp",
+      "content": "_The following blog post was written for the final homework submission of_ [_CPSC 330, UBC's \"Applied Machine Learning\" course_](https://github.com/ubc-cs/cpsc330)_. In the course, my partner Max and I got a hands-on introduction to machine learning with Python via sklearn._\n\n![ales-nesetril-credit-card-unsplash.jpg](/blog-images/predicting-credit-card-defaults/000-ales-nesetril-credit-card-unsplash.webp)\n\n[hw6.pdf](https://prod-files-secure.s3.us-west-2.amazonaws.com/f52dee6c-7688-4d58-bd02-08fdc7967ec0/a17772b6-6f22-48c8-8fa5-4bba492fff91/hw6.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45FSPPWI6X%2F20241230%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20241230T022717Z&X-Amz-Expires=3600&X-Amz-Signature=4a0c935af87aec2056bcf6be5372757961e85d1f79334c15bc1540413186afa6&X-Amz-SignedHeaders=host&x-id=GetObject)\n\n\n## Problem\n\n\nDefaulting on a credit card payment is a challenging situation for all those involved. The individual who defaulted is tasked with rebuilding their credit score, and the issuer is laden with the debt. Ideally, a financial institution could _predict_ whether or not someone will default ahead of time, and prevent it from happening in the first place.\n\nWhile this is a daunting task—and one that requires sensitivity given the fact we are dealing with people's financial livelihoods—this is a situation where machine learning can be of use.\n\n\n### Question\n\n\nWe'll apply machine learning techniques to answer the following question.\n\n> Will this person default next month on their credit card payment?\n\nWith data relating to that person's demographics, payment history, and other financial information, we can attempt to predict the answer to this question.\n\n\n### Data\n\n\nThe data set we used is publicly available on [Kaggle](https://kaggle.com/uciml/default-of-credit-card-clients-dataset). In contains demographic information such as sex, education, marriage and age; information regarding and individual's finances including limit balance, repayment status, bill amounts, and payment amounts. Finally, it contains whether or not that individual really _did_ default next month.\n\nThis is simply a high-level description of the data; for a more in-depth view, consult Kaggle or our [full report](https://www.notion.so/michaelfromyeg/hw6.pdf).\n\n\n## Exploration\n\n\nBefore we delve into our analysis, let's get a better sense of the data available.\n\nTo begin with, we portioned off a chunk of our data, namely 25%, to eventually assess our model's effectiveness after our model is already created. Let's explore the remnants.\n\n\n### Exploratory Data Analysis (\"EDA\")\n\n\nWe have 225,000 rows in our data available for training use, each representing an individual and their associated \"features\" (such as age or sex) as outlined above.\n\nThe \"average\" demographic in this data is someone who's single (instead of married), has a university-level education, and an age of about 35.\n\nThe individual with the highest limit balance is a 47 year old female with precisely NT$1,000,000 available, equivalent to roughly USD$100,000. This is definitely an outlier; the distribution for the rest of the balances is shown below. (Note dollar amounts are in New Taiwan dollars.)\n\nWe find most balances in the range of NT$50,000 (~USD$6,500) to NT$100,000 (~USD$13,000) which seems reasonable.\n\n![distribution-of-payamt2.png](/blog-images/predicting-credit-card-defaults/001-distribution-of-payamt2.webp)\n\n![distribution-of-limitbal.png](/blog-images/predicting-credit-card-defaults/002-distribution-of-limitbal.webp)\n\n![distribution-of-classes.png](/blog-images/predicting-credit-card-defaults/003-distribution-of-classes.webp)\n\nThe repayment statuses in the month of August 2005 are, for whatever reason, highly skewed towards 0, which is the encoding of \"use of revolving credit.\" A visualization of this is shown below.\n\nIt might be interesting to investigate any geopolitical events that occurred in the same time frame of this data set, the summer and fall of 2005, to account for any global financial trends.\n\nWith a better understanding of the data at hand, we proceed to our analysis.\n\n\n## Analysis\n\n\nBelow is a description of our final model, and the results it yielded.\n\n\n### Model\n\n\nFor our final model we opted to use [LightGBM](https://lightgbm.readthedocs.io/en/latest/index.html), which is a gradient boosted tree based model. Gradient boosted models are ensembles of weaker prediction models, in our case, decision trees.\n\nLightGBM greatly outperformed the Decision Tree model. It also consistently outperformed the Random Forest model, even after we performed feature selection using `RFECV` and hyperparameter optimization using random search.\n\n\n### Results\n\n\nThe LightGBM model achieved an accuracy of 0.82, F1-score of 0.48, and recall of 0.38. This means that from our test data, we would correctly predict whether or not someone would default about 82% of the time. Among all of the examples of \"did default,\" we're correct only 38% of the time (—given the imbalance in the data set, this is somewhat to be expected). These results are promising, and should generalize well on \"deployment data\" since the test and validation scores are similar.\n\nIt's also interesting to look at how important our features were in the LightGBM model. SHAP force plots are one way of achieving this; without diving into depth here, just know that \"red\" means \"did not default,\" and a bigger arrow implies more impact.\n\nIn the two plots above, we see that PAY1 played a major role. Perhaps this is because if an individual gets off on the wrong foot, they are unlikely to ever recover. Banks might be incentivized to try to get on top of late payments immediately, to prevent financial hardships from spiraling into an eventual default!\n\n![shap-force2.png](/blog-images/predicting-credit-card-defaults/004-shap-force2.webp)\n\n![shap-force1.png](/blog-images/predicting-credit-card-defaults/005-shap-force1.webp)\n\n\n## Reflection\n\n\nWhile we are satisfied with our results, there are some caveats that should be made known before anyone attempts to use this model on \"real world\" use-cases.\n\nFirstly, the given data suffers from class imbalance. Most of our examples were of type \"did not default,\" at a ratio of nearly 3-to-1. The imbalance in our data was naturally occurring, so we asked ourselves what kind of error we were trying to minimize. We were concerned with minimizing false negatives, and so we chose to focus on recall as our evaluation metric. Sometimes naturally occurring class imbalance is okay to ignore. However, we believe that a possible improvement of our modeling could be to undersample or oversample the data to attempt to further address class imbalance.\n\nSecondly, the data available here was highly localized. All of our examples were from Taiwan, and so it is likely that our modeling would not generalize well to anywhere else in the world. Applying this model as a US Bank, for example, would be inappropriate as different cultures may exhibit different financial habits.\n\nFinally, there may have been overfitting on the hyperparameters. The final model described here was not our only attempt at this problem; rather, it was just our best attempt. Since we re-tested with various models and ran our hyperparameter tuning more than once it is _possible_ that we unintentionally overfit our model.\n\n\n## Conclusion\n\n\nFrom our data set, we were able to produce a LightGBM model that showed promising results, with a recall score of 0.38. In the future, we could look to further tune our LightGBM attempt to improve on our performance!\n\nThanks for reading! Hope you enjoyed it."
+    },
+    {
+      "id": "169c4188-fa0e-80be-8567-dbd1c556f154",
+      "slug": "massive-volunteering",
+      "title": "Massive Volunteering",
+      "description": "A platform designed to connect high school students with volunteer opportunities from various organizations.",
+      "createdDate": "2024-12-27T23:57:00.000Z",
+      "editedDate": "2024-12-30T01:58:00.000Z",
+      "publishedDate": "2024-12-29T18:58:00.000-07:00",
+      "tags": [
+        "Project",
+        "Technical"
+      ],
+      "status": "Published",
+      "coverImage": "/blog-images/massive-volunteering/cover-massive-homepage.webp",
+      "content": "A website built to connect high school students with organizations actively searching for volunteers. [Here's](https://github.com/michaelfromyeg/Massive-Volunteering) the GitHub repository.\n\n\n### Background\n\n\nIn high school, I completed the IB program. For my Computer Science Internal Assessment (IA) I decided to build a website for a club I was also helping lead. The basic goal was to be able to allow organizations looking for volunteers to advertise opportunities directly to high school students.\n\n![massive-homepage.png](/blog-images/massive-volunteering/000-massive-homepage.webp)\n\n\n### Usage\n\n\nVolunteers can create an account and profile. Organizations can as well. There's a blog-style feed of opportunities that appears in the user's feed.\n\n\n### How it's made\n\n\nThe project is built using Python Flask and Bootstrap for the styling.\n\n\n### Challenges\n\n\nThis was the first real web project I ever built, so I had hard time building things without being reliant on tutorials.\n\n\n### Accomplishments\n\n\nThe app works pretty nicely, and it received a \\$500 grant from the Edmonton Community Foundation! I hope to deploy it Summer 2020.\n\n\n### Future\n\n\nI need to add the organization \"flow,\" and create better ways for users to be notified. An iOS and Android variant of this project would also be really cool! The GitHub issues are [viewable](https://github.com/michaelfromyeg/Massive-Volunteering/issues) here."
+    },
+    {
+      "id": "169c4188-fa0e-8003-a494-dace58eb9112",
+      "slug": "makefiles",
+      "title": "Makefiles",
+      "description": "This guide demystifies GNU's ",
+      "createdDate": "2024-12-27T23:56:00.000Z",
+      "editedDate": "2024-12-30T01:58:00.000Z",
+      "publishedDate": "2024-12-29T18:58:00.000-07:00",
+      "tags": [
+        "Project",
+        "Technical"
+      ],
+      "status": "Published",
+      "coverImage": "/blog-images/makefiles/cover-gnu-make.webp",
+      "content": "![gnu-make.png](/blog-images/makefiles/000-gnu-make.webp)\n\nA wrote a brief guide to GNU's `make`. Check it out [here](https://michaelfromyeg.github.io/makefiles)!\n\nI use `make` often in small-to-medium sized code snippets in CPSC 213 (\"Introduction to Computer Systems\") at UBC as a part of the teaching team. Hopefully this guide can serve students well and provide some clarity on this somewhat arcane build tool!\n\nTODO(@Anonymous): update and migrate that post here! Add a new guides tag."
+    },
+    {
+      "id": "169c4188-fa0e-80b5-9006-c1f1c0f4d3f5",
+      "slug": "jcite",
+      "title": "jCite",
+      "description": "A user-friendly tool designed to simplify citation management for students and writers alike.",
+      "createdDate": "2024-12-27T23:56:00.000Z",
+      "editedDate": "2024-12-30T01:58:00.000Z",
+      "publishedDate": "2024-12-29T18:58:00.000-07:00",
+      "tags": [
+        "Project",
+        "Technical"
+      ],
+      "status": "Published",
+      "coverImage": "/blog-images/jcite/cover-zotero.webp",
+      "content": "Create and manage your citations without all the headaches!\n\n\n### Background\n\n\nThis project was made for CPSC 210, a UBC second-year course focused on software construction. The course uses Java, and likewise this project was made using Java and JavaFX for the UI. I asked my girlfriend if she had any project ideas, and she mentioned she struggled keeping track of citations for her assignments, so I wanted to build a tool that could meet her needs. I felt the exact same feeling when I wrote my 4,000 word Extended Essay in high school. Trying to remember and keep track of citations can be hard if you're not an experienced writer.\n\n\n### Usage\n\n\nA user can create an account and manage a list of assignments. With each assignment, they can paragraph-by-paragraph manage citations (e.g., who are you citing, what page number, etc.) and then automatically generate a works-cited page with reported \"confidence.\"\n\n![zotero.png](/blog-images/jcite/000-zotero.webp)\n\n\n### How it's made\n\n\nThe project is made with vanilla Java and JavaFX.\n\n\n### Challenges\n\n\nI struggled quite a bit with the algorithm to generate citations, but I'm happy with what I ended up with! Maybe I'll release it separately as an API or something.\n\n\n### Accomplishments\n\n\nI think the project structure is quite nice, and I'm happy with the UI! It was my first time using JavaFX.\n\n\n### Future\n\n\nIt'd be cool to port this to an Android app or something. I should also probably created a \"released\" version."
+    },
+    {
+      "id": "169c4188-fa0e-8043-9009-e3c299828b86",
+      "slug": "grouber",
+      "title": "groUber",
+      "description": "groUber simplifies carpooling for event planners by automating schedules and optimizing rides with just one click.",
+      "createdDate": "2024-12-27T23:54:00.000Z",
+      "editedDate": "2024-12-30T01:58:00.000Z",
+      "publishedDate": "2024-12-29T18:58:00.000-07:00",
+      "tags": [
+        "Project",
+        "Technical"
+      ],
+      "status": "Published",
+      "coverImage": "/blog-images/grouber/cover-grouber.webp",
+      "content": "![poster-01.png](/blog-images/grouber/000-poster-01.webp)\n\ngroups + Uber = groUber. Source code available [here](https://github.com/michaelfromyeg/groUber).\n\ngroUber is aimed to help event planners create carpools and was built for To the Moon and Hack, [an MLH event](https://mlh.io/). (If you're going to use this project to plan your event, remember to stay 6ft apart!)\n\n\n### Motivation\n\n\nThis project was built by a group of 5 students from UBC in Vancouver, BC who love automating things. And one horrific task all of us have run into when planning our events is creating a workable carpool schedule.\n\nIt's a great option for getting your group together: whether it be parents figuring out how best to get their kids to soccer practice, or friends accommodating those without access to a car, carpooling is common, but creating a plan can be painful, to say the least.\n\nYou finally come up with a workable schedule: everyone can make it to the event, no driver has to go in annoying, wasteful loops, and everything can start on time.\n\nThen a driver with 4 seats drops out. And you have to do it all over again. No, thanks.\n\n\n### Introducing: groUber\n\n\nWith groUber, never go through that headache again. As an event organizer, create your event, send an invite link to your friends, and create a carpool schedule with one click. As a participant, simply receive a link, RSVP, and inform the organizer of how many seats you have available. You'll receive a schedule on the day-of.\n\nUsing the Radar API and the Google Maps API, along with a bit of algo-magic, our app will create the most optimal carpool schedule for everyone involved. We were hesitant to do this project at first; the idea of designing an algorithm to find the \"best\" carpool strategy was intimidating to say the least. After some research, it turns out this is actually classified an NP-hard problem. We didn't need to solve the problem generally though, and were able to design a heuristic algorithm to be able to compute this with fairly good results. Here are a few examples of scholarly work in this area. It took great teamwork, persistence, and a decent amount of caffeine to get this working.\n\nNow, drivers won't have to waste gas, and everyone will get there on time. Someone drops out? No problem, our app will allow you to adjust your schedule, painlessly.\n\ngroUber is ride-sharing for your group of friends, without all the expenses and overhead. Do a favor for the environment, and for your stress-levels, and start using groUber today.\n\nHere's our [whitepaper](https://docs.google.com/document/d/e/2PACX-1vSLo8DhZ7p-VgPnmieasD01zZ2_76uMxPxSwVErq3_gQPvpokrFI4G5SHA1Pxrc9b9ouhK5yvL-4X3t/pub) where you can find a more in-depth justification for this hack! We also have a [slide deck](https://docs.google.com/presentation/d/e/2PACX-1vRY4A2dxP3vd1L7tY9gNC1Y0oegweKaiE9ZRHzulQArcLDld2zxErJQPk2TWvtwONXqdFWSECFlWEhh/pub?start=false&loop=false&delayms=15000&slide=id.p) for the visual learners out there.\n\n\n### Stack\n\n\n\n- TypeScript, React\n- Node.js, npm\n\n- Firebase, including authentication, hosting, and Firestore\n- GitHub Actions\n\n\n### Usage\n\n\nHead to [grouber.online](https://grouber.online/). Sign-up using your Google account.\n\nCreate your event with all key details, and send an invite to your to-be attendees. Once they RSVP, you'll see their details on your event dashboard. Then, generate your event's carpool schedule in one click!\n\nParticipants must submit their address, if they're driving, and if so, how many seats they have available in their vehicle.\n\nCheck out some screenshots of the application below!\n\n![grouber.png](/blog-images/grouber/001-grouber.webp)\n\n![homescreen.png](/blog-images/grouber/002-homescreen.webp)\n\n![RSVPPage.jpg](/blog-images/grouber/003-RSVPPage.webp)\n\n![appMap.jpg](/blog-images/grouber/004-appMap.webp)\n\n![branding.png](/blog-images/grouber/005-branding.webp)\n\n![dashboard.jpg](/blog-images/grouber/006-dashboard.webp)\n\n\n### Contributing\n\n\nCheck out the GitHub repository for more information."
+    },
+    {
+      "id": "169c4188-fa0e-8039-a7f6-e9d09e908104",
+      "slug": "csv-upload-tool",
+      "title": "CSV Upload Tool",
+      "description": "A user-friendly CSV upload tool that simplifies data matching and storage with a sleek interface.",
+      "createdDate": "2024-12-27T23:53:00.000Z",
+      "editedDate": "2024-12-30T01:58:00.000Z",
+      "publishedDate": "2024-12-29T18:58:00.000-07:00",
+      "tags": [
+        "Project",
+        "Technical"
+      ],
+      "status": "Published",
+      "coverImage": "/blog-images/csv-upload-tool/cover-upload.webp",
+      "content": "Upload and match CSV data. Simple, but practical! Check out the project for yourself, [here](https://michaelfromyeg.github.io/CSV-Upload-Tool).\n\n\n### Background\n\n\nThis project was made for Artesian software, to be used in a more large scale project.\n\n\n### Usage\n\n\nA user can upload a CSV file with any data, and then can match their \"headers\" (the columns) to the one's anticipated by the app. With these pairings, the app then \"reassigns\" the user's data with the new headings and saves it to a SQLite database.\n\nCheck out some screenshots below!\n\n![succeed.png](/blog-images/csv-upload-tool/000-succeed.webp)\n\n![upload.png](/blog-images/csv-upload-tool/001-upload.webp)\n\n![failed.png](/blog-images/csv-upload-tool/002-failed.webp)\n\n\n### How it's made\n\n\nThe project was made using React, Flask, and SQLite. I used Bootstrap to style the components.\n\n\n### Challenges\n\n\nI struggled a decent amount to get SQLAlchemy to accept JSON data. Turns out they have a column type specifically for JSON. Consider this your friendly reminder to read the docs carefully!\n\n\n### Accomplishments\n\n\nI think the user experience is really smooth, and the app is visually quite appealing!\n\n\n### Future\n\n\nIt'd be great to implement drag and drop."
+    },
+    {
+      "id": "169c4188-fa0e-806d-b551-c51ab6782d6d",
+      "slug": "arpro",
+      "title": "ARPro",
+      "description": "Experience the convenience of visualizing Best Buy products in your home using our innovative AR Android application!",
+      "createdDate": "2024-12-27T23:52:00.000Z",
+      "editedDate": "2024-12-30T01:58:00.000Z",
+      "publishedDate": "2024-12-29T18:58:00.000-07:00",
+      "tags": [
+        "Project",
+        "Technical"
+      ],
+      "status": "Published",
+      "coverImage": "/blog-images/arpro/cover-award.webp",
+      "content": "![award.jpg](/blog-images/arpro/000-award.webp)\n\nAn AR Android application to let you view the latest Best Buy product in your home, from the comfort of your pyjamas.\n\n\n### Background\n\n\nThis project was developed by Michael DeMarco and Liang Liu, and backed by a business model developed by Benji Li, Daniel Frydman, and Ophir Greif. It was built at BizHacks 2020, a business-oriented hackathon sponsored by Best Buy and hosted at UBC. My team and I developed a business solution for Best Buy, and took home the 2nd place prize out of over 50 teams.\n\n\n### Usage\n\n\nThe project allowed users to determine what product dimensions were right for them from the comfort of their own home. Not sure if a 60\" or 62\" TV is right for you? Use our app to increment sizes of a mock TV displayed right on your wall, courtesy of the latest AR technology, or do a side-by-side comparison, or even enter a custom amount of inches!\n\nCheck it out below!\n\n![large-tv.jpg](/blog-images/arpro/001-large-tv.webp)\n\n![products.jpg](/blog-images/arpro/002-products.webp)\n\n![small-tv.jpg](/blog-images/arpro/003-small-tv.webp)\n\n\n### How it's made\n\n\nThis project was built using Java and ARCore.\n\n\n### Challenges\n\n\nGetting the AR to work properly was quite tricky; we ran into a number of issues finding suitable 3D models.\n\n\n### Accomplishments\n\n\nThe app works really nicely, and it took home 2nd place! It's an interesting, minimalist take on the idea of \"visualize furniture in your living room\" that Ikea made quite popular.\n\n\n### Future\n\n\nWe should probably clean up the UI."
+    },
+    {
       "id": "141c4188-fa0e-8082-b413-ed132c1dd339",
       "slug": "a-decade-of-scrap-booking",
       "title": "A decade of scrap booking",
@@ -155,6 +283,134 @@
     }
   ],
   "postsBySlug": {
+    "rapviz": {
+      "id": "16ac4188-fa0e-8039-af80-e08e9185783d",
+      "slug": "rapviz",
+      "title": "RapViz",
+      "description": "Explore how RapViz uses NLP and web technologies to break down rap lyrics and highlight rhymes in real-time!",
+      "createdDate": "2024-12-28T00:01:00.000Z",
+      "editedDate": "2024-12-30T01:58:00.000Z",
+      "publishedDate": "2024-12-29T18:58:00.000-07:00",
+      "tags": [
+        "Project",
+        "Technical"
+      ],
+      "status": "Published",
+      "coverImage": "/blog-images/rapviz/cover-rapviz-negative-logo.webp",
+      "content": "See your bars broken down right in the browser. Powered by Spotify, Genius, and Google Cloud. Check out the GitHub repository [here](https://github.com/michaelfromyeg)!\n\n![rapviz-main.png](/blog-images/rapviz/000-rapviz-main.webp)\n\n![rapviz-mfdoom.png](/blog-images/rapviz/001-rapviz-mfdoom.webp)\n\n\n### Background\n\n\nThere are loads of videos online that inspired this project. Take a look at Genius' version, [Check The Rhyme](https://youtube.com/watch?v=1VNHp_flJKE), or Vox's, [Rapping, deconstructed: The best rhymers of all time](https://youtube.com/watch?v=QWveXdj6oZU). These videos get millions, and I mean millions of hits online. Why? Well, it's fun! And it's cool. The basic concept is that rap lyrics are \"broken down\" and the rhyming groups are highlighted. Often the videos will do this on a syllable-by-syllable basis, but also sometimes do multi-word rhymes! For this project, we wanted to start simple and focus on single, whole word rhymes.\n\nWe thought we could leverage NLP, a couple of freely available APIs, and some basic React so create a website that generates these kinds of \"highlighted\" rhymes. So what happened?\n\n\n### Usage\n\n\nThe user is presented with one of two options. They may either submit their own bars into a text field, or they can sign into Spotify and have their current song's lyrics analyzed. The lyrics are printed out with the rhyme scheme highlighted.\n\n\n### How it's made\n\n\nWe used a Flask backend to write a couple of endpoints to help us LyricsGenius, an API for scraping lyrics from Genius. We also wrote our NLP-based rhyme detection algorithm in Python and processed all of that data on the backend. Spotify authentication and the UI was all handled by React. We eventually deployed our app to Google Cloud so other users could try it.\n\n\n### Challenges\n\n\nDeveloping the rhyme algorithm was really tricky, especially getting it to be fast enough (eventually down to O(n) time!). We also ran into issues integrating Spotify into our app, but eventually got it sorted.\n\n\n### Accomplishments\n\n\nWe are able to programmatically generate what would take a video editor likely a couple of hours to do! Leveraging modern web technologies and NLP, displaying the rhyme scheme of a song proved to be a challenging but very possible feat.\n\n\n### Future\n\n\nCheck out our [issues](https://github.com/michaelfromyeg/RapViz/issues) on GitHub! Though it was built at a hackathon (and there's quite a bit of spaghetti code) this is definitely a project I want to continue developing in the future."
+    },
+    "predicting-credit-card-defaults": {
+      "id": "169c4188-fa0e-80a9-b30a-fbd22565ada7",
+      "slug": "predicting-credit-card-defaults",
+      "title": "Predicting Credit Card Defaults",
+      "description": "This blog post explores how machine learning can predict credit card defaults, utilizing a LightGBM model to analyze demographic and financial data.",
+      "createdDate": "2024-12-27T23:58:00.000Z",
+      "editedDate": "2024-12-30T01:58:00.000Z",
+      "publishedDate": "2024-12-29T18:58:00.000-07:00",
+      "tags": [
+        "Project",
+        "Technical"
+      ],
+      "status": "Published",
+      "coverImage": "/blog-images/predicting-credit-card-defaults/cover-ales-nesetril-credit-card-unsplash.webp",
+      "content": "_The following blog post was written for the final homework submission of_ [_CPSC 330, UBC's \"Applied Machine Learning\" course_](https://github.com/ubc-cs/cpsc330)_. In the course, my partner Max and I got a hands-on introduction to machine learning with Python via sklearn._\n\n![ales-nesetril-credit-card-unsplash.jpg](/blog-images/predicting-credit-card-defaults/000-ales-nesetril-credit-card-unsplash.webp)\n\n[hw6.pdf](https://prod-files-secure.s3.us-west-2.amazonaws.com/f52dee6c-7688-4d58-bd02-08fdc7967ec0/a17772b6-6f22-48c8-8fa5-4bba492fff91/hw6.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45FSPPWI6X%2F20241230%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20241230T022717Z&X-Amz-Expires=3600&X-Amz-Signature=4a0c935af87aec2056bcf6be5372757961e85d1f79334c15bc1540413186afa6&X-Amz-SignedHeaders=host&x-id=GetObject)\n\n\n## Problem\n\n\nDefaulting on a credit card payment is a challenging situation for all those involved. The individual who defaulted is tasked with rebuilding their credit score, and the issuer is laden with the debt. Ideally, a financial institution could _predict_ whether or not someone will default ahead of time, and prevent it from happening in the first place.\n\nWhile this is a daunting task—and one that requires sensitivity given the fact we are dealing with people's financial livelihoods—this is a situation where machine learning can be of use.\n\n\n### Question\n\n\nWe'll apply machine learning techniques to answer the following question.\n\n> Will this person default next month on their credit card payment?\n\nWith data relating to that person's demographics, payment history, and other financial information, we can attempt to predict the answer to this question.\n\n\n### Data\n\n\nThe data set we used is publicly available on [Kaggle](https://kaggle.com/uciml/default-of-credit-card-clients-dataset). In contains demographic information such as sex, education, marriage and age; information regarding and individual's finances including limit balance, repayment status, bill amounts, and payment amounts. Finally, it contains whether or not that individual really _did_ default next month.\n\nThis is simply a high-level description of the data; for a more in-depth view, consult Kaggle or our [full report](https://www.notion.so/michaelfromyeg/hw6.pdf).\n\n\n## Exploration\n\n\nBefore we delve into our analysis, let's get a better sense of the data available.\n\nTo begin with, we portioned off a chunk of our data, namely 25%, to eventually assess our model's effectiveness after our model is already created. Let's explore the remnants.\n\n\n### Exploratory Data Analysis (\"EDA\")\n\n\nWe have 225,000 rows in our data available for training use, each representing an individual and their associated \"features\" (such as age or sex) as outlined above.\n\nThe \"average\" demographic in this data is someone who's single (instead of married), has a university-level education, and an age of about 35.\n\nThe individual with the highest limit balance is a 47 year old female with precisely NT$1,000,000 available, equivalent to roughly USD$100,000. This is definitely an outlier; the distribution for the rest of the balances is shown below. (Note dollar amounts are in New Taiwan dollars.)\n\nWe find most balances in the range of NT$50,000 (~USD$6,500) to NT$100,000 (~USD$13,000) which seems reasonable.\n\n![distribution-of-payamt2.png](/blog-images/predicting-credit-card-defaults/001-distribution-of-payamt2.webp)\n\n![distribution-of-limitbal.png](/blog-images/predicting-credit-card-defaults/002-distribution-of-limitbal.webp)\n\n![distribution-of-classes.png](/blog-images/predicting-credit-card-defaults/003-distribution-of-classes.webp)\n\nThe repayment statuses in the month of August 2005 are, for whatever reason, highly skewed towards 0, which is the encoding of \"use of revolving credit.\" A visualization of this is shown below.\n\nIt might be interesting to investigate any geopolitical events that occurred in the same time frame of this data set, the summer and fall of 2005, to account for any global financial trends.\n\nWith a better understanding of the data at hand, we proceed to our analysis.\n\n\n## Analysis\n\n\nBelow is a description of our final model, and the results it yielded.\n\n\n### Model\n\n\nFor our final model we opted to use [LightGBM](https://lightgbm.readthedocs.io/en/latest/index.html), which is a gradient boosted tree based model. Gradient boosted models are ensembles of weaker prediction models, in our case, decision trees.\n\nLightGBM greatly outperformed the Decision Tree model. It also consistently outperformed the Random Forest model, even after we performed feature selection using `RFECV` and hyperparameter optimization using random search.\n\n\n### Results\n\n\nThe LightGBM model achieved an accuracy of 0.82, F1-score of 0.48, and recall of 0.38. This means that from our test data, we would correctly predict whether or not someone would default about 82% of the time. Among all of the examples of \"did default,\" we're correct only 38% of the time (—given the imbalance in the data set, this is somewhat to be expected). These results are promising, and should generalize well on \"deployment data\" since the test and validation scores are similar.\n\nIt's also interesting to look at how important our features were in the LightGBM model. SHAP force plots are one way of achieving this; without diving into depth here, just know that \"red\" means \"did not default,\" and a bigger arrow implies more impact.\n\nIn the two plots above, we see that PAY1 played a major role. Perhaps this is because if an individual gets off on the wrong foot, they are unlikely to ever recover. Banks might be incentivized to try to get on top of late payments immediately, to prevent financial hardships from spiraling into an eventual default!\n\n![shap-force2.png](/blog-images/predicting-credit-card-defaults/004-shap-force2.webp)\n\n![shap-force1.png](/blog-images/predicting-credit-card-defaults/005-shap-force1.webp)\n\n\n## Reflection\n\n\nWhile we are satisfied with our results, there are some caveats that should be made known before anyone attempts to use this model on \"real world\" use-cases.\n\nFirstly, the given data suffers from class imbalance. Most of our examples were of type \"did not default,\" at a ratio of nearly 3-to-1. The imbalance in our data was naturally occurring, so we asked ourselves what kind of error we were trying to minimize. We were concerned with minimizing false negatives, and so we chose to focus on recall as our evaluation metric. Sometimes naturally occurring class imbalance is okay to ignore. However, we believe that a possible improvement of our modeling could be to undersample or oversample the data to attempt to further address class imbalance.\n\nSecondly, the data available here was highly localized. All of our examples were from Taiwan, and so it is likely that our modeling would not generalize well to anywhere else in the world. Applying this model as a US Bank, for example, would be inappropriate as different cultures may exhibit different financial habits.\n\nFinally, there may have been overfitting on the hyperparameters. The final model described here was not our only attempt at this problem; rather, it was just our best attempt. Since we re-tested with various models and ran our hyperparameter tuning more than once it is _possible_ that we unintentionally overfit our model.\n\n\n## Conclusion\n\n\nFrom our data set, we were able to produce a LightGBM model that showed promising results, with a recall score of 0.38. In the future, we could look to further tune our LightGBM attempt to improve on our performance!\n\nThanks for reading! Hope you enjoyed it."
+    },
+    "massive-volunteering": {
+      "id": "169c4188-fa0e-80be-8567-dbd1c556f154",
+      "slug": "massive-volunteering",
+      "title": "Massive Volunteering",
+      "description": "A platform designed to connect high school students with volunteer opportunities from various organizations.",
+      "createdDate": "2024-12-27T23:57:00.000Z",
+      "editedDate": "2024-12-30T01:58:00.000Z",
+      "publishedDate": "2024-12-29T18:58:00.000-07:00",
+      "tags": [
+        "Project",
+        "Technical"
+      ],
+      "status": "Published",
+      "coverImage": "/blog-images/massive-volunteering/cover-massive-homepage.webp",
+      "content": "A website built to connect high school students with organizations actively searching for volunteers. [Here's](https://github.com/michaelfromyeg/Massive-Volunteering) the GitHub repository.\n\n\n### Background\n\n\nIn high school, I completed the IB program. For my Computer Science Internal Assessment (IA) I decided to build a website for a club I was also helping lead. The basic goal was to be able to allow organizations looking for volunteers to advertise opportunities directly to high school students.\n\n![massive-homepage.png](/blog-images/massive-volunteering/000-massive-homepage.webp)\n\n\n### Usage\n\n\nVolunteers can create an account and profile. Organizations can as well. There's a blog-style feed of opportunities that appears in the user's feed.\n\n\n### How it's made\n\n\nThe project is built using Python Flask and Bootstrap for the styling.\n\n\n### Challenges\n\n\nThis was the first real web project I ever built, so I had hard time building things without being reliant on tutorials.\n\n\n### Accomplishments\n\n\nThe app works pretty nicely, and it received a \\$500 grant from the Edmonton Community Foundation! I hope to deploy it Summer 2020.\n\n\n### Future\n\n\nI need to add the organization \"flow,\" and create better ways for users to be notified. An iOS and Android variant of this project would also be really cool! The GitHub issues are [viewable](https://github.com/michaelfromyeg/Massive-Volunteering/issues) here."
+    },
+    "makefiles": {
+      "id": "169c4188-fa0e-8003-a494-dace58eb9112",
+      "slug": "makefiles",
+      "title": "Makefiles",
+      "description": "This guide demystifies GNU's ",
+      "createdDate": "2024-12-27T23:56:00.000Z",
+      "editedDate": "2024-12-30T01:58:00.000Z",
+      "publishedDate": "2024-12-29T18:58:00.000-07:00",
+      "tags": [
+        "Project",
+        "Technical"
+      ],
+      "status": "Published",
+      "coverImage": "/blog-images/makefiles/cover-gnu-make.webp",
+      "content": "![gnu-make.png](/blog-images/makefiles/000-gnu-make.webp)\n\nA wrote a brief guide to GNU's `make`. Check it out [here](https://michaelfromyeg.github.io/makefiles)!\n\nI use `make` often in small-to-medium sized code snippets in CPSC 213 (\"Introduction to Computer Systems\") at UBC as a part of the teaching team. Hopefully this guide can serve students well and provide some clarity on this somewhat arcane build tool!\n\nTODO(@Anonymous): update and migrate that post here! Add a new guides tag."
+    },
+    "jcite": {
+      "id": "169c4188-fa0e-80b5-9006-c1f1c0f4d3f5",
+      "slug": "jcite",
+      "title": "jCite",
+      "description": "A user-friendly tool designed to simplify citation management for students and writers alike.",
+      "createdDate": "2024-12-27T23:56:00.000Z",
+      "editedDate": "2024-12-30T01:58:00.000Z",
+      "publishedDate": "2024-12-29T18:58:00.000-07:00",
+      "tags": [
+        "Project",
+        "Technical"
+      ],
+      "status": "Published",
+      "coverImage": "/blog-images/jcite/cover-zotero.webp",
+      "content": "Create and manage your citations without all the headaches!\n\n\n### Background\n\n\nThis project was made for CPSC 210, a UBC second-year course focused on software construction. The course uses Java, and likewise this project was made using Java and JavaFX for the UI. I asked my girlfriend if she had any project ideas, and she mentioned she struggled keeping track of citations for her assignments, so I wanted to build a tool that could meet her needs. I felt the exact same feeling when I wrote my 4,000 word Extended Essay in high school. Trying to remember and keep track of citations can be hard if you're not an experienced writer.\n\n\n### Usage\n\n\nA user can create an account and manage a list of assignments. With each assignment, they can paragraph-by-paragraph manage citations (e.g., who are you citing, what page number, etc.) and then automatically generate a works-cited page with reported \"confidence.\"\n\n![zotero.png](/blog-images/jcite/000-zotero.webp)\n\n\n### How it's made\n\n\nThe project is made with vanilla Java and JavaFX.\n\n\n### Challenges\n\n\nI struggled quite a bit with the algorithm to generate citations, but I'm happy with what I ended up with! Maybe I'll release it separately as an API or something.\n\n\n### Accomplishments\n\n\nI think the project structure is quite nice, and I'm happy with the UI! It was my first time using JavaFX.\n\n\n### Future\n\n\nIt'd be cool to port this to an Android app or something. I should also probably created a \"released\" version."
+    },
+    "grouber": {
+      "id": "169c4188-fa0e-8043-9009-e3c299828b86",
+      "slug": "grouber",
+      "title": "groUber",
+      "description": "groUber simplifies carpooling for event planners by automating schedules and optimizing rides with just one click.",
+      "createdDate": "2024-12-27T23:54:00.000Z",
+      "editedDate": "2024-12-30T01:58:00.000Z",
+      "publishedDate": "2024-12-29T18:58:00.000-07:00",
+      "tags": [
+        "Project",
+        "Technical"
+      ],
+      "status": "Published",
+      "coverImage": "/blog-images/grouber/cover-grouber.webp",
+      "content": "![poster-01.png](/blog-images/grouber/000-poster-01.webp)\n\ngroups + Uber = groUber. Source code available [here](https://github.com/michaelfromyeg/groUber).\n\ngroUber is aimed to help event planners create carpools and was built for To the Moon and Hack, [an MLH event](https://mlh.io/). (If you're going to use this project to plan your event, remember to stay 6ft apart!)\n\n\n### Motivation\n\n\nThis project was built by a group of 5 students from UBC in Vancouver, BC who love automating things. And one horrific task all of us have run into when planning our events is creating a workable carpool schedule.\n\nIt's a great option for getting your group together: whether it be parents figuring out how best to get their kids to soccer practice, or friends accommodating those without access to a car, carpooling is common, but creating a plan can be painful, to say the least.\n\nYou finally come up with a workable schedule: everyone can make it to the event, no driver has to go in annoying, wasteful loops, and everything can start on time.\n\nThen a driver with 4 seats drops out. And you have to do it all over again. No, thanks.\n\n\n### Introducing: groUber\n\n\nWith groUber, never go through that headache again. As an event organizer, create your event, send an invite link to your friends, and create a carpool schedule with one click. As a participant, simply receive a link, RSVP, and inform the organizer of how many seats you have available. You'll receive a schedule on the day-of.\n\nUsing the Radar API and the Google Maps API, along with a bit of algo-magic, our app will create the most optimal carpool schedule for everyone involved. We were hesitant to do this project at first; the idea of designing an algorithm to find the \"best\" carpool strategy was intimidating to say the least. After some research, it turns out this is actually classified an NP-hard problem. We didn't need to solve the problem generally though, and were able to design a heuristic algorithm to be able to compute this with fairly good results. Here are a few examples of scholarly work in this area. It took great teamwork, persistence, and a decent amount of caffeine to get this working.\n\nNow, drivers won't have to waste gas, and everyone will get there on time. Someone drops out? No problem, our app will allow you to adjust your schedule, painlessly.\n\ngroUber is ride-sharing for your group of friends, without all the expenses and overhead. Do a favor for the environment, and for your stress-levels, and start using groUber today.\n\nHere's our [whitepaper](https://docs.google.com/document/d/e/2PACX-1vSLo8DhZ7p-VgPnmieasD01zZ2_76uMxPxSwVErq3_gQPvpokrFI4G5SHA1Pxrc9b9ouhK5yvL-4X3t/pub) where you can find a more in-depth justification for this hack! We also have a [slide deck](https://docs.google.com/presentation/d/e/2PACX-1vRY4A2dxP3vd1L7tY9gNC1Y0oegweKaiE9ZRHzulQArcLDld2zxErJQPk2TWvtwONXqdFWSECFlWEhh/pub?start=false&loop=false&delayms=15000&slide=id.p) for the visual learners out there.\n\n\n### Stack\n\n\n\n- TypeScript, React\n- Node.js, npm\n\n- Firebase, including authentication, hosting, and Firestore\n- GitHub Actions\n\n\n### Usage\n\n\nHead to [grouber.online](https://grouber.online/). Sign-up using your Google account.\n\nCreate your event with all key details, and send an invite to your to-be attendees. Once they RSVP, you'll see their details on your event dashboard. Then, generate your event's carpool schedule in one click!\n\nParticipants must submit their address, if they're driving, and if so, how many seats they have available in their vehicle.\n\nCheck out some screenshots of the application below!\n\n![grouber.png](/blog-images/grouber/001-grouber.webp)\n\n![homescreen.png](/blog-images/grouber/002-homescreen.webp)\n\n![RSVPPage.jpg](/blog-images/grouber/003-RSVPPage.webp)\n\n![appMap.jpg](/blog-images/grouber/004-appMap.webp)\n\n![branding.png](/blog-images/grouber/005-branding.webp)\n\n![dashboard.jpg](/blog-images/grouber/006-dashboard.webp)\n\n\n### Contributing\n\n\nCheck out the GitHub repository for more information."
+    },
+    "csv-upload-tool": {
+      "id": "169c4188-fa0e-8039-a7f6-e9d09e908104",
+      "slug": "csv-upload-tool",
+      "title": "CSV Upload Tool",
+      "description": "A user-friendly CSV upload tool that simplifies data matching and storage with a sleek interface.",
+      "createdDate": "2024-12-27T23:53:00.000Z",
+      "editedDate": "2024-12-30T01:58:00.000Z",
+      "publishedDate": "2024-12-29T18:58:00.000-07:00",
+      "tags": [
+        "Project",
+        "Technical"
+      ],
+      "status": "Published",
+      "coverImage": "/blog-images/csv-upload-tool/cover-upload.webp",
+      "content": "Upload and match CSV data. Simple, but practical! Check out the project for yourself, [here](https://michaelfromyeg.github.io/CSV-Upload-Tool).\n\n\n### Background\n\n\nThis project was made for Artesian software, to be used in a more large scale project.\n\n\n### Usage\n\n\nA user can upload a CSV file with any data, and then can match their \"headers\" (the columns) to the one's anticipated by the app. With these pairings, the app then \"reassigns\" the user's data with the new headings and saves it to a SQLite database.\n\nCheck out some screenshots below!\n\n![succeed.png](/blog-images/csv-upload-tool/000-succeed.webp)\n\n![upload.png](/blog-images/csv-upload-tool/001-upload.webp)\n\n![failed.png](/blog-images/csv-upload-tool/002-failed.webp)\n\n\n### How it's made\n\n\nThe project was made using React, Flask, and SQLite. I used Bootstrap to style the components.\n\n\n### Challenges\n\n\nI struggled a decent amount to get SQLAlchemy to accept JSON data. Turns out they have a column type specifically for JSON. Consider this your friendly reminder to read the docs carefully!\n\n\n### Accomplishments\n\n\nI think the user experience is really smooth, and the app is visually quite appealing!\n\n\n### Future\n\n\nIt'd be great to implement drag and drop."
+    },
+    "arpro": {
+      "id": "169c4188-fa0e-806d-b551-c51ab6782d6d",
+      "slug": "arpro",
+      "title": "ARPro",
+      "description": "Experience the convenience of visualizing Best Buy products in your home using our innovative AR Android application!",
+      "createdDate": "2024-12-27T23:52:00.000Z",
+      "editedDate": "2024-12-30T01:58:00.000Z",
+      "publishedDate": "2024-12-29T18:58:00.000-07:00",
+      "tags": [
+        "Project",
+        "Technical"
+      ],
+      "status": "Published",
+      "coverImage": "/blog-images/arpro/cover-award.webp",
+      "content": "![award.jpg](/blog-images/arpro/000-award.webp)\n\nAn AR Android application to let you view the latest Best Buy product in your home, from the comfort of your pyjamas.\n\n\n### Background\n\n\nThis project was developed by Michael DeMarco and Liang Liu, and backed by a business model developed by Benji Li, Daniel Frydman, and Ophir Greif. It was built at BizHacks 2020, a business-oriented hackathon sponsored by Best Buy and hosted at UBC. My team and I developed a business solution for Best Buy, and took home the 2nd place prize out of over 50 teams.\n\n\n### Usage\n\n\nThe project allowed users to determine what product dimensions were right for them from the comfort of their own home. Not sure if a 60\" or 62\" TV is right for you? Use our app to increment sizes of a mock TV displayed right on your wall, courtesy of the latest AR technology, or do a side-by-side comparison, or even enter a custom amount of inches!\n\nCheck it out below!\n\n![large-tv.jpg](/blog-images/arpro/001-large-tv.webp)\n\n![products.jpg](/blog-images/arpro/002-products.webp)\n\n![small-tv.jpg](/blog-images/arpro/003-small-tv.webp)\n\n\n### How it's made\n\n\nThis project was built using Java and ARCore.\n\n\n### Challenges\n\n\nGetting the AR to work properly was quite tricky; we ran into a number of issues finding suitable 3D models.\n\n\n### Accomplishments\n\n\nThe app works really nicely, and it took home 2nd place! It's an interesting, minimalist take on the idea of \"visualize furniture in your living room\" that Ikea made quite popular.\n\n\n### Future\n\n\nWe should probably clean up the UI."
+    },
     "a-decade-of-scrap-booking": {
       "id": "141c4188-fa0e-8082-b413-ed132c1dd339",
       "slug": "a-decade-of-scrap-booking",
