@@ -6,7 +6,7 @@ import {
   isFullPage,
   getRichTextContent,
   normalizeContent,
-  processImages,
+  processContent,
 } from './index'
 import { getPageCoverImage } from './cover'
 import type { TravelItinerary } from './types'
@@ -18,11 +18,9 @@ export function parseNotionPageToTravelItinerary(
     throw new Error('Invalid page object from Notion API')
   }
 
-  const properties: any = page.properties
-  const startDate = properties.Start?.['date']?.start ?? ''
-  const endDate = properties.Finish?.['date']?.start ?? ''
-
-  // Calculate duration in days
+  const properties = page.properties
+  const startDate = properties.Start?.date?.start ?? ''
+  const endDate = properties.Finish?.date?.start ?? ''
   const duration =
     startDate && endDate
       ? Math.ceil(
@@ -33,25 +31,20 @@ export function parseNotionPageToTravelItinerary(
 
   return {
     id: page.id,
-    slug:
-      properties.Slug?.['rich_text']?.[0]?.plain_text ??
-      properties.Slug?.['formula']?.string ??
-      '',
-    title: getRichTextContent(properties.Name?.['title'] ?? []),
-    description: getRichTextContent(
-      properties.Description?.['rich_text'] ?? []
-    ),
-    region: properties.Region?.['select']?.name ?? '',
-    isDone: properties.Done?.['checkbox'] ?? false,
+    slug: properties.Slug?.formula?.string ?? '',
+    title: getRichTextContent(properties.Name?.title ?? []),
+    description: getRichTextContent(properties.Description?.rich_text ?? []),
+    region: properties.Region?.select?.name ?? '',
+    isDone: properties.Done?.checkbox ?? false,
     startDate,
     endDate,
     duration,
-    lat: properties.Latitude?.['number'] ?? 0,
-    lon: properties.Longitude?.['number'] ?? 0,
-    createdDate: properties.Created?.['created_time'] ?? '',
-    editedDate: properties.Edited?.['last_edited_time'] ?? null,
-    publishedDate: null, // Travel itineraries don't use this field
-    status: properties.Done?.['checkbox'] ? 'Completed' : 'Planned',
+    lat: properties.Latitude?.number ?? 0,
+    lon: properties.Longitude?.number ?? 0,
+    createdDate: properties.Created?.created_time ?? '',
+    editedDate: properties.Edited?.last_edited_time ?? null,
+    publishedDate: null,
+    status: properties.Done?.checkbox ? 'Completed' : 'Planned',
   }
 }
 
@@ -65,10 +58,16 @@ export async function generateTravelData(): Promise<{
   const response = await notion.databases.query({
     database_id: process.env.NOTION_TRAVEL_DATABASE_ID!,
     filter: {
-      property: 'Slug',
-      rich_text: {
-        is_not_empty: true,
-      },
+      and: [
+        {
+          property: 'Slug',
+          formula: {
+            string: {
+              is_not_empty: true,
+            },
+          },
+        },
+      ],
     },
     sorts: [
       {
@@ -87,7 +86,6 @@ export async function generateTravelData(): Promise<{
         page as PageObjectResponse
       )
 
-      // Get cover image
       const coverImage = await getPageCoverImage(
         page as PageObjectResponse,
         'travel',
@@ -98,7 +96,7 @@ export async function generateTravelData(): Promise<{
       let markdown = n2m.toMarkdownString(mdBlocks).parent
 
       markdown = normalizeContent(markdown)
-      markdown = await processImages(markdown, 'travel', itinerary.slug)
+      markdown = await processContent(markdown, 'travel', itinerary.slug)
 
       return {
         ...itinerary,
@@ -110,7 +108,6 @@ export async function generateTravelData(): Promise<{
 
   console.log(`Successfully processed ${itineraries.length} travel itineraries`)
 
-  // Create lookup by slug
   const itinerariesBySlug = itineraries.reduce<Record<string, TravelItinerary>>(
     (acc, itinerary) => {
       acc[itinerary.slug] = itinerary
@@ -119,7 +116,6 @@ export async function generateTravelData(): Promise<{
     {}
   )
 
-  // Create lookup by region
   const itinerariesByRegion = itineraries.reduce<
     Record<string, TravelItinerary[]>
   >((acc, itinerary) => {

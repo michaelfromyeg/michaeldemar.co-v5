@@ -6,7 +6,8 @@ import {
   isFullPage,
   getRichTextContent,
   normalizeContent,
-  downloadAndSaveImage,
+  processContent,
+  processFile,
 } from './index'
 import { getPageCoverImage } from './cover'
 import type { DesignProject, DesignImage } from './types'
@@ -18,7 +19,6 @@ async function getImagesFromPage(pageId: string): Promise<DesignImage[]> {
   })
 
   const images: DesignImage[] = []
-
   for (const block of response.results) {
     if ('type' in block && block.type === 'image') {
       const image: DesignImage = {
@@ -32,7 +32,6 @@ async function getImagesFromPage(pageId: string): Promise<DesignImage[]> {
       images.push(image)
     }
   }
-
   return images
 }
 
@@ -44,7 +43,6 @@ export function parseNotionPageToDesignProject(
   }
 
   const properties = page.properties
-
   return {
     id: page.id,
     slug: properties.Slug?.formula?.string ?? '',
@@ -107,35 +105,35 @@ export async function generateDesignData(): Promise<{
 
       const mdBlocks = await n2m.pageToMarkdown(page.id)
       let markdown = n2m.toMarkdownString(mdBlocks).parent
-
       const images = await getImagesFromPage(page.id)
 
-      // Remove image markdown
+      // Remove image markdown and clean up
       markdown = markdown.replace(/!\[([^\]]*)\]\([^)]+\)\n*/g, '')
-      // Remove H3 headers and all content up to the next header or end of document
       markdown = markdown.replace(
         /### [^\n]+\n+((?!#{1,3} ).*\n*)*(?:\n|$)/gm,
         ''
       )
-      // Additional cleanup for any remaining newlines
-      markdown = markdown.replace(/\n{3,}/g, '\n\n').trim()
+      markdown = normalizeContent(markdown)
 
+      // Process markdown content for any remaining files
+      markdown = await processContent(markdown, 'design', project.slug)
+
+      // Process design-specific images
       const processedImages = await Promise.all(
         images.map(async (image, index) => ({
           ...image,
-          url: await downloadAndSaveImage(
-            image.url,
-            'design',
-            project.slug,
+          url: await processFile(image.url, {
+            category: 'design',
+            itemId: project.slug,
             index,
-            'content'
-          ),
+            prefix: 'content',
+          }),
         }))
       )
 
       return {
         ...project,
-        content: normalizeContent(markdown),
+        content: markdown,
         coverImage,
         images: processedImages,
       }

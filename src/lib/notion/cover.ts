@@ -1,6 +1,6 @@
 // src/lib/notion/cover.ts
 import { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints'
-import { downloadAndSaveImage } from './index'
+import { processFile } from './index'
 
 export interface CoverImage {
   url: string
@@ -19,16 +19,17 @@ export async function getPageCoverImage(
       ? page.cover.external.url
       : page.cover.file.url
 
-  // Save cover image with a special prefix to distinguish it
-  const localPath = await downloadAndSaveImage(
-    coverUrl,
+  // For Unsplash URLs, remove query params to get original quality
+  const processUrl = coverUrl.includes('unsplash.com')
+    ? coverUrl.split('?')[0]
+    : coverUrl
+
+  return processFile(processUrl, {
     category,
     itemId,
-    0,
-    'cover'
-  )
-
-  return localPath
+    index: 0,
+    prefix: 'cover',
+  })
 }
 
 // Update types to include cover image

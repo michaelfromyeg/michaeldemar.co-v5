@@ -6,7 +6,7 @@ import {
   isFullPage,
   getRichTextContent,
   normalizeContent,
-  processImages,
+  processContent,
 } from './index'
 import { getPageCoverImage } from './cover'
 import type { BlogPost } from './types'
@@ -85,7 +85,7 @@ export async function generateBlogData(): Promise<{
       let markdown = n2m.toMarkdownString(mdBlocks).parent
 
       markdown = normalizeContent(markdown)
-      markdown = await processImages(markdown, 'blog', post.slug)
+      markdown = await processContent(markdown, 'blog', post.slug)
 
       return {
         ...post,

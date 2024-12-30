@@ -54,109 +54,134 @@ async function fileExists(filepath: string): Promise<boolean> {
   }
 }
 
-function extractS3Filename(url: string): string {
-  try {
-    const match = url.match(/original_([^?]+)/)
-    if (match) {
-      return match[1]
+function extractFilename(url: string): { basename: string; extension: string } {
+  // Handle S3 URLs
+  const s3Match = url.match(/original_([^?]+)/)
+  if (s3Match) {
+    const filename = s3Match[1]
+    return {
+      basename: path.basename(filename, path.extname(filename)),
+      extension: path.extname(filename).toLowerCase(),
     }
+  }
 
+  // Handle Unsplash URLs
+  if (url.includes('unsplash.com')) {
+    const photoId = url.split('/').pop()?.split('?')[0] || 'photo'
+    return {
+      basename: photoId,
+      extension: '.jpg', // Unsplash photos are typically JPG
+    }
+  }
+
+  // Default handling
+  try {
     const urlPath = new URL(url).pathname
-    const lastSegment = urlPath.split('/').pop()
-    return lastSegment || 'image.jpg'
-  } catch (error) {
-    console.error('Error extracting filename:', error)
-    return 'image.jpg'
+    const lastSegment = urlPath.split('/').pop() || 'image.jpg'
+    return {
+      basename: path.basename(lastSegment, path.extname(lastSegment)),
+      extension: path.extname(lastSegment).toLowerCase() || '.jpg',
+    }
+  } catch {
+    return { basename: 'image', extension: '.jpg' }
   }
 }
 
-export async function downloadAndSaveImage(
-  imageUrl: string,
-  category: 'blog' | 'design' | 'travel',
-  itemId: string,
-  index: number,
-  prefix: 'cover' | 'content' = 'content'
+interface FileProcessingOptions {
+  category: 'blog' | 'design' | 'travel'
+  itemId: string
+  index: number
+  prefix?: 'cover' | 'content'
+}
+
+export async function processFile(
+  fileUrl: string,
+  options: FileProcessingOptions
 ): Promise<string> {
   try {
-    const originalFilename = extractS3Filename(imageUrl)
-    const extension = '.webp' // We'll convert everything to WebP
-    const basename = path.basename(
-      originalFilename,
-      path.extname(originalFilename)
-    )
+    const { category, itemId, index, prefix = 'content' } = options
+    const { basename, extension } = extractFilename(fileUrl)
 
-    // Add prefix to filename if it's a cover image
+    // Always process images to webp
+    const isImage = ['.jpg', '.jpeg', '.png', '.webp', '.gif'].includes(
+      extension
+    )
+    const outputExtension = isImage ? '.webp' : extension
+
     const filename =
       prefix === 'cover'
-        ? `cover-${basename}${extension}`
-        : `${index.toString().padStart(3, '0')}-${basename}${extension}`
+        ? `cover-${basename}${outputExtension}`
+        : `${index.toString().padStart(3, '0')}-${basename}${outputExtension}`
 
-    const imageDir = path.join(
+    const fileDir = path.join(
       process.cwd(),
       'public',
-      `${category}-images`,
+      `${category}-files`,
       itemId
     )
-    const imagePath = path.join(imageDir, filename)
-    const publicPath = `/${category}-images/${itemId}/${filename}`
+    const filePath = path.join(fileDir, filename)
+    const publicPath = `/${category}-files/${itemId}/${filename}`
 
-    if (await fileExists(imagePath)) {
-      console.log(`Image already exists: ${publicPath}`)
+    if (await fileExists(filePath)) {
+      console.log(`File already exists: ${publicPath}`)
       return publicPath
     }
 
-    await fs.mkdir(imageDir, { recursive: true })
-    const response = await fetch(imageUrl)
+    await fs.mkdir(fileDir, { recursive: true })
+    const response = await fetch(fileUrl)
     if (!response.ok)
-      throw new Error(`Failed to fetch image: ${response.statusText}`)
-
+      throw new Error(`Failed to fetch file: ${response.statusText}`)
     const buffer = await response.buffer()
 
-    // Process with Sharp
-    await sharp(buffer)
-      .resize({
-        width: prefix === 'cover' ? 1920 : 1920,
-        height: prefix === 'cover' ? 1080 : 1080,
-        fit: 'inside', // Maintain aspect ratio
-        withoutEnlargement: true, // Don't upscale small images
-      })
-      .webp({
-        quality: 80, // Good balance of quality and file size
-        effort: 6, // Higher compression effort
-      })
-      .toFile(imagePath)
+    if (isImage) {
+      await sharp(buffer)
+        .resize({
+          width: prefix === 'cover' ? 1920 : 1920,
+          height: prefix === 'cover' ? 1080 : 1080,
+          fit: 'inside',
+          withoutEnlargement: true,
+        })
+        .webp({
+          quality: 80,
+          effort: 6,
+        })
+        .toFile(filePath)
+    } else {
+      await fs.writeFile(filePath, buffer)
+    }
 
-    console.log(`Processed and saved image: ${publicPath}`)
-
+    console.log(`Processed and saved file: ${publicPath}`)
     return publicPath
   } catch (error) {
-    console.error(`Failed to process image ${imageUrl}:`, error)
-    return imageUrl
+    console.error(`Failed to process file ${fileUrl}:`, error)
+    return fileUrl
   }
 }
 
-export async function processImages(
+export async function processContent(
   content: string,
   category: 'blog' | 'design' | 'travel',
   itemId: string
 ): Promise<string> {
-  const imageRegex = /!\[([^\]]*)\]\((https:[^)]+)\)/g
+  // Match both Markdown links and inline links
+  const linkRegex = /(?:!\[([^\]]*)\]|\[([^\]]*)\])\((https:[^)]+)\)/g
   let processedContent = content
-  const matches = [...content.matchAll(imageRegex)]
+  const matches = [...content.matchAll(linkRegex)]
 
   for (let i = 0; i < matches.length; i++) {
-    const [fullMatch, altText, imageUrl] = matches[i]
-    if (imageUrl.includes('prod-files-secure.s3')) {
-      const localImagePath = await downloadAndSaveImage(
-        imageUrl,
+    const [fullMatch, altText, linkText, url] = matches[i]
+    if (url.includes('prod-files-secure.s3')) {
+      const localPath = await processFile(url, {
         category,
         itemId,
-        i
-      )
-      processedContent = processedContent.replace(
-        fullMatch,
-        `![${altText}](${localImagePath})`
-      )
+        index: i,
+      })
+
+      // Preserve the original link format (image vs regular link)
+      const newLink = altText
+        ? `![${altText}](${localPath})`
+        : `[${linkText}](${localPath})`
+      processedContent = processedContent.replace(fullMatch, newLink)
     }
   }
 
