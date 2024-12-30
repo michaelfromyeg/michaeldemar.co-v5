@@ -2,7 +2,7 @@
   "posts": [
     {
       "createdDate": "2024-12-24T22:43:00.000Z",
-      "description": "A practical guide for aspiring computer scientists, emphasizing hands-on learning through projects and community engagement.",
+      "description": "A practical guide for aspiring computer scientists to learn coding through hands-on projects and continuous practice.",
       "editedDate": "2024-12-30T19:45:00.000Z",
       "id": "166c4188-fa0e-80e2-830b-d87d99d95caf",
       "publishedDate": "2024-12-30T11:24:00.000-07:00",
@@ -304,7 +304,7 @@
   "postsBySlug": {
     "so-you-want-to-be-a-computer-scientist": {
       "createdDate": "2024-12-24T22:43:00.000Z",
-      "description": "A practical guide for aspiring computer scientists, emphasizing hands-on learning through projects and community engagement.",
+      "description": "A practical guide for aspiring computer scientists to learn coding through hands-on projects and continuous practice.",
       "editedDate": "2024-12-30T19:45:00.000Z",
       "id": "166c4188-fa0e-80e2-830b-d87d99d95caf",
       "publishedDate": "2024-12-30T11:24:00.000-07:00",
