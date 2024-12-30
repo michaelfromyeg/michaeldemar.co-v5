@@ -34,6 +34,7 @@ interface CacheData {
 
 const staticPages: Omit<SearchItem, 'id' | 'searchText'>[] = [
   { title: 'home', href: '/', type: 'page' },
+  { title: 'notions', href: '/notions', type: 'page' },
   { title: 'blog', href: '/blog', type: 'page' },
   { title: 'design', href: '/design', type: 'page' },
   { title: 'travel', href: '/travel', type: 'page' },

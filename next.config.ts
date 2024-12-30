@@ -28,6 +28,11 @@ const nextConfig: NextConfig = {
   ],
   redirects: async () => [
     {
+      source: '/notions',
+      destination: 'https://notions.michaeldemar.co',
+      permanent: true,
+    },
+    {
       source: '/bookmarks',
       destination: 'https://notions.michaeldemar.co/bookmarks',
       permanent: true,
