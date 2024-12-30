@@ -33,13 +33,16 @@ interface CacheData {
 }
 
 const staticPages: Omit<SearchItem, 'id' | 'searchText'>[] = [
-  { title: 'Home', href: '/', type: 'page' },
-  { title: 'Blog', href: '/blog', type: 'page' },
-  { title: 'Design', href: '/design', type: 'page' },
-  { title: 'Travel', href: '/travel', type: 'page' },
-  { title: 'About', href: '/about', type: 'page' },
-  { title: 'Sitemap', href: '/sitemap', type: 'page' },
-  { title: 'Uses', href: '/uses', type: 'page' },
+  { title: 'home', href: '/', type: 'page' },
+  { title: 'blog', href: '/blog', type: 'page' },
+  { title: 'design', href: '/design', type: 'page' },
+  { title: 'travel', href: '/travel', type: 'page' },
+  { title: 'about', href: '/about', type: 'page' },
+  { title: 'sitemap', href: '/sitemap', type: 'page' },
+  { title: 'uses', href: '/uses', type: 'page' },
+  { title: 'quotes', href: '/quotes', type: 'page' },
+  { title: 'inspirations', href: '/inspirations', type: 'page' },
+  { title: 'til', href: '/til', type: 'page' },
 ]
 
 const prepareSearchText = (item: SearchItem): string => {

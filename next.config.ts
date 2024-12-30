@@ -42,6 +42,21 @@ const nextConfig: NextConfig = {
       destination: 'https://notions.michaeldemar.co/uses',
       permanent: true,
     },
+    {
+      source: '/quotes',
+      destination: 'https://notions.michaeldemar.co/quotes',
+      permanent: true,
+    },
+    {
+      source: '/inspirations',
+      destination: 'https://notions.michaeldemar.co/inspirations',
+      permanent: true,
+    },
+    {
+      source: '/til',
+      destination: 'https://notions.michaeldemar.co/til',
+      permanent: true,
+    },
   ],
 }
 
