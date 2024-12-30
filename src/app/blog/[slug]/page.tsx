@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import { formatDate } from '@/lib/utils'
-import { ChevronLeft, Calendar, Edit2 } from 'lucide-react'
+import { ChevronLeft, Calendar } from 'lucide-react'
 import Link from 'next/link'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import remarkGfm from 'remark-gfm'
@@ -66,14 +66,8 @@ export default async function BlogPostPage({ params }: PageProps) {
         <div className="flex items-center gap-4 text-muted-foreground">
           <div className="flex items-center gap-2">
             <Calendar className="h-4 w-4" />
-            {formatDate(post.createdDate)}
+            {formatDate(post.publishedDate)}
           </div>
-          {post.editedDate && (
-            <div className="flex items-center gap-2">
-              <Edit2 className="h-4 w-4" />
-              {formatDate(post.editedDate)}
-            </div>
-          )}
           <div className="flex gap-2">
             {post.tags.map((tag: any) => (
               <span

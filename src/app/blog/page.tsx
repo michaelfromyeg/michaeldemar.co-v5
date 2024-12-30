@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { ChevronRight, Calendar, Edit2, Image as ImageIcon } from 'lucide-react'
+import { ChevronRight, Calendar, Image as ImageIcon } from 'lucide-react'
 import { Pagination } from '@/components/pagination'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -76,17 +76,9 @@ export default async function BlogPage({
               <h2 className="mb-4 text-2xl font-bold tracking-tight">
                 {latestPost.title}
               </h2>
-              <div className="mb-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted-foreground">
-                <div className="inline-flex items-center gap-1.5">
-                  <Calendar className="h-4 w-4" />
-                  {formatDate(latestPost.createdDate)}
-                </div>
-                {latestPost.editedDate && (
-                  <div className="inline-flex items-center gap-1.5">
-                    <Edit2 className="h-4 w-4" />
-                    {formatDate(latestPost.editedDate)}
-                  </div>
-                )}
+              <div className="mb-4 flex items-center text-sm text-muted-foreground">
+                <Calendar className="mr-1.5 h-4 w-4" />
+                {formatDate(latestPost.publishedDate)}
               </div>
               <p className="mb-6 flex-1 text-muted-foreground">
                 {latestPost.description}
@@ -129,17 +121,9 @@ export default async function BlogPage({
                     {post.title}
                   </CardTitle>
                   <CardDescription>
-                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                      <div className="inline-flex items-center gap-1.5">
-                        <Calendar className="h-3.5 w-3.5" />
-                        {formatDate(post.createdDate)}
-                      </div>
-                      {post.editedDate && (
-                        <div className="inline-flex items-center gap-1.5">
-                          <Edit2 className="h-3.5 w-3.5" />
-                          {formatDate(post.editedDate)}
-                        </div>
-                      )}
+                    <div className="flex items-center">
+                      <Calendar className="mr-1.5 h-3.5 w-3.5" />
+                      {formatDate(post.publishedDate)}
                     </div>
                     <div className="mt-2 flex flex-wrap gap-2">
                       {post.tags.map((tag) => (
