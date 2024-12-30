@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "prebuild": "tsx scripts/generate-data.ts",
+    "find-subdomains": "tsx scripts/find-subdomains.ts",
+    "generate-data": "tsx scripts/generate-data.ts",
+    "prebuild": "npm run find-subdomains && npm run generate-data",
     "build": "next build",
     "quickbuild": "npm run build --ignore-scripts",
     "start": "next start",

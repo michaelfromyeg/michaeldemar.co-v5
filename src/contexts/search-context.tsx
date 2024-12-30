@@ -40,6 +40,7 @@ const staticPages: Omit<SearchItem, 'id' | 'searchText'>[] = [
   { title: 'travel', href: '/travel', type: 'page' },
   { title: 'about', href: '/about', type: 'page' },
   { title: 'sitemap', href: '/sitemap', type: 'page' },
+  { title: 'subdomains', href: '/subdomains', type: 'page' },
   { title: 'uses', href: '/uses', type: 'page' },
   { title: 'quotes', href: '/quotes', type: 'page' },
   { title: 'inspirations', href: '/inspirations', type: 'page' },

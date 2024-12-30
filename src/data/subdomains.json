@@ -1,0 +1,238 @@
+{
+  "domain": "michaeldemar.co",
+  "subdomains": [
+    {
+      "name": "@",
+      "type": "A",
+      "active": true,
+      "proxied": true,
+      "target": "76.76.21.21",
+      "lastChecked": "2024-12-30T22:40:42.984Z"
+    },
+    {
+      "name": "api.bento",
+      "type": "CNAME",
+      "active": true,
+      "proxied": false,
+      "target": "1udhrsqc.up.railway.app",
+      "lastChecked": "2024-12-30T22:40:42.984Z"
+    },
+    {
+      "name": "api.bereal",
+      "type": "A",
+      "active": true,
+      "proxied": false,
+      "target": "138.197.208.122",
+      "lastChecked": "2024-12-30T22:40:42.983Z"
+    },
+    {
+      "name": "api.georeal",
+      "type": "CNAME",
+      "active": true,
+      "proxied": false,
+      "target": "o6wuekal.up.railway.app",
+      "lastChecked": "2024-12-30T22:40:42.984Z"
+    },
+    {
+      "name": "api.puzzles",
+      "type": "CNAME",
+      "active": true,
+      "proxied": false,
+      "target": "017a0v8j.up.railway.app",
+      "lastChecked": "2024-12-30T22:40:42.984Z"
+    },
+    {
+      "name": "api.rapviz",
+      "type": "CNAME",
+      "active": true,
+      "proxied": false,
+      "target": "o9yykvq9.up.railway.app",
+      "lastChecked": "2024-12-30T22:40:42.984Z"
+    },
+    {
+      "name": "api.simple-english",
+      "type": "CNAME",
+      "active": true,
+      "proxied": false,
+      "target": "klrf0q2k.up.railway.app",
+      "lastChecked": "2024-12-30T22:40:42.984Z"
+    },
+    {
+      "name": "ayt",
+      "type": "CNAME",
+      "active": true,
+      "proxied": true,
+      "target": "michaelfromyeg.github.io",
+      "lastChecked": "2024-12-30T22:40:42.984Z"
+    },
+    {
+      "name": "bento",
+      "type": "CNAME",
+      "active": true,
+      "proxied": true,
+      "target": "michaelfromyeg.github.io",
+      "lastChecked": "2024-12-30T22:40:42.984Z"
+    },
+    {
+      "name": "bereal",
+      "type": "CNAME",
+      "active": true,
+      "proxied": true,
+      "target": "michaelfromyeg.github.io",
+      "lastChecked": "2024-12-30T22:40:42.984Z"
+    },
+    {
+      "name": "covid-on-crime",
+      "type": "CNAME",
+      "active": true,
+      "proxied": true,
+      "target": "michaelfromyeg.github.io",
+      "lastChecked": "2024-12-30T22:40:42.984Z"
+    },
+    {
+      "name": "cpsc490b",
+      "type": "CNAME",
+      "active": true,
+      "proxied": true,
+      "target": "michaelfromyeg.github.io",
+      "lastChecked": "2024-12-30T22:40:42.984Z"
+    },
+    {
+      "name": "credit-card-defaults",
+      "type": "CNAME",
+      "active": true,
+      "proxied": true,
+      "target": "michaelfromyeg.github.io",
+      "lastChecked": "2024-12-30T22:40:42.984Z"
+    },
+    {
+      "name": "cv",
+      "type": "CNAME",
+      "active": true,
+      "proxied": true,
+      "target": "michaelfromyeg.github.io",
+      "lastChecked": "2024-12-30T22:40:42.984Z"
+    },
+    {
+      "name": "garden",
+      "type": "CNAME",
+      "active": true,
+      "proxied": true,
+      "target": "michaelfromyeg.github.io",
+      "lastChecked": "2024-12-30T22:40:42.984Z"
+    },
+    {
+      "name": "georeal",
+      "type": "CNAME",
+      "active": true,
+      "proxied": true,
+      "target": "michaelfromyeg.github.io",
+      "lastChecked": "2024-12-30T22:40:42.984Z"
+    },
+    {
+      "name": "grouber",
+      "type": "CNAME",
+      "active": true,
+      "proxied": true,
+      "target": "michaelfromyeg.github.io",
+      "lastChecked": "2024-12-30T22:40:42.984Z"
+    },
+    {
+      "name": "jcite",
+      "type": "CNAME",
+      "active": true,
+      "proxied": true,
+      "target": "michaelfromyeg.github.io",
+      "lastChecked": "2024-12-30T22:40:42.984Z"
+    },
+    {
+      "name": "jsearch",
+      "type": "CNAME",
+      "active": true,
+      "proxied": true,
+      "target": "michaelfromyeg.github.io",
+      "lastChecked": "2024-12-30T22:40:42.984Z"
+    },
+    {
+      "name": "makefiles",
+      "type": "CNAME",
+      "active": true,
+      "proxied": true,
+      "target": "michaelfromyeg.github.io",
+      "lastChecked": "2024-12-30T22:40:42.984Z"
+    },
+    {
+      "name": "midtermr",
+      "type": "CNAME",
+      "active": true,
+      "proxied": true,
+      "target": "michaelfromyeg.github.io",
+      "lastChecked": "2024-12-30T22:40:42.984Z"
+    },
+    {
+      "name": "notions",
+      "type": "CNAME",
+      "active": true,
+      "proxied": false,
+      "target": "external.notion.site",
+      "lastChecked": "2024-12-30T22:40:42.984Z"
+    },
+    {
+      "name": "pd-classification",
+      "type": "CNAME",
+      "active": true,
+      "proxied": true,
+      "target": "michaelfromyeg.github.io",
+      "lastChecked": "2024-12-30T22:40:42.984Z"
+    },
+    {
+      "name": "rapviz",
+      "type": "CNAME",
+      "active": true,
+      "proxied": true,
+      "target": "michaelfromyeg.github.io",
+      "lastChecked": "2024-12-30T22:40:42.984Z"
+    },
+    {
+      "name": "resume",
+      "type": "CNAME",
+      "active": true,
+      "proxied": true,
+      "target": "michaelfromyeg.github.io",
+      "lastChecked": "2024-12-30T22:40:42.984Z"
+    },
+    {
+      "name": "showrooms",
+      "type": "CNAME",
+      "active": true,
+      "proxied": true,
+      "target": "michaelfromyeg.github.io",
+      "lastChecked": "2024-12-30T22:40:42.984Z"
+    },
+    {
+      "name": "til",
+      "type": "CNAME",
+      "active": true,
+      "proxied": true,
+      "target": "michaelfromyeg.github.io",
+      "lastChecked": "2024-12-30T22:40:42.984Z"
+    },
+    {
+      "name": "wordle",
+      "type": "CNAME",
+      "active": true,
+      "proxied": true,
+      "target": "michaelfromyeg.github.io",
+      "lastChecked": "2024-12-30T22:40:42.984Z"
+    },
+    {
+      "name": "www",
+      "type": "CNAME",
+      "active": true,
+      "proxied": true,
+      "target": "cname.vercel-dns.com",
+      "lastChecked": "2024-12-30T22:40:42.984Z"
+    }
+  ],
+  "generatedAt": "2024-12-30T22:40:43.003Z"
+}
