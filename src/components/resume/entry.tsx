@@ -21,7 +21,6 @@ export function ResumeEntry({
   tags,
   links,
 }: ResumeEntryProps) {
-  console.log({ title })
   return (
     <Card className="group">
       <Collapsible>
