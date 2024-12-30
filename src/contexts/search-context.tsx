@@ -1,7 +1,6 @@
 'use client'
 
 import { createContext, useContext, useEffect, useState } from 'react'
-import { BlogPost, DesignProject, TravelItinerary } from '@/lib/notion/types'
 
 const CACHE_VERSION = '1.0'
 const CACHE_KEY = 'search-data-cache'

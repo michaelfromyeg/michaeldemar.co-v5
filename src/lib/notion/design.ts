@@ -11,7 +11,6 @@ import {
 } from './index'
 import { getPageCoverImage } from './cover'
 import type { DesignProject, DesignImage } from './types'
-import { title } from 'process'
 
 async function getImagesFromPage(pageId: string): Promise<DesignImage[]> {
   const response = await notion.blocks.children.list({
