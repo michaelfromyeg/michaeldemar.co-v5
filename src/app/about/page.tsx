@@ -129,7 +129,7 @@ export default function AboutPage() {
             <p>I hope you enjoy your stay. To wrap up, here are some photos.</p>
           </CardContent>
         </Card>
-        <div className="grid place-items-center gap-8">
+        <div className="grid grid-cols-1 place-items-center gap-8 md:grid-cols-2">
           <div className="space-y-2 text-center">
             <Image
               src="/images/me.jpg"
