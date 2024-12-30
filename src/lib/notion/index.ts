@@ -3,8 +3,8 @@ import { NotionToMarkdown } from 'notion-to-md'
 import type { DatabaseObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 import fs from 'fs/promises'
 import path from 'path'
-import fetch from 'node-fetch'
 import sharp from 'sharp'
+import { fetchBuffer } from './fetch'
 
 // Validate environment variables
 const requiredEnvVars = {
@@ -128,10 +128,8 @@ export async function processFile(
     }
 
     await fs.mkdir(fileDir, { recursive: true })
-    const response = await fetch(fileUrl)
-    if (!response.ok)
-      throw new Error(`Failed to fetch file: ${response.statusText}`)
-    const buffer = await response.buffer()
+
+    const buffer = await fetchBuffer(fileUrl)
 
     if (isImage) {
       await sharp(buffer)
@@ -153,8 +151,11 @@ export async function processFile(
     console.log(`Processed and saved file: ${publicPath}`)
     return publicPath
   } catch (error) {
-    console.error(`Failed to process file ${fileUrl}:`, error)
-    return fileUrl
+    console.error(
+      `Failed to process file ${fileUrl}:`,
+      error instanceof Error ? error.message : error
+    )
+    return fileUrl // Fallback to original URL if processing fails
   }
 }
 

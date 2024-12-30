@@ -12,6 +12,7 @@ import {
 import sharp from 'sharp'
 import { getPageCoverImage } from './cover'
 import type { DesignProject, DesignImage } from './types'
+import { fetchBuffer } from './fetch'
 
 async function getImagesFromPage(
   pageId: string
@@ -97,65 +98,103 @@ export async function generateDesignData(): Promise<{
 
   const projects = await Promise.all(
     response.results.map(async (page) => {
-      console.log(`Processing design project ${page.id}...`)
-      const project = parseNotionPageToDesignProject(page as PageObjectResponse)
+      try {
+        console.log(`Processing design project ${page.id}...`)
+        const project = parseNotionPageToDesignProject(
+          page as PageObjectResponse
+        )
 
-      // Get cover image with blur data URL
-      const { url: coverImage, blurDataURL } = await getPageCoverImage(
-        page as PageObjectResponse,
-        'design',
-        project.slug
-      )
+        // Get cover image with blur data URL
+        const { url: coverImage, blurDataURL } = await getPageCoverImage(
+          page as PageObjectResponse,
+          'design',
+          project.slug
+        )
 
-      const mdBlocks = await n2m.pageToMarkdown(page.id)
-      let markdown = n2m.toMarkdownString(mdBlocks).parent
-      const images = await getImagesFromPage(page.id)
+        const mdBlocks = await n2m.pageToMarkdown(page.id)
+        let markdown = n2m.toMarkdownString(mdBlocks).parent
+        const images = await getImagesFromPage(page.id)
 
-      // Remove image markdown and clean up
-      markdown = markdown.replace(/!\[([^\]]*)\]\([^)]+\)\n*/g, '')
-      markdown = markdown.replace(
-        /### [^\n]+\n+((?!#{1,3} ).*\n*)*(?:\n|$)/gm,
-        ''
-      )
-      markdown = normalizeContent(markdown)
+        // Remove image markdown and clean up
+        markdown = markdown.replace(/!\[([^\]]*)\]\([^)]+\)\n*/g, '')
+        markdown = markdown.replace(
+          /### [^\n]+\n+((?!#{1,3} ).*\n*)*(?:\n|$)/gm,
+          ''
+        )
+        markdown = normalizeContent(markdown)
 
-      // Process markdown content for any remaining files
-      markdown = await processContent(markdown, 'design', project.slug)
+        // Process markdown content for any remaining files
+        markdown = await processContent(markdown, 'design', project.slug)
 
-      // Process design-specific images with blur data URLs
-      const processedImages = await Promise.all(
-        images.map(async (image, index) => {
-          const processedUrl = await processFile(image.url, {
-            category: 'design',
-            itemId: project.slug,
-            index,
-            prefix: 'content',
+        // Process design-specific images with blur data URLs
+        const processedImages = await Promise.all(
+          images.map(async (image, index) => {
+            try {
+              const processedUrl = await processFile(image.url, {
+                category: 'design',
+                itemId: project.slug,
+                index,
+                prefix: 'content',
+              })
+
+              // Generate blur placeholder for each image
+              let imageBlurDataURL: string | null = null
+              try {
+                const buffer = await fetchBuffer(image.url)
+                imageBlurDataURL = await sharp(buffer)
+                  .resize(10, 10, { fit: 'inside' })
+                  .webp({ quality: 20 })
+                  .toBuffer()
+                  .then(
+                    (buf) => `data:image/webp;base64,${buf.toString('base64')}`
+                  )
+              } catch (error) {
+                console.warn(
+                  `Failed to generate blur placeholder for image ${index} in project ${project.slug}:`,
+                  error instanceof Error ? error.message : error
+                )
+                imageBlurDataURL = null
+              }
+
+              return {
+                ...image,
+                url: processedUrl,
+                blurDataURL: imageBlurDataURL,
+              }
+            } catch (error) {
+              console.error(
+                `Failed to process image ${index} in project ${project.slug}:`,
+                error instanceof Error ? error.message : error
+              )
+              // Return the original image without blur if processing fails
+              return {
+                ...image,
+                blurDataURL: null,
+              }
+            }
           })
+        )
 
-          // Generate blur placeholder for each image
-          const response = await fetch(image.url)
-          const buffer = Buffer.from(await response.arrayBuffer())
-          const imageBlurDataURL = await sharp(buffer)
-            .resize(10, 10, { fit: 'inside' })
-            .webp({ quality: 20 })
-            .toBuffer()
-            .then((buf) => `data:image/webp;base64,${buf.toString('base64')}`)
-            .catch(() => null)
-
-          return {
-            ...image,
-            url: processedUrl,
-            blurDataURL: imageBlurDataURL,
-          }
-        })
-      )
-
-      return {
-        ...project,
-        content: markdown,
-        coverImage,
-        blurDataURL,
-        images: processedImages,
+        return {
+          ...project,
+          content: markdown,
+          coverImage,
+          blurDataURL,
+          images: processedImages,
+        }
+      } catch (error) {
+        console.error(
+          `Failed to process design project ${page.id}:`,
+          error instanceof Error ? error.message : error
+        )
+        // Return a minimal valid project to prevent the entire build from failing
+        return {
+          ...parseNotionPageToDesignProject(page as PageObjectResponse),
+          content: '',
+          coverImage: null,
+          blurDataURL: null,
+          images: [],
+        }
       }
     })
   )

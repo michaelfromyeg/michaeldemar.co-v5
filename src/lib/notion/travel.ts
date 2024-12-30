@@ -55,78 +55,123 @@ export async function generateTravelData(): Promise<{
 }> {
   console.log('Querying Notion travel database...')
 
-  const response = await notion.databases.query({
-    database_id: process.env.NOTION_TRAVEL_DATABASE_ID!,
-    filter: {
-      and: [
-        {
-          property: 'Slug',
-          formula: {
-            string: {
-              is_not_empty: true,
+  try {
+    const response = await notion.databases.query({
+      database_id: process.env.NOTION_TRAVEL_DATABASE_ID!,
+      filter: {
+        and: [
+          {
+            property: 'Slug',
+            formula: {
+              string: {
+                is_not_empty: true,
+              },
             },
           },
+        ],
+      },
+      sorts: [
+        {
+          property: 'Start',
+          direction: 'descending',
         },
       ],
-    },
-    sorts: [
-      {
-        property: 'Start',
-        direction: 'descending',
-      },
-    ],
-  })
-
-  console.log(`Found ${response.results.length} travel itineraries`)
-
-  const itineraries = await Promise.all(
-    response.results.map(async (page) => {
-      console.log(`Processing travel itinerary ${page.id}...`)
-      const itinerary = parseNotionPageToTravelItinerary(
-        page as PageObjectResponse
-      )
-
-      // Get cover image with blur data URL
-      const { url: coverImage, blurDataURL } = await getPageCoverImage(
-        page as PageObjectResponse,
-        'travel',
-        itinerary.slug
-      )
-
-      const mdBlocks = await n2m.pageToMarkdown(page.id)
-      let markdown = n2m.toMarkdownString(mdBlocks).parent
-
-      markdown = normalizeContent(markdown)
-      markdown = await processContent(markdown, 'travel', itinerary.slug)
-
-      return {
-        ...itinerary,
-        coverImage,
-        blurDataURL,
-        content: markdown,
-      }
     })
-  )
 
-  console.log(`Successfully processed ${itineraries.length} travel itineraries`)
+    console.log(`Found ${response.results.length} travel itineraries`)
 
-  const itinerariesBySlug = itineraries.reduce<Record<string, TravelItinerary>>(
-    (acc, itinerary) => {
+    const itineraries = await Promise.all(
+      response.results.map(async (page) => {
+        try {
+          console.log(`Processing travel itinerary ${page.id}...`)
+          const itinerary = parseNotionPageToTravelItinerary(
+            page as PageObjectResponse
+          )
+
+          // Get cover image with blur data URL
+          const { url: coverImage, blurDataURL } = await getPageCoverImage(
+            page as PageObjectResponse,
+            'travel',
+            itinerary.slug
+          )
+
+          const mdBlocks = await n2m.pageToMarkdown(page.id)
+          let markdown = n2m.toMarkdownString(mdBlocks).parent
+
+          markdown = normalizeContent(markdown)
+          markdown = await processContent(markdown, 'travel', itinerary.slug)
+
+          return {
+            ...itinerary,
+            coverImage,
+            blurDataURL,
+            content: markdown,
+          }
+        } catch (error) {
+          console.error(
+            `Failed to process travel itinerary ${page.id}:`,
+            error instanceof Error ? error.message : error
+          )
+          // Return a minimal valid itinerary to prevent the entire build from failing
+          return {
+            ...parseNotionPageToTravelItinerary(page as PageObjectResponse),
+            content: '',
+            coverImage: null,
+            blurDataURL: null,
+          }
+        }
+      })
+    )
+
+    console.log(
+      `Successfully processed ${itineraries.length} travel itineraries`
+    )
+
+    // Filter out any failed itineraries that don't have required fields
+    const validItineraries = itineraries.filter(
+      (itinerary) => itinerary.slug && itinerary.region
+    )
+
+    if (validItineraries.length < itineraries.length) {
+      console.warn(
+        `Filtered out ${
+          itineraries.length - validItineraries.length
+        } invalid itineraries`
+      )
+    }
+
+    const itinerariesBySlug = validItineraries.reduce<
+      Record<string, TravelItinerary>
+    >((acc, itinerary) => {
       acc[itinerary.slug] = itinerary
       return acc
-    },
-    {}
-  )
+    }, {})
 
-  const itinerariesByRegion = itineraries.reduce<
-    Record<string, TravelItinerary[]>
-  >((acc, itinerary) => {
-    if (!acc[itinerary.region]) {
-      acc[itinerary.region] = []
+    const itinerariesByRegion = validItineraries.reduce<
+      Record<string, TravelItinerary[]>
+    >((acc, itinerary) => {
+      if (!acc[itinerary.region]) {
+        acc[itinerary.region] = []
+      }
+      acc[itinerary.region].push(itinerary)
+      return acc
+    }, {})
+
+    return {
+      itineraries: validItineraries,
+      itinerariesBySlug,
+      itinerariesByRegion,
     }
-    acc[itinerary.region].push(itinerary)
-    return acc
-  }, {})
-
-  return { itineraries, itinerariesBySlug, itinerariesByRegion }
+  } catch (error) {
+    console.error(
+      'Fatal error generating travel data:',
+      error instanceof Error ? error.message : error
+    )
+    // Return empty data structures rather than crashing
+    return {
+      itineraries: [],
+      itinerariesBySlug: {},
+      itinerariesByRegion: {},
+    }
+  }
 }
