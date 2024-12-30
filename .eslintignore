@@ -1,7 +1,0 @@
-.git
-.next
-node_modules
-public
-build
-dist
-data/*.json
