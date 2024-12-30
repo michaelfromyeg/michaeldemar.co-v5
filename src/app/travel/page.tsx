@@ -26,13 +26,11 @@ export const metadata: Metadata = {
 }
 
 export default function TravelPage() {
-  // Sort itineraries by start date, most recent first
+  const now = new Date()
   const sortedItineraries = [...travelData.itineraries].sort(
     (a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime()
   )
 
-  // Separate upcoming and past trips
-  const now = new Date()
   const upcomingTrips = sortedItineraries.filter(
     (trip) => new Date(trip.startDate) > now
   )
@@ -40,14 +38,81 @@ export default function TravelPage() {
     (trip) => new Date(trip.startDate) <= now
   )
 
+  const TripCard = ({ itinerary, isUpcoming = false }: any) => (
+    <Card className="group h-full overflow-hidden transition-colors hover:bg-muted/50">
+      {itinerary.coverImage ? (
+        <div className="relative h-48 w-full">
+          <Image
+            src={itinerary.coverImage}
+            alt={`Cover image for ${itinerary.title}`}
+            fill
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+        </div>
+      ) : (
+        <div className="flex h-48 w-full items-center justify-center bg-muted">
+          <ImageIcon className="h-12 w-12 text-muted-foreground" />
+        </div>
+      )}
+
+      <div className="flex h-[calc(100%-12rem)] flex-col">
+        <CardHeader>
+          <div className="flex items-start justify-between gap-2">
+            <CardTitle className="line-clamp-2 text-lg">
+              {itinerary.title}
+            </CardTitle>
+            <span
+              className={`inline-flex shrink-0 items-center rounded-md px-2 py-1 text-xs font-medium ${
+                isUpcoming ? 'bg-primary/10 text-primary' : 'bg-muted'
+              }`}
+            >
+              {isUpcoming ? 'Upcoming' : 'Completed'}
+            </span>
+          </div>
+          <CardDescription>
+            <div className="flex flex-col gap-1.5">
+              <div className="inline-flex items-center gap-1.5">
+                <MapPin className="h-3.5 w-3.5" />
+                <span className="text-sm">{itinerary.region}</span>
+              </div>
+              <div className="inline-flex items-center gap-1.5">
+                <Calendar className="h-3.5 w-3.5" />
+                <span className="text-sm">
+                  {formatDate(itinerary.startDate)}
+                </span>
+              </div>
+              <div className="inline-flex items-center gap-1.5">
+                <Clock className="h-3.5 w-3.5" />
+                <span className="text-sm">{itinerary.duration} days</span>
+              </div>
+            </div>
+            {itinerary.description && (
+              <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">
+                {itinerary.description}
+              </p>
+            )}
+          </CardDescription>
+        </CardHeader>
+
+        <CardFooter className="mt-auto">
+          <div className="flex items-center text-sm text-primary">
+            {isUpcoming ? 'Coming soon' : 'View itinerary'}
+            <ChevronRight className="ml-1 h-4 w-4" />
+          </div>
+        </CardFooter>
+      </div>
+    </Card>
+  )
+
   return (
-    <div className="container mx-auto max-w-4xl px-4 py-12">
+    <div className="container mx-auto max-w-4xl px-4 py-8">
       <div className="mb-8 space-y-4">
         <h1 className="text-4xl font-bold tracking-tight">Travel</h1>
         <p className="text-lg text-muted-foreground">
           Adventures and detailed itineraries from around the world.
         </p>
       </div>
+
       <Card className="mb-12">
         <CardContent className="p-8">
           <div className="flex w-full justify-center">
@@ -55,129 +120,26 @@ export default function TravelPage() {
           </div>
         </CardContent>
       </Card>
+
       {upcomingTrips.length > 0 && (
         <div className="mb-12">
           <h2 className="mb-6 text-2xl font-semibold tracking-tight">
             Upcoming Adventures
           </h2>
-          <div className="grid gap-6">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {upcomingTrips.map((itinerary) => (
-              <Card
-                key={itinerary.id}
-                className="group overflow-hidden border-primary/20 transition-colors hover:bg-muted/50"
-              >
-                {/* Cover Image Section */}
-                {itinerary.coverImage ? (
-                  <div className="relative h-64 w-full">
-                    <Image
-                      src={itinerary.coverImage}
-                      alt={`Cover image for ${itinerary.title}`}
-                      fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                  </div>
-                ) : (
-                  <div className="flex h-64 w-full items-center justify-center bg-muted">
-                    <ImageIcon className="h-12 w-12 text-muted-foreground" />
-                  </div>
-                )}
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <CardTitle className="text-2xl">
-                        {itinerary.title}
-                      </CardTitle>
-                      <CardDescription>
-                        <div className="mt-2 flex items-center gap-4">
-                          <div className="flex items-center gap-2">
-                            <MapPin className="h-4 w-4" />
-                            {itinerary.region}
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <Calendar className="h-4 w-4" />
-                            {formatDate(itinerary.startDate)}
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <Clock className="h-4 w-4" />
-                            {itinerary.duration} days
-                          </div>
-                        </div>
-                      </CardDescription>
-                    </div>
-                    <span className="inline-flex items-center rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary">
-                      Upcoming
-                    </span>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    {itinerary.description}
-                  </p>
-                </CardContent>
-              </Card>
+              <div key={itinerary.id}>
+                <TripCard itinerary={itinerary} isUpcoming={true} />
+              </div>
             ))}
           </div>
         </div>
       )}
-      <div className="grid gap-6">
+
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {pastTrips.map((itinerary) => (
           <Link key={itinerary.id} href={`/travel/${itinerary.slug}`}>
-            <Card className="group overflow-hidden transition-colors hover:bg-muted/50">
-              {/* Cover Image Section */}
-              {itinerary.coverImage ? (
-                <div className="relative h-64 w-full">
-                  <Image
-                    src={itinerary.coverImage}
-                    alt={`Cover image for ${itinerary.title}`}
-                    fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                </div>
-              ) : (
-                <div className="flex h-64 w-full items-center justify-center bg-muted">
-                  <ImageIcon className="h-12 w-12 text-muted-foreground" />
-                </div>
-              )}
-              <CardHeader>
-                <div className="flex items-start justify-between">
-                  <div>
-                    <CardTitle className="text-2xl">
-                      {itinerary.title}
-                    </CardTitle>
-                    <CardDescription>
-                      <div className="mt-2 flex items-center gap-4">
-                        <div className="flex items-center gap-2">
-                          <MapPin className="h-4 w-4" />
-                          {itinerary.region}
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Calendar className="h-4 w-4" />
-                          {formatDate(itinerary.startDate)}
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Clock className="h-4 w-4" />
-                          {itinerary.duration} days
-                        </div>
-                      </div>
-                    </CardDescription>
-                  </div>
-                  {itinerary.isDone && (
-                    <span className="inline-flex items-center rounded-md bg-muted px-2 py-1 text-xs font-medium">
-                      Completed
-                    </span>
-                  )}
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">{itinerary.description}</p>
-              </CardContent>
-              <CardFooter>
-                <div className="flex items-center text-sm text-primary">
-                  View itinerary
-                  <ChevronRight className="ml-1 h-4 w-4" />
-                </div>
-              </CardFooter>
-            </Card>
+            <TripCard itinerary={itinerary} />
           </Link>
         ))}
       </div>

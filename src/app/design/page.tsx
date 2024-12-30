@@ -26,13 +26,14 @@ export default function DesignPage() {
           A collection of my design work, case studies, and experiments.
         </p>
       </div>
-      <div className="grid gap-8">
+
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {designData.projects.map((project) => (
           <Link key={project.id} href={`/design/${project.slug}`}>
-            <Card className="group overflow-hidden transition-colors hover:bg-muted/50">
-              {/* Image Section - Use cover image first, fall back to first project image, then placeholder */}
+            <Card className="group h-full overflow-hidden transition-colors hover:bg-muted/50">
+              {/* Image Section */}
               {project.coverImage || project.images[0] ? (
-                <div className="relative h-64 w-full">
+                <div className="relative h-48 w-full">
                   <Image
                     src={project.coverImage || project.images[0].url}
                     alt={
@@ -45,32 +46,38 @@ export default function DesignPage() {
                   />
                 </div>
               ) : (
-                <div className="flex h-64 w-full items-center justify-center bg-muted">
+                <div className="flex h-48 w-full items-center justify-center bg-muted">
                   <ImageIcon className="h-12 w-12 text-muted-foreground" />
                 </div>
               )}
-              <CardHeader>
-                <CardTitle className="text-2xl">{project.title}</CardTitle>
-                <CardDescription>
-                  <div className="mb-2 flex items-center gap-2">
-                    <Calendar className="h-4 w-4" />
-                    {project.publishedDate
-                      ? formatDate(project.publishedDate)
-                      : formatDate(project.createdDate)}
+
+              <div className="flex h-[calc(100%-12rem)] flex-col">
+                <CardHeader>
+                  <CardTitle className="line-clamp-2 text-lg">
+                    {project.title}
+                  </CardTitle>
+                  <CardDescription>
+                    <div className="inline-flex items-center gap-1.5">
+                      <Calendar className="h-3.5 w-3.5" />
+                      {project.publishedDate
+                        ? formatDate(project.publishedDate)
+                        : formatDate(project.createdDate)}
+                    </div>
+                    {project.description && (
+                      <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">
+                        {project.description}
+                      </p>
+                    )}
+                  </CardDescription>
+                </CardHeader>
+
+                <CardContent className="mt-auto">
+                  <div className="flex items-center text-sm text-primary">
+                    View project
+                    <ChevronRight className="ml-1 h-4 w-4" />
                   </div>
-                  {project.description && (
-                    <p className="text-muted-foreground">
-                      {project.description}
-                    </p>
-                  )}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="flex items-center text-sm">
-                  <span className="mr-2 text-primary">View project</span>
-                  <ChevronRight className="h-4 w-4 text-primary" />
-                </div>
-              </CardContent>
+                </CardContent>
+              </div>
             </Card>
           </Link>
         ))}

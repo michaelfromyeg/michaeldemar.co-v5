@@ -21,6 +21,7 @@ export function ResumeEntry({
   tags,
   links,
 }: ResumeEntryProps) {
+  console.log({ title })
   return (
     <Card className="group">
       <Collapsible>
@@ -29,12 +30,12 @@ export function ResumeEntry({
             <div className="flex items-start justify-between">
               <div className="space-y-1">
                 <h3 className="text-xl font-semibold">
-                  {title} @ <span className="italic">{subtitle}</span>
+                  {title} | <span>{subtitle}</span>
                 </h3>
                 <div className="flex items-center space-x-4 text-sm text-muted-foreground">
                   <div className="flex items-center">
                     <Calendar className="mr-1 h-4 w-4" />
-                    {startDate} — {endDate || 'Present'}
+                    {startDate}—{endDate || 'Present'}
                   </div>
                   <div className="flex items-center">
                     <MapPin className="mr-1 h-4 w-4" />
@@ -46,7 +47,6 @@ export function ResumeEntry({
             </div>
           </CardContent>
         </CollapsibleTrigger>
-
         <CollapsibleContent>
           <CardContent className="px-6 pb-6 pt-0">
             <ul className="list-disc space-y-2 pl-5">
@@ -56,7 +56,6 @@ export function ResumeEntry({
                 </li>
               ))}
             </ul>
-
             {tags && tags.length > 0 && (
               <div className="mt-4 flex flex-wrap gap-2">
                 {tags.map((tag, i) => (

@@ -3,6 +3,7 @@ import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 import { ThemeProvider } from '@/components/theme-provider'
 import Header from '@/components/layout/header'
+import Footer from '@/components/layout/footer'
 
 import './globals.css'
 
@@ -28,7 +29,10 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <main className="flex-grow">{children}</main>
+          <main className="container mx-auto max-w-6xl flex-grow px-4 sm:px-6 lg:px-8">
+            {children}
+          </main>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

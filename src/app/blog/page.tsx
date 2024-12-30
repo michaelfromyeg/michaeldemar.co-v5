@@ -14,8 +14,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import blogData from '@/data/blog.json'
 
-// Number of posts per page
-const POSTS_PER_PAGE = 12
+// Number of posts per page - changed from 12 to 9
+const POSTS_PER_PAGE = 9
 
 export const metadata: Metadata = {
   title: 'Blog | Michael DeMarco',
@@ -45,14 +45,14 @@ export default async function BlogPage({
         </p>
       </div>
 
-      {/* Responsive grid layout */}
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+      {/* Updated grid to show 3 columns on medium screens and larger */}
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {paginatedPosts.map((post) => (
           <Link key={post.id} href={`/blog/${post.slug}`}>
             <Card className="group h-full overflow-hidden transition-colors hover:bg-muted/50">
               {/* Cover Image Section */}
               {post.coverImage ? (
-                <div className="relative h-64 w-full">
+                <div className="relative h-48 w-full">
                   <Image
                     src={post.coverImage}
                     alt={`Cover image for ${post.title}`}
@@ -61,26 +61,28 @@ export default async function BlogPage({
                   />
                 </div>
               ) : (
-                <div className="flex h-64 w-full items-center justify-center bg-muted">
+                <div className="flex h-48 w-full items-center justify-center bg-muted">
                   <ImageIcon className="h-12 w-12 text-muted-foreground" />
                 </div>
               )}
 
-              {/* Make the content area a flex container that fills remaining height */}
-              <div className="flex h-[calc(100%-16rem)] flex-col">
+              {/* Content area adjusted for 3-column layout */}
+              <div className="flex h-[calc(100%-12rem)] flex-col">
                 <CardHeader>
-                  <CardTitle className="line-clamp-2 text-xl">
+                  <CardTitle className="line-clamp-2 text-lg">
                     {post.title}
                   </CardTitle>
                   <CardDescription>
-                    <div className="flex items-center gap-2">
-                      <Calendar className="h-4 w-4" />
-                      {formatDate(post.createdDate)}
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                      <div className="inline-flex items-center gap-1.5">
+                        <Calendar className="h-3.5 w-3.5" />
+                        {formatDate(post.createdDate)}
+                      </div>
                       {post.editedDate && (
-                        <>
-                          <Edit2 className="ml-2 h-4 w-4" />
+                        <div className="inline-flex items-center gap-1.5">
+                          <Edit2 className="h-3.5 w-3.5" />
                           {formatDate(post.editedDate)}
-                        </>
+                        </div>
                       )}
                     </div>
                     <div className="mt-2 flex flex-wrap gap-2">
@@ -97,7 +99,7 @@ export default async function BlogPage({
                 </CardHeader>
 
                 <CardContent className="flex-1">
-                  <p className="line-clamp-3 text-sm text-muted-foreground">
+                  <p className="line-clamp-2 text-sm text-muted-foreground">
                     {post.description}
                   </p>
                 </CardContent>
