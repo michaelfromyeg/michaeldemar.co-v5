@@ -4,4 +4,4 @@ node_modules
 public
 build
 dist
-data/*.json
+src/data
