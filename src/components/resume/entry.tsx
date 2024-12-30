@@ -47,7 +47,7 @@ export function ResumeEntry({
             </div>
           </CardContent>
         </CollapsibleTrigger>
-        <CollapsibleContent className="data-[state=open]:animate-slideDown data-[state=closed]:animate-slideUp overflow-hidden">
+        <CollapsibleContent className="overflow-hidden data-[state=closed]:animate-slideUp data-[state=open]:animate-slideDown">
           <CardContent className="px-6 pb-6 pt-0 transition-opacity">
             <ul className="list-disc space-y-2 pl-6">
               {highlightsHtml.map((highlight, i) => (
