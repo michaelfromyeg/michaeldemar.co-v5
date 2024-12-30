@@ -11,9 +11,7 @@ export default function Hero() {
       </h1>
       <div className="space-y-4">
         <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-          I&apos;m passionate about building tools that empower people. I
-          graduated from the University of British Columbia with a degree in
-          Computer Science.
+          Welcome to my over-engineered corner of the Internet.
         </p>
       </div>
     </div>

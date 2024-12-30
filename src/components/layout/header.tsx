@@ -1,7 +1,10 @@
 'use client'
 
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { ModeToggle } from '@/components/mode-toggle'
+import { SearchModal } from '@/components/search-modal'
+import { cn } from '@/lib/utils'
 import { useEffect, useState } from 'react'
 
 const navigation = [
@@ -15,13 +18,14 @@ const EMOJIS = ['🤠', '🐢', '👾', '🤖', '⚡', '🦅', '🦕', '🐧'] a
 
 export default function Header() {
   const [emoji, setEmoji] = useState<string>('👋')
+  const pathname = usePathname()
 
   useEffect(() => {
     setEmoji(EMOJIS[Math.floor(Math.random() * EMOJIS.length)])
   }, [])
 
   return (
-    <header className="border-gruvbox border-b">
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Link
@@ -37,12 +41,18 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                  className={cn(
+                    'text-sm font-medium transition-colors hover:text-foreground',
+                    pathname === item.href
+                      ? 'text-foreground'
+                      : 'text-muted-foreground'
+                  )}
                 >
                   [{item.name}]
                 </Link>
               ))}
             </div>
+            <SearchModal />
             <ModeToggle />
           </nav>
         </div>

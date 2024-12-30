@@ -14,7 +14,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import blogData from '@/data/blog.json'
 
-// Number of posts per page - changed from 12 to 9
 const POSTS_PER_PAGE = 9
 
 export const metadata: Metadata = {
@@ -29,9 +28,12 @@ export default async function BlogPage({
 }) {
   const page = (await searchParams).page
   const currentPage = Number(page) || 1
-  const totalPages = Math.ceil(blogData.posts.length / POSTS_PER_PAGE)
 
-  const paginatedPosts = blogData.posts.slice(
+  // Get latest post and remaining posts
+  const [latestPost, ...remainingPosts] = blogData.posts
+  const totalPages = Math.ceil(remainingPosts.length / POSTS_PER_PAGE)
+
+  const paginatedPosts = remainingPosts.slice(
     (currentPage - 1) * POSTS_PER_PAGE,
     currentPage * POSTS_PER_PAGE
   )
@@ -45,28 +47,78 @@ export default async function BlogPage({
         </p>
       </div>
 
-      {/* Updated grid to show 3 columns on medium screens and larger */}
+      {/* Featured Post */}
+      <Link href={`/blog/${latestPost.slug}`}>
+        <Card className="group mb-12 overflow-hidden transition-colors hover:bg-muted/50">
+          <div className="grid gap-6 md:grid-cols-2">
+            <div className="relative h-64 md:h-full">
+              {latestPost.coverImage ? (
+                <Image
+                  src={latestPost.coverImage}
+                  alt={`Cover image for ${latestPost.title}`}
+                  fill
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+              ) : (
+                <div className="flex h-full w-full items-center justify-center bg-muted">
+                  <ImageIcon className="h-16 w-16 text-muted-foreground" />
+                </div>
+              )}
+            </div>
+            <div className="flex flex-col p-6">
+              <div className="mb-4">
+                <span className="mb-2 inline-block rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
+                  Latest Post
+                </span>
+              </div>
+              <h2 className="mb-4 text-2xl font-bold tracking-tight">
+                {latestPost.title}
+              </h2>
+              <div className="mb-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted-foreground">
+                <div className="inline-flex items-center gap-1.5">
+                  <Calendar className="h-4 w-4" />
+                  {formatDate(latestPost.createdDate)}
+                </div>
+                {latestPost.editedDate && (
+                  <div className="inline-flex items-center gap-1.5">
+                    <Edit2 className="h-4 w-4" />
+                    {formatDate(latestPost.editedDate)}
+                  </div>
+                )}
+              </div>
+              <p className="mb-6 flex-1 text-muted-foreground">
+                {latestPost.description}
+              </p>
+              <div className="mt-auto">
+                <div className="flex items-center text-primary">
+                  Read post
+                  <ChevronRight className="ml-1 h-4 w-4" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </Card>
+      </Link>
+
+      {/* Recent Posts Grid */}
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {paginatedPosts.map((post) => (
           <Link key={post.id} href={`/blog/${post.slug}`}>
             <Card className="group h-full overflow-hidden transition-colors hover:bg-muted/50">
-              {/* Cover Image Section */}
-              {post.coverImage ? (
-                <div className="relative h-48 w-full">
+              <div className="relative h-48 w-full">
+                {post.coverImage ? (
                   <Image
                     src={post.coverImage}
                     alt={`Cover image for ${post.title}`}
                     fill
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />
-                </div>
-              ) : (
-                <div className="flex h-48 w-full items-center justify-center bg-muted">
-                  <ImageIcon className="h-12 w-12 text-muted-foreground" />
-                </div>
-              )}
-
-              {/* Content area adjusted for 3-column layout */}
+                ) : (
+                  <div className="flex h-full w-full items-center justify-center bg-muted">
+                    <ImageIcon className="h-12 w-12 text-muted-foreground" />
+                  </div>
+                )}
+              </div>
               <div className="flex h-[calc(100%-12rem)] flex-col">
                 <CardHeader>
                   <CardTitle className="line-clamp-2 text-lg">
@@ -97,13 +149,11 @@ export default async function BlogPage({
                     </div>
                   </CardDescription>
                 </CardHeader>
-
                 <CardContent className="flex-1">
                   <p className="line-clamp-2 text-sm text-muted-foreground">
                     {post.description}
                   </p>
                 </CardContent>
-
                 <CardFooter className="justify-end">
                   <div className="flex items-center text-sm text-primary">
                     Read more
@@ -116,7 +166,6 @@ export default async function BlogPage({
         ))}
       </div>
 
-      {/* Pagination */}
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}

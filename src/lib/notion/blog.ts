@@ -21,15 +21,15 @@ export function parseNotionPageToBlogPost(
   const properties = page.properties
 
   return {
-    id: page.id,
-    slug: properties.Slug?.formula?.string ?? '',
-    title: getRichTextContent(properties.Name?.title ?? []),
-    description: getRichTextContent(properties['One Liner']?.rich_text ?? []),
     createdDate: properties.Created?.created_time ?? '',
+    description: getRichTextContent(properties['One Liner']?.rich_text ?? []),
     editedDate: properties.Edited?.last_edited_time ?? null,
+    id: page.id,
     publishedDate: properties.Published?.date?.start ?? null,
-    tags: properties.Tags?.multi_select?.map((tag: any) => tag.name) ?? [],
+    slug: properties.Slug?.formula?.string ?? '',
     status: properties.Status?.status?.name ?? '',
+    tags: properties.Tags?.multi_select?.map((tag: any) => tag.name) ?? [],
+    title: getRichTextContent(properties.Name?.title ?? []),
   }
 }
 

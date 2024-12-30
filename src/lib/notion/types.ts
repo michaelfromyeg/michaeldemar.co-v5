@@ -23,7 +23,8 @@ export interface DesignImage {
 }
 
 export interface DesignProject extends BaseNotionItem {
-  description?: string
+  description: string
+  tags: string[]
   images: DesignImage[]
 }
 

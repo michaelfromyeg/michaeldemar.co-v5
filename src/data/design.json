@@ -1,14 +1,17 @@
 {
   "projects": [
     {
-      "id": "16bc4188-fa0e-80f7-ad6a-e4aa97326a5b",
-      "slug": "hockey-poster",
-      "title": "Hockey Poster",
-      "description": "",
       "createdDate": "2024-12-29T00:34:00.000Z",
-      "editedDate": "2024-12-29T23:51:00.000Z",
+      "description": "Created a personalized hockey poster as a secret Santa gift for a teammate in my fraternity.",
+      "editedDate": "2024-12-30T18:40:00.000Z",
+      "id": "16bc4188-fa0e-80f7-ad6a-e4aa97326a5b",
       "publishedDate": "2024-12-28",
+      "slug": "hockey-poster",
       "status": "Done",
+      "tags": [
+        "Design"
+      ],
+      "title": "Hockey Poster",
       "content": "Did this as a secret santa gift for one of the guys on my fraternity hockey team.",
       "coverImage": "/design-files/hockey-poster/cover-labelle.webp",
       "images": [
@@ -19,14 +22,17 @@
       ]
     },
     {
-      "id": "169c4188-fa0e-8084-905e-e8005bb5762c",
-      "slug": "orchard-commons",
-      "title": "Orchard Commons",
-      "description": "",
       "createdDate": "2024-12-27T21:06:00.000Z",
-      "editedDate": "2024-12-29T23:48:00.000Z",
+      "description": "A collection of creative graphic design projects I developed while serving on my residence's house council.",
+      "editedDate": "2024-12-30T18:40:00.000Z",
+      "id": "169c4188-fa0e-8084-905e-e8005bb5762c",
       "publishedDate": "2020-05-02",
+      "slug": "orchard-commons",
       "status": "Done",
+      "tags": [
+        "Design"
+      ],
+      "title": "Orchard Commons",
       "content": "I served on my residence's house council in first year and did a lot of neat graphic design projects!",
       "coverImage": "/design-files/orchard-commons/cover-tiktok.webp",
       "images": [
@@ -49,14 +55,17 @@
       ]
     },
     {
-      "id": "169c4188-fa0e-8004-a830-efe5b008da9f",
-      "slug": "science-undergraduate-society",
-      "title": "Science Undergraduate Society",
-      "description": "",
       "createdDate": "2024-12-27T21:12:00.000Z",
+      "description": "A creative journey where I designed engaging events as part of the Science Undergraduate Society at UBC.",
       "editedDate": "2024-12-29T23:47:00.000Z",
+      "id": "169c4188-fa0e-8004-a830-efe5b008da9f",
       "publishedDate": "2020-04-30",
+      "slug": "science-undergraduate-society",
       "status": "Done",
+      "tags": [
+        "Design"
+      ],
+      "title": "Science Undergraduate Society",
       "content": "I joined SUS FYC in my first-year at UBC. Here are some cool things I made planning events with them!",
       "coverImage": "/design-files/science-undergraduate-society/cover-fyc-elements.webp",
       "images": [
@@ -87,14 +96,17 @@
       ]
     },
     {
-      "id": "169c4188-fa0e-80bc-9e83-e01dcba31b90",
-      "slug": "the-gateway",
-      "title": "The Gateway",
-      "description": "",
       "createdDate": "2024-12-27T20:59:00.000Z",
+      "description": "Assisted in securing additional funding for the University of Alberta's student-run newspaper, The Gateway.",
       "editedDate": "2024-12-29T23:50:00.000Z",
+      "id": "169c4188-fa0e-80bc-9e83-e01dcba31b90",
       "publishedDate": "2020-03-02",
+      "slug": "the-gateway",
       "status": "Done",
+      "tags": [
+        "Design"
+      ],
+      "title": "The Gateway",
       "content": "The Gateway is the University of Alberta's student-run newspaper. I assisted on their campaign for additional funding.",
       "coverImage": "/design-files/the-gateway/cover-poster.webp",
       "images": [
@@ -109,14 +121,17 @@
       ]
     },
     {
-      "id": "169c4188-fa0e-8011-ae05-ef9470cce4e8",
-      "slug": "sunia",
-      "title": "SUNIA",
-      "description": "",
       "createdDate": "2024-12-27T21:10:00.000Z",
+      "description": "This portfolio entry showcases my creative marketing contributions to SUNIA during the 2018/19 year.",
       "editedDate": "2024-12-29T23:48:00.000Z",
+      "id": "169c4188-fa0e-8011-ae05-ef9470cce4e8",
       "publishedDate": "2019-12-01",
+      "slug": "sunia",
       "status": "Done",
+      "tags": [
+        "Design"
+      ],
+      "title": "SUNIA",
       "content": "I served as SUNIA's Marketing for our 2018/19 year. Here's some things I made in the role!",
       "coverImage": "/design-files/sunia/cover-abstract-banner.webp",
       "images": [
@@ -175,14 +190,17 @@
       ]
     },
     {
-      "id": "169c4188-fa0e-80e6-bf14-ebaf368b2eae",
-      "slug": "the-canadian-student-leadership-conference",
-      "title": "The Canadian Student Leadership Conference",
-      "description": "",
       "createdDate": "2024-12-27T20:59:00.000Z",
+      "description": "A creative journey where my logo design inspired the visual identity of the Canadian Student Leadership Conference.",
       "editedDate": "2024-12-29T23:50:00.000Z",
+      "id": "169c4188-fa0e-80e6-bf14-ebaf368b2eae",
       "publishedDate": "2019-09-27",
+      "slug": "the-canadian-student-leadership-conference",
       "status": "Done",
+      "tags": [
+        "Design"
+      ],
+      "title": "The Canadian Student Leadership Conference",
       "content": "CSLC is an event I helped organize. At the beginning of the year, we had a logo contest. My submission was used to inspire the final design.",
       "coverImage": "/design-files/the-canadian-student-leadership-conference/cover-cslc-logo-portfolio-01.webp",
       "images": [
@@ -193,14 +211,17 @@
       ]
     },
     {
-      "id": "169c4188-fa0e-8011-a6a5-e3ea5fa6eb39",
-      "slug": "mcnally-graduation-2019",
-      "title": "McNally, Graduation 2019",
-      "description": "",
       "createdDate": "2024-12-27T21:01:00.000Z",
+      "description": "In 2019, I designed promotional materials for our high school graduation, including a Snapchat filter and a commemorative pamphlet.",
       "editedDate": "2024-12-29T23:50:00.000Z",
+      "id": "169c4188-fa0e-8011-a6a5-e3ea5fa6eb39",
       "publishedDate": "2019-05-30",
+      "slug": "mcnally-graduation-2019",
       "status": "Done",
+      "tags": [
+        "Design"
+      ],
+      "title": "McNally, Graduation 2019",
       "content": "I created advertising to support funding our high school graduation, a Snapchat filter for our prom, and the pamphlet distributed at commencement.",
       "coverImage": "/design-files/mcnally-graduation-2019/cover-grad.webp",
       "images": [
@@ -223,14 +244,17 @@
       ]
     },
     {
-      "id": "169c4188-fa0e-8080-a342-d558cf457beb",
-      "slug": "mcnally-wrestling-club",
-      "title": "McNally, Wrestling Club",
-      "description": "",
       "createdDate": "2024-12-27T21:13:00.000Z",
+      "description": "A showcase of logo designs for the McNally Wrestling Club, highlighting creativity and team spirit.",
       "editedDate": "2024-12-29T23:47:00.000Z",
+      "id": "169c4188-fa0e-8080-a342-d558cf457beb",
       "publishedDate": "2019-04-05",
+      "slug": "mcnally-wrestling-club",
       "status": "Done",
+      "tags": [
+        "Design"
+      ],
+      "title": "McNally, Wrestling Club",
       "content": "",
       "coverImage": "/design-files/mcnally-wrestling-club/cover-threebars-01.webp",
       "images": [
@@ -261,14 +285,17 @@
       ]
     },
     {
-      "id": "169c4188-fa0e-8016-99d2-c83e53040cb7",
-      "slug": "edmonton-public-school-board-epsb-student-senate",
-      "title": "Edmonton Public School Board (EPSB), Student Senate",
-      "description": "",
       "createdDate": "2024-12-27T21:09:00.000Z",
+      "description": "During my time on the Edmonton Public School Board's Student Senate, I utilized my graphic design skills to create informative brochures aimed at helping students manage their time effectively.",
       "editedDate": "2024-12-29T23:48:00.000Z",
+      "id": "169c4188-fa0e-8016-99d2-c83e53040cb7",
       "publishedDate": "2019-03-05",
+      "slug": "edmonton-public-school-board-epsb-student-senate",
       "status": "Done",
+      "tags": [
+        "Design"
+      ],
+      "title": "Edmonton Public School Board (EPSB), Student Senate",
       "content": "In grade 11 and 12 I served on my school board's Student Senate. In grade 11, I did graphic design work for my committee; I created brochures about time management.",
       "coverImage": "/design-files/edmonton-public-school-board-epsb-student-senate/cover-your-time1.webp",
       "images": [
@@ -299,14 +326,17 @@
       ]
     },
     {
-      "id": "169c4188-fa0e-8020-9f5e-e53666223e6a",
-      "slug": "mcnally-massive-volunteering-club",
-      "title": "McNally, Massive Volunteering (Club)",
-      "description": "",
       "createdDate": "2024-12-27T21:04:00.000Z",
+      "description": "A creative advertising campaign I developed for a high school student volunteer club, showcasing my design skills and collaboration with a talented friend.",
       "editedDate": "2024-12-29T23:49:00.000Z",
+      "id": "169c4188-fa0e-8020-9f5e-e53666223e6a",
       "publishedDate": "2018-09-15",
+      "slug": "mcnally-massive-volunteering-club",
       "status": "Done",
+      "tags": [
+        "Design"
+      ],
+      "title": "McNally, Massive Volunteering (Club)",
       "content": "I assisted managing a student volunteer club in high school. Here's some example advertising I created.\n\nNote that I didn't design this version of the logo; a close friend of mine did!",
       "coverImage": "/design-files/mcnally-massive-volunteering-club/cover-logo-facebook-banner.webp",
       "images": [
@@ -317,14 +347,17 @@
       ]
     },
     {
-      "id": "169c4188-fa0e-802d-9f57-ce1739ff8467",
-      "slug": "mcnally-miscellaneous-projects",
-      "title": "McNally, Miscellaneous Projects",
-      "description": "",
       "createdDate": "2024-12-27T21:04:00.000Z",
+      "description": "A collection of my graphic design work for various school projects that showcases my creativity and skills.",
       "editedDate": "2024-12-29T23:49:00.000Z",
+      "id": "169c4188-fa0e-802d-9f57-ce1739ff8467",
       "publishedDate": "2018-09-07",
+      "slug": "mcnally-miscellaneous-projects",
       "status": "Done",
+      "tags": [
+        "Design"
+      ],
+      "title": "McNally, Miscellaneous Projects",
       "content": "I occasionally did graphic design for school projects. Some of them turned out okay!",
       "coverImage": "/design-files/mcnally-miscellaneous-projects/cover-a-boat-01-edit.webp",
       "images": [
@@ -339,14 +372,17 @@
       ]
     },
     {
-      "id": "169c4188-fa0e-8072-a806-d21a755d2928",
-      "slug": "mcnally-bike-a-thon",
-      "title": "McNally, Bike-a-thon",
-      "description": "",
       "createdDate": "2024-12-27T20:57:00.000Z",
+      "description": "A creative showcase of designs for McNally's Bike-a-thon, an inspiring fundraiser supporting Kids With Cancer.",
       "editedDate": "2024-12-29T23:51:00.000Z",
+      "id": "169c4188-fa0e-8072-a806-d21a755d2928",
       "publishedDate": "2018-05-24",
+      "slug": "mcnally-bike-a-thon",
       "status": "Done",
+      "tags": [
+        "Design"
+      ],
+      "title": "McNally, Bike-a-thon",
       "content": "McNally's Bike-a-thon is an annual fundraiser for Kids With Cancer. Here are a couple of designs I made for the initiative and for my team!",
       "coverImage": "/design-files/mcnally-bike-a-thon/cover-bikeathon-geofilter-01.webp",
       "images": [
@@ -361,14 +397,17 @@
       ]
     },
     {
-      "id": "169c4188-fa0e-8028-a11d-f9e435a9217e",
-      "slug": "mcnally-mvplead",
-      "title": "McNally, MVPLead",
-      "description": "",
       "createdDate": "2024-12-27T21:05:00.000Z",
+      "description": "Organizing the MVPLead junior-high leadership conference and designing the logo was a rewarding experience that showcased my creative skills.",
       "editedDate": "2024-12-29T23:49:00.000Z",
+      "id": "169c4188-fa0e-8028-a11d-f9e435a9217e",
       "publishedDate": "2018-04-28",
+      "slug": "mcnally-mvplead",
       "status": "Done",
+      "tags": [
+        "Design"
+      ],
+      "title": "McNally, MVPLead",
       "content": "MVPLead was a junior-high leadership conference I helped organized in grade 10. I was tasked with creating the logo—here's how it went!",
       "coverImage": "/design-files/mcnally-mvplead/cover-mvplead-banner.webp",
       "images": [
@@ -383,14 +422,17 @@
       ]
     },
     {
-      "id": "169c4188-fa0e-8012-891f-fac8ae1edc33",
-      "slug": "mcnally-photography",
-      "title": "McNally, Photography",
-      "description": "",
       "createdDate": "2024-12-27T21:08:00.000Z",
+      "description": "This logo design for my school's photography club is my proudest creative achievement to date.",
       "editedDate": "2024-12-29T23:48:00.000Z",
+      "id": "169c4188-fa0e-8012-891f-fac8ae1edc33",
       "publishedDate": "2017-10-13",
+      "slug": "mcnally-photography",
       "status": "Done",
+      "tags": [
+        "Design"
+      ],
+      "title": "McNally, Photography",
       "content": "To date, this is probably my favorite thing I've ever designed. I made a logo for my school's photography club.",
       "coverImage": "/design-files/mcnally-photography/cover-photography-logo.webp",
       "images": [
@@ -401,14 +443,17 @@
       ]
     },
     {
-      "id": "169c4188-fa0e-806b-abc8-db31c6c60c3e",
-      "slug": "mcnally-heritage-festival",
-      "title": "McNally, Heritage Festival",
-      "description": "",
       "createdDate": "2024-12-27T21:03:00.000Z",
+      "description": "Designed engaging infographics and posters to showcase cultural heritage at the festival.",
       "editedDate": "2024-12-29T23:50:00.000Z",
+      "id": "169c4188-fa0e-806b-abc8-db31c6c60c3e",
       "publishedDate": "2017-05-04",
+      "slug": "mcnally-heritage-festival",
       "status": "Done",
+      "tags": [
+        "Design"
+      ],
+      "title": "McNally, Heritage Festival",
       "content": "I created a infographic for my Heritage Festival booth and posters to be displayed at the other countries.",
       "coverImage": "/design-files/mcnally-heritage-festival/cover-infographic-01.webp",
       "images": [
@@ -425,14 +470,17 @@
   ],
   "projectsBySlug": {
     "hockey-poster": {
-      "id": "16bc4188-fa0e-80f7-ad6a-e4aa97326a5b",
-      "slug": "hockey-poster",
-      "title": "Hockey Poster",
-      "description": "",
       "createdDate": "2024-12-29T00:34:00.000Z",
-      "editedDate": "2024-12-29T23:51:00.000Z",
+      "description": "Created a personalized hockey poster as a secret Santa gift for a teammate in my fraternity.",
+      "editedDate": "2024-12-30T18:40:00.000Z",
+      "id": "16bc4188-fa0e-80f7-ad6a-e4aa97326a5b",
       "publishedDate": "2024-12-28",
+      "slug": "hockey-poster",
       "status": "Done",
+      "tags": [
+        "Design"
+      ],
+      "title": "Hockey Poster",
       "content": "Did this as a secret santa gift for one of the guys on my fraternity hockey team.",
       "coverImage": "/design-files/hockey-poster/cover-labelle.webp",
       "images": [
@@ -443,14 +491,17 @@
       ]
     },
     "orchard-commons": {
-      "id": "169c4188-fa0e-8084-905e-e8005bb5762c",
-      "slug": "orchard-commons",
-      "title": "Orchard Commons",
-      "description": "",
       "createdDate": "2024-12-27T21:06:00.000Z",
-      "editedDate": "2024-12-29T23:48:00.000Z",
+      "description": "A collection of creative graphic design projects I developed while serving on my residence's house council.",
+      "editedDate": "2024-12-30T18:40:00.000Z",
+      "id": "169c4188-fa0e-8084-905e-e8005bb5762c",
       "publishedDate": "2020-05-02",
+      "slug": "orchard-commons",
       "status": "Done",
+      "tags": [
+        "Design"
+      ],
+      "title": "Orchard Commons",
       "content": "I served on my residence's house council in first year and did a lot of neat graphic design projects!",
       "coverImage": "/design-files/orchard-commons/cover-tiktok.webp",
       "images": [
@@ -473,14 +524,17 @@
       ]
     },
     "science-undergraduate-society": {
-      "id": "169c4188-fa0e-8004-a830-efe5b008da9f",
-      "slug": "science-undergraduate-society",
-      "title": "Science Undergraduate Society",
-      "description": "",
       "createdDate": "2024-12-27T21:12:00.000Z",
+      "description": "A creative journey where I designed engaging events as part of the Science Undergraduate Society at UBC.",
       "editedDate": "2024-12-29T23:47:00.000Z",
+      "id": "169c4188-fa0e-8004-a830-efe5b008da9f",
       "publishedDate": "2020-04-30",
+      "slug": "science-undergraduate-society",
       "status": "Done",
+      "tags": [
+        "Design"
+      ],
+      "title": "Science Undergraduate Society",
       "content": "I joined SUS FYC in my first-year at UBC. Here are some cool things I made planning events with them!",
       "coverImage": "/design-files/science-undergraduate-society/cover-fyc-elements.webp",
       "images": [
@@ -511,14 +565,17 @@
       ]
     },
     "the-gateway": {
-      "id": "169c4188-fa0e-80bc-9e83-e01dcba31b90",
-      "slug": "the-gateway",
-      "title": "The Gateway",
-      "description": "",
       "createdDate": "2024-12-27T20:59:00.000Z",
+      "description": "Assisted in securing additional funding for the University of Alberta's student-run newspaper, The Gateway.",
       "editedDate": "2024-12-29T23:50:00.000Z",
+      "id": "169c4188-fa0e-80bc-9e83-e01dcba31b90",
       "publishedDate": "2020-03-02",
+      "slug": "the-gateway",
       "status": "Done",
+      "tags": [
+        "Design"
+      ],
+      "title": "The Gateway",
       "content": "The Gateway is the University of Alberta's student-run newspaper. I assisted on their campaign for additional funding.",
       "coverImage": "/design-files/the-gateway/cover-poster.webp",
       "images": [
@@ -533,14 +590,17 @@
       ]
     },
     "sunia": {
-      "id": "169c4188-fa0e-8011-ae05-ef9470cce4e8",
-      "slug": "sunia",
-      "title": "SUNIA",
-      "description": "",
       "createdDate": "2024-12-27T21:10:00.000Z",
+      "description": "This portfolio entry showcases my creative marketing contributions to SUNIA during the 2018/19 year.",
       "editedDate": "2024-12-29T23:48:00.000Z",
+      "id": "169c4188-fa0e-8011-ae05-ef9470cce4e8",
       "publishedDate": "2019-12-01",
+      "slug": "sunia",
       "status": "Done",
+      "tags": [
+        "Design"
+      ],
+      "title": "SUNIA",
       "content": "I served as SUNIA's Marketing for our 2018/19 year. Here's some things I made in the role!",
       "coverImage": "/design-files/sunia/cover-abstract-banner.webp",
       "images": [
@@ -599,14 +659,17 @@
       ]
     },
     "the-canadian-student-leadership-conference": {
-      "id": "169c4188-fa0e-80e6-bf14-ebaf368b2eae",
-      "slug": "the-canadian-student-leadership-conference",
-      "title": "The Canadian Student Leadership Conference",
-      "description": "",
       "createdDate": "2024-12-27T20:59:00.000Z",
+      "description": "A creative journey where my logo design inspired the visual identity of the Canadian Student Leadership Conference.",
       "editedDate": "2024-12-29T23:50:00.000Z",
+      "id": "169c4188-fa0e-80e6-bf14-ebaf368b2eae",
       "publishedDate": "2019-09-27",
+      "slug": "the-canadian-student-leadership-conference",
       "status": "Done",
+      "tags": [
+        "Design"
+      ],
+      "title": "The Canadian Student Leadership Conference",
       "content": "CSLC is an event I helped organize. At the beginning of the year, we had a logo contest. My submission was used to inspire the final design.",
       "coverImage": "/design-files/the-canadian-student-leadership-conference/cover-cslc-logo-portfolio-01.webp",
       "images": [
@@ -617,14 +680,17 @@
       ]
     },
     "mcnally-graduation-2019": {
-      "id": "169c4188-fa0e-8011-a6a5-e3ea5fa6eb39",
-      "slug": "mcnally-graduation-2019",
-      "title": "McNally, Graduation 2019",
-      "description": "",
       "createdDate": "2024-12-27T21:01:00.000Z",
+      "description": "In 2019, I designed promotional materials for our high school graduation, including a Snapchat filter and a commemorative pamphlet.",
       "editedDate": "2024-12-29T23:50:00.000Z",
+      "id": "169c4188-fa0e-8011-a6a5-e3ea5fa6eb39",
       "publishedDate": "2019-05-30",
+      "slug": "mcnally-graduation-2019",
       "status": "Done",
+      "tags": [
+        "Design"
+      ],
+      "title": "McNally, Graduation 2019",
       "content": "I created advertising to support funding our high school graduation, a Snapchat filter for our prom, and the pamphlet distributed at commencement.",
       "coverImage": "/design-files/mcnally-graduation-2019/cover-grad.webp",
       "images": [
@@ -647,14 +713,17 @@
       ]
     },
     "mcnally-wrestling-club": {
-      "id": "169c4188-fa0e-8080-a342-d558cf457beb",
-      "slug": "mcnally-wrestling-club",
-      "title": "McNally, Wrestling Club",
-      "description": "",
       "createdDate": "2024-12-27T21:13:00.000Z",
+      "description": "A showcase of logo designs for the McNally Wrestling Club, highlighting creativity and team spirit.",
       "editedDate": "2024-12-29T23:47:00.000Z",
+      "id": "169c4188-fa0e-8080-a342-d558cf457beb",
       "publishedDate": "2019-04-05",
+      "slug": "mcnally-wrestling-club",
       "status": "Done",
+      "tags": [
+        "Design"
+      ],
+      "title": "McNally, Wrestling Club",
       "content": "",
       "coverImage": "/design-files/mcnally-wrestling-club/cover-threebars-01.webp",
       "images": [
@@ -685,14 +754,17 @@
       ]
     },
     "edmonton-public-school-board-epsb-student-senate": {
-      "id": "169c4188-fa0e-8016-99d2-c83e53040cb7",
-      "slug": "edmonton-public-school-board-epsb-student-senate",
-      "title": "Edmonton Public School Board (EPSB), Student Senate",
-      "description": "",
       "createdDate": "2024-12-27T21:09:00.000Z",
+      "description": "During my time on the Edmonton Public School Board's Student Senate, I utilized my graphic design skills to create informative brochures aimed at helping students manage their time effectively.",
       "editedDate": "2024-12-29T23:48:00.000Z",
+      "id": "169c4188-fa0e-8016-99d2-c83e53040cb7",
       "publishedDate": "2019-03-05",
+      "slug": "edmonton-public-school-board-epsb-student-senate",
       "status": "Done",
+      "tags": [
+        "Design"
+      ],
+      "title": "Edmonton Public School Board (EPSB), Student Senate",
       "content": "In grade 11 and 12 I served on my school board's Student Senate. In grade 11, I did graphic design work for my committee; I created brochures about time management.",
       "coverImage": "/design-files/edmonton-public-school-board-epsb-student-senate/cover-your-time1.webp",
       "images": [
@@ -723,14 +795,17 @@
       ]
     },
     "mcnally-massive-volunteering-club": {
-      "id": "169c4188-fa0e-8020-9f5e-e53666223e6a",
-      "slug": "mcnally-massive-volunteering-club",
-      "title": "McNally, Massive Volunteering (Club)",
-      "description": "",
       "createdDate": "2024-12-27T21:04:00.000Z",
+      "description": "A creative advertising campaign I developed for a high school student volunteer club, showcasing my design skills and collaboration with a talented friend.",
       "editedDate": "2024-12-29T23:49:00.000Z",
+      "id": "169c4188-fa0e-8020-9f5e-e53666223e6a",
       "publishedDate": "2018-09-15",
+      "slug": "mcnally-massive-volunteering-club",
       "status": "Done",
+      "tags": [
+        "Design"
+      ],
+      "title": "McNally, Massive Volunteering (Club)",
       "content": "I assisted managing a student volunteer club in high school. Here's some example advertising I created.\n\nNote that I didn't design this version of the logo; a close friend of mine did!",
       "coverImage": "/design-files/mcnally-massive-volunteering-club/cover-logo-facebook-banner.webp",
       "images": [
@@ -741,14 +816,17 @@
       ]
     },
     "mcnally-miscellaneous-projects": {
-      "id": "169c4188-fa0e-802d-9f57-ce1739ff8467",
-      "slug": "mcnally-miscellaneous-projects",
-      "title": "McNally, Miscellaneous Projects",
-      "description": "",
       "createdDate": "2024-12-27T21:04:00.000Z",
+      "description": "A collection of my graphic design work for various school projects that showcases my creativity and skills.",
       "editedDate": "2024-12-29T23:49:00.000Z",
+      "id": "169c4188-fa0e-802d-9f57-ce1739ff8467",
       "publishedDate": "2018-09-07",
+      "slug": "mcnally-miscellaneous-projects",
       "status": "Done",
+      "tags": [
+        "Design"
+      ],
+      "title": "McNally, Miscellaneous Projects",
       "content": "I occasionally did graphic design for school projects. Some of them turned out okay!",
       "coverImage": "/design-files/mcnally-miscellaneous-projects/cover-a-boat-01-edit.webp",
       "images": [
@@ -763,14 +841,17 @@
       ]
     },
     "mcnally-bike-a-thon": {
-      "id": "169c4188-fa0e-8072-a806-d21a755d2928",
-      "slug": "mcnally-bike-a-thon",
-      "title": "McNally, Bike-a-thon",
-      "description": "",
       "createdDate": "2024-12-27T20:57:00.000Z",
+      "description": "A creative showcase of designs for McNally's Bike-a-thon, an inspiring fundraiser supporting Kids With Cancer.",
       "editedDate": "2024-12-29T23:51:00.000Z",
+      "id": "169c4188-fa0e-8072-a806-d21a755d2928",
       "publishedDate": "2018-05-24",
+      "slug": "mcnally-bike-a-thon",
       "status": "Done",
+      "tags": [
+        "Design"
+      ],
+      "title": "McNally, Bike-a-thon",
       "content": "McNally's Bike-a-thon is an annual fundraiser for Kids With Cancer. Here are a couple of designs I made for the initiative and for my team!",
       "coverImage": "/design-files/mcnally-bike-a-thon/cover-bikeathon-geofilter-01.webp",
       "images": [
@@ -785,14 +866,17 @@
       ]
     },
     "mcnally-mvplead": {
-      "id": "169c4188-fa0e-8028-a11d-f9e435a9217e",
-      "slug": "mcnally-mvplead",
-      "title": "McNally, MVPLead",
-      "description": "",
       "createdDate": "2024-12-27T21:05:00.000Z",
+      "description": "Organizing the MVPLead junior-high leadership conference and designing the logo was a rewarding experience that showcased my creative skills.",
       "editedDate": "2024-12-29T23:49:00.000Z",
+      "id": "169c4188-fa0e-8028-a11d-f9e435a9217e",
       "publishedDate": "2018-04-28",
+      "slug": "mcnally-mvplead",
       "status": "Done",
+      "tags": [
+        "Design"
+      ],
+      "title": "McNally, MVPLead",
       "content": "MVPLead was a junior-high leadership conference I helped organized in grade 10. I was tasked with creating the logo—here's how it went!",
       "coverImage": "/design-files/mcnally-mvplead/cover-mvplead-banner.webp",
       "images": [
@@ -807,14 +891,17 @@
       ]
     },
     "mcnally-photography": {
-      "id": "169c4188-fa0e-8012-891f-fac8ae1edc33",
-      "slug": "mcnally-photography",
-      "title": "McNally, Photography",
-      "description": "",
       "createdDate": "2024-12-27T21:08:00.000Z",
+      "description": "This logo design for my school's photography club is my proudest creative achievement to date.",
       "editedDate": "2024-12-29T23:48:00.000Z",
+      "id": "169c4188-fa0e-8012-891f-fac8ae1edc33",
       "publishedDate": "2017-10-13",
+      "slug": "mcnally-photography",
       "status": "Done",
+      "tags": [
+        "Design"
+      ],
+      "title": "McNally, Photography",
       "content": "To date, this is probably my favorite thing I've ever designed. I made a logo for my school's photography club.",
       "coverImage": "/design-files/mcnally-photography/cover-photography-logo.webp",
       "images": [
@@ -825,14 +912,17 @@
       ]
     },
     "mcnally-heritage-festival": {
-      "id": "169c4188-fa0e-806b-abc8-db31c6c60c3e",
-      "slug": "mcnally-heritage-festival",
-      "title": "McNally, Heritage Festival",
-      "description": "",
       "createdDate": "2024-12-27T21:03:00.000Z",
+      "description": "Designed engaging infographics and posters to showcase cultural heritage at the festival.",
       "editedDate": "2024-12-29T23:50:00.000Z",
+      "id": "169c4188-fa0e-806b-abc8-db31c6c60c3e",
       "publishedDate": "2017-05-04",
+      "slug": "mcnally-heritage-festival",
       "status": "Done",
+      "tags": [
+        "Design"
+      ],
+      "title": "McNally, Heritage Festival",
       "content": "I created a infographic for my Heritage Festival booth and posters to be displayed at the other countries.",
       "coverImage": "/design-files/mcnally-heritage-festival/cover-infographic-01.webp",
       "images": [

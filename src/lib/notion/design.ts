@@ -11,6 +11,7 @@ import {
 } from './index'
 import { getPageCoverImage } from './cover'
 import type { DesignProject, DesignImage } from './types'
+import { title } from 'process'
 
 async function getImagesFromPage(pageId: string): Promise<DesignImage[]> {
   const response = await notion.blocks.children.list({
@@ -44,14 +45,15 @@ export function parseNotionPageToDesignProject(
 
   const properties = page.properties
   return {
-    id: page.id,
-    slug: properties.Slug?.formula?.string ?? '',
-    title: getRichTextContent(properties.Name?.title ?? []),
-    description: getRichTextContent(properties.Description?.rich_text ?? []),
     createdDate: properties.Created?.created_time ?? '',
+    description: getRichTextContent(properties['One Liner']?.rich_text ?? []),
     editedDate: properties.Edited?.last_edited_time ?? null,
+    id: page.id,
     publishedDate: properties.Published?.date?.start ?? null,
+    slug: properties.Slug?.formula?.string ?? '',
     status: properties.Status?.status?.name ?? '',
+    tags: properties.Tags?.multi_select?.map((tag: any) => tag.name) ?? [],
+    title: getRichTextContent(properties.Name?.title ?? []),
   }
 }
 
