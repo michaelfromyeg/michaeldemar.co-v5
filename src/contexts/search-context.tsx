@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from 'react'
 
-const CACHE_VERSION = '1.0'
+const CACHE_VERSION = '1.1'
 const CACHE_KEY = 'search-data-cache'
 
 type SearchItem = {
@@ -33,18 +33,74 @@ interface CacheData {
 }
 
 const staticPages: Omit<SearchItem, 'id' | 'searchText'>[] = [
-  { title: 'home', href: '/', type: 'page' },
-  { title: 'notions', href: '/notions', type: 'page' },
-  { title: 'blog', href: '/blog', type: 'page' },
-  { title: 'design', href: '/design', type: 'page' },
-  { title: 'travel', href: '/travel', type: 'page' },
-  { title: 'about', href: '/about', type: 'page' },
-  { title: 'sitemap', href: '/sitemap', type: 'page' },
-  { title: 'subdomains', href: '/subdomains', type: 'page' },
-  { title: 'uses', href: '/uses', type: 'page' },
-  { title: 'quotes', href: '/quotes', type: 'page' },
-  { title: 'inspirations', href: '/inspirations', type: 'page' },
-  { title: 'til', href: '/til', type: 'page' },
+  {
+    title: 'home',
+    href: '/',
+    type: 'page',
+    description: 'The homepage of this website.',
+  },
+  {
+    title: 'notions',
+    href: '/notions',
+    type: 'page',
+    description: 'The homepage of my Notion site.',
+  },
+  { title: 'blog', href: '/blog', type: 'page', description: 'My blog.' },
+  {
+    title: 'design',
+    href: '/design',
+    type: 'page',
+    description: 'My design portfolio.',
+  },
+  {
+    title: 'travel',
+    href: '/travel',
+    type: 'page',
+    description: 'My past travels.',
+  },
+  {
+    title: 'about',
+    href: '/about',
+    type: 'page',
+    description: 'A bit about me.',
+  },
+  {
+    title: 'sitemap',
+    href: '/sitemap',
+    type: 'page',
+    description: 'A sitemap for this website.',
+  },
+  {
+    title: 'subdomains',
+    href: '/subdomains',
+    type: 'page',
+    description:
+      'All the subdomains from michaeldemar.co. Basically, a link to all my other projects.',
+  },
+  {
+    title: 'uses',
+    href: '/uses',
+    type: 'page',
+    description: 'A Notion page of all the products I use.',
+  },
+  {
+    title: 'quotes',
+    href: '/quotes',
+    type: 'page',
+    description: 'A Notion page of some of my favorite quotes.',
+  },
+  {
+    title: 'inspirations',
+    href: '/inspirations',
+    type: 'page',
+    description: 'A Notion page of people I look up to.',
+  },
+  {
+    title: 'til',
+    href: '/til',
+    type: 'page',
+    description: 'A Notion page of things I learn everyday.',
+  },
 ]
 
 const prepareSearchText = (item: SearchItem): string => {

@@ -1,7 +1,7 @@
 // src/app/sitemap/page.tsx
 import { readdir } from 'fs/promises'
 import path from 'path'
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
 import { Folder, File, FileText, Map, Palette } from 'lucide-react'
 import blog from '@/data/blog.json'
 import design from '@/data/design.json'
@@ -248,10 +248,7 @@ export default async function SitemapPage() {
   return (
     <main className="container mx-auto max-w-4xl px-4 py-8 md:px-8">
       <h1 className="mb-8 text-4xl">Sitemap</h1>
-      <Card className="border-gruvbox">
-        <CardHeader>
-          <CardTitle>All Pages</CardTitle>
-        </CardHeader>
+      <Card className="border-gruvbox py-6">
         <CardContent>
           <RouteTree routes={routes} />
         </CardContent>

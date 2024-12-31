@@ -2,7 +2,7 @@ import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
 
-export const alt = 'Michael DeMar'
+export const alt = 'Michael DeMarco'
 export const size = {
   width: 1200,
   height: 630,

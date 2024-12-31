@@ -20,7 +20,7 @@ interface SubdomainInfo {
 }
 
 export const metadata = {
-  title: 'Subdomains | Michael DeMar',
+  title: 'Subdomains | Michael DeMarco',
   description: 'Active subdomains under michaeldemar.co',
 }
 
