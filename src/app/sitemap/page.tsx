@@ -131,7 +131,6 @@ async function getRoutes(
         try {
           await readdir(slugFolderPath)
           const travelPosts = travel.itineraries
-            .filter((trip) => trip.status === 'Completed')
             .map((trip) => ({
               name: trip.title,
               path: `/travel/${trip.slug}`,

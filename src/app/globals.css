@@ -20,8 +20,10 @@
     --secondary-foreground: 44 86% 87%;
 
     /* UI colors */
-    --muted: 27 19% 46%;
-    --muted-foreground: 32 14% 49%;
+    /* --muted: 27 19% 46%;
+    --muted-foreground: 32 14% 49%; */
+    --muted: 40 28% 82%; /* Warmer beige/bronze, true to Gruvbox light */
+    --muted-foreground: 27 19% 46%; /* Original muted color for text */
     --accent: 66 80% 26%;
     --accent-foreground: 44 86% 87%;
     --destructive: 0 100% 31%;

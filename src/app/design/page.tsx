@@ -89,6 +89,19 @@ export default async function DesignPage({
                     ? formatDate(latestProject.publishedDate)
                     : formatDate(latestProject.createdDate)}
                 </div>
+                {/* Added tags for the featured project */}
+                {latestProject.tags && (
+                  <div className="mb-4 flex flex-wrap gap-2">
+                    {latestProject.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="inline-flex items-center rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
                 <p className="mb-6 flex-1 text-muted-foreground">
                   {latestProject.description}
                 </p>
@@ -141,6 +154,19 @@ export default async function DesignPage({
                         ? formatDate(project.publishedDate)
                         : formatDate(project.createdDate)}
                     </div>
+                    {/* Added tags for grid projects */}
+                    {project.tags && (
+                      <div className="mb-2 flex flex-wrap gap-2">
+                        {project.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="inline-flex items-center rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                     {project.description && (
                       <p className="line-clamp-2 text-sm text-muted-foreground">
                         {project.description}

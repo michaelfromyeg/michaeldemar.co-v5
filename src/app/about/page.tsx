@@ -136,14 +136,14 @@ export default function AboutPage() {
               </p>
               <p>
                 Currently, I&apos;m based in San Francisco, where I&apos;m
-                working full-time at Notion. I completed a post-graduate there
-                on the Web Infrastructure team to work on performance tooling. I
-                managed to snag a return offer to the Collections (Databases)
-                team, where I work on front-end performance. When I&apos;m not
-                coding, you&apos;ll find me exploring (either aboard or in San
-                Francisco), reading, watching movies, building half-baked side
-                projects, playing sports, making music, or spending time with
-                friends and family.
+                working full-time at Notion. I completed a post-graduate
+                internship there on the Web Infrastructure team to work on
+                performance tooling. I managed to snag a return offer to the
+                Collections (Databases) team, where I work on front-end
+                performance. When I&apos;m not coding, you&apos;ll find me
+                exploring (either aboard or in San Francisco), reading, watching
+                movies, building half-baked side projects, playing sports,
+                making music, or spending time with friends and family.
               </p>
               <p>
                 I&apos;d love to connect. Feel free to reach out via any of the
@@ -152,9 +152,8 @@ export default function AboutPage() {
             </div>
           </CardContent>
         </Card>
-
         {/* Image grid with consistent sizing */}
-        <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           <div className="flex flex-col items-center space-y-2">
             <div className="h-72 w-72 overflow-hidden rounded-lg">
               <Image
