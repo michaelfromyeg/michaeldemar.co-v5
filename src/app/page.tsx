@@ -1,9 +1,23 @@
+'use client'
+
 import { ChevronDown } from 'lucide-react'
 import TypingHero from '@/components/hero'
 import Logo from '@/components/logo'
 import Image from 'next/image'
+import { useState, useEffect } from 'react'
 
 export default function Home() {
+  const [showChevron, setShowChevron] = useState(true)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowChevron(window.scrollY < 100)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
     <>
       <section className="relative flex h-[calc(100vh-64px)] flex-col overflow-hidden">
@@ -16,9 +30,11 @@ export default function Home() {
           <div className="relative z-10 flex flex-grow flex-col items-center justify-center text-center">
             <TypingHero />
           </div>
-          <div className="relative z-10 mb-8 flex justify-center">
-            <ChevronDown className="h-6 w-6 animate-bounce text-muted-foreground" />
-          </div>
+          {showChevron && (
+            <div className="relative z-10 mb-8 flex justify-center">
+              <ChevronDown className="h-6 w-6 animate-bounce text-muted-foreground" />
+            </div>
+          )}
         </div>
       </section>
       <section className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
