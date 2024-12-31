@@ -5,6 +5,7 @@ import TypingHero from '@/components/hero'
 import Logo from '@/components/logo'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
+import NewsletterForm from '@/components/newsletter-form'
 
 export default function Home() {
   const [showChevron, setShowChevron] = useState(true)
@@ -88,6 +89,14 @@ export default function Home() {
                 priority
               />
             </div>
+          </div>
+        </div>
+        <div className="mx-auto max-w-4xl">
+          <div className="flex justify-center">
+            <NewsletterForm
+              title="Subscribe to 'Busy Living'"
+              description="Get notified when I write something new. Posts are always available on my blog."
+            />
           </div>
         </div>
       </section>

@@ -13,6 +13,7 @@ import { Pagination } from '@/components/pagination'
 import Link from 'next/link'
 import Image from 'next/image'
 import blogData from '@/data/blog.json'
+import NewsletterForm from '@/components/newsletter-form'
 
 const POSTS_PER_PAGE = 9
 
@@ -152,6 +153,13 @@ export default async function BlogPage({
             </Card>
           </Link>
         ))}
+      </div>
+
+      <div className="my-12 flex justify-center">
+        <NewsletterForm
+          title="Subscribe to 'Busy Living'"
+          description="Get notified when I publish new posts and projects."
+        />
       </div>
 
       <Pagination
