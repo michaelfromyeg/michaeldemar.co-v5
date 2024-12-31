@@ -1,192 +1,115 @@
 // src/app/sitemap/page.tsx
-import { readdir } from 'fs/promises'
-import path from 'path'
 import { Card, CardContent } from '@/components/ui/card'
 import { Folder, File, FileText, Map, Palette } from 'lucide-react'
-import blog from '@/data/blog.json'
-import design from '@/data/design.json'
-import travel from '@/data/travel.json'
+import { XMLParser } from 'fast-xml-parser'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Sitemap | Michael DeMar',
+  description: 'A visual representation of all pages on michaeldemar.co',
+}
+
+interface SitemapUrl {
+  loc: string
+  lastmod: string
+  changefreq: string
+  priority: string
+}
+
+interface SitemapData {
+  urlset: {
+    url: SitemapUrl[]
+  }
+}
 
 interface RouteNode {
   name: string
   path: string
   children: RouteNode[]
-  isBlogPost?: boolean
-  isDesignProject?: boolean
-  isTravelPost?: boolean
-  description?: string
-  date?: string
+  lastmod?: string
+  type?: 'blog' | 'design' | 'travel' | 'page'
 }
 
-async function getRoutes(
-  dir: string,
-  basePath: string = ''
-): Promise<RouteNode[]> {
-  const entries = await readdir(dir, { withFileTypes: true })
-  const routes: RouteNode[] = []
+async function getSitemapData(): Promise<RouteNode[]> {
+  // In Next.js, we can fetch the XML directly since it's public
+  const response = await fetch('https://michaeldemar.co/sitemap.xml')
+  const xmlData = await response.text()
 
-  // Add root route first if we're at the top level
-  if (basePath === '') {
-    routes.push({
-      name: 'root',
-      path: '/',
-      children: [],
-    })
+  const parser = new XMLParser({
+    ignoreAttributes: false,
+    parseAttributeValue: true,
+  })
+  const parsed = parser.parse(xmlData) as SitemapData
+
+  // Create a hierarchical structure from flat URLs
+  const root: RouteNode = {
+    name: 'root',
+    path: '/',
+    children: [],
   }
 
-  for (const entry of entries) {
-    // Skip private folders and non-route items
-    if (
-      entry.name.startsWith('_') ||
-      entry.name.startsWith('.') ||
-      entry.name === 'api' ||
-      entry.name === 'sitemap' ||
-      entry.name.endsWith('.css') ||
-      entry.name === 'favicon.ico' ||
-      entry.name === '[slug]'
-    ) {
-      continue
-    }
+  parsed.urlset.url.forEach((url) => {
+    const path = url.loc.replace('https://michaeldemar.co', '')
+    if (path === '/') return // Skip root as we already added it
 
-    const fullPath = path.join(dir, entry.name)
-    const routePath = path.join(basePath, entry.isDirectory() ? entry.name : '')
-    const normalizedPath = ('/' + routePath)
-      .replace(/\\/g, '/')
-      .replace(/\/+/g, '/')
-      .replace(/\/page$/, '')
+    const segments = path.split('/').filter(Boolean)
+    let currentNode = root
 
-    if (entry.isDirectory()) {
-      const children = await getRoutes(fullPath, routePath)
+    // Determine the type based on the path
+    const type = segments[0] as RouteNode['type']
 
-      // Special handling for blog directory
-      if (entry.name === 'blog') {
-        // Find [slug] directory and get its path
-        const slugFolderPath = path.join(fullPath, '[slug]')
-        try {
-          await readdir(slugFolderPath)
-          // Add blog posts under the dynamic route folder structure
-          const blogPosts = blog.posts
-            .filter((post) => post.status === 'Published')
-            .map((post) => ({
-              name: post.title,
-              path: `/blog/${post.slug}`,
-              children: [],
-              isBlogPost: true,
-              description: post.description,
-              date: post.publishedDate,
-            }))
-            .sort(
-              (a, b) =>
-                new Date(b.date || '').getTime() -
-                new Date(a.date || '').getTime()
-            )
-
-          // Add the [slug] directory with blog posts as children
-          children.push({
-            name: 'Posts',
-            path: '/blog/[slug]',
-            children: blogPosts,
-          })
-        } catch (e) {
-          console.error(e)
-          // [slug] directory doesn't exist, skip
-        }
-      }
-
-      // Special handling for design directory
-      if (entry.name === 'design') {
-        const slugFolderPath = path.join(fullPath, '[slug]')
-        try {
-          await readdir(slugFolderPath)
-          const designProjects = design.projects
-            .filter((project) => project.status === 'Done')
-            .map((project) => ({
-              name: project.title,
-              path: `/design/${project.slug}`,
-              children: [],
-              isDesignProject: true,
-              description: project.content,
-              date: project.publishedDate,
-            }))
-            .sort(
-              (a, b) =>
-                new Date(b.date || '').getTime() -
-                new Date(a.date || '').getTime()
-            )
-
-          children.push({
-            name: 'Projects',
-            path: '/design/[slug]',
-            children: designProjects,
-          })
-        } catch (e) {
-          console.error(e)
-          // [slug] directory doesn't exist, skip
-        }
-      }
-
-      // Special handling for travel directory
-      if (entry.name === 'travel') {
-        const slugFolderPath = path.join(fullPath, '[slug]')
-        try {
-          await readdir(slugFolderPath)
-          const travelPosts = travel.itineraries
-            .map((trip) => ({
-              name: trip.title,
-              path: `/travel/${trip.slug}`,
-              children: [],
-              isTravelPost: true,
-              description: trip.description,
-              date: trip.startDate,
-            }))
-            .sort(
-              (a, b) =>
-                new Date(b.date || '').getTime() -
-                new Date(a.date || '').getTime()
-            )
-
-          children.push({
-            name: 'Itineraries',
-            path: '/travel/[slug]',
-            children: travelPosts,
-          })
-        } catch (e) {
-          console.error(e)
-          // [slug] directory doesn't exist, skip
-        }
-      }
-
-      if (children.length > 0) {
-        routes.push({
-          name: entry.name,
-          path: normalizedPath,
-          children: children.sort((a, b) => {
-            if (a.path.includes('[slug]')) return 1
-            if (b.path.includes('[slug]')) return -1
-            return a.path.localeCompare(b.path)
-          }),
-        })
-      }
-    } else if (entry.name === 'page.tsx' && basePath !== '') {
-      // Only add page.tsx routes if not in root (since we already added root)
-      routes.push({
-        name: path.basename(dir),
-        path: normalizedPath,
+    // For top-level pages, add them directly under root
+    if (segments.length === 1) {
+      currentNode.children.push({
+        name: segments[0],
+        path,
         children: [],
+        lastmod: url.lastmod,
+        type: 'page',
       })
+      return
     }
-  }
 
-  // For top-level routes, ensure specific sort order
-  if (basePath === '') {
-    return routes.sort((a, b) => {
-      if (a.path === '/') return -1
-      if (b.path === '/') return 1
+    // For nested pages, create the hierarchy
+    segments.forEach((segment, index) => {
+      const isLast = index === segments.length - 1
+      const existingNode = currentNode.children.find(
+        (child) => child.path === '/' + segments.slice(0, index + 1).join('/')
+      )
+
+      if (existingNode) {
+        currentNode = existingNode
+      } else {
+        const newNode: RouteNode = {
+          name: segment,
+          path: '/' + segments.slice(0, index + 1).join('/'),
+          children: [],
+          lastmod: isLast ? url.lastmod : undefined,
+          type: isLast ? type : undefined,
+        }
+        currentNode.children.push(newNode)
+        currentNode = newNode
+      }
+    })
+  })
+
+  // Sort children
+  const sortNodes = (nodes: RouteNode[]) => {
+    nodes.sort((a, b) => {
+      // Sort by type first (pages before sections)
+      if (a.type === 'page' && b.type !== 'page') return -1
+      if (a.type !== 'page' && b.type === 'page') return 1
       return a.path.localeCompare(b.path)
     })
+    nodes.forEach((node) => {
+      if (node.children.length > 0) {
+        sortNodes(node.children)
+      }
+    })
   }
 
-  return routes
+  sortNodes(root.children)
+  return [root]
 }
 
 function RouteTree({
@@ -204,11 +127,11 @@ function RouteTree({
             <span className="mt-1 text-muted-foreground group-hover:text-foreground">
               {route.children.length > 0 ? (
                 <Folder className="h-4 w-4" />
-              ) : route.isBlogPost ? (
+              ) : route.type === 'blog' ? (
                 <FileText className="h-4 w-4" />
-              ) : route.isDesignProject ? (
+              ) : route.type === 'design' ? (
                 <Palette className="h-4 w-4" />
-              ) : route.isTravelPost ? (
+              ) : route.type === 'travel' ? (
                 <Map className="h-4 w-4" />
               ) : (
                 <File className="h-4 w-4" />
@@ -221,14 +144,11 @@ function RouteTree({
               >
                 {route.path}
               </a>
-              {(route.isBlogPost ||
-                route.isDesignProject ||
-                route.isTravelPost) &&
-                route.description && (
-                  <p className="mt-1 font-sans text-sm text-muted-foreground">
-                    {route.description}
-                  </p>
-                )}
+              {route.lastmod && (
+                <p className="mt-1 font-sans text-sm text-muted-foreground">
+                  Last modified: {new Date(route.lastmod).toLocaleDateString()}
+                </p>
+              )}
             </div>
           </div>
           {route.children.length > 0 && (
@@ -241,8 +161,7 @@ function RouteTree({
 }
 
 export default async function SitemapPage() {
-  const appDir = path.join(process.cwd(), 'src', 'app')
-  const routes = await getRoutes(appDir)
+  const routes = await getSitemapData()
 
   return (
     <main className="container mx-auto max-w-4xl px-4 py-8 md:px-8">
