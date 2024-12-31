@@ -31,15 +31,25 @@ export interface DesignProject extends BaseNotionItem {
   images: DesignImage[]
 }
 
+export interface Waypoint {
+  id: string
+  title: string
+  notes: string
+  latitude: number
+  longitude: number
+  date: string
+  duration: number
+  itineraryId: string
+}
+
 export interface TravelItinerary extends BaseNotionItem {
   description: string
   region: string
-  isDone: boolean
   startDate: string
   endDate: string
-  lat: number
-  lon: number
-  duration: number // Calculated field for convenience
+  waypoints: Waypoint[]
+  // Removing isDone as it's now determined by dates
+  // Removing lat/lon as they're now part of waypoints
 }
 
 // Type guards
@@ -51,8 +61,18 @@ export function isDesignProject(item: BaseNotionItem): item is DesignProject {
   return 'images' in item
 }
 
+// Type guards
+export function isWaypoint(item: any): item is Waypoint {
+  return (
+    'latitude' in item &&
+    'longitude' in item &&
+    'itineraryId' in item &&
+    'duration' in item
+  )
+}
+
 export function isTravelItinerary(
   item: BaseNotionItem
 ): item is TravelItinerary {
-  return 'region' in item && 'isDone' in item
+  return 'region' in item && 'waypoints' in item
 }

@@ -5,8 +5,9 @@ import dynamic from 'next/dynamic'
 import { useTheme } from 'next-themes'
 import { Card, CardContent } from '@/components/ui/card'
 import { TravelItinerary } from '@/lib/notion/types'
+import { formatDate } from '@/lib/utils'
+import * as THREE from 'three'
 
-// Lazy load the Globe component
 const Globe = dynamic(() => import('react-globe.gl'), {
   ssr: false,
   loading: () => (
@@ -16,120 +17,178 @@ const Globe = dynamic(() => import('react-globe.gl'), {
   ),
 })
 
-interface Arc {
-  startLat: number
-  startLng: number
-  endLat: number
-  endLng: number
-  color: string
-  animationStartTime: number
-  animationDuration: number
-}
-
 interface GlobePoint {
   lat: number
   lng: number
   name: string
-  startDate: string
-  endDate: string
+  date: string
+  duration: number
+  itineraryTitle: string
   region: string
-  animationStartTime: number
+  index: number
 }
 
 interface TravelGlobeProps {
   itineraries: TravelItinerary[]
 }
 
+// Convert lat/lng to 3D coordinates on sphere
+function latLngToVector3(
+  lat: number,
+  lng: number,
+  radius: number = 100
+): THREE.Vector3 {
+  const phi = (90 - lat) * (Math.PI / 180)
+  const theta = (lng + 180) * (Math.PI / 180)
+
+  return new THREE.Vector3(
+    -radius * Math.sin(phi) * Math.cos(theta),
+    radius * Math.cos(phi),
+    radius * Math.sin(phi) * Math.sin(theta)
+  )
+}
+
+// Generate points along great circle path
+function generatePathPoints(
+  start: GlobePoint,
+  end: GlobePoint,
+  numPoints: number = 50
+): THREE.Vector3[] {
+  const points: THREE.Vector3[] = []
+  const v1 = latLngToVector3(start.lat, start.lng)
+  const v2 = latLngToVector3(end.lat, end.lng)
+
+  for (let i = 0; i <= numPoints; i++) {
+    const t = i / numPoints
+    const position = new THREE.Vector3()
+    position.copy(v1).lerp(v2, t)
+    position.normalize().multiplyScalar(100) // Keep on sphere surface
+    points.push(position)
+  }
+
+  return points
+}
+
 export default function TravelGlobe({ itineraries }: TravelGlobeProps) {
   const globeRef = useRef<any>(null)
+  const linesRef = useRef<THREE.LineSegments | null>(null)
   const { theme } = useTheme()
   const [activePoint, setActivePoint] = useState<GlobePoint | null>(null)
   const [dimensions, setDimensions] = useState({ width: 800, height: 500 })
-  const [animationProgress, setAnimationProgress] = useState(0)
-  const animationRef = useRef<number>(0)
+  const [currentSegment, setCurrentSegment] = useState(-1)
 
-  // Convert itineraries to points with lat/lon and sort by date
   const points = useMemo(() => {
-    const sortedItineraries = itineraries
-      .filter((it) => it.lat && it.lon)
-      .sort(
-        (a, b) =>
-          new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
+    const allPoints: GlobePoint[] = []
+
+    itineraries.forEach((itinerary) => {
+      const sortedWaypoints = [...itinerary.waypoints].sort(
+        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
       )
 
-    // Calculate total animation duration based on travel dates
-    const firstDate = new Date(
-      sortedItineraries[0]?.startDate || Date.now()
-    ).getTime()
-    const lastDate = new Date(
-      sortedItineraries[sortedItineraries.length - 1]?.endDate || Date.now()
-    ).getTime()
-    const totalDuration = lastDate - firstDate
+      sortedWaypoints.forEach((waypoint) => {
+        allPoints.push({
+          lat: waypoint.latitude,
+          lng: waypoint.longitude,
+          name: waypoint.title,
+          date: waypoint.date,
+          duration: waypoint.duration,
+          itineraryTitle: itinerary.title,
+          region: itinerary.region,
+          index: allPoints.length,
+        })
+      })
+    })
 
-    return sortedItineraries.map((it) => ({
-      lat: it.lat,
-      lng: it.lon,
-      name: it.title,
-      startDate: it.startDate,
-      endDate: it.endDate,
-      region: it.region,
-      animationStartTime:
-        (new Date(it.startDate).getTime() - firstDate) / totalDuration,
-    }))
+    return allPoints.sort(
+      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+    )
   }, [itineraries])
 
-  // Generate arcs between points considering time
-  const arcs = useMemo(() => {
-    const result: Arc[] = []
-    for (let i = 0; i < points.length - 1; i++) {
-      const startTime = points[i].animationStartTime
-      const endTime = points[i + 1].animationStartTime
-
-      result.push({
-        startLat: points[i].lat,
-        startLng: points[i].lng,
-        endLat: points[i + 1].lat,
-        endLng: points[i + 1].lng,
-        color:
-          theme === 'dark'
-            ? 'rgba(59, 130, 246, 0.6)'
-            : 'rgba(37, 99, 235, 0.6)',
-        animationStartTime: startTime,
-        animationDuration: endTime - startTime,
-      })
-    }
-    return result
-  }, [points, theme])
-
-  // Animation loop
+  // Update lines visualization
   useEffect(() => {
-    let startTime: number
+    if (!globeRef.current || currentSegment < 0) return
 
-    const animate = (timestamp: number) => {
-      if (!startTime) startTime = timestamp
-      const progress = (timestamp - startTime) / 20000 // 20-second total animation
-      setAnimationProgress(progress % 1) // Loop animation
-      animationRef.current = requestAnimationFrame(animate)
+    // Remove previous lines
+    if (linesRef.current) {
+      globeRef.current.scene().remove(linesRef.current)
+      linesRef.current.geometry.dispose()
+      // linesRef.current.material
     }
 
-    animationRef.current = requestAnimationFrame(animate)
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current)
+    // Create new lines up to current segment
+    const lineGeometry = new THREE.BufferGeometry()
+    const positions: number[] = []
+
+    for (let i = 0; i < currentSegment && i < points.length - 1; i++) {
+      const pathPoints = generatePathPoints(points[i], points[i + 1])
+
+      // Create line segments from path points
+      for (let j = 0; j < pathPoints.length - 1; j++) {
+        positions.push(
+          pathPoints[j].x,
+          pathPoints[j].y,
+          pathPoints[j].z,
+          pathPoints[j + 1].x,
+          pathPoints[j + 1].y,
+          pathPoints[j + 1].z
+        )
       }
     }
-  }, [])
 
-  // Filter visible arcs and points based on animation progress
-  const visibleArcs = arcs.filter(
-    (arc) =>
-      animationProgress >= arc.animationStartTime &&
-      animationProgress <= arc.animationStartTime + arc.animationDuration
-  )
+    lineGeometry.setAttribute(
+      'position',
+      new THREE.Float32BufferAttribute(positions, 3)
+    )
 
-  const visiblePoints = points.filter(
-    (point) => animationProgress >= point.animationStartTime
-  )
+    const lineMaterial = new THREE.LineBasicMaterial({
+      color: theme === 'dark' ? '#3B82F6' : '#2563EB',
+      opacity: 0.8,
+      transparent: true,
+    })
+
+    linesRef.current = new THREE.LineSegments(lineGeometry, lineMaterial)
+    globeRef.current.scene().add(linesRef.current)
+  }, [currentSegment, points, theme])
+
+  // Animation control with slower timing
+  useEffect(() => {
+    const PAUSE_DURATION = 3000 // 3 seconds pause at each point
+    const SEGMENT_DURATION = 5000 // 5 seconds to draw each line
+
+    let timeoutId: NodeJS.Timeout
+
+    const animateNextSegment = () => {
+      setCurrentSegment((prev) => {
+        if (prev >= points.length - 1) {
+          // Reset after a longer pause at the end
+          timeoutId = setTimeout(() => {
+            setCurrentSegment(-1)
+            setActivePoint(null)
+            // Start the animation again after resetting
+            timeoutId = setTimeout(animateNextSegment, 3000)
+          }, 5000)
+          return prev
+        }
+
+        const nextIndex = prev + 1
+        const point = points[nextIndex]
+        setActivePoint(point)
+
+        // Schedule next segment
+        timeoutId = setTimeout(
+          animateNextSegment,
+          nextIndex < points.length - 1 ? SEGMENT_DURATION + PAUSE_DURATION : 0
+        )
+
+        return nextIndex
+      })
+    }
+
+    // Start the animation
+    timeoutId = setTimeout(animateNextSegment, 2000)
+
+    return () => clearTimeout(timeoutId)
+  }, [points])
 
   // Handle window resize
   useEffect(() => {
@@ -147,20 +206,17 @@ export default function TravelGlobe({ itineraries }: TravelGlobeProps) {
 
   // Auto-rotate and initial position
   useEffect(() => {
-    if (globeRef.current) {
+    if (globeRef.current && points.length > 0) {
       globeRef.current.controls().autoRotate = true
-      globeRef.current.controls().autoRotateSpeed = 0.5
-
-      if (points.length > 0) {
-        globeRef.current.pointOfView(
-          {
-            lat: points[0].lat,
-            lng: points[0].lng,
-            altitude: 2.5,
-          },
-          1000
-        )
-      }
+      globeRef.current.controls().autoRotateSpeed = 0.3 // Slower rotation
+      globeRef.current.pointOfView(
+        {
+          lat: points[0].lat,
+          lng: points[0].lng,
+          altitude: 1.5,
+        },
+        1000
+      )
     }
   }, [points])
 
@@ -178,41 +234,33 @@ export default function TravelGlobe({ itineraries }: TravelGlobeProps) {
         backgroundColor="rgba(0,0,0,0)"
         atmosphereColor={theme === 'dark' ? '#3B82F6' : '#2563EB'}
         atmosphereAltitude={0.1}
-        arcsData={visibleArcs}
-        arcColor="color"
-        arcDashLength={0.9}
-        arcDashGap={1}
-        arcDashAnimateTime={2000}
-        arcStroke={0.5}
-        pointsData={visiblePoints}
+        pointsData={points.slice(0, currentSegment + 1)}
         pointLat="lat"
         pointLng="lng"
         pointColor={() => (theme === 'dark' ? '#3B82F6' : '#2563EB')}
-        pointAltitude={0.1}
-        pointRadius={0.5}
+        pointAltitude={0}
+        pointRadius={0.2}
         pointsMerge={true}
         onPointClick={(point: object) => setActivePoint(point as GlobePoint)}
-        htmlElementsData={visiblePoints}
-        htmlElement={(d: object) => {
-          const el = document.createElement('div')
-          el.innerHTML = `<div class="absolute px-2 py-1 text-xs font-semibold rounded-md bg-background/80
-                        backdrop-blur-sm border shadow-sm -translate-x-1/2 -translate-y-full pointer-events-none">
-                        ${(d as GlobePoint).name}
-                    </div>`
-          return el
-        }}
       />
       {activePoint && (
-        <Card className="absolute right-4 top-4 w-64">
+        <Card className="absolute right-4 top-4 w-72">
           <CardContent className="p-4">
             <h3 className="mb-2 font-semibold">{activePoint.name}</h3>
             <p className="mb-1 text-sm text-muted-foreground">
-              {activePoint.region}
+              Part of: {activePoint.itineraryTitle}
+            </p>
+            <p className="mb-1 text-sm text-muted-foreground">
+              Region: {activePoint.region}
             </p>
             <p className="text-sm text-muted-foreground">
-              From: {new Date(activePoint.startDate).toLocaleDateString()}
-              <br />
-              To: {new Date(activePoint.endDate).toLocaleDateString()}
+              Date: {formatDate(activePoint.date)}
+              {activePoint.duration > 0 && (
+                <>
+                  <br />
+                  Duration: {activePoint.duration} days
+                </>
+              )}
             </p>
           </CardContent>
         </Card>

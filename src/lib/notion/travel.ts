@@ -9,25 +9,41 @@ import {
   processContent,
 } from './index'
 import { getPageCoverImage } from './cover'
-import type { TravelItinerary } from './types'
+import type { TravelItinerary, Waypoint } from './types'
 
-export function parseNotionPageToTravelItinerary(
-  page: any
+function parseNotionPageToWaypoint(page: any): Waypoint {
+  if (!isFullPage(page)) {
+    throw new Error('Invalid waypoint page object from Notion API')
+  }
+
+  const properties = page.properties
+  const itineraryRelation = properties.Itineraries?.relation
+
+  if (!itineraryRelation || itineraryRelation.length !== 1) {
+    throw new Error('Waypoint must be connected to exactly one itinerary')
+  }
+
+  return {
+    id: page.id,
+    title: getRichTextContent(properties.Name?.title ?? []),
+    notes: getRichTextContent(properties.Notes?.rich_text ?? []),
+    latitude: properties.Latitude?.number ?? 0,
+    longitude: properties.Longitude?.number ?? 0,
+    date: properties.Date?.date?.start ?? '',
+    duration: properties.Duration?.number ?? 0,
+    itineraryId: itineraryRelation[0].id,
+  }
+}
+
+function parseNotionPageToTravelItinerary(
+  page: any,
+  waypoints: Waypoint[] = []
 ): Omit<TravelItinerary, 'content' | 'coverImage' | 'blurDataURL'> {
   if (!isFullPage(page)) {
     throw new Error('Invalid page object from Notion API')
   }
 
   const properties = page.properties
-  const startDate = properties.Start?.date?.start ?? ''
-  const endDate = properties.Finish?.date?.start ?? ''
-  const duration =
-    startDate && endDate
-      ? Math.ceil(
-          (new Date(endDate).getTime() - new Date(startDate).getTime()) /
-            (1000 * 60 * 60 * 24)
-        ) + 1
-      : 0
 
   return {
     id: page.id,
@@ -35,16 +51,16 @@ export function parseNotionPageToTravelItinerary(
     title: getRichTextContent(properties.Name?.title ?? []),
     description: getRichTextContent(properties.Description?.rich_text ?? []),
     region: properties.Region?.select?.name ?? '',
-    isDone: properties.Done?.checkbox ?? false,
-    startDate,
-    endDate,
-    duration,
-    lat: properties.Latitude?.number ?? 0,
-    lon: properties.Longitude?.number ?? 0,
+    startDate: properties.Start?.date?.start ?? '',
+    endDate: properties.Finish?.date?.start ?? '',
+    waypoints: waypoints.filter((w) => w.itineraryId === page.id),
     createdDate: properties.Created?.created_time ?? '',
     editedDate: properties.Edited?.last_edited_time ?? null,
     publishedDate: null,
-    status: properties.Done?.checkbox ? 'Completed' : 'Planned',
+    status:
+      new Date(properties.Finish?.date?.start ?? '') < new Date()
+        ? 'Completed'
+        : 'Planned',
   }
 }
 
@@ -53,9 +69,27 @@ export async function generateTravelData(): Promise<{
   itinerariesBySlug: Record<string, TravelItinerary>
   itinerariesByRegion: Record<string, TravelItinerary[]>
 }> {
-  console.log('Querying Notion travel database...')
+  console.log('Querying Notion travel databases...')
 
   try {
+    // First, fetch all waypoints
+    const waypointsResponse = await notion.databases.query({
+      database_id: process.env.NOTION_WAYPOINTS_DATABASE_ID!,
+      sorts: [
+        {
+          property: 'Date',
+          direction: 'ascending',
+        },
+      ],
+    })
+
+    console.log(`Found ${waypointsResponse.results.length} waypoints`)
+
+    const waypoints = waypointsResponse.results.map((page) =>
+      parseNotionPageToWaypoint(page as PageObjectResponse)
+    )
+
+    // Then fetch all itineraries
     const response = await notion.databases.query({
       database_id: process.env.NOTION_TRAVEL_DATABASE_ID!,
       filter: {
@@ -66,6 +100,12 @@ export async function generateTravelData(): Promise<{
               string: {
                 is_not_empty: true,
               },
+            },
+          },
+          {
+            property: 'Done',
+            checkbox: {
+              equals: true,
             },
           },
         ],
@@ -85,7 +125,8 @@ export async function generateTravelData(): Promise<{
         try {
           console.log(`Processing travel itinerary ${page.id}...`)
           const itinerary = parseNotionPageToTravelItinerary(
-            page as PageObjectResponse
+            page as PageObjectResponse,
+            waypoints
           )
 
           // Get cover image with blur data URL
@@ -114,7 +155,10 @@ export async function generateTravelData(): Promise<{
           )
           // Return a minimal valid itinerary to prevent the entire build from failing
           return {
-            ...parseNotionPageToTravelItinerary(page as PageObjectResponse),
+            ...parseNotionPageToTravelItinerary(
+              page as PageObjectResponse,
+              waypoints
+            ),
             content: '',
             coverImage: null,
             blurDataURL: null,
