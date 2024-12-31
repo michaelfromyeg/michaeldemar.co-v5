@@ -73,10 +73,41 @@
         "Design"
       ],
       "title": "Science Undergraduate Society",
-      "content": "",
-      "coverImage": null,
-      "blurDataURL": null,
-      "images": []
+      "content": "I joined SUS FYC in my first-year at UBC. Here are some cool things I made planning events with them!",
+      "coverImage": "/design-files/science-undergraduate-society/cover-fyc-elements.webp",
+      "blurDataURL": "data:image/webp;base64,UklGRqgAAABXRUJQVlA4WAoAAAAQAAAACQAACQAAQUxQSEAAAAABBseRbZvWszmzbX7Pf/5hvRD2iYjEPZ4DCCDWWbqV5qXqTL0t/RHeOWrK73Kfp/WHZMSpnyAAiOVYHhyBWOYWVlA4IEIAAADQAQCdASoKAAoABUB8JbACdADza32AAAD+2gzxqNIMBWbdA3d/l1CgX1VPwuEPSf+nmeLueiuVJf0VVzrfw7ywAAA=",
+      "images": [
+        {
+          "url": "/design-files/science-undergraduate-society/000-glow-dj.webp",
+          "alt": "Design image",
+          "blurDataURL": "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACwAQCdASoGAAoABUB8JZQCdAD0ttwMAP7s1+0cU5XDervfTLYRcSQdd6JukyAA"
+        },
+        {
+          "url": "/design-files/science-undergraduate-society/001-tickets.webp",
+          "alt": "Design image",
+          "blurDataURL": "data:image/webp;base64,UklGRjIAAABXRUJQVlA4ICYAAACwAQCdASoGAAoABUB8JaQAAveC16OAAP7vZ+aRjBlfCHBPvAAAAA=="
+        },
+        {
+          "url": "/design-files/science-undergraduate-society/002-door.webp",
+          "alt": "Design image",
+          "blurDataURL": "data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAABQAQCdASoKAAoABUB8JQBYdigAAP7wAbV//pW5Thid8do6/JnfWx/HGRFi4HAAAAA="
+        },
+        {
+          "url": "/design-files/science-undergraduate-society/003-fyc-atom.webp",
+          "alt": "Design image",
+          "blurDataURL": "data:image/webp;base64,UklGRrAAAABXRUJQVlA4WAoAAAAQAAAACQAACQAAQUxQSEUAAAABcF3btunsZ9ts5H3ZjJM60v+PS4iIBPECQeAbJUmypkiiTEbXYq6bY7eEfGoEWZ6GkQwC4fNhgwBIWFsegSQAELxK4F8AVlA4IEQAAADQAQCdASoKAAoABUB8JagCdAD0lVicAAD+5TQiR2VRDIFqfRT5hczFPvPRN6bh8dEIS3y2LymwyJzvPbbF530ehxAAAA=="
+        },
+        {
+          "url": "/design-files/science-undergraduate-society/004-fyc-elements.webp",
+          "alt": "Design image",
+          "blurDataURL": "data:image/webp;base64,UklGRqgAAABXRUJQVlA4WAoAAAAQAAAACQAACQAAQUxQSEAAAAABBseRbZvWszmzbX7Pf/5hvRD2iYjEPZ4DCCDWWbqV5qXqTL0t/RHeOWrK73Kfp/WHZMSpnyAAiOVYHhyBWOYWVlA4IEIAAADQAQCdASoKAAoABUB8JbACdADza32AAAD+2gzxqNIMBWbdA3d/l1CgX1VPwuEPSf+nmeLueiuVJf0VVzrfw7ywAAA="
+        },
+        {
+          "url": "/design-files/science-undergraduate-society/005-glow-ad.webp",
+          "alt": "Design image",
+          "blurDataURL": "data:image/webp;base64,UklGRjYAAABXRUJQVlA4ICoAAABwAQCdASoKAAoABUB8JZQC7AFAAAD+8EFTW/WCu2fcw9Exxxfg3UfQAAA="
+        }
+      ]
     },
     {
       "createdDate": "2024-12-27T20:59:00.000Z",
@@ -90,10 +121,21 @@
         "Design"
       ],
       "title": "The Gateway",
-      "content": "",
-      "coverImage": null,
-      "blurDataURL": null,
-      "images": []
+      "content": "The Gateway is the University of Alberta's student-run newspaper. I assisted on their campaign for additional funding.",
+      "coverImage": "/design-files/the-gateway/cover-poster.webp",
+      "blurDataURL": "data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAADQAQCdASoGAAoABUB8JagCdAELIaTgAAD6EFNEf11gNItoG5rOu6WELRtbDCYHYAA=",
+      "images": [
+        {
+          "url": "/design-files/the-gateway/000-poster.webp",
+          "alt": "Design image",
+          "blurDataURL": "data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAADQAQCdASoGAAoABUB8JagCdAELIaTgAAD6EFNEf11gNItoG5rOu6WELRtbDCYHYAA="
+        },
+        {
+          "url": "/design-files/the-gateway/001-poster-quote.webp",
+          "alt": "Design image",
+          "blurDataURL": "data:image/webp;base64,UklGRjYAAABXRUJQVlA4ICoAAABwAQCdASoGAAoABUB8JbACdAFAAAD+xuJuuQM/JEiim6WEN2HITHoymAA="
+        }
+      ]
     },
     {
       "createdDate": "2024-12-27T21:10:00.000Z",
@@ -568,10 +610,41 @@
         "Design"
       ],
       "title": "Science Undergraduate Society",
-      "content": "",
-      "coverImage": null,
-      "blurDataURL": null,
-      "images": []
+      "content": "I joined SUS FYC in my first-year at UBC. Here are some cool things I made planning events with them!",
+      "coverImage": "/design-files/science-undergraduate-society/cover-fyc-elements.webp",
+      "blurDataURL": "data:image/webp;base64,UklGRqgAAABXRUJQVlA4WAoAAAAQAAAACQAACQAAQUxQSEAAAAABBseRbZvWszmzbX7Pf/5hvRD2iYjEPZ4DCCDWWbqV5qXqTL0t/RHeOWrK73Kfp/WHZMSpnyAAiOVYHhyBWOYWVlA4IEIAAADQAQCdASoKAAoABUB8JbACdADza32AAAD+2gzxqNIMBWbdA3d/l1CgX1VPwuEPSf+nmeLueiuVJf0VVzrfw7ywAAA=",
+      "images": [
+        {
+          "url": "/design-files/science-undergraduate-society/000-glow-dj.webp",
+          "alt": "Design image",
+          "blurDataURL": "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACwAQCdASoGAAoABUB8JZQCdAD0ttwMAP7s1+0cU5XDervfTLYRcSQdd6JukyAA"
+        },
+        {
+          "url": "/design-files/science-undergraduate-society/001-tickets.webp",
+          "alt": "Design image",
+          "blurDataURL": "data:image/webp;base64,UklGRjIAAABXRUJQVlA4ICYAAACwAQCdASoGAAoABUB8JaQAAveC16OAAP7vZ+aRjBlfCHBPvAAAAA=="
+        },
+        {
+          "url": "/design-files/science-undergraduate-society/002-door.webp",
+          "alt": "Design image",
+          "blurDataURL": "data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAABQAQCdASoKAAoABUB8JQBYdigAAP7wAbV//pW5Thid8do6/JnfWx/HGRFi4HAAAAA="
+        },
+        {
+          "url": "/design-files/science-undergraduate-society/003-fyc-atom.webp",
+          "alt": "Design image",
+          "blurDataURL": "data:image/webp;base64,UklGRrAAAABXRUJQVlA4WAoAAAAQAAAACQAACQAAQUxQSEUAAAABcF3btunsZ9ts5H3ZjJM60v+PS4iIBPECQeAbJUmypkiiTEbXYq6bY7eEfGoEWZ6GkQwC4fNhgwBIWFsegSQAELxK4F8AVlA4IEQAAADQAQCdASoKAAoABUB8JagCdAD0lVicAAD+5TQiR2VRDIFqfRT5hczFPvPRN6bh8dEIS3y2LymwyJzvPbbF530ehxAAAA=="
+        },
+        {
+          "url": "/design-files/science-undergraduate-society/004-fyc-elements.webp",
+          "alt": "Design image",
+          "blurDataURL": "data:image/webp;base64,UklGRqgAAABXRUJQVlA4WAoAAAAQAAAACQAACQAAQUxQSEAAAAABBseRbZvWszmzbX7Pf/5hvRD2iYjEPZ4DCCDWWbqV5qXqTL0t/RHeOWrK73Kfp/WHZMSpnyAAiOVYHhyBWOYWVlA4IEIAAADQAQCdASoKAAoABUB8JbACdADza32AAAD+2gzxqNIMBWbdA3d/l1CgX1VPwuEPSf+nmeLueiuVJf0VVzrfw7ywAAA="
+        },
+        {
+          "url": "/design-files/science-undergraduate-society/005-glow-ad.webp",
+          "alt": "Design image",
+          "blurDataURL": "data:image/webp;base64,UklGRjYAAABXRUJQVlA4ICoAAABwAQCdASoKAAoABUB8JZQC7AFAAAD+8EFTW/WCu2fcw9Exxxfg3UfQAAA="
+        }
+      ]
     },
     "the-gateway": {
       "createdDate": "2024-12-27T20:59:00.000Z",
@@ -585,10 +658,21 @@
         "Design"
       ],
       "title": "The Gateway",
-      "content": "",
-      "coverImage": null,
-      "blurDataURL": null,
-      "images": []
+      "content": "The Gateway is the University of Alberta's student-run newspaper. I assisted on their campaign for additional funding.",
+      "coverImage": "/design-files/the-gateway/cover-poster.webp",
+      "blurDataURL": "data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAADQAQCdASoGAAoABUB8JagCdAELIaTgAAD6EFNEf11gNItoG5rOu6WELRtbDCYHYAA=",
+      "images": [
+        {
+          "url": "/design-files/the-gateway/000-poster.webp",
+          "alt": "Design image",
+          "blurDataURL": "data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAADQAQCdASoGAAoABUB8JagCdAELIaTgAAD6EFNEf11gNItoG5rOu6WELRtbDCYHYAA="
+        },
+        {
+          "url": "/design-files/the-gateway/001-poster-quote.webp",
+          "alt": "Design image",
+          "blurDataURL": "data:image/webp;base64,UklGRjYAAABXRUJQVlA4ICoAAABwAQCdASoGAAoABUB8JbACdAFAAAD+xuJuuQM/JEiim6WEN2HITHoymAA="
+        }
+      ]
     },
     "sunia": {
       "createdDate": "2024-12-27T21:10:00.000Z",

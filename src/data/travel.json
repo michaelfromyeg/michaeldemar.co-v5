@@ -356,9 +356,9 @@
       "editedDate": null,
       "publishedDate": null,
       "status": "Planned",
-      "content": "",
       "coverImage": null,
-      "blurDataURL": null
+      "blurDataURL": null,
+      "content": "Tie into a Bella Coola / Port Hardy (road?) trip."
     },
     {
       "id": "674003ed-e5a0-4f6b-968f-9b0ea9ceb22d",
@@ -838,9 +838,9 @@
       "editedDate": null,
       "publishedDate": null,
       "status": "Planned",
-      "content": "",
       "coverImage": null,
-      "blurDataURL": null
+      "blurDataURL": null,
+      "content": "Tie into a Bella Coola / Port Hardy (road?) trip."
     },
     "montana": {
       "id": "674003ed-e5a0-4f6b-968f-9b0ea9ceb22d",
@@ -1265,9 +1265,9 @@
         "editedDate": null,
         "publishedDate": null,
         "status": "Planned",
-        "content": "",
         "coverImage": null,
-        "blurDataURL": null
+        "blurDataURL": null,
+        "content": "Tie into a Bella Coola / Port Hardy (road?) trip."
       },
       {
         "id": "d998aa7f-67a2-45af-9495-98340674fa40",

@@ -26,16 +26,40 @@ export default function Home() {
           <div className="text-lg text-muted-foreground md:order-1">
             <p className="mb-2">
               I&apos;m a toolmaker, tinkerer, and teacher. This corner of the
-              Internet is home to my writing (on themes like technology, travel,
-              and education) and portfolio (of personal projects and design
-              work). It&apos;s a sandbox that is for play and profession.
+              Internet is home to my{' '}
+              <a href="/blog" className="text-primary hover:underline">
+                writing
+              </a>{' '}
+              (on themes like technology,{' '}
+              <a href="/travel" className="text-primary hover:underline">
+                travel
+              </a>
+              , and education) and{' '}
+              <a href="/design" className="text-primary hover:underline">
+                portfolio
+              </a>{' '}
+              (of personal projects and design work). It&apos;s my digital
+              sandbox that is for both play and profession.
             </p>
-            <p>
+            <p className="mb-2">
               If you&apos;re interested in the play side, I recommend checking
-              out the search function (CTRL + \) or sitemap and explore. If
-              you&apos;re interested in the professional side, check out my
-              resume or bio.
+              out the search function (via <code>CTRL + \</code> or the
+              magnifying glass) or{' '}
+              <a href="/sitemap" className="text-primary hover:underline">
+                sitemap
+              </a>{' '}
+              and simply explore. If you&apos;re interested in the professional
+              side, check out my{` `}
+              <a href="/resume" className="text-primary hover:underline">
+                resume
+              </a>{' '}
+              or{' '}
+              <a href="/bio" className="text-primary hover:underline">
+                bio
+              </a>
+              .
             </p>
+            <p>Enjoy your stay!</p>
           </div>
           <div className="md:order-2">
             <div className="relative mx-auto aspect-square w-48 overflow-hidden rounded-lg md:w-full md:max-w-sm">
