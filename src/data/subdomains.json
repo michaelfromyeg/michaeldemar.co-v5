@@ -7,7 +7,7 @@
       "active": true,
       "proxied": true,
       "target": "76.76.21.21",
-      "lastChecked": "2024-12-31T00:11:40.391Z"
+      "lastChecked": "2024-12-31T00:24:31.214Z"
     },
     {
       "name": "api.bento",
@@ -15,7 +15,7 @@
       "active": true,
       "proxied": false,
       "target": "1udhrsqc.up.railway.app",
-      "lastChecked": "2024-12-31T00:11:40.391Z"
+      "lastChecked": "2024-12-31T00:24:31.214Z"
     },
     {
       "name": "api.bereal",
@@ -23,7 +23,7 @@
       "active": true,
       "proxied": false,
       "target": "138.197.208.122",
-      "lastChecked": "2024-12-31T00:11:40.390Z"
+      "lastChecked": "2024-12-31T00:24:31.213Z"
     },
     {
       "name": "api.georeal",
@@ -31,7 +31,7 @@
       "active": true,
       "proxied": false,
       "target": "o6wuekal.up.railway.app",
-      "lastChecked": "2024-12-31T00:11:40.391Z"
+      "lastChecked": "2024-12-31T00:24:31.214Z"
     },
     {
       "name": "api.puzzles",
@@ -39,7 +39,7 @@
       "active": true,
       "proxied": false,
       "target": "017a0v8j.up.railway.app",
-      "lastChecked": "2024-12-31T00:11:40.391Z"
+      "lastChecked": "2024-12-31T00:24:31.214Z"
     },
     {
       "name": "api.rapviz",
@@ -47,7 +47,7 @@
       "active": true,
       "proxied": false,
       "target": "o9yykvq9.up.railway.app",
-      "lastChecked": "2024-12-31T00:11:40.391Z"
+      "lastChecked": "2024-12-31T00:24:31.214Z"
     },
     {
       "name": "api.simple-english",
@@ -55,7 +55,7 @@
       "active": true,
       "proxied": false,
       "target": "klrf0q2k.up.railway.app",
-      "lastChecked": "2024-12-31T00:11:40.391Z"
+      "lastChecked": "2024-12-31T00:24:31.214Z"
     },
     {
       "name": "ayt",
@@ -63,7 +63,7 @@
       "active": true,
       "proxied": true,
       "target": "michaelfromyeg.github.io",
-      "lastChecked": "2024-12-31T00:11:40.391Z"
+      "lastChecked": "2024-12-31T00:24:31.214Z"
     },
     {
       "name": "bento",
@@ -71,7 +71,7 @@
       "active": true,
       "proxied": true,
       "target": "michaelfromyeg.github.io",
-      "lastChecked": "2024-12-31T00:11:40.391Z"
+      "lastChecked": "2024-12-31T00:24:31.214Z"
     },
     {
       "name": "bereal",
@@ -79,7 +79,7 @@
       "active": true,
       "proxied": true,
       "target": "michaelfromyeg.github.io",
-      "lastChecked": "2024-12-31T00:11:40.391Z"
+      "lastChecked": "2024-12-31T00:24:31.214Z"
     },
     {
       "name": "covid-on-crime",
@@ -87,7 +87,7 @@
       "active": true,
       "proxied": true,
       "target": "michaelfromyeg.github.io",
-      "lastChecked": "2024-12-31T00:11:40.391Z"
+      "lastChecked": "2024-12-31T00:24:31.214Z"
     },
     {
       "name": "cpsc490b",
@@ -95,7 +95,7 @@
       "active": true,
       "proxied": true,
       "target": "michaelfromyeg.github.io",
-      "lastChecked": "2024-12-31T00:11:40.391Z"
+      "lastChecked": "2024-12-31T00:24:31.214Z"
     },
     {
       "name": "credit-card-defaults",
@@ -103,7 +103,7 @@
       "active": true,
       "proxied": true,
       "target": "michaelfromyeg.github.io",
-      "lastChecked": "2024-12-31T00:11:40.391Z"
+      "lastChecked": "2024-12-31T00:24:31.214Z"
     },
     {
       "name": "cv",
@@ -111,7 +111,7 @@
       "active": true,
       "proxied": true,
       "target": "michaelfromyeg.github.io",
-      "lastChecked": "2024-12-31T00:11:40.391Z"
+      "lastChecked": "2024-12-31T00:24:31.214Z"
     },
     {
       "name": "garden",
@@ -119,7 +119,7 @@
       "active": true,
       "proxied": true,
       "target": "michaelfromyeg.github.io",
-      "lastChecked": "2024-12-31T00:11:40.391Z"
+      "lastChecked": "2024-12-31T00:24:31.214Z"
     },
     {
       "name": "georeal",
@@ -127,7 +127,7 @@
       "active": true,
       "proxied": true,
       "target": "michaelfromyeg.github.io",
-      "lastChecked": "2024-12-31T00:11:40.391Z"
+      "lastChecked": "2024-12-31T00:24:31.214Z"
     },
     {
       "name": "grouber",
@@ -135,7 +135,7 @@
       "active": true,
       "proxied": true,
       "target": "michaelfromyeg.github.io",
-      "lastChecked": "2024-12-31T00:11:40.391Z"
+      "lastChecked": "2024-12-31T00:24:31.214Z"
     },
     {
       "name": "jcite",
@@ -143,7 +143,7 @@
       "active": true,
       "proxied": true,
       "target": "michaelfromyeg.github.io",
-      "lastChecked": "2024-12-31T00:11:40.391Z"
+      "lastChecked": "2024-12-31T00:24:31.214Z"
     },
     {
       "name": "jsearch",
@@ -151,7 +151,7 @@
       "active": true,
       "proxied": true,
       "target": "michaelfromyeg.github.io",
-      "lastChecked": "2024-12-31T00:11:40.391Z"
+      "lastChecked": "2024-12-31T00:24:31.214Z"
     },
     {
       "name": "makefiles",
@@ -159,7 +159,7 @@
       "active": true,
       "proxied": true,
       "target": "michaelfromyeg.github.io",
-      "lastChecked": "2024-12-31T00:11:40.391Z"
+      "lastChecked": "2024-12-31T00:24:31.214Z"
     },
     {
       "name": "midtermr",
@@ -167,7 +167,7 @@
       "active": true,
       "proxied": true,
       "target": "michaelfromyeg.github.io",
-      "lastChecked": "2024-12-31T00:11:40.391Z"
+      "lastChecked": "2024-12-31T00:24:31.214Z"
     },
     {
       "name": "notions",
@@ -175,7 +175,7 @@
       "active": true,
       "proxied": false,
       "target": "external.notion.site",
-      "lastChecked": "2024-12-31T00:11:40.391Z"
+      "lastChecked": "2024-12-31T00:24:31.214Z"
     },
     {
       "name": "pd-classification",
@@ -183,7 +183,7 @@
       "active": true,
       "proxied": true,
       "target": "michaelfromyeg.github.io",
-      "lastChecked": "2024-12-31T00:11:40.391Z"
+      "lastChecked": "2024-12-31T00:24:31.214Z"
     },
     {
       "name": "rapviz",
@@ -191,7 +191,7 @@
       "active": true,
       "proxied": true,
       "target": "michaelfromyeg.github.io",
-      "lastChecked": "2024-12-31T00:11:40.391Z"
+      "lastChecked": "2024-12-31T00:24:31.214Z"
     },
     {
       "name": "resume",
@@ -199,7 +199,7 @@
       "active": true,
       "proxied": true,
       "target": "michaelfromyeg.github.io",
-      "lastChecked": "2024-12-31T00:11:40.391Z"
+      "lastChecked": "2024-12-31T00:24:31.214Z"
     },
     {
       "name": "showrooms",
@@ -207,7 +207,7 @@
       "active": true,
       "proxied": true,
       "target": "michaelfromyeg.github.io",
-      "lastChecked": "2024-12-31T00:11:40.391Z"
+      "lastChecked": "2024-12-31T00:24:31.214Z"
     },
     {
       "name": "til",
@@ -215,7 +215,7 @@
       "active": true,
       "proxied": true,
       "target": "michaelfromyeg.github.io",
-      "lastChecked": "2024-12-31T00:11:40.391Z"
+      "lastChecked": "2024-12-31T00:24:31.214Z"
     },
     {
       "name": "wordle",
@@ -223,7 +223,7 @@
       "active": true,
       "proxied": true,
       "target": "michaelfromyeg.github.io",
-      "lastChecked": "2024-12-31T00:11:40.391Z"
+      "lastChecked": "2024-12-31T00:24:31.214Z"
     },
     {
       "name": "www",
@@ -231,8 +231,8 @@
       "active": true,
       "proxied": true,
       "target": "cname.vercel-dns.com",
-      "lastChecked": "2024-12-31T00:11:40.391Z"
+      "lastChecked": "2024-12-31T00:24:31.214Z"
     }
   ],
-  "generatedAt": "2024-12-31T00:11:40.411Z"
+  "generatedAt": "2024-12-31T00:24:31.229Z"
 }
