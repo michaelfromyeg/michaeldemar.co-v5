@@ -12,7 +12,9 @@ export default {
       fontFamily: {
         sans: ['var(--font-ubuntu)'],
         heading: ['var(--font-teko)'],
-        montserrat: ['Montserrat', 'sans-serif'],
+        montserrat: ['var(--font-montserrat)'],
+        ubuntu: ['var(--font-ubuntu)'],
+        teko: ['var(--font-teko)'],
       },
       lineHeight: {
         tight: '1.2',

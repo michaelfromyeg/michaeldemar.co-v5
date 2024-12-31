@@ -1,6 +1,4 @@
 import type { Metadata } from 'next'
-import { GeistSans } from 'geist/font/sans'
-import { GeistMono } from 'geist/font/mono'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Providers } from './providers'
 import Header from '@/components/layout/header'
@@ -9,6 +7,28 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Analytics } from '@vercel/analytics/react'
 
 import './globals.css'
+
+import { Montserrat, Ubuntu, Teko } from 'next/font/google'
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  variable: '--font-montserrat',
+  display: 'swap',
+})
+
+const ubuntu = Ubuntu({
+  weight: ['300', '400', '500', '700'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  variable: '--font-ubuntu',
+  display: 'swap',
+})
+
+const teko = Teko({
+  subsets: ['latin'],
+  variable: '--font-teko',
+  display: 'swap',
+})
 
 export const viewport = {
   themeColor: [
@@ -46,7 +66,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${GeistSans.variable} ${GeistMono.variable} flex min-h-screen flex-col antialiased`}
+        className={`${montserrat.variable} ${ubuntu.variable} ${teko.variable} flex min-h-screen flex-col antialiased`}
       >
         <Providers>
           <ThemeProvider
