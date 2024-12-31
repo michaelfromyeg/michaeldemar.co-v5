@@ -2,7 +2,7 @@
   "posts": [
     {
       "createdDate": "2024-12-31T17:14:00.000Z",
-      "description": "This winter break, I transformed my personal website into a modern Next.js 15 app, leveraging TypeScript, Tailwind, and Notion as a CMS for a fresh start on my blogging journey.",
+      "description": "This winter break, I transformed my personal website from Gatsby to Next.js 15, embracing new technologies and enhancing my blogging experience.",
       "editedDate": "2024-12-31T22:48:00.000Z",
       "id": "16dc4188-fa0e-80a4-ba08-d5a601880655",
       "publishedDate": "2024-12-31T15:48:00.000-07:00",
@@ -340,7 +340,7 @@
   "postsBySlug": {
     "re-writing-my-blog-in-nextjs-15": {
       "createdDate": "2024-12-31T17:14:00.000Z",
-      "description": "This winter break, I transformed my personal website into a modern Next.js 15 app, leveraging TypeScript, Tailwind, and Notion as a CMS for a fresh start on my blogging journey.",
+      "description": "This winter break, I transformed my personal website from Gatsby to Next.js 15, embracing new technologies and enhancing my blogging experience.",
       "editedDate": "2024-12-31T22:48:00.000Z",
       "id": "16dc4188-fa0e-80a4-ba08-d5a601880655",
       "publishedDate": "2024-12-31T15:48:00.000-07:00",
