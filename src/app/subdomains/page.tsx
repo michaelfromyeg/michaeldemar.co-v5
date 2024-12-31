@@ -16,7 +16,6 @@ interface SubdomainInfo {
   active: boolean
   proxied: boolean
   target?: string
-  lastChecked: string
 }
 
 export const metadata = {
