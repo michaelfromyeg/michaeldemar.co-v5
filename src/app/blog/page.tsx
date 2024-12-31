@@ -58,7 +58,7 @@ export default async function BlogPage({
                   alt={`Cover image for ${latestPost.title}`}
                   fill
                   placeholder="blur"
-                  blurDataURL={latestPost.blurDataURL}
+                  blurDataURL={latestPost.blurDataURL ?? ''}
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
                 />
               ) : (
@@ -106,7 +106,7 @@ export default async function BlogPage({
                     alt={`Cover image for ${post.title}`}
                     fill
                     placeholder="blur"
-                    blurDataURL={post.blurDataURL}
+                    blurDataURL={post.blurDataURL ?? ''}
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                 ) : (
