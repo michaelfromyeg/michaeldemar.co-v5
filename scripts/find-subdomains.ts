@@ -24,7 +24,6 @@ interface SubdomainInfo {
   active: boolean
   proxied: boolean
   target?: string
-  lastChecked: string
 }
 
 async function getCloudflareRecords(): Promise<CloudflareRecord[]> {
@@ -82,7 +81,6 @@ async function findSubdomains() {
         active: true, // All records in Cloudflare are considered active
         proxied: record.proxied,
         target: record.content,
-        lastChecked: new Date().toISOString(),
       }))
       .sort((a, b) => {
         // Sort: root domain first, then alphabetically
@@ -101,7 +99,6 @@ async function findSubdomains() {
         {
           domain: DOMAIN,
           subdomains,
-          generatedAt: new Date().toISOString(),
         },
         null,
         2
