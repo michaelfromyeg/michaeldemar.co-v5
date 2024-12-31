@@ -8,9 +8,10 @@ import remarkGfm from 'remark-gfm'
 import rehypePrism from 'rehype-prism-plus'
 import remarkBreaks from 'remark-breaks'
 import blogData from '@/data/blog.json'
-
-import './blog.css'
 import Comments from '@/components/comments'
+
+import '@/lib/prism'
+import '@/styles/prism.css'
 
 type PageProps = {
   params: Promise<{
@@ -86,7 +87,21 @@ export default async function BlogPostPage({ params }: PageProps) {
           options={{
             mdxOptions: {
               remarkPlugins: [remarkGfm, remarkBreaks],
-              rehypePlugins: [rehypePrism],
+              rehypePlugins: [
+                [
+                  rehypePrism,
+                  {
+                    ignoreMissing: true, // Don't throw on missing language
+                    aliases: {
+                      // Add common aliases
+                      js: 'javascript',
+                      py: 'python',
+                      sh: 'bash',
+                      ts: 'typescript',
+                    },
+                  },
+                ],
+              ],
             },
           }}
         />

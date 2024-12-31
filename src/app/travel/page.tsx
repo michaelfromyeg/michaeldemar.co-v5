@@ -63,11 +63,7 @@ export default function TravelPage() {
             <CardTitle className="line-clamp-2 text-lg">
               {itinerary.title}
             </CardTitle>
-            <span
-              className={`inline-flex shrink-0 items-center rounded-md px-2 py-1 text-xs font-medium ${
-                isUpcoming ? 'bg-primary/10 text-primary' : 'bg-muted'
-              }`}
-            >
+            <span className="inline-flex items-center rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary">
               {isUpcoming ? 'Upcoming' : 'Completed'}
             </span>
           </div>

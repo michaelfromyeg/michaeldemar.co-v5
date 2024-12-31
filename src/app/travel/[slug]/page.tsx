@@ -10,8 +10,6 @@ import rehypePrism from 'rehype-prism-plus'
 import remarkBreaks from 'remark-breaks'
 import travelData from '@/data/travel.json'
 
-import './travel.css'
-
 type PageProps = {
   params: Promise<{
     slug: string
