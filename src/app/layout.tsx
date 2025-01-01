@@ -66,6 +66,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Michael DeMarco's Blog RSS Feed"
+          href="/feed.xml"
+        />
+      </head>
       <body
         className={`${montserrat.variable} ${ubuntu.variable} ${teko.variable} flex min-h-screen flex-col antialiased`}
       >
