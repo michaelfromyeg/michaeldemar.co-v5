@@ -31,11 +31,13 @@ export default function Home() {
           <div className="relative z-10 flex flex-grow flex-col items-center justify-center text-center">
             <TypingHero />
           </div>
-          {showChevron && (
-            <div className="relative z-10 mb-8 flex justify-center">
-              <ChevronDown className="h-6 w-6 animate-bounce text-muted-foreground" />
-            </div>
-          )}
+          <div className="relative z-10 mb-8 flex justify-center">
+            <ChevronDown
+              className={`h-6 w-6 animate-bounce text-muted-foreground transition-opacity duration-1000 ${
+                showChevron ? 'opacity-100' : 'opacity-0'
+              }`}
+            />
+          </div>
         </div>
       </section>
       <section className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
