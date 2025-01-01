@@ -1,8 +1,8 @@
 import { generateRssFeed } from '@/lib/feed'
 import { NextResponse } from 'next/server'
 
-export function GET() {
-  const feed = generateRssFeed()
+export async function GET() {
+  const feed = await generateRssFeed()
   return new NextResponse(feed.rss2(), {
     headers: {
       'Content-Type': 'application/xml',

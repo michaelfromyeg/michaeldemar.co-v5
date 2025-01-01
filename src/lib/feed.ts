@@ -1,8 +1,21 @@
 import { Feed } from 'feed'
 import { Post } from '@/types/blog'
 import blogData from '@/data/blog.json'
+import { unified } from 'unified'
+import remarkParse from 'remark-parse'
+import remarkHtml from 'remark-html'
+import remarkGfm from 'remark-gfm'
 
-export function generateRssFeed() {
+async function markdownToHtml(markdown: string) {
+  const result = await unified()
+    .use(remarkParse)
+    .use(remarkGfm)
+    .use(remarkHtml)
+    .process(markdown)
+  return result.toString()
+}
+
+export async function generateRssFeed() {
   const siteURL = 'https://michaeldemar.co'
   const author = {
     name: 'Michael DeMarco',
@@ -28,31 +41,34 @@ export function generateRssFeed() {
 
   const posts = blogData.posts as Post[]
 
-  posts
-    .filter((post) => post.status === 'Published')
-    .sort(
-      (a, b) =>
-        new Date(b.publishedDate).getTime() -
-        new Date(a.publishedDate).getTime()
-    )
-    .forEach((post) => {
-      const url = `${siteURL}/blog/${post.slug}`
-      feed.addItem({
-        title: post.title,
-        id: url,
-        link: url,
-        description: post.description,
-        content: post.content,
-        author: [author],
-        date: new Date(post.publishedDate),
-        image: post.coverImage
-          ? {
-              url: `${siteURL}${post.coverImage}`,
-              type: 'image/webp',
-            }
-          : undefined,
+  // Process all posts in parallel
+  await Promise.all(
+    posts
+      .filter((post) => post.status === 'Published')
+      .sort(
+        (a, b) =>
+          new Date(b.publishedDate).getTime() -
+          new Date(a.publishedDate).getTime()
+      )
+      .map(async (post) => {
+        const url = `${siteURL}/blog/${post.slug}`
+        feed.addItem({
+          title: post.title,
+          id: url,
+          link: url,
+          description: post.description,
+          content: await markdownToHtml(post.content),
+          author: [author],
+          date: new Date(post.publishedDate),
+          image: post.coverImage
+            ? {
+                url: `${siteURL}${post.coverImage}`,
+                type: 'image/webp',
+              }
+            : undefined,
+        })
       })
-    })
+  )
 
   return feed
 }
