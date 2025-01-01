@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ModeToggle } from '@/components/mode-toggle'
 import { SearchModal } from '@/components/search-modal'
+import { MobileNav } from '@/components/layout/mobile-navigation'
 import { cn } from '@/lib/utils'
 import { useEffect, useState } from 'react'
 
@@ -35,8 +36,9 @@ export default function Header() {
             <span>{emoji}</span>
             <span>michaeldemar.co</span>
           </Link>
-          <nav className="flex items-center gap-4 sm:gap-6">
-            <div className="hidden items-center gap-4 md:flex">
+          <nav className="flex items-center">
+            {/* Desktop navigation */}
+            <div className="hidden items-center gap-4 md:mr-4 md:flex">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
@@ -52,8 +54,19 @@ export default function Header() {
                 </Link>
               ))}
             </div>
-            <SearchModal />
-            <ModeToggle />
+
+            {/* Mobile controls with consistent spacing */}
+            <div className="flex items-center">
+              <div className="flex h-9 items-center justify-center">
+                <SearchModal />
+              </div>
+              <div className="flex h-9 items-center justify-center px-2">
+                <ModeToggle />
+              </div>
+              <div className="flex h-9 items-center justify-center">
+                <MobileNav navigation={navigation} />
+              </div>
+            </div>
           </nav>
         </div>
       </div>

@@ -22,9 +22,9 @@
     /* UI colors */
     /* --muted: 27 19% 46%;
     --muted-foreground: 32 14% 49%; */
-    --muted: 40 28% 82%; /* Warmer beige/bronze, true to Gruvbox light */
+    --muted: 39 33% 63%; /* Warmer beige/bronze, true to Gruvbox light */
     --muted-foreground: 27 19% 46%; /* Original muted color for text */
-    --accent: 66 80% 26%;
+    --accent: 32 98% 55%;
     --accent-foreground: 44 86% 87%;
     --destructive: 0 100% 31%;
     --destructive-foreground: 44 86% 87%;
@@ -32,7 +32,7 @@
     /* Border and input colors */
     --border: 39 33% 63%;
     --input: 39 33% 63%;
-    --ring: 66 80% 26%;
+    --ring: 32 98% 55%;
 
     /* Additional Gruvbox colors */
     --gruvbox-gray: 24 14% 57%;
@@ -62,7 +62,7 @@
     /* UI colors */
     --muted: 27 10% 22%;
     --muted-foreground: 39 33% 63%;
-    --accent: 96 42% 53%;
+    --accent: 32 98% 55%;
     --accent-foreground: 0 0% 15%;
     --destructive: 3 96% 59%;
     --destructive-foreground: 0 0% 15%;
