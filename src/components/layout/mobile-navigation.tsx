@@ -6,6 +6,7 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
+import { useState } from 'react'
 
 interface MobileNavProps {
   navigation: readonly {
@@ -16,9 +17,10 @@ interface MobileNavProps {
 
 export function MobileNav({ navigation }: MobileNavProps) {
   const pathname = usePathname()
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <Sheet>
+    <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
         <Button
           variant="ghost"
@@ -31,16 +33,14 @@ export function MobileNav({ navigation }: MobileNavProps) {
       </SheetTrigger>
       <SheetContent
         side="right"
-        className="w-full max-w-[300px] sm:max-w-[400px]"
+        className="w-full max-w-[300px] bg-background/80 backdrop-blur-sm sm:max-w-[400px]"
       >
-        {/* <SheetHeader>
-          <SheetTitle className="text-left">Navigation</SheetTitle>
-        </SheetHeader> */}
         <nav className="mt-8 flex flex-col gap-4">
           {navigation.map((item) => (
             <Link
               key={item.name}
               href={item.href}
+              onClick={() => setIsOpen(false)}
               className={cn(
                 'text-lg font-medium transition-colors hover:text-foreground',
                 pathname === item.href
