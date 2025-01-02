@@ -2,6 +2,11 @@
 
 public/sitemap.xml
 
+src/data/blog.json
+src/data/travel.json
+src/data/design.json
+src/data/subdomains.json
+
 ### Next.gitignore
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
