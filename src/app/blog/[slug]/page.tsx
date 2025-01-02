@@ -9,6 +9,7 @@ import rehypePrism from 'rehype-prism-plus'
 import remarkBreaks from 'remark-breaks'
 import blogData from '@/data/blog.json'
 import Comments from '@/components/comments'
+import { mdxComponents } from './mdx-components'
 
 import '@/lib/prism'
 import '@/styles/prism.css'
@@ -84,6 +85,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       <div className="prose prose-gray max-w-none dark:prose-invert">
         <MDXRemote
           source={post.content ?? ''}
+          components={mdxComponents}
           options={{
             mdxOptions: {
               remarkPlugins: [remarkGfm, remarkBreaks],
@@ -91,9 +93,9 @@ export default async function BlogPostPage({ params }: PageProps) {
                 [
                   rehypePrism,
                   {
-                    ignoreMissing: true, // Don't throw on missing language
+                    ignoreMissing: true,
+                    showLineNumbers: true,
                     aliases: {
-                      // Add common aliases
                       js: 'javascript',
                       py: 'python',
                       sh: 'bash',
