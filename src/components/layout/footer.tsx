@@ -53,6 +53,19 @@ export default function Footer() {
         </div>
         <div className="flex flex-wrap items-center justify-center gap-4 md:justify-end">
           <Link
+            href="https://michaelfromorg.github.io/ubc-webring/"
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-2xl p-2 hover:bg-accent"
+          >
+            <img
+              src={'/ubc-coa.svg'}
+              alt="UBC Web Ring"
+              className="h-5 w-auto"
+            />
+            <span className="sr-only">Ring</span>
+          </Link>
+          <Link
             href="https://github.com/michaelfromyeg"
             target="_blank"
             rel="noreferrer"
