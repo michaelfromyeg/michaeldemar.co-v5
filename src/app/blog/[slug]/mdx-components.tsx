@@ -1,8 +1,17 @@
-// app/blog/[slug]/mdx-components.tsx
 import React from 'react'
 import { MDXComponents } from 'mdx/types'
 import CodeBlock from '@/components/mdx/code-block'
-import MDXImage from '@/components/mdx/custom-image'
+import MDXImage from '@/components/mdx/mdx-image'
+import SmartLink from '@/components/mdx/smart-link'
+
+const isLink = (element: any): element is React.ReactElement => {
+  return (
+    React.isValidElement(element) &&
+    (element.type === 'a' ||
+      (element.type as any)?.name === 'a' ||
+      typeof element.type === 'function')
+  )
+}
 
 export const mdxComponents: MDXComponents = {
   // Code blocks
@@ -14,19 +23,31 @@ export const mdxComponents: MDXComponents = {
       </CodeBlock>
     )
   },
-  // Images
+  // Handle paragraphs that might contain special content
   p: (props) => {
-    // Check if the only child is an img element
     const children = React.Children.toArray(props.children)
+
+    // Handle single image
     if (
       children.length === 1 &&
       React.isValidElement(children[0]) &&
       children[0].type === 'img'
     ) {
-      const imgElement = children[0] as React.ReactElement
-      const { src, alt, ...rest } = imgElement.props as any
-      return <MDXImage src={src} alt={alt} {...rest} />
+      const props = children[0].props as any
+      return <MDXImage {...props} />
     }
+
+    // Handle single link
+    if (children.length === 1 && isLink(children[0])) {
+      const props = children[0].props as any
+      return <SmartLink {...props} inline={false} />
+    }
+
+    // Regular paragraph
     return <p {...props} />
+  },
+  // Regular inline links
+  a: (props) => {
+    return <SmartLink {...props} inline={true} />
   },
 }
