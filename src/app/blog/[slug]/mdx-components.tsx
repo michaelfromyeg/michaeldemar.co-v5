@@ -1,9 +1,8 @@
 // app/blog/[slug]/mdx-components.tsx
+import React from 'react'
 import { MDXComponents } from 'mdx/types'
 import CodeBlock from '@/components/mdx/code-block'
-// import CustomLink from '@/components/mdx/custom-link'
-// import CustomImage from '@/components/mdx/custom-image'
-// import Callout from '@/components/mdx/callout'
+import MDXImage from '@/components/mdx/custom-image'
 
 export const mdxComponents: MDXComponents = {
   // Code blocks
@@ -15,25 +14,19 @@ export const mdxComponents: MDXComponents = {
       </CodeBlock>
     )
   },
-  // // Links
-  // a: CustomLink,
-  // // Images
-  // img: ({ src, alt, ...props }: any) => (
-  //   <CustomImage src={src || ''} alt={alt || ''} {...props} />
-  // ),
-  // // Callouts
-  // Callout,
-  // // Optional: Override default elements
-  // h2: ({ children }) => (
-  //   <h2 className="group relative mt-10 scroll-mt-20 text-2xl font-bold tracking-tight">
-  //     <a
-  //       href={\`#\${children}\`}
-  //       className="absolute -left-5 top-0 hidden text-muted-foreground group-hover:inline-block"
-  //       aria-label="Anchor"
-  //     >
-  //       #
-  //     </a>
-  //     {children}
-  //   </h2>
-  // ),
+  // Images
+  p: (props) => {
+    // Check if the only child is an img element
+    const children = React.Children.toArray(props.children)
+    if (
+      children.length === 1 &&
+      React.isValidElement(children[0]) &&
+      children[0].type === 'img'
+    ) {
+      const imgElement = children[0] as React.ReactElement
+      const { src, alt, ...rest } = imgElement.props as any
+      return <MDXImage src={src} alt={alt} {...rest} />
+    }
+    return <p {...props} />
+  },
 }
