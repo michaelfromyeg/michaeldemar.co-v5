@@ -2,13 +2,14 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { ExternalLink } from 'lucide-react'
+import { ExternalLink, FileText, FileCode, File } from 'lucide-react'
 import { Card } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
 
 interface SmartLinkProps {
   href: string
   children: React.ReactNode
+  inline?: boolean
 }
 
 const parseYouTubeId = (url: string): string | null => {
@@ -19,6 +20,57 @@ const parseYouTubeId = (url: string): string | null => {
 
 const isExternalLink = (href: string): boolean => {
   return href.startsWith('http') || href.startsWith('//')
+}
+
+const getFileType = (href: string): { type: string; icon: typeof File } => {
+  const extension = href.split('.').pop()?.toLowerCase()
+
+  switch (extension) {
+    case 'md':
+    case 'mdx':
+    case 'txt':
+      return { type: 'Document', icon: FileText }
+    case 'js':
+    case 'jsx':
+    case 'ts':
+    case 'tsx':
+    case 'py':
+    case 'go':
+    case 'rs':
+    case 'java':
+    case 'cpp':
+    case 'c':
+    case 'html':
+    case 'css':
+      return { type: 'Code', icon: FileCode }
+    case 'pdf':
+      return { type: 'PDF', icon: File }
+    default:
+      return { type: 'File', icon: File }
+  }
+}
+
+const isFileLink = (href: string): boolean => {
+  const fileExtensions = [
+    'md',
+    'mdx',
+    'txt',
+    'js',
+    'jsx',
+    'ts',
+    'tsx',
+    'py',
+    'go',
+    'rs',
+    'java',
+    'cpp',
+    'c',
+    'html',
+    'css',
+    'pdf',
+  ]
+  const extension = href.split('.').pop()?.toLowerCase()
+  return extension ? fileExtensions.includes(extension) : false
 }
 
 interface YouTubeEmbedProps {
@@ -41,16 +93,9 @@ const YouTubeEmbed = ({ videoId, className }: YouTubeEmbedProps) => {
   )
 }
 
-interface SmartLinkProps {
-  href: string
-  children: React.ReactNode
-  inline?: boolean // New prop to handle inline vs block rendering
-}
-
 const SmartLink = ({ href, children, inline = false }: SmartLinkProps) => {
-  // Only try to embed YouTube videos for non-inline links
+  // Handle YouTube embeds for non-inline links
   if (!inline) {
-    console.log('!inline', href, parseYouTubeId(href))
     const youtubeId = parseYouTubeId(href)
     if (youtubeId) {
       return (
@@ -70,6 +115,31 @@ const SmartLink = ({ href, children, inline = false }: SmartLinkProps) => {
         </>
       )
     }
+  }
+
+  // Handle file links
+  if (isFileLink(href)) {
+    const { type, icon: FileIcon } = getFileType(href)
+    const fileName = href.split('/').pop()
+
+    return (
+      <Card className={cn('not-prose group', !inline && 'my-4')}>
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-3 p-3 hover:bg-muted/50"
+        >
+          <FileIcon className="h-5 w-5 text-muted-foreground" />
+          <div className="flex flex-col">
+            <span className="font-medium text-primary group-hover:text-primary/80">
+              {children || fileName}
+            </span>
+            <span className="text-sm text-muted-foreground">{type}</span>
+          </div>
+        </a>
+      </Card>
+    )
   }
 
   // Handle external links
