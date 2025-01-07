@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 
 const BioPage = () => {
   return (
@@ -6,7 +7,7 @@ const BioPage = () => {
       <div className="mx-auto max-w-2xl space-y-6">
         <div className="flex flex-col items-start gap-8 md:flex-row">
           <div className="relative h-48 w-48 flex-shrink-0 overflow-hidden rounded-lg">
-            <img
+            <Image
               src="/images/me.jpg"
               alt="Michael DeMarco"
               className="h-full w-full object-cover"

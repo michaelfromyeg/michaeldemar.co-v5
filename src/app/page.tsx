@@ -76,7 +76,16 @@ export default function Home() {
               <a href="/bio" className="text-primary hover:underline">
                 bio
               </a>
-              .
+              . If you&apos;d like to chat, you can grab a time slot{' '}
+              <a
+                href="https://calendar.notion.so/meet/mdemarco/k6xu04ld3"
+                className="text-primary hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                here
+              </a>{' '}
+              via Notion Calendar.
             </p>
             <p>Enjoy your stay!</p>
           </div>

@@ -19,14 +19,14 @@ export default function AboutPage() {
             <div>
               <p>
                 Hey there! I&apos;m Michael, an Honours Computer Science
-                graduate from{' '}
+                graduate from the{' '}
                 <a
                   href="https://ubc.ca"
                   target="_blank"
                   rel="noreferrer"
                   className="text-primary hover:underline"
                 >
-                  The University of British Columbia (UBC)
+                  University of British Columbia (UBC)
                 </a>{' '}
                 and software engineer at{' '}
                 <a
@@ -146,8 +146,17 @@ export default function AboutPage() {
                 making music, or spending time with friends and family.
               </p>
               <p>
-                I&apos;d love to connect. Feel free to reach out via any of the
-                platforms in the footer, down below.
+                I&apos;d love to connect. You can{' '}
+                <a
+                  href="https://calendar.notion.so/meet/mdemarco/k6xu04ld3"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-primary hover:underline"
+                >
+                  book a meeting with me
+                </a>{' '}
+                directly or reach out via any of the platforms in the footer,
+                down below.
               </p>
             </div>
           </CardContent>
