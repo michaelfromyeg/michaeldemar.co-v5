@@ -120,9 +120,16 @@ async function checkEndpoint(
 export default async function SubdomainsPage() {
   const { domain, subdomains } = subdomainsData
 
+  const sortedSubdomains = [...subdomains].sort((a, b) => {
+    const isApiA = a.name.startsWith('api')
+    const isApiB = b.name.startsWith('api')
+    if (isApiA === isApiB) return 0
+    return isApiA ? 1 : -1
+  })
+
   // Pre-fetch statuses for all subdomains
   const endpointStatuses = await Promise.all(
-    subdomains.map(async (subdomain) => {
+    sortedSubdomains.map(async (subdomain) => {
       const fullDomain =
         subdomain.name === '@' ? domain : `${subdomain.name}.${domain}`
       const isApi = subdomain.name.startsWith('api')
@@ -147,7 +154,7 @@ export default async function SubdomainsPage() {
         </div>
 
         <div className="grid gap-4">
-          {subdomains.map((subdomain: SubdomainInfo) => {
+          {sortedSubdomains.map((subdomain: SubdomainInfo) => {
             const fullDomain =
               subdomain.name === '@' ? domain : `${subdomain.name}.${domain}`
             const status = getEndpointStatus(fullDomain)
