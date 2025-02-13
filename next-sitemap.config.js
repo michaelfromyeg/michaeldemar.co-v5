@@ -1,7 +1,7 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
   siteUrl: 'https://michaeldemar.co',
-  generateRobotsTxt: false, // We already have a custom robots.txt
+  generateRobotsTxt: false,
   changefreq: 'weekly',
   priority: 0.7,
   sitemapSize: 7000,
