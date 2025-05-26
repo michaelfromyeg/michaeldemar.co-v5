@@ -178,10 +178,18 @@ export async function processContent(
         index: i,
       })
 
+      const isFilename =
+        altText &&
+        /\.(jpg|jpeg|png|gif|webp|svg|bmp|tiff?)$/i.test(altText.trim())
+
       // Preserve the original link format (image vs regular link)
-      const newLink = altText
-        ? `![${altText}](${localPath})`
-        : `[${linkText}](${localPath})`
+      const newLink =
+        altText && !isFilename
+          ? `![${altText}](${localPath})`
+          : linkText
+            ? `[${linkText}](${localPath})`
+            : `![](${localPath})` // Empty alt text for images with filename-like alt text
+
       processedContent = processedContent.replace(fullMatch, newLink)
     }
   }

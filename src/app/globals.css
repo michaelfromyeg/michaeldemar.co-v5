@@ -193,15 +193,16 @@
   }
 
   /* Images */
+  /* TODO(michaelfromyeg): bring back shadow, if you can make it look nice */
   .prose :where(img) {
-    @apply mx-auto my-8 rounded-xl shadow-md;
+    @apply mx-auto my-8 rounded-xl; /* shadow-md; */
     max-height: 60vh;
     object-fit: contain;
   }
 
   /* Enhanced images for travel content */
   .travel-content .prose :where(img) {
-    @apply my-10 shadow-lg;
+    @apply my-10; /* shadow-lg; */
     box-shadow:
       0 4px 6px -1px rgb(0 0 0 / 0.1),
       0 2px 4px -2px rgb(0 0 0 / 0.1);
