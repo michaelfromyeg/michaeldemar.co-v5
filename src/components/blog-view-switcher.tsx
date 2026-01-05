@@ -17,42 +17,72 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Post } from '@/types/blog'
 
+// Strip markdown formatting to get plain text preview
+function getContentPreview(content: string, maxLength: number = 500): string {
+  return (
+    content
+      // Remove images
+      .replace(/!\[.*?\]\(.*?\)/g, '')
+      // Remove links but keep text
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+      // Remove headers
+      .replace(/^#{1,6}\s+/gm, '')
+      // Remove bold/italic
+      .replace(/\*\*([^*]+)\*\*/g, '$1')
+      .replace(/\*([^*]+)\*/g, '$1')
+      .replace(/__([^_]+)__/g, '$1')
+      .replace(/_([^_]+)_/g, '$1')
+      // Remove code blocks
+      .replace(/```[\s\S]*?```/g, '')
+      .replace(/`([^`]+)`/g, '$1')
+      // Remove blockquotes
+      .replace(/^>\s+/gm, '')
+      // Remove horizontal rules
+      .replace(/^---+$/gm, '')
+      // Remove extra whitespace
+      .replace(/\n{2,}/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .slice(0, maxLength) + (content.length > maxLength ? '...' : '')
+  )
+}
+
 interface FeedViewProps {
   posts: Post[]
 }
 
 const FeedView = ({ posts }: FeedViewProps) => {
   return (
-    <div className="divide-y divide-border">
+    <div className="space-y-10">
       {posts.map((post) => (
-        <Link key={post.id} href={`/blog/${post.slug}`}>
-          <article className="group rounded-lg px-4 py-8 transition-colors hover:bg-muted/50">
+        <Link key={post.id} href={`/blog/${post.slug}`} className="block">
+          <article className="group rounded-lg border border-border/50 p-6 transition-all duration-300 hover:border-accent hover:bg-muted/50">
             <div className="flex items-start gap-6">
               {post.coverImage && (
-                <div className="relative hidden h-32 w-48 flex-shrink-0 overflow-hidden rounded-lg sm:block">
+                <div className="relative hidden h-44 w-64 flex-shrink-0 overflow-hidden rounded-lg sm:block">
                   <Image
                     src={post.coverImage}
                     alt={`Cover image for ${post.title}`}
                     fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="object-cover transition-all duration-300 group-hover:scale-105 group-hover:brightness-105"
                     placeholder="blur"
                     blurDataURL={post.blurDataURL ?? ''}
                   />
                 </div>
               )}
               <div className="flex-1 space-y-4">
-                <div className="space-y-3">
+                <div className="space-y-2">
                   <div className="flex flex-wrap gap-2">
                     {post.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="inline-flex items-center rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary"
+                        className="inline-flex items-center rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary transition-transform duration-200 hover:scale-105"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
-                  <h3 className="text-2xl font-semibold tracking-tight group-hover:text-primary">
+                  <h3 className="text-2xl font-semibold tracking-tight transition-colors duration-200 group-hover:text-primary">
                     {post.title}
                   </h3>
                   <div className="flex items-center text-sm text-muted-foreground">
@@ -60,12 +90,12 @@ const FeedView = ({ posts }: FeedViewProps) => {
                     {formatDate(post.publishedDate)}
                   </div>
                 </div>
-                <p className="line-clamp-2 text-muted-foreground">
-                  {post.description}
+                <p className="line-clamp-5 text-muted-foreground">
+                  {getContentPreview(post.content)}
                 </p>
                 <div className="flex items-center text-sm font-medium text-primary">
-                  Read post
-                  <ChevronRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                  Read more...
+                  <ChevronRight className="ml-1 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
                 </div>
               </div>
             </div>
@@ -112,8 +142,8 @@ const BlogViewSwitcher = ({
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {paginatedPosts.map((post) => (
             <Link key={post.id} href={`/blog/${post.slug}`}>
-              <Card className="group h-full overflow-hidden transition-colors hover:bg-muted/50">
-                <div className="relative h-48 w-full">
+              <Card className="card-glow group h-full overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                <div className="relative h-48 w-full overflow-hidden">
                   {post.coverImage ? (
                     <Image
                       src={post.coverImage}
@@ -121,7 +151,7 @@ const BlogViewSwitcher = ({
                       fill
                       placeholder="blur"
                       blurDataURL={post.blurDataURL ?? ''}
-                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      className="object-cover transition-all duration-300 group-hover:scale-105 group-hover:brightness-105"
                     />
                   ) : (
                     <div className="flex h-full w-full items-center justify-center bg-muted">
@@ -131,7 +161,7 @@ const BlogViewSwitcher = ({
                 </div>
                 <div className="flex h-[calc(100%-12rem)] flex-col">
                   <CardHeader>
-                    <CardTitle className="line-clamp-2 text-lg">
+                    <CardTitle className="line-clamp-2 text-lg transition-colors duration-200 group-hover:text-primary">
                       {post.title}
                     </CardTitle>
                     <CardDescription>
@@ -143,7 +173,7 @@ const BlogViewSwitcher = ({
                         {post.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="inline-flex items-center rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary"
+                            className="inline-flex items-center rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary transition-transform duration-200 hover:scale-105"
                           >
                             {tag}
                           </span>
@@ -159,7 +189,7 @@ const BlogViewSwitcher = ({
                   <CardFooter className="justify-end">
                     <div className="flex items-center text-sm text-primary">
                       Read more
-                      <ChevronRight className="ml-1 h-4 w-4" />
+                      <ChevronRight className="ml-1 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
                     </div>
                   </CardFooter>
                 </div>

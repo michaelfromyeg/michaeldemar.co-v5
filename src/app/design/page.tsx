@@ -50,7 +50,7 @@ export default async function DesignPage({
       {/* Featured Project */}
       {latestProject && (
         <Link href={`/design/${latestProject.slug}`}>
-          <Card className="group mb-12 overflow-hidden transition-colors hover:bg-muted/50">
+          <Card className="card-glow group mb-12 overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
             <div className="grid gap-6 md:grid-cols-2">
               <div className="relative h-64 md:h-full">
                 {latestProject.coverImage || latestProject.images[0] ? (
@@ -66,7 +66,7 @@ export default async function DesignPage({
                     fill
                     placeholder="blur"
                     blurDataURL={latestProject.blurDataURL ?? ''}
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="object-cover transition-all duration-300 group-hover:scale-105 group-hover:brightness-105"
                   />
                 ) : (
                   <div className="flex h-full w-full items-center justify-center bg-muted">
@@ -80,7 +80,7 @@ export default async function DesignPage({
                     Latest Project
                   </span>
                 </div>
-                <h2 className="mb-4 text-2xl font-bold tracking-tight">
+                <h2 className="mb-4 text-2xl font-bold tracking-tight transition-colors duration-200 group-hover:text-primary">
                   {latestProject.title}
                 </h2>
                 <div className="mb-4 inline-flex items-center gap-1.5 text-sm text-muted-foreground">
@@ -95,7 +95,7 @@ export default async function DesignPage({
                     {latestProject.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="inline-flex items-center rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary"
+                        className="inline-flex items-center rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary transition-transform duration-200 hover:scale-105"
                       >
                         {tag}
                       </span>
@@ -108,7 +108,7 @@ export default async function DesignPage({
                 <div className="mt-auto">
                   <div className="flex items-center text-primary">
                     View project
-                    <ChevronRight className="ml-1 h-4 w-4" />
+                    <ChevronRight className="ml-1 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
                   </div>
                 </div>
               </div>
@@ -121,7 +121,7 @@ export default async function DesignPage({
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {paginatedProjects.map((project) => (
           <Link key={project.id} href={`/design/${project.slug}`}>
-            <Card className="group h-full overflow-hidden transition-colors hover:bg-muted/50">
+            <Card className="card-glow group h-full overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
               <div className="relative h-48 w-full">
                 {project.coverImage || project.images[0] ? (
                   <Image
@@ -134,7 +134,7 @@ export default async function DesignPage({
                     fill
                     placeholder="blur"
                     blurDataURL={project.blurDataURL ?? ''}
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="object-cover transition-all duration-300 group-hover:scale-105 group-hover:brightness-105"
                   />
                 ) : (
                   <div className="flex h-full w-full items-center justify-center bg-muted">
@@ -144,7 +144,7 @@ export default async function DesignPage({
               </div>
               <div className="flex h-[calc(100%-12rem)] flex-col">
                 <CardHeader>
-                  <CardTitle className="line-clamp-2 text-lg">
+                  <CardTitle className="line-clamp-2 text-lg transition-colors duration-200 group-hover:text-primary">
                     {project.title}
                   </CardTitle>
                   <CardDescription>
@@ -177,7 +177,7 @@ export default async function DesignPage({
                 <CardFooter className="mt-auto justify-end">
                   <div className="flex items-center text-sm text-primary">
                     View project
-                    <ChevronRight className="ml-1 h-4 w-4" />
+                    <ChevronRight className="ml-1 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
                   </div>
                 </CardFooter>
               </div>

@@ -47,7 +47,7 @@ export default async function BlogPage({
 
       {/* Featured Post */}
       <Link href={`/blog/${latestPost.slug}`}>
-        <Card className="group mb-12 overflow-hidden transition-colors hover:bg-muted/50">
+        <Card className="card-glow group mb-12 overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
           <div className="grid gap-6 md:grid-cols-2">
             <div className="relative h-64 md:h-full">
               {latestPost.coverImage ? (
@@ -57,7 +57,7 @@ export default async function BlogPage({
                   fill
                   placeholder="blur"
                   blurDataURL={latestPost.blurDataURL ?? ''}
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="object-cover transition-all duration-300 group-hover:scale-105 group-hover:brightness-105"
                 />
               ) : (
                 <div className="flex h-full w-full items-center justify-center bg-muted">
@@ -71,7 +71,7 @@ export default async function BlogPage({
                   Latest Post
                 </span>
               </div>
-              <h2 className="mb-4 text-2xl font-bold tracking-tight">
+              <h2 className="mb-4 text-2xl font-bold tracking-tight transition-colors duration-200 group-hover:text-primary">
                 {latestPost.title}
               </h2>
               <div className="mb-4 flex items-center text-sm text-muted-foreground">
@@ -84,7 +84,7 @@ export default async function BlogPage({
               <div className="mt-auto">
                 <div className="flex items-center text-primary">
                   Read post
-                  <ChevronRight className="ml-1 h-4 w-4" />
+                  <ChevronRight className="ml-1 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
                 </div>
               </div>
             </div>
