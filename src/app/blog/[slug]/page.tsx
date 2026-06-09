@@ -11,7 +11,6 @@ import blogData from '@/data/blog.json'
 import Comments from '@/components/comments'
 import { mdxComponents } from './mdx-components'
 
-import '@/lib/prism'
 import '@/styles/prism.css'
 
 type PageProps = {
