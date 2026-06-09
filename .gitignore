@@ -7,10 +7,6 @@
 
 public/sitemap.xml
 
-src/data/blog.json
-src/data/travel.json
-src/data/design.json
-src/data/subdomains.json
 
 ### Next.gitignore
 
