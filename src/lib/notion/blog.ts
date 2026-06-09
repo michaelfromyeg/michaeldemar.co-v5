@@ -1,24 +1,18 @@
 // src/lib/notion/blog.ts
-import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints'
+import type { PageObjectResponse } from '@notionhq/client'
 import {
   notion,
-  n2m,
-  isFullPage,
   getRichTextContent,
-  normalizeContent,
-  processContent,
+  getDataSourceId,
+  processPageContent,
+  buildBySlug,
 } from './index'
-import { getPageCoverImage } from './cover'
-import type { BlogPost } from './types'
+import type { BlogPost, NotionPageProperties } from './types'
 
 export function parseNotionPageToBlogPost(
-  page: any
+  page: PageObjectResponse
 ): Omit<BlogPost, 'content' | 'coverImage' | 'blurDataURL'> {
-  if (!isFullPage(page)) {
-    throw new Error('Invalid page object from Notion API')
-  }
-
-  const properties = page.properties
+  const properties = page.properties as unknown as NotionPageProperties
 
   return {
     createdDate: properties.Created?.created_time ?? '',
@@ -28,7 +22,7 @@ export function parseNotionPageToBlogPost(
     publishedDate: properties.Published?.date?.start ?? null,
     slug: properties.Slug?.formula?.string ?? '',
     status: properties.Status?.status?.name ?? '',
-    tags: properties.Tags?.multi_select?.map((tag: any) => tag.name) ?? [],
+    tags: properties.Tags?.multi_select?.map((tag) => tag.name) ?? [],
     title: getRichTextContent(properties.Name?.title ?? []),
   }
 }
@@ -39,8 +33,12 @@ export async function generateBlogData(): Promise<{
 }> {
   console.log('Querying Notion blog database...')
 
-  const response = await notion.databases.query({
-    database_id: process.env.NOTION_BLOG_DATABASE_ID!,
+  const dataSourceId = await getDataSourceId(
+    process.env.NOTION_BLOG_DATABASE_ID!
+  )
+
+  const response = await notion.dataSources.query({
+    data_source_id: dataSourceId,
     filter: {
       and: [
         {
@@ -71,37 +69,26 @@ export async function generateBlogData(): Promise<{
 
   const posts = await Promise.all(
     response.results.map(async (page) => {
-      console.log(`Processing blog post ${page.id}...`)
       const post = parseNotionPageToBlogPost(page as PageObjectResponse)
-
-      // Get cover image with blur data URL
-      const { url: coverImage, blurDataURL } = await getPageCoverImage(
-        page as PageObjectResponse,
-        'blog',
-        post.slug
-      )
-
-      const mdBlocks = await n2m.pageToMarkdown(page.id)
-      let markdown = n2m.toMarkdownString(mdBlocks).parent
-
-      markdown = normalizeContent(markdown)
-      markdown = await processContent(markdown, 'blog', post.slug)
-
-      return {
-        ...post,
-        coverImage,
-        blurDataURL,
-        content: markdown,
+      try {
+        console.log(`Processing blog post ${page.id}...`)
+        const { coverImage, blurDataURL, content } = await processPageContent(
+          page as PageObjectResponse,
+          'blog',
+          post.slug
+        )
+        return { ...post, coverImage, blurDataURL, content }
+      } catch (error) {
+        console.error(
+          `Failed to process blog post ${page.id}:`,
+          error instanceof Error ? error.message : error
+        )
+        return { ...post, content: '', coverImage: null, blurDataURL: null }
       }
     })
   )
 
   console.log(`Successfully processed ${posts.length} blog posts`)
 
-  const postsBySlug = posts.reduce<Record<string, BlogPost>>((acc, post) => {
-    acc[post.slug] = post
-    return acc
-  }, {})
-
-  return { posts, postsBySlug }
+  return { posts, postsBySlug: buildBySlug(posts) }
 }
