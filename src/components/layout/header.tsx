@@ -7,7 +7,7 @@ import { SearchModal } from '@/components/search-modal'
 import { MobileNav } from '@/components/layout/mobile-navigation'
 import { cn } from '@/lib/utils'
 import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 
 const navigation = [
   { name: 'blog', href: '/blog' },

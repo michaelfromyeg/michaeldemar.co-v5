@@ -1,5 +1,5 @@
 // scripts/find-subdomains.ts
-import 'dotenv/config'
+import './load-env'
 import fs from 'fs/promises'
 import path from 'path'
 import https from 'https'
