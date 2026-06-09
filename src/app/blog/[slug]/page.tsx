@@ -3,16 +3,10 @@ import { Metadata } from 'next'
 import { formatDate } from '@/lib/utils'
 import { ChevronLeft, Calendar } from 'lucide-react'
 import Link from 'next/link'
-import { MDXRemote } from 'next-mdx-remote/rsc'
-import remarkGfm from 'remark-gfm'
-import rehypePrism from 'rehype-prism-plus'
-import remarkBreaks from 'remark-breaks'
+import { PostContent } from '@/components/mdx/post-content'
 import blogData from '@/data/blog.json'
+import type { BlogPost } from '@/lib/notion/types'
 import Comments from '@/components/comments'
-import { mdxComponents } from './mdx-components'
-
-import '@/lib/prism'
-import '@/styles/prism.css'
 
 type PageProps = {
   params: Promise<{
@@ -30,8 +24,9 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const slug = (await params).slug
-  const post: any =
-    blogData.postsBySlug[slug as keyof typeof blogData.postsBySlug]
+  const post = blogData.postsBySlug[
+    slug as keyof typeof blogData.postsBySlug
+  ] as BlogPost | undefined
 
   if (!post) {
     return {
@@ -47,8 +42,9 @@ export async function generateMetadata({
 
 export default async function BlogPostPage({ params }: PageProps) {
   const slug = (await params).slug
-  const post: any =
-    blogData.postsBySlug[slug as keyof typeof blogData.postsBySlug]
+  const post = blogData.postsBySlug[
+    slug as keyof typeof blogData.postsBySlug
+  ] as BlogPost | undefined
 
   if (!post) {
     notFound()
@@ -71,7 +67,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             {formatDate(post.publishedDate)}
           </div>
           <div className="flex gap-2">
-            {post.tags.map((tag: any) => (
+            {post.tags.map((tag) => (
               <span
                 key={tag}
                 className="inline-flex items-center rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary"
@@ -83,30 +79,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         </div>
       </header>
       <div className="prose prose-gray max-w-none dark:prose-invert">
-        <MDXRemote
-          source={post.content ?? ''}
-          components={mdxComponents}
-          options={{
-            mdxOptions: {
-              remarkPlugins: [remarkGfm, remarkBreaks],
-              rehypePlugins: [
-                [
-                  rehypePrism,
-                  {
-                    ignoreMissing: true,
-                    showLineNumbers: true,
-                    aliases: {
-                      js: 'javascript',
-                      py: 'python',
-                      sh: 'bash',
-                      ts: 'typescript',
-                    },
-                  },
-                ],
-              ],
-            },
-          }}
-        />
+        <PostContent source={post.content ?? ''} />
       </div>
       <Comments slug={slug} title={post.title} />
     </article>

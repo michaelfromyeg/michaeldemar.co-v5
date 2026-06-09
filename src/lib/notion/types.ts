@@ -1,5 +1,26 @@
 // src/lib/notion/types.ts
 
+// The subset of Notion page-property shapes this site reads. Notion's own
+// PageObjectResponse['properties'] is a per-key discriminated union that can't
+// be narrowed by field without runtime checks, so we describe the shapes we
+// actually access. Cast a page's properties to this with `as unknown as`.
+export interface NotionPageProperties {
+  [key: string]: {
+    title?: Array<{ plain_text: string }>
+    rich_text?: Array<{ plain_text: string }>
+    formula?: { string?: string }
+    status?: { name: string }
+    select?: { name: string }
+    multi_select?: Array<{ name: string }>
+    date?: { start: string }
+    number?: number
+    checkbox?: boolean
+    relation?: Array<{ id: string }>
+    created_time?: string
+    last_edited_time?: string
+  }
+}
+
 export interface BaseNotionItem {
   id: string
   slug: string
@@ -62,7 +83,7 @@ export function isDesignProject(item: BaseNotionItem): item is DesignProject {
 }
 
 // Type guards
-export function isWaypoint(item: any): item is Waypoint {
+export function isWaypoint(item: object): item is Waypoint {
   return (
     'latitude' in item &&
     'longitude' in item &&

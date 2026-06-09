@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'motion/react'
 
 interface MobileNavProps {
   navigation: readonly {
@@ -118,7 +118,7 @@ export function MobileNav({ navigation }: MobileNavProps) {
       </SheetTrigger>
       <SheetContent
         side="right"
-        className="w-full max-w-[300px] bg-background/80 backdrop-blur-sm sm:max-w-[400px]"
+        className="w-full max-w-[300px] bg-background/80 backdrop-blur-xs sm:max-w-[400px]"
       >
         <nav className="mt-8 flex flex-col gap-2">
           <AnimatePresence>

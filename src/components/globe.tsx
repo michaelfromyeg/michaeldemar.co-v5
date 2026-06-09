@@ -6,6 +6,7 @@ import { useTheme } from 'next-themes'
 import { Card, CardContent } from '@/components/ui/card'
 import { TravelItinerary } from '@/lib/notion/types'
 import { formatDate } from '@/lib/utils'
+import type { GlobeMethods } from 'react-globe.gl'
 
 const Globe = dynamic(() => import('react-globe.gl'), {
   ssr: false,
@@ -36,7 +37,7 @@ interface TravelGlobeProps {
 }
 
 export default function TravelGlobe({ itineraries }: TravelGlobeProps) {
-  const globeRef = useRef<any>(null)
+  const globeRef = useRef<GlobeMethods | undefined>(undefined)
   const { theme } = useTheme()
   const [activePoint, setActivePoint] = useState<GlobePoint | null>(null)
   const [dimensions, setDimensions] = useState({ width: 800, height: 500 })
@@ -150,7 +151,7 @@ export default function TravelGlobe({ itineraries }: TravelGlobeProps) {
         pathDashGap={0.05}
         pathDashAnimateTime={3000}
         pathStroke={2}
-        onPointClick={(point: any) => setActivePoint(point)}
+        onPointClick={(point: object) => setActivePoint(point as GlobePoint)}
       />
       {activePoint && (
         <Card className="absolute right-4 top-4 w-72">

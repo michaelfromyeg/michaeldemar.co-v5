@@ -1,22 +1,16 @@
 // src/lib/notion/travel.ts
-import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints'
+import type { PageObjectResponse } from '@notionhq/client'
 import {
   notion,
-  n2m,
-  isFullPage,
   getRichTextContent,
-  normalizeContent,
-  processContent,
+  getDataSourceId,
+  processPageContent,
+  buildBySlug,
 } from './index'
-import { getPageCoverImage } from './cover'
-import type { TravelItinerary, Waypoint } from './types'
+import type { TravelItinerary, Waypoint, NotionPageProperties } from './types'
 
-function parseNotionPageToWaypoint(page: any): Waypoint {
-  if (!isFullPage(page)) {
-    throw new Error('Invalid waypoint page object from Notion API')
-  }
-
-  const properties = page.properties
+function parseNotionPageToWaypoint(page: PageObjectResponse): Waypoint {
+  const properties = page.properties as unknown as NotionPageProperties
   const itineraryRelation = properties.Itineraries?.relation
 
   if (!itineraryRelation || itineraryRelation.length !== 1) {
@@ -36,14 +30,10 @@ function parseNotionPageToWaypoint(page: any): Waypoint {
 }
 
 function parseNotionPageToTravelItinerary(
-  page: any,
+  page: PageObjectResponse,
   waypoints: Waypoint[] = []
 ): Omit<TravelItinerary, 'content' | 'coverImage' | 'blurDataURL'> {
-  if (!isFullPage(page)) {
-    throw new Error('Invalid page object from Notion API')
-  }
-
-  const properties = page.properties
+  const properties = page.properties as unknown as NotionPageProperties
 
   return {
     id: page.id,
@@ -73,8 +63,11 @@ export async function generateTravelData(): Promise<{
 
   try {
     // First, fetch all waypoints
-    const waypointsResponse = await notion.databases.query({
-      database_id: process.env.NOTION_WAYPOINTS_DATABASE_ID!,
+    const waypointsDataSourceId = await getDataSourceId(
+      process.env.NOTION_WAYPOINTS_DATABASE_ID!
+    )
+    const waypointsResponse = await notion.dataSources.query({
+      data_source_id: waypointsDataSourceId,
       sorts: [
         {
           property: 'Date',
@@ -90,8 +83,11 @@ export async function generateTravelData(): Promise<{
     )
 
     // Then fetch all itineraries
-    const response = await notion.databases.query({
-      database_id: process.env.NOTION_TRAVEL_DATABASE_ID!,
+    const travelDataSourceId = await getDataSourceId(
+      process.env.NOTION_TRAVEL_DATABASE_ID!
+    )
+    const response = await notion.dataSources.query({
+      data_source_id: travelDataSourceId,
       filter: {
         and: [
           {
@@ -122,32 +118,18 @@ export async function generateTravelData(): Promise<{
 
     const itineraries = await Promise.all(
       response.results.map(async (page) => {
+        const itinerary = parseNotionPageToTravelItinerary(
+          page as PageObjectResponse,
+          waypoints
+        )
         try {
           console.log(`Processing travel itinerary ${page.id}...`)
-          const itinerary = parseNotionPageToTravelItinerary(
-            page as PageObjectResponse,
-            waypoints
-          )
-
-          // Get cover image with blur data URL
-          const { url: coverImage, blurDataURL } = await getPageCoverImage(
+          const { coverImage, blurDataURL, content } = await processPageContent(
             page as PageObjectResponse,
             'travel',
             itinerary.slug
           )
-
-          const mdBlocks = await n2m.pageToMarkdown(page.id)
-          let markdown = n2m.toMarkdownString(mdBlocks).parent
-
-          markdown = normalizeContent(markdown)
-          markdown = await processContent(markdown, 'travel', itinerary.slug)
-
-          return {
-            ...itinerary,
-            coverImage,
-            blurDataURL,
-            content: markdown,
-          }
+          return { ...itinerary, coverImage, blurDataURL, content }
         } catch (error) {
           console.error(
             `Failed to process travel itinerary ${page.id}:`,
@@ -155,10 +137,7 @@ export async function generateTravelData(): Promise<{
           )
           // Return a minimal valid itinerary to prevent the entire build from failing
           return {
-            ...parseNotionPageToTravelItinerary(
-              page as PageObjectResponse,
-              waypoints
-            ),
+            ...itinerary,
             content: '',
             coverImage: null,
             blurDataURL: null,
@@ -184,13 +163,6 @@ export async function generateTravelData(): Promise<{
       )
     }
 
-    const itinerariesBySlug = validItineraries.reduce<
-      Record<string, TravelItinerary>
-    >((acc, itinerary) => {
-      acc[itinerary.slug] = itinerary
-      return acc
-    }, {})
-
     const itinerariesByRegion = validItineraries.reduce<
       Record<string, TravelItinerary[]>
     >((acc, itinerary) => {
@@ -203,7 +175,7 @@ export async function generateTravelData(): Promise<{
 
     return {
       itineraries: validItineraries,
-      itinerariesBySlug,
+      itinerariesBySlug: buildBySlug(validItineraries),
       itinerariesByRegion,
     }
   } catch (error) {

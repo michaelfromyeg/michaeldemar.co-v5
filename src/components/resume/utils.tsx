@@ -1,3 +1,5 @@
+import type { CvEntry } from './types'
+
 export function formatDate(dateString: string): string {
   const date = new Date(dateString)
   return new Intl.DateTimeFormat('en-US', {
@@ -8,7 +10,7 @@ export function formatDate(dateString: string): string {
 }
 
 export function processEntry(
-  entry: any,
+  entry: CvEntry,
   type: 'work' | 'education' | 'projects'
 ) {
   const base = {
@@ -22,31 +24,32 @@ export function processEntry(
     case 'work':
       return {
         ...base,
-        title: entry.position,
-        subtitle: entry.name,
+        title: entry.position ?? '',
+        subtitle: entry.name ?? '',
         tags: entry.teams,
       }
     case 'education':
       return {
         ...base,
-        title: entry.studyType,
-        subtitle: entry.institution,
-        tags: entry.courses?.map((course: any) => course.name) || [],
+        title: entry.studyType ?? '',
+        subtitle: entry.institution ?? '',
+        tags: entry.courses?.map((course) => course.name) ?? [],
       }
     case 'projects':
       return {
         ...base,
-        title: entry.name,
-        subtitle: entry.summary,
+        title: entry.name ?? '',
+        subtitle: entry.summary ?? '',
         links: [
-          entry.githubUrl && {
-            href: entry.githubUrl,
-            label: 'GitHub Repository',
-          },
-          entry.url && { href: entry.url, label: 'Live Demo' },
-        ].filter(Boolean),
+          entry.githubUrl
+            ? { href: entry.githubUrl, label: 'GitHub Repository' }
+            : null,
+          entry.url ? { href: entry.url, label: 'Live Demo' } : null,
+        ].filter(
+          (link): link is { href: string; label: string } => link !== null
+        ),
       }
     default:
-      return base
+      throw new Error(`Unknown entry type: ${type}`)
   }
 }

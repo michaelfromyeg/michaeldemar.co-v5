@@ -7,7 +7,7 @@ import { SearchModal } from '@/components/search-modal'
 import { MobileNav } from '@/components/layout/mobile-navigation'
 import { cn } from '@/lib/utils'
 import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 
 const navigation = [
   { name: 'blog', href: '/blog' },
@@ -46,7 +46,9 @@ function NavLink({
         href={href}
         className={cn(
           'group relative flex items-center text-sm font-medium transition-colors',
-          isActive ? 'text-foreground' : 'text-muted-foreground hover:text-primary'
+          isActive
+            ? 'text-foreground'
+            : 'text-muted-foreground hover:text-primary'
         )}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -107,7 +109,7 @@ export default function Header() {
   }, [])
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-sm supports-backdrop-filter:bg-background/60">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Link
@@ -150,7 +152,10 @@ export default function Header() {
                   key={item.name}
                   href={item.href}
                   name={item.name}
-                  isActive={pathname === item.href || pathname.startsWith(item.href + '/')}
+                  isActive={
+                    pathname === item.href ||
+                    pathname.startsWith(item.href + '/')
+                  }
                   index={index}
                 />
               ))}

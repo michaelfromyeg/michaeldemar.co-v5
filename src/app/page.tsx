@@ -4,6 +4,7 @@ import { ChevronDown } from 'lucide-react'
 import TypingHero from '@/components/hero'
 import Logo from '@/components/logo'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import NewsletterForm from '@/components/newsletter-form'
 
@@ -28,7 +29,7 @@ export default function Home() {
           </div>
         </div>
         <div className="container mx-auto flex h-full flex-col px-4 sm:px-6 lg:px-8">
-          <div className="relative z-10 flex flex-grow flex-col items-center justify-center text-center">
+          <div className="relative z-10 flex grow flex-col items-center justify-center text-center">
             <TypingHero />
           </div>
           <div className="relative z-10 mb-8 flex justify-center">
@@ -46,17 +47,17 @@ export default function Home() {
             <p className="mb-2">
               I&apos;m a toolmaker, tinkerer, and teacher. This corner of the
               Internet is home to my{' '}
-              <a href="/blog" className="text-primary hover:underline">
+              <Link href="/blog" className="text-primary hover:underline">
                 writing
-              </a>{' '}
+              </Link>{' '}
               (on themes like technology,{' '}
-              <a href="/travel" className="text-primary hover:underline">
+              <Link href="/travel" className="text-primary hover:underline">
                 travel
-              </a>
+              </Link>
               , and education) and{' '}
-              <a href="/design" className="text-primary hover:underline">
+              <Link href="/design" className="text-primary hover:underline">
                 portfolio
-              </a>{' '}
+              </Link>{' '}
               (of personal projects and design work). It&apos;s my digital
               sandbox that is for both play and profession.
             </p>
@@ -64,18 +65,18 @@ export default function Home() {
               If you&apos;re interested in the play side, I recommend checking
               out the search function (via <code>CTRL + \</code> or the
               magnifying glass) or{' '}
-              <a href="/sitemap" className="text-primary hover:underline">
+              <Link href="/sitemap" className="text-primary hover:underline">
                 sitemap
-              </a>{' '}
+              </Link>{' '}
               and simply explore. If you&apos;re interested in the professional
               side, check out my{` `}
-              <a href="/resume" className="text-primary hover:underline">
+              <Link href="/resume" className="text-primary hover:underline">
                 resume
-              </a>{' '}
+              </Link>{' '}
               or{' '}
-              <a href="/bio" className="text-primary hover:underline">
+              <Link href="/bio" className="text-primary hover:underline">
                 bio
-              </a>
+              </Link>
               . If you&apos;d like to chat, you can grab a time slot{' '}
               <a
                 href="https://calendar.notion.so/meet/mdemarco/k6xu04ld3"

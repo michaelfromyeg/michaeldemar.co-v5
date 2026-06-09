@@ -1,6 +1,212 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@config '../../tailwind.config.ts';
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility text-nav {
+  @apply text-muted-foreground transition-colors hover:text-foreground;
+}
+
+@utility border-gruvbox {
+  @apply border-border/40;
+}
+
+@utility prose {
+  /* Unified Prose Styles */
+  @apply max-w-none text-base leading-7;
+  font-family: var(--font-ubuntu);
+
+  /* Headers */
+  & :where(h1, h2, h3, h4) {
+    @apply scroll-mt-20 text-foreground;
+    font-family: var(--font-teko);
+    font-weight: 500;
+  }
+
+  & :where(h1) {
+    @apply mb-6 mt-12 text-4xl leading-tight;
+  }
+
+  & :where(h2) {
+    @apply mb-4 mt-10 text-3xl leading-tight;
+  }
+
+  & :where(h3) {
+    @apply mb-3 mt-8 text-2xl leading-tight;
+  }
+
+  /* Text elements */
+  & :where(p) {
+    @apply my-6;
+  }
+
+  & :where(a) {
+    @apply text-primary no-underline hover:underline;
+  }
+
+  /* Lists */
+  & :where(ul) {
+    @apply my-6 list-outside list-disc pl-8;
+  }
+
+  & :where(ol) {
+    @apply my-6 list-outside list-decimal pl-8;
+  }
+
+  & :where(li) {
+    @apply my-2;
+  }
+
+  /* Nested lists */
+  & ol > li > ol {
+    @apply ml-4 list-[lower-alpha];
+  }
+
+  /* Blockquotes */
+  & :where(blockquote) {
+    @apply my-8 border-l-4 border-muted pl-6 italic text-muted-foreground;
+  }
+
+  /* Travel-specific blockquotes */
+  .travel-content & :where(blockquote) {
+    @apply my-8 rounded-lg border-l-4 border-primary bg-primary/10 p-6;
+  }
+
+  /* Code blocks */
+  & :where(code):not(:where(pre *)) {
+    @apply rounded bg-muted/30 px-1.5 py-0.5 font-mono text-sm text-foreground;
+  }
+
+  & :where(pre) {
+    @apply my-6 overflow-x-auto rounded-lg bg-muted/30 p-4;
+  }
+
+  & :where(pre code) {
+    @apply bg-transparent p-0 text-sm text-foreground;
+  }
+
+  /* Images */
+  /* TODO(michaelfromyeg): bring back shadow, if you can make it look nice */
+  & :where(img) {
+    @apply mx-auto my-8 rounded-xl; /* shadow-md; */
+    max-height: 60vh;
+    object-fit: contain;
+  }
+
+  /* Enhanced images for travel content */
+  .travel-content & :where(img) {
+    @apply my-10; /* shadow-lg; */
+    box-shadow:
+      0 4px 6px -1px rgb(0 0 0 / 0.1),
+      0 2px 4px -2px rgb(0 0 0 / 0.1);
+  }
+
+  /* Image captions */
+  & img + em {
+    @apply -mt-6 mb-8 block text-center text-sm text-muted-foreground;
+  }
+
+  /* Travel-specific image captions */
+  .travel-content & img + em {
+    @apply -mt-4 mb-10;
+  }
+
+  /* Tables */
+  & :where(table) {
+    @apply my-8 w-full;
+  }
+
+  & :where(thead) {
+    @apply bg-muted/30 font-semibold;
+  }
+
+  & :where(th, td) {
+    @apply border border-border p-3 text-left;
+  }
+
+  /* Timeline-style nested lists for travel content */
+  .travel-content & ul > li > ul {
+    @apply mb-3 mt-3 border-l-2 border-muted pl-6;
+  }
+
+  /* Horizontal rules */
+  & :where(hr) {
+    @apply my-8 border-muted/60;
+  }
+}
+
+@utility travel-content {
+  /* Travel-specific blockquotes */
+  & .prose :where(blockquote) {
+    @apply my-8 rounded-lg border-l-4 border-primary bg-primary/10 p-6;
+  }
+
+  /* Enhanced images for travel content */
+  & .prose :where(img) {
+    @apply my-10; /* shadow-lg; */
+    box-shadow:
+      0 4px 6px -1px rgb(0 0 0 / 0.1),
+      0 2px 4px -2px rgb(0 0 0 / 0.1);
+  }
+
+  /* Travel-specific image captions */
+  & .prose img + em {
+    @apply -mt-4 mb-10;
+  }
+
+  /* Timeline-style nested lists for travel content */
+  & .prose ul > li > ul {
+    @apply mb-3 mt-3 border-l-2 border-muted pl-6;
+  }
+}
+
+@utility card-glow {
+  /* Card glow effect for hover states */
+  @apply relative overflow-hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      hsl(var(--accent) / 0) 0%,
+      hsl(var(--accent) / 0.4) 50%,
+      hsl(var(--accent) / 0) 100%
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+}
 
 @layer base {
   :root {
@@ -103,172 +309,5 @@
   h6 {
     font-family: var(--font-teko);
     font-weight: 500;
-  }
-}
-
-@layer utilities {
-  .text-nav {
-    @apply text-muted-foreground transition-colors hover:text-foreground;
-  }
-}
-
-@layer components {
-  .border-gruvbox {
-    @apply border-border/40;
-  }
-
-  /* Unified Prose Styles */
-  .prose {
-    @apply max-w-none text-base leading-7;
-    font-family: var(--font-ubuntu);
-  }
-
-  /* Headers */
-  .prose :where(h1, h2, h3, h4) {
-    @apply scroll-mt-20 text-foreground;
-    font-family: var(--font-teko);
-    font-weight: 500;
-  }
-
-  .prose :where(h1) {
-    @apply mb-6 mt-12 text-4xl leading-tight;
-  }
-
-  .prose :where(h2) {
-    @apply mb-4 mt-10 text-3xl leading-tight;
-  }
-
-  .prose :where(h3) {
-    @apply mb-3 mt-8 text-2xl leading-tight;
-  }
-
-  /* Text elements */
-  .prose :where(p) {
-    @apply my-6;
-  }
-
-  .prose :where(a) {
-    @apply text-primary no-underline hover:underline;
-  }
-
-  /* Lists */
-  .prose :where(ul) {
-    @apply my-6 list-outside list-disc pl-8;
-  }
-
-  .prose :where(ol) {
-    @apply my-6 list-outside list-decimal pl-8;
-  }
-
-  .prose :where(li) {
-    @apply my-2;
-  }
-
-  /* Nested lists */
-  .prose ol > li > ol {
-    @apply ml-4 list-[lower-alpha];
-  }
-
-  /* Blockquotes */
-  .prose :where(blockquote) {
-    @apply my-8 border-l-4 border-muted pl-6 italic text-muted-foreground;
-  }
-
-  /* Travel-specific blockquotes */
-  .travel-content .prose :where(blockquote) {
-    @apply my-8 rounded-lg border-l-4 border-primary bg-primary/10 p-6;
-  }
-
-  /* Code blocks */
-  .prose :where(code):not(:where(pre *)) {
-    @apply rounded bg-muted/30 px-1.5 py-0.5 font-mono text-sm text-foreground;
-  }
-
-  .prose :where(pre) {
-    @apply my-6 overflow-x-auto rounded-lg bg-muted/30 p-4;
-  }
-
-  .prose :where(pre code) {
-    @apply bg-transparent p-0 text-sm text-foreground;
-  }
-
-  /* Images */
-  /* TODO(michaelfromyeg): bring back shadow, if you can make it look nice */
-  .prose :where(img) {
-    @apply mx-auto my-8 rounded-xl; /* shadow-md; */
-    max-height: 60vh;
-    object-fit: contain;
-  }
-
-  /* Enhanced images for travel content */
-  .travel-content .prose :where(img) {
-    @apply my-10; /* shadow-lg; */
-    box-shadow:
-      0 4px 6px -1px rgb(0 0 0 / 0.1),
-      0 2px 4px -2px rgb(0 0 0 / 0.1);
-  }
-
-  /* Image captions */
-  .prose img + em {
-    @apply -mt-6 mb-8 block text-center text-sm text-muted-foreground;
-  }
-
-  /* Travel-specific image captions */
-  .travel-content .prose img + em {
-    @apply -mt-4 mb-10;
-  }
-
-  /* Tables */
-  .prose :where(table) {
-    @apply my-8 w-full;
-  }
-
-  .prose :where(thead) {
-    @apply bg-muted/30 font-semibold;
-  }
-
-  .prose :where(th, td) {
-    @apply border border-border p-3 text-left;
-  }
-
-  /* Timeline-style nested lists for travel content */
-  .travel-content .prose ul > li > ul {
-    @apply mb-3 mt-3 border-l-2 border-muted pl-6;
-  }
-
-  /* Horizontal rules */
-  .prose :where(hr) {
-    @apply my-8 border-muted/60;
-  }
-
-  /* Card glow effect for hover states */
-  .card-glow {
-    @apply relative overflow-hidden;
-  }
-
-  .card-glow::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 1px;
-    background: linear-gradient(
-      135deg,
-      hsl(var(--accent) / 0) 0%,
-      hsl(var(--accent) / 0.4) 50%,
-      hsl(var(--accent) / 0) 100%
-    );
-    -webkit-mask:
-      linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  .card-glow:hover::before {
-    opacity: 1;
   }
 }

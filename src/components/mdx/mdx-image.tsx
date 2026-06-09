@@ -63,7 +63,7 @@ const MDXImage = ({
       </div>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="h-[calc(100vh-4rem)] w-[calc(100vw-2rem)] max-w-screen-lg border-none bg-transparent p-0">
+        <DialogContent className="h-[calc(100vh-4rem)] w-[calc(100vw-2rem)] max-w-(--breakpoint-lg) border-none bg-transparent p-0">
           <div className="relative flex h-full w-full items-center justify-center">
             <Button
               variant="ghost"

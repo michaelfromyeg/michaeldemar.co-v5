@@ -17,8 +17,6 @@ export function Comments({ slug }: CommentsProps) {
   React.useEffect(() => {
     if (!commentsRef.current) return
 
-    console.log('Loading Giscus for:', `blog/${slug}`)
-
     // Remove existing script if any
     const existingScript = document.querySelector('script[src*="giscus"]')
     if (existingScript) existingScript.remove()

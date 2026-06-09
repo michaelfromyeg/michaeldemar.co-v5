@@ -1,15 +1,14 @@
 import Link from 'next/link'
+import Image from 'next/image'
+import { Mail, MessageSquare, History } from 'lucide-react'
 import {
-  Github,
-  Twitter,
-  Linkedin,
-  Facebook,
-  Instagram,
-  Youtube,
-  Mail,
-  MessageSquare,
-  History,
-} from 'lucide-react'
+  FaGithub,
+  FaXTwitter,
+  FaLinkedin,
+  FaFacebook,
+  FaInstagram,
+  FaYoutube,
+} from 'react-icons/fa6'
 import { useMemo } from 'react'
 import {
   Popover,
@@ -58,9 +57,11 @@ export default function Footer() {
             rel="noreferrer"
             className="rounded-2xl p-2 hover:bg-accent"
           >
-            <img
-              src={'/ubc-coa.svg'}
+            <Image
+              src="/ubc-coa.svg"
               alt="UBC Web Ring"
+              width={14}
+              height={20}
               className="h-5 w-auto"
             />
             <span className="sr-only">Ring</span>
@@ -71,7 +72,7 @@ export default function Footer() {
             rel="noreferrer"
             className="rounded-2xl p-2 hover:bg-accent"
           >
-            <Github className="h-5 w-5" />
+            <FaGithub className="h-5 w-5" />
             <span className="sr-only">GitHub</span>
           </Link>
           <Link
@@ -80,7 +81,7 @@ export default function Footer() {
             rel="noreferrer"
             className="rounded-2xl p-2 hover:bg-accent"
           >
-            <Twitter className="h-5 w-5" />
+            <FaXTwitter className="h-5 w-5" />
             <span className="sr-only">Twitter</span>
           </Link>
           <Link
@@ -89,7 +90,7 @@ export default function Footer() {
             rel="noreferrer"
             className="rounded-2xl p-2 hover:bg-accent"
           >
-            <Linkedin className="h-5 w-5" />
+            <FaLinkedin className="h-5 w-5" />
             <span className="sr-only">LinkedIn</span>
           </Link>
           <Link
@@ -98,7 +99,7 @@ export default function Footer() {
             rel="noreferrer"
             className="rounded-2xl p-2 hover:bg-accent"
           >
-            <Facebook className="h-5 w-5" />
+            <FaFacebook className="h-5 w-5" />
             <span className="sr-only">Facebook</span>
           </Link>
           <Link
@@ -107,7 +108,7 @@ export default function Footer() {
             rel="noreferrer"
             className="rounded-2xl p-2 hover:bg-accent"
           >
-            <Instagram className="h-5 w-5" />
+            <FaInstagram className="h-5 w-5" />
             <span className="sr-only">Instagram</span>
           </Link>
           <Link
@@ -116,7 +117,7 @@ export default function Footer() {
             rel="noreferrer"
             className="rounded-2xl p-2 hover:bg-accent"
           >
-            <Youtube className="h-5 w-5" />
+            <FaYoutube className="h-5 w-5" />
             <span className="sr-only">YouTube</span>
           </Link>
           <Link

@@ -3,11 +3,9 @@ import { Metadata } from 'next'
 import { formatDate } from '@/lib/utils'
 import { ChevronLeft, Calendar, Edit2 } from 'lucide-react'
 import Link from 'next/link'
-import { MDXRemote } from 'next-mdx-remote/rsc'
-import remarkGfm from 'remark-gfm'
-import rehypePrism from 'rehype-prism-plus'
-import remarkBreaks from 'remark-breaks'
+import { PostContent } from '@/components/mdx/post-content'
 import designData from '@/data/design.json'
+import type { DesignProject } from '@/lib/notion/types'
 import { ImageGallery } from '@/components/image-gallery'
 
 type PageProps = {
@@ -26,8 +24,9 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const slug = (await params).slug
-  const project: any =
-    designData.projectsBySlug[slug as keyof typeof designData.projectsBySlug]
+  const project = designData.projectsBySlug[
+    slug as keyof typeof designData.projectsBySlug
+  ] as DesignProject | undefined
 
   if (!project) {
     return {
@@ -45,8 +44,9 @@ export async function generateMetadata({
 
 export default async function DesignProjectPage({ params }: PageProps) {
   const slug = (await params).slug
-  const project: any =
-    designData.projectsBySlug[slug as keyof typeof designData.projectsBySlug]
+  const project = designData.projectsBySlug[
+    slug as keyof typeof designData.projectsBySlug
+  ] as DesignProject | undefined
 
   if (!project) {
     notFound()
@@ -89,15 +89,7 @@ export default async function DesignProjectPage({ params }: PageProps) {
 
       {project.content && (
         <div className="prose prose-gray mb-12 max-w-none dark:prose-invert">
-          <MDXRemote
-            source={project.content}
-            options={{
-              mdxOptions: {
-                remarkPlugins: [remarkGfm, remarkBreaks],
-                rehypePlugins: [rehypePrism],
-              },
-            }}
-          />
+          <PostContent source={project.content} />
         </div>
       )}
 

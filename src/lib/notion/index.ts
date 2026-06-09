@@ -1,6 +1,6 @@
 import { Client } from '@notionhq/client'
+import type { PageObjectResponse } from '@notionhq/client'
 import { NotionToMarkdown } from 'notion-to-md'
-import type { DatabaseObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 import fs from 'fs/promises'
 import path from 'path'
 import sharp from 'sharp'
@@ -20,15 +20,39 @@ Object.entries(requiredEnvVars).forEach(([key, value]) => {
 
 // Initialize Notion client
 export const notion = new Client({ auth: process.env.NOTION_TOKEN! })
-export const n2m = new NotionToMarkdown({ notionClient: notion })
 
-// Utility functions
-export function isFullPage(response: DatabaseObjectResponse): response is any {
-  // PageObjectResponse
-  return 'properties' in response
+// notion-to-md@3 only calls the (unchanged) blocks API, so it works with the
+// v5 client at runtime; the cast satisfies its stale `@notionhq/client@^2` peer.
+export const n2m = new NotionToMarkdown({
+  notionClient: notion as unknown as ConstructorParameters<
+    typeof NotionToMarkdown
+  >[0]['notionClient'],
+})
+
+// As of API version 2025-09-03 a database is queried through one of its data
+// sources, not the database id. Resolve and cache databaseId -> dataSourceId.
+const dataSourceIdCache = new Map<string, string>()
+
+export async function getDataSourceId(databaseId: string): Promise<string> {
+  const cached = dataSourceIdCache.get(databaseId)
+  if (cached) return cached
+
+  const database = await notion.databases.retrieve({ database_id: databaseId })
+  const dataSources = (database as { data_sources?: Array<{ id: string }> })
+    .data_sources
+
+  if (!dataSources?.length) {
+    throw new Error(`Database ${databaseId} has no data sources`)
+  }
+
+  const id = dataSources[0].id
+  dataSourceIdCache.set(databaseId, id)
+  return id
 }
 
-export function getRichTextContent(richText: any[]): string {
+export function getRichTextContent(
+  richText: Array<{ plain_text: string }>
+): string {
   if (!richText?.length) return ''
   return richText[0].plain_text
 }
@@ -195,6 +219,102 @@ export async function processContent(
   }
 
   return processedContent
+}
+
+// Resolve a page's cover image to a local webp path plus a blur placeholder.
+export async function getPageCoverImage(
+  page: PageObjectResponse,
+  category: 'blog' | 'design' | 'travel',
+  itemId: string
+): Promise<{ url: string | null; blurDataURL: string | null }> {
+  if (!page.cover) return { url: null, blurDataURL: null }
+
+  try {
+    const coverUrl =
+      page.cover.type === 'external'
+        ? page.cover.external.url
+        : page.cover.file.url
+
+    // For Unsplash URLs, remove query params to get original quality
+    const processUrl = coverUrl.includes('unsplash.com')
+      ? coverUrl.split('?')[0]
+      : coverUrl
+
+    const processedUrl = await processFile(processUrl, {
+      category,
+      itemId,
+      index: 0,
+      prefix: 'cover',
+    })
+
+    const blurDataURL = await generateBlurDataURL(processUrl, itemId)
+
+    return { url: processedUrl, blurDataURL }
+  } catch (error) {
+    console.error(
+      `Failed to process cover image for ${itemId}:`,
+      error instanceof Error ? error.message : error
+    )
+    return { url: null, blurDataURL: null }
+  }
+}
+
+// Build a tiny base64 webp blur placeholder for an image URL.
+export async function generateBlurDataURL(
+  url: string,
+  label: string
+): Promise<string | null> {
+  try {
+    const buffer = await fetchBuffer(url)
+    const blur = await sharp(buffer)
+      .resize(10, 10, { fit: 'inside' })
+      .webp({ quality: 20 })
+      .toBuffer()
+    return `data:image/webp;base64,${blur.toString('base64')}`
+  } catch (error) {
+    console.warn(
+      `Failed to generate blur placeholder for ${label}:`,
+      error instanceof Error ? error.message : error
+    )
+    return null
+  }
+}
+
+// Shared per-page pipeline: cover image + Notion blocks -> normalized markdown
+// with local asset URLs. `transformMarkdown` lets a caller (e.g. design) strip
+// content before normalization.
+export async function processPageContent(
+  page: PageObjectResponse,
+  category: 'blog' | 'design' | 'travel',
+  slug: string,
+  transformMarkdown?: (markdown: string) => string
+): Promise<{
+  coverImage: string | null
+  blurDataURL: string | null
+  content: string
+}> {
+  const { url: coverImage, blurDataURL } = await getPageCoverImage(
+    page,
+    category,
+    slug
+  )
+
+  const mdBlocks = await n2m.pageToMarkdown(page.id)
+  let markdown = n2m.toMarkdownString(mdBlocks).parent
+  if (transformMarkdown) markdown = transformMarkdown(markdown)
+  markdown = normalizeContent(markdown)
+  markdown = await processContent(markdown, category, slug)
+
+  return { coverImage, blurDataURL, content: markdown }
+}
+
+export function buildBySlug<T extends { slug: string }>(
+  items: T[]
+): Record<string, T> {
+  return items.reduce<Record<string, T>>((acc, item) => {
+    acc[item.slug] = item
+    return acc
+  }, {})
 }
 
 // Re-export everything from modules

@@ -56,9 +56,8 @@ async function checkEndpoint(
             isUp: true,
           }
         }
-      } catch (rootError) {
+      } catch {
         // Root path failed, try /status
-        console.log(`Root path failed for ${url}, trying /status`, rootError)
       }
 
       // Try /status endpoint
@@ -232,7 +231,7 @@ export default async function SubdomainsPage() {
                               href={status.preview}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="absolute right-2 top-2 rounded-full bg-background/80 p-2 shadow-sm hover:bg-background"
+                              className="absolute right-2 top-2 rounded-full bg-background/80 p-2 shadow-xs hover:bg-background"
                             >
                               <Maximize2 className="h-4 w-4" />
                             </a>

@@ -1,4 +1,4 @@
-import 'dotenv/config'
+import './load-env'
 import { generateBlogData } from '../src/lib/notion/blog'
 import { generateDesignData } from '../src/lib/notion/design'
 import { generateTravelData } from '../src/lib/notion/travel'

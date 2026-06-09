@@ -41,7 +41,7 @@ export function Pagination({
           'inline-flex h-8 items-center justify-center rounded-md px-3',
           'text-sm font-medium ring-offset-background transition-colors',
           'hover:bg-muted hover:text-muted-foreground',
-          'focus-visible:outline-none focus-visible:ring-2',
+          'focus-visible:outline-hidden focus-visible:ring-2',
           'focus-visible:ring-ring focus-visible:ring-offset-2',
           currentPage <= 1 ? 'pointer-events-none opacity-50' : 'bg-muted'
         )}
@@ -109,7 +109,7 @@ export function Pagination({
           'inline-flex h-8 items-center justify-center rounded-md px-3',
           'text-sm font-medium ring-offset-background transition-colors',
           'hover:bg-muted hover:text-muted-foreground',
-          'focus-visible:outline-none focus-visible:ring-2',
+          'focus-visible:outline-hidden focus-visible:ring-2',
           'focus-visible:ring-ring focus-visible:ring-offset-2',
           currentPage >= totalPages
             ? 'pointer-events-none opacity-50'

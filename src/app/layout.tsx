@@ -85,7 +85,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <Header />
-            <main className="container mx-auto max-w-6xl flex-grow px-4 sm:px-6 lg:px-8">
+            <main className="container mx-auto max-w-6xl grow px-4 sm:px-6 lg:px-8">
               {children}
             </main>
             <Footer />

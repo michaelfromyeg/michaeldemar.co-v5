@@ -1,7 +1,4 @@
 // src/lib/notion/fetch.ts
-import fetch, { Response, RequestInit } from 'node-fetch'
-import { AbortController } from 'node-abort-controller'
-
 interface RetryOptions {
   maxRetries?: number
   timeout?: number
@@ -42,19 +39,19 @@ export async function fetchWithRetry(
   let lastError: Error | undefined
 
   for (let attempt = 1; attempt <= opts.maxRetries!; attempt++) {
+    // Bound time-to-response (headers) only; clear the timer once fetch()
+    // resolves so a slow body read in fetchBuffer isn't aborted mid-download.
+    const controller = new AbortController()
+    const timeout = setTimeout(() => controller.abort(), opts.timeout)
+
     try {
-      const controller = new AbortController()
-      const timeout = setTimeout(() => controller.abort(), opts.timeout)
-
-      const fetchOptions: RequestInit = {
-        signal: controller.signal as any, // Type assertion needed due to type mismatch
-        headers: {
-          'User-Agent': 'Mozilla/5.0 (compatible; MichaelDemarcoBot/1.0)',
-        },
-      }
-
       try {
-        const response = await fetch(url, fetchOptions)
+        const response = await fetch(url, {
+          signal: controller.signal,
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (compatible; MichaelDemarcoBot/1.0)',
+          },
+        })
 
         if (!response.ok) {
           throw new FetchError(
@@ -68,8 +65,8 @@ export async function fetchWithRetry(
       } finally {
         clearTimeout(timeout)
       }
-    } catch (error: any) {
-      lastError = error
+    } catch (error) {
+      lastError = error instanceof Error ? error : new Error(String(error))
 
       // Don't retry if we've hit the max attempts
       if (attempt === opts.maxRetries) {
@@ -84,7 +81,7 @@ export async function fetchWithRetry(
 
       console.warn(
         `Fetch attempt ${attempt} failed for ${url}. Retrying in ${delay}ms...`,
-        error.message
+        lastError.message
       )
 
       await new Promise((resolve) => setTimeout(resolve, delay))

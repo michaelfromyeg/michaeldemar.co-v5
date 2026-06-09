@@ -23,7 +23,7 @@ export function ResumeEntry({
   logoPath,
 }: ResumeEntryProps) {
   return (
-    <Card className="group relative shadow-sm transition-shadow hover:shadow">
+    <Card className="group relative shadow-xs transition-shadow hover:shadow-sm">
       <Collapsible>
         <CollapsibleTrigger className="w-full">
           <CardContent className="p-4 sm:p-6">
