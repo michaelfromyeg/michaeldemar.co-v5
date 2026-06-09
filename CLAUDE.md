@@ -58,6 +58,7 @@ The image-processing step is idempotent: existing files in `public/*-files/` are
 ### Environment Variables
 
 For `generate-data` (validated at import time in `src/lib/notion/index.ts`):
+
 - `NOTION_TOKEN`
 - `NOTION_BLOG_DATABASE_ID`
 - `NOTION_DESIGN_DATABASE_ID`
@@ -65,6 +66,7 @@ For `generate-data` (validated at import time in `src/lib/notion/index.ts`):
 - `NOTION_WAYPOINTS_DATABASE_ID` (used by `travel.ts` to join waypoints onto itineraries)
 
 For `find-subdomains`:
+
 - `CF_ZONE_ID`
 - `CF_API_TOKEN`
 

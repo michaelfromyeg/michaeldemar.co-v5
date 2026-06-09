@@ -46,7 +46,9 @@ function NavLink({
         href={href}
         className={cn(
           'group relative flex items-center text-sm font-medium transition-colors',
-          isActive ? 'text-foreground' : 'text-muted-foreground hover:text-primary'
+          isActive
+            ? 'text-foreground'
+            : 'text-muted-foreground hover:text-primary'
         )}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -150,7 +152,10 @@ export default function Header() {
                   key={item.name}
                   href={item.href}
                   name={item.name}
-                  isActive={pathname === item.href || pathname.startsWith(item.href + '/')}
+                  isActive={
+                    pathname === item.href ||
+                    pathname.startsWith(item.href + '/')
+                  }
                   index={index}
                 />
               ))}
