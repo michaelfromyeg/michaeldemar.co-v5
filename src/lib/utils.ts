@@ -23,7 +23,7 @@ function stripString(str: string): string {
 }
 
 // utils/processResumeData.ts
-function stripAllStrings(obj: any): any {
+function stripAllStrings(obj: unknown): unknown {
   if (typeof obj === 'string') {
     return stripString(obj)
   }
@@ -33,8 +33,8 @@ function stripAllStrings(obj: any): any {
   }
 
   if (typeof obj === 'object' && obj !== null) {
-    const result: Record<string, any> = {}
-    for (const [key, value] of Object.entries(obj)) {
+    const result: Record<string, unknown> = {}
+    for (const [key, value] of Object.entries(obj as Record<string, unknown>)) {
       result[key] = stripAllStrings(value)
     }
     return result
@@ -43,7 +43,7 @@ function stripAllStrings(obj: any): any {
   return obj
 }
 
-export function processResumeData(cvData: any, resumeData: any) {
+export function processResumeData(cvData: unknown, resumeData: unknown) {
   return {
     cv: stripAllStrings(cvData),
     resume: stripAllStrings(resumeData),

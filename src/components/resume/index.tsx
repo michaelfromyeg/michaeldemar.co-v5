@@ -4,23 +4,24 @@ import { Briefcase, GraduationCap, Hammer } from 'lucide-react'
 import { ResumeEntry } from './entry'
 import { ResumeSection } from './section'
 import { processEntry } from './utils'
+import type { CvData, ResumeSelection } from './types'
 
 interface Props {
-  cvData: any
-  resumeData: any
+  cvData: CvData
+  resumeData: ResumeSelection
 }
 
 export default async function DynamicResume({ cvData, resumeData }: Props) {
   // Process work experience
   const workExperiences = await Promise.all(
     cvData.work
-      .filter((exp: any) => resumeData.work.includes(exp.id))
-      .map(async (exp: any) => {
+      .filter((exp) => resumeData.work.includes(exp.id))
+      .map(async (exp) => {
         return {
           ...processEntry(exp, 'work'),
           logoPath: `/logos/${exp.id}.svg`,
           highlightsHtml: await Promise.all(
-            exp.highlights.map((highlight: string) => (
+            exp.highlights.map((highlight) => (
               <MDXRemote key={highlight} source={highlight} />
             ))
           ),
@@ -31,8 +32,8 @@ export default async function DynamicResume({ cvData, resumeData }: Props) {
   // Process education
   const education = await Promise.all(
     cvData.education
-      .filter((edu: any) => resumeData.education.includes(edu.id))
-      .map(async (edu: any) => {
+      .filter((edu) => resumeData.education.includes(edu.id))
+      .map(async (edu) => {
         return {
           ...processEntry(edu, 'education'),
           logoPath: `/logos/${edu.id}.svg`,
@@ -47,11 +48,11 @@ export default async function DynamicResume({ cvData, resumeData }: Props) {
   // Process projects
   const projects = await Promise.all(
     cvData.projects
-      .filter((proj: any) => resumeData.projects.includes(proj.id))
-      .map(async (proj: any) => ({
+      .filter((proj) => resumeData.projects.includes(proj.id))
+      .map(async (proj) => ({
         ...processEntry(proj, 'projects'),
         highlightsHtml: await Promise.all(
-          proj.highlights.map((highlight: string) => (
+          proj.highlights.map((highlight) => (
             <MDXRemote key={highlight} source={highlight} />
           ))
         ),

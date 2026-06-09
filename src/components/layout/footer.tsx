@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Mail, MessageSquare, History } from 'lucide-react'
 import {
   FaGithub,
@@ -56,9 +57,11 @@ export default function Footer() {
             rel="noreferrer"
             className="rounded-2xl p-2 hover:bg-accent"
           >
-            <img
-              src={'/ubc-coa.svg'}
+            <Image
+              src="/ubc-coa.svg"
               alt="UBC Web Ring"
+              width={20}
+              height={20}
               className="h-5 w-auto"
             />
             <span className="sr-only">Ring</span>
