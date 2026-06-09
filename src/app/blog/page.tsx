@@ -47,7 +47,7 @@ export default async function BlogPage({
 
       {/* Featured Post */}
       <Link href={`/blog/${latestPost.slug}`}>
-        <Card className="card-glow group mb-12 overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+        <Card className="card-glow group mb-12 overflow-hidden shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
           <div className="grid gap-6 md:grid-cols-2">
             <div className="relative h-64 md:h-full">
               {latestPost.coverImage ? (

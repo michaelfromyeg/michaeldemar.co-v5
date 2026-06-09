@@ -59,7 +59,7 @@ const FeedView = ({ posts }: FeedViewProps) => {
           <article className="group rounded-lg border border-border/50 p-6 transition-all duration-300 hover:border-accent hover:bg-muted/50">
             <div className="flex items-start gap-6">
               {post.coverImage && (
-                <div className="relative hidden h-44 w-64 flex-shrink-0 overflow-hidden rounded-lg sm:block">
+                <div className="relative hidden h-44 w-64 shrink-0 overflow-hidden rounded-lg sm:block">
                   <Image
                     src={post.coverImage}
                     alt={`Cover image for ${post.title}`}
@@ -142,7 +142,7 @@ const BlogViewSwitcher = ({
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {paginatedPosts.map((post) => (
             <Link key={post.id} href={`/blog/${post.slug}`}>
-              <Card className="card-glow group h-full overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+              <Card className="card-glow group h-full overflow-hidden shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
                 <div className="relative h-48 w-full overflow-hidden">
                   {post.coverImage ? (
                     <Image

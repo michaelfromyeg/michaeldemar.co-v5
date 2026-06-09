@@ -29,7 +29,7 @@ export default function Home() {
           </div>
         </div>
         <div className="container mx-auto flex h-full flex-col px-4 sm:px-6 lg:px-8">
-          <div className="relative z-10 flex flex-grow flex-col items-center justify-center text-center">
+          <div className="relative z-10 flex grow flex-col items-center justify-center text-center">
             <TypingHero />
           </div>
           <div className="relative z-10 mb-8 flex justify-center">

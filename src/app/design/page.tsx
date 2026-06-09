@@ -50,7 +50,7 @@ export default async function DesignPage({
       {/* Featured Project */}
       {latestProject && (
         <Link href={`/design/${latestProject.slug}`}>
-          <Card className="card-glow group mb-12 overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+          <Card className="card-glow group mb-12 overflow-hidden shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
             <div className="grid gap-6 md:grid-cols-2">
               <div className="relative h-64 md:h-full">
                 {latestProject.coverImage || latestProject.images[0] ? (
@@ -121,7 +121,7 @@ export default async function DesignPage({
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {paginatedProjects.map((project) => (
           <Link key={project.id} href={`/design/${project.slug}`}>
-            <Card className="card-glow group h-full overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <Card className="card-glow group h-full overflow-hidden shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
               <div className="relative h-48 w-full">
                 {project.coverImage || project.images[0] ? (
                   <Image
