@@ -39,23 +39,32 @@ export async function fetchWithRetry(
   let lastError: Error | undefined
 
   for (let attempt = 1; attempt <= opts.maxRetries!; attempt++) {
+    // Bound time-to-response (headers) only; clear the timer once fetch()
+    // resolves so a slow body read in fetchBuffer isn't aborted mid-download.
+    const controller = new AbortController()
+    const timeout = setTimeout(() => controller.abort(), opts.timeout)
+
     try {
-      const response = await fetch(url, {
-        signal: AbortSignal.timeout(opts.timeout!),
-        headers: {
-          'User-Agent': 'Mozilla/5.0 (compatible; MichaelDemarcoBot/1.0)',
-        },
-      })
+      try {
+        const response = await fetch(url, {
+          signal: controller.signal,
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (compatible; MichaelDemarcoBot/1.0)',
+          },
+        })
 
-      if (!response.ok) {
-        throw new FetchError(
-          `HTTP error! status: ${response.status}`,
-          response,
-          attempt
-        )
+        if (!response.ok) {
+          throw new FetchError(
+            `HTTP error! status: ${response.status}`,
+            response,
+            attempt
+          )
+        }
+
+        return response
+      } finally {
+        clearTimeout(timeout)
       }
-
-      return response
     } catch (error) {
       lastError = error instanceof Error ? error : new Error(String(error))
 

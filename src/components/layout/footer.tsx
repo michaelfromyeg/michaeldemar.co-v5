@@ -60,7 +60,7 @@ export default function Footer() {
             <Image
               src="/ubc-coa.svg"
               alt="UBC Web Ring"
-              width={20}
+              width={14}
               height={20}
               className="h-5 w-auto"
             />

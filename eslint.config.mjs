@@ -11,6 +11,8 @@ const eslintConfig = [
       'public/**',
       'build/**',
       'dist/**',
+      'out/**',
+      '.vercel/**',
       'src/data/**',
     ],
   },
