@@ -3,10 +3,7 @@ import { Metadata } from 'next'
 import { formatDate } from '@/lib/utils'
 import { ChevronLeft, Calendar, MapPin, Clock } from 'lucide-react'
 import Link from 'next/link'
-import { MDXRemote } from 'next-mdx-remote/rsc'
-import remarkGfm from 'remark-gfm'
-import rehypePrism from 'rehype-prism-plus'
-import remarkBreaks from 'remark-breaks'
+import { PostContent } from '@/components/mdx/post-content'
 import travelData from '@/data/travel.json'
 import type { TravelItinerary } from '@/lib/notion/types'
 
@@ -95,28 +92,7 @@ export default async function TravelItineraryPage({ params }: PageProps) {
       </header>
 
       <div className="prose prose-gray max-w-none dark:prose-invert">
-        <MDXRemote
-          source={itinerary.content ?? ''}
-          options={{
-            mdxOptions: {
-              remarkPlugins: [remarkGfm, remarkBreaks],
-              rehypePlugins: [
-                [
-                  rehypePrism,
-                  {
-                    ignoreMissing: true,
-                    aliases: {
-                      js: 'javascript',
-                      py: 'python',
-                      sh: 'bash',
-                      ts: 'typescript',
-                    },
-                  },
-                ],
-              ],
-            },
-          }}
-        />
+        <PostContent source={itinerary.content ?? ''} />
       </div>
     </article>
   )

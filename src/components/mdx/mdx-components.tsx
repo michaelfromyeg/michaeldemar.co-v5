@@ -4,11 +4,11 @@ import CodeBlock from '@/components/mdx/code-block'
 import MDXImage from '@/components/mdx/mdx-image'
 import SmartLink from '@/components/mdx/smart-link'
 
-const isLink = (element: any): element is React.ReactElement => {
+const isLink = (element: React.ReactNode): element is React.ReactElement => {
   return (
     React.isValidElement(element) &&
     (element.type === 'a' ||
-      (element.type as any)?.name === 'a' ||
+      (element.type as { name?: string })?.name === 'a' ||
       typeof element.type === 'function')
   )
 }
@@ -33,14 +33,18 @@ export const mdxComponents: MDXComponents = {
       React.isValidElement(children[0]) &&
       children[0].type === 'img'
     ) {
-      const props = children[0].props as any
-      return <MDXImage {...props} />
+      const imageProps = children[0].props as React.ComponentProps<
+        typeof MDXImage
+      >
+      return <MDXImage {...imageProps} />
     }
 
     // Handle single link
     if (children.length === 1 && isLink(children[0])) {
-      const props = children[0].props as any
-      return <SmartLink {...props} inline={false} />
+      const linkProps = children[0].props as React.ComponentProps<
+        typeof SmartLink
+      >
+      return <SmartLink {...linkProps} inline={false} />
     }
 
     // Regular paragraph
