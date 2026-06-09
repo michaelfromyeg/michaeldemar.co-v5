@@ -1,7 +1,4 @@
 // src/lib/notion/fetch.ts
-import fetch, { Response, RequestInit } from 'node-fetch'
-import { AbortController } from 'node-abort-controller'
-
 interface RetryOptions {
   maxRetries?: number
   timeout?: number
@@ -43,33 +40,24 @@ export async function fetchWithRetry(
 
   for (let attempt = 1; attempt <= opts.maxRetries!; attempt++) {
     try {
-      const controller = new AbortController()
-      const timeout = setTimeout(() => controller.abort(), opts.timeout)
-
-      const fetchOptions: RequestInit = {
-        signal: controller.signal as any, // Type assertion needed due to type mismatch
+      const response = await fetch(url, {
+        signal: AbortSignal.timeout(opts.timeout!),
         headers: {
           'User-Agent': 'Mozilla/5.0 (compatible; MichaelDemarcoBot/1.0)',
         },
+      })
+
+      if (!response.ok) {
+        throw new FetchError(
+          `HTTP error! status: ${response.status}`,
+          response,
+          attempt
+        )
       }
 
-      try {
-        const response = await fetch(url, fetchOptions)
-
-        if (!response.ok) {
-          throw new FetchError(
-            `HTTP error! status: ${response.status}`,
-            response,
-            attempt
-          )
-        }
-
-        return response
-      } finally {
-        clearTimeout(timeout)
-      }
-    } catch (error: any) {
-      lastError = error
+      return response
+    } catch (error) {
+      lastError = error instanceof Error ? error : new Error(String(error))
 
       // Don't retry if we've hit the max attempts
       if (attempt === opts.maxRetries) {
@@ -84,7 +72,7 @@ export async function fetchWithRetry(
 
       console.warn(
         `Fetch attempt ${attempt} failed for ${url}. Retrying in ${delay}ms...`,
-        error.message
+        lastError.message
       )
 
       await new Promise((resolve) => setTimeout(resolve, delay))
