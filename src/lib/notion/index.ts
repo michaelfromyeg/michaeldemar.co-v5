@@ -24,10 +24,9 @@ export const notion = new Client({ auth: process.env.NOTION_TOKEN! })
 // notion-to-md@3 only calls the (unchanged) blocks API, so it works with the
 // v5 client at runtime; the cast satisfies its stale `@notionhq/client@^2` peer.
 export const n2m = new NotionToMarkdown({
-  notionClient:
-    notion as unknown as ConstructorParameters<
-      typeof NotionToMarkdown
-    >[0]['notionClient'],
+  notionClient: notion as unknown as ConstructorParameters<
+    typeof NotionToMarkdown
+  >[0]['notionClient'],
 })
 
 // As of API version 2025-09-03 a database is queried through one of its data
@@ -39,9 +38,8 @@ export async function getDataSourceId(databaseId: string): Promise<string> {
   if (cached) return cached
 
   const database = await notion.databases.retrieve({ database_id: databaseId })
-  const dataSources = (
-    database as { data_sources?: Array<{ id: string }> }
-  ).data_sources
+  const dataSources = (database as { data_sources?: Array<{ id: string }> })
+    .data_sources
 
   if (!dataSources?.length) {
     throw new Error(`Database ${databaseId} has no data sources`)

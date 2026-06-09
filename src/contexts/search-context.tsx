@@ -120,27 +120,21 @@ export function SearchProvider({ children }: { children: React.ReactNode }) {
     let isMounted = true
 
     async function initializeSearchData() {
-      console.log('Initializing search data...')
-
       try {
         // First try to load from cache
-        console.log('Checking cache...')
         let searchItems: SearchItem[] = []
 
         try {
           const cached = localStorage?.getItem(CACHE_KEY)
-          console.log('Cache raw value:', cached)
 
           if (cached) {
             const cacheData = JSON.parse(cached) as CacheData
-            console.log('Parsed cache data:', cacheData)
 
             const cacheAge = Date.now() - cacheData.timestamp
             if (
               cacheData.version === CACHE_VERSION &&
               cacheAge < 60 * 60 * 1000
             ) {
-              console.log('Using valid cache')
               searchItems = cacheData.items
               if (isMounted) {
                 setState({
@@ -162,14 +156,12 @@ export function SearchProvider({ children }: { children: React.ReactNode }) {
         }
 
         // If we get here, we need to fetch fresh data
-        console.log('Fetching fresh data...')
         const [blogData, designData, travelData] = await Promise.all([
           import('@/data/blog.json').then((m) => m.default),
           import('@/data/design.json').then((m) => m.default),
           import('@/data/travel.json').then((m) => m.default),
         ])
 
-        console.log('Transforming data...')
         searchItems = [
           ...staticPages.map((page) => ({
             ...page,
@@ -217,7 +209,6 @@ export function SearchProvider({ children }: { children: React.ReactNode }) {
         })
 
         // Cache the prepared data
-        console.log('Caching new data...')
         try {
           const cacheData: CacheData = {
             version: CACHE_VERSION,

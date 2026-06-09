@@ -18,16 +18,38 @@ const eslintConfig = [
       'public/**',
       'build/**',
       'dist/**',
-      'data/*.json',
+      'src/data/**',
     ],
   },
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
   ...compat.config({
     extends: ['next', 'prettier'],
     rules: {
-      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-explicit-any': 'error',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          args: 'all',
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          caughtErrors: 'all',
+          caughtErrorsIgnorePattern: '^_',
+        },
+      ],
+      'no-console': ['warn', { allow: ['warn', 'error'] }],
+      eqeqeq: ['error', 'smart'],
+      'no-var': 'error',
+      'prefer-const': 'error',
+      'object-shorthand': 'warn',
     },
   }),
+  {
+    // Build-time scripts and the Notion data pipeline log intentionally.
+    files: ['scripts/**', 'src/lib/notion/**'],
+    rules: {
+      'no-console': 'off',
+    },
+  },
 ]
 
 export default eslintConfig

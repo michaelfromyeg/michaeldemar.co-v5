@@ -56,9 +56,8 @@ async function checkEndpoint(
             isUp: true,
           }
         }
-      } catch (rootError) {
+      } catch {
         // Root path failed, try /status
-        console.log(`Root path failed for ${url}, trying /status`, rootError)
       }
 
       // Try /status endpoint

@@ -126,7 +126,11 @@ export async function generateDesignData(): Promise<{
                 image.url,
                 `image ${index} in project ${project.slug}`
               )
-              return { ...image, url: processedUrl, blurDataURL: imageBlurDataURL }
+              return {
+                ...image,
+                url: processedUrl,
+                blurDataURL: imageBlurDataURL,
+              }
             } catch (error) {
               console.error(
                 `Failed to process image ${index} in project ${project.slug}:`,
