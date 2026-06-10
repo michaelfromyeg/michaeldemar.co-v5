@@ -32,9 +32,11 @@ const TripCard = ({ itinerary }: TripCardProps) => (
         </div>
         <div className="flex items-center gap-1.5">
           <Clock className="h-3.5 w-3.5" />
-          {new Date(itinerary.endDate).getDate() -
-            new Date(itinerary.startDate).getDate() +
-            1}{' '}
+          {Math.round(
+            (new Date(itinerary.endDate).getTime() -
+              new Date(itinerary.startDate).getTime()) /
+              86_400_000
+          ) + 1}{' '}
           days
         </div>
       </>
