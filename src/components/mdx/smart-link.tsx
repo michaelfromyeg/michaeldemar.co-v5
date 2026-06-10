@@ -36,7 +36,7 @@ const isTweetUrl = (url: string): boolean => {
 }
 
 const isVideoFile = (href: string): boolean => {
-  return /\.(mp4|webm)(\?.*)?$/i.test(href)
+  return /\.(mp4|webm|mov|m4v|ogg)(\?.*)?$/i.test(href)
 }
 
 const isExternalLink = (href: string): boolean => {
@@ -101,10 +101,11 @@ interface YouTubeEmbedProps {
 
 const YouTubeEmbed = ({ videoId, className }: YouTubeEmbedProps) => {
   return (
-    <Card className={cn('my-4 overflow-hidden', className)}>
+    <Card className={cn('not-prose my-4 overflow-hidden', className)}>
       <div className="relative h-0 pb-[56.25%]">
         <iframe
           src={`https://www.youtube.com/embed/${videoId}`}
+          title="YouTube video player"
           className="absolute top-0 left-0 h-full w-full"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
@@ -116,10 +117,11 @@ const YouTubeEmbed = ({ videoId, className }: YouTubeEmbedProps) => {
 
 const VimeoEmbed = ({ videoId }: { videoId: string }) => {
   return (
-    <Card className="my-4 overflow-hidden">
+    <Card className="not-prose my-4 overflow-hidden">
       <div className="relative h-0 pb-[56.25%]">
         <iframe
           src={`https://player.vimeo.com/video/${videoId}`}
+          title="Vimeo video player"
           className="absolute top-0 left-0 h-full w-full"
           allow="autoplay; fullscreen; picture-in-picture"
           allowFullScreen
@@ -175,13 +177,22 @@ const SmartLink = ({ href, children, inline = false }: SmartLinkProps) => {
     if (isVideoFile(href)) {
       return (
         <Card className="not-prose my-4 overflow-hidden">
-          <video controls src={href} className="w-full" />
+          <video
+            controls
+            src={href}
+            aria-label={typeof children === 'string' ? children : 'Video'}
+            className="w-full"
+          />
         </Card>
       )
     }
 
     if (isTweetUrl(href)) {
       const domain = new URL(href).hostname.replace(/^www\./, '')
+      const label =
+        typeof children === 'string' && children.startsWith('http')
+          ? `Post on ${domain}`
+          : children
       return (
         <Card className="not-prose group my-4">
           <a
@@ -193,7 +204,7 @@ const SmartLink = ({ href, children, inline = false }: SmartLinkProps) => {
             <ExternalLink className="text-muted-foreground h-5 w-5" />
             <div className="flex flex-col">
               <span className="text-primary group-hover:text-primary/80 font-medium">
-                {children}
+                {label}
               </span>
               <span className="text-muted-foreground text-sm">{domain}</span>
             </div>

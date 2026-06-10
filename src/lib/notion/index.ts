@@ -43,15 +43,30 @@ type LinkBlockContent = {
 
 function markdownLink(content: LinkBlockContent | undefined): string | false {
   if (!content) return false
+  const isFile = content.type === 'file'
   const url =
-    content.url ??
-    (content.type === 'file' ? content.file?.url : content.external?.url)
+    content.url ?? (isFile ? content.file?.url : content.external?.url)
   if (!url) return false
   const caption = content.caption
     ?.map((item) => item.plain_text)
     .join('')
     .trim()
-  return `[${caption || url}](${url})`
+  return `[${caption || fallbackLinkText(url, isFile)}](${url})`
+}
+
+// Signed Notion file URLs are huge and expire, and bare external URLs carry
+// tracking params; fall back to the filename or the query-stripped URL.
+function fallbackLinkText(url: string, isFile: boolean): string {
+  if (isFile || url.includes('prod-files-secure.s3')) {
+    const { basename, extension } = extractFilename(url)
+    return `${basename}${extension}`
+  }
+  try {
+    const { origin, pathname } = new URL(url)
+    return origin + pathname
+  } catch {
+    return url
+  }
 }
 
 for (const type of ['embed', 'bookmark', 'link_preview', 'video'] as const) {
