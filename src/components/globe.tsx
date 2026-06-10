@@ -61,6 +61,16 @@ export default function TravelGlobe({ itineraries }: TravelGlobeProps) {
   const [pickerOpen, setPickerOpen] = useState(false)
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const [globeReady, setGlobeReady] = useState(false)
+  const [webglSupported, setWebglSupported] = useState<boolean | null>(null)
+
+  // Mount the globe only once WebGL support is confirmed; three.js
+  // throws (and takes the whole page down) on WebGL-less browsers
+  useEffect(() => {
+    const canvas = document.createElement('canvas')
+    setWebglSupported(
+      Boolean(canvas.getContext('webgl2') || canvas.getContext('webgl'))
+    )
+  }, [])
 
   // Trips without waypoints can't be drawn; most recent trip first
   const selectableItineraries = useMemo(() => {
@@ -176,6 +186,16 @@ export default function TravelGlobe({ itineraries }: TravelGlobeProps) {
     )
   }
 
+  if (webglSupported === false) {
+    return (
+      <div className="flex h-96 items-center justify-center">
+        <p className="text-muted-foreground">
+          This browser can&apos;t render the 3D globe (WebGL unavailable).
+        </p>
+      </div>
+    )
+  }
+
   return (
     <div className="w-full">
       <div className="mb-4">
@@ -229,34 +249,42 @@ export default function TravelGlobe({ itineraries }: TravelGlobeProps) {
         </Popover>
       </div>
       <div ref={containerRef} className="relative">
-        <Globe
-          ref={globeRef}
-          width={dimensions.width}
-          height={dimensions.height}
-          onGlobeReady={() => setGlobeReady(true)}
-          globeImageUrl={
-            theme === 'dark'
-              ? '//unpkg.com/three-globe/example/img/earth-dark.jpg'
-              : '//unpkg.com/three-globe/example/img/earth-blue-marble.jpg'
-          }
-          backgroundColor="rgba(0,0,0,0)"
-          atmosphereColor={theme === 'dark' ? '#3B82F6' : '#2563EB'}
-          atmosphereAltitude={0.1}
-          pointsData={points}
-          pointLat="lat"
-          pointLng="lng"
-          pointColor={() => (theme === 'dark' ? '#3B82F6' : '#2563EB')}
-          pointAltitude={0}
-          pointRadius={0.2}
-          pathsData={paths.slice(0, pathIndex + 1)}
-          pathPoints="points"
-          pathColor={() => (theme === 'dark' ? '#3B82F6' : '#2563EB')}
-          pathDashLength={0.1}
-          pathDashGap={0.05}
-          pathDashAnimateTime={3000}
-          pathStroke={2}
-          onPointClick={(point: object) => setActivePoint(point as GlobePoint)}
-        />
+        {webglSupported === null ? (
+          <div className="flex h-96 items-center justify-center">
+            <div className="text-muted-foreground">Loading globe...</div>
+          </div>
+        ) : (
+          <Globe
+            ref={globeRef}
+            width={dimensions.width}
+            height={dimensions.height}
+            onGlobeReady={() => setGlobeReady(true)}
+            globeImageUrl={
+              theme === 'dark'
+                ? '//unpkg.com/three-globe/example/img/earth-dark.jpg'
+                : '//unpkg.com/three-globe/example/img/earth-blue-marble.jpg'
+            }
+            backgroundColor="rgba(0,0,0,0)"
+            atmosphereColor={theme === 'dark' ? '#3B82F6' : '#2563EB'}
+            atmosphereAltitude={0.1}
+            pointsData={points}
+            pointLat="lat"
+            pointLng="lng"
+            pointColor={() => (theme === 'dark' ? '#3B82F6' : '#2563EB')}
+            pointAltitude={0}
+            pointRadius={0.2}
+            pathsData={paths.slice(0, pathIndex + 1)}
+            pathPoints="points"
+            pathColor={() => (theme === 'dark' ? '#3B82F6' : '#2563EB')}
+            pathDashLength={0.1}
+            pathDashGap={0.05}
+            pathDashAnimateTime={3000}
+            pathStroke={2}
+            onPointClick={(point: object) =>
+              setActivePoint(point as GlobePoint)
+            }
+          />
+        )}
         {activePoint && (
           <Card className="absolute top-4 right-4 w-72">
             <CardContent className="p-4">
