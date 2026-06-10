@@ -177,7 +177,7 @@ export default function TravelGlobe({ itineraries }: TravelGlobeProps) {
   }
 
   return (
-    <div>
+    <div className="w-full">
       <div className="mb-4">
         <Popover open={pickerOpen} onOpenChange={setPickerOpen}>
           <PopoverTrigger asChild>
@@ -205,7 +205,7 @@ export default function TravelGlobe({ itineraries }: TravelGlobeProps) {
                   {selectableItineraries.map((trip) => (
                     <CommandItem
                       key={trip.id}
-                      value={`${trip.title} ${trip.region}`}
+                      value={`${trip.title} ${trip.region} ${trip.id}`}
                       onSelect={() => selectItinerary(trip.id)}
                     >
                       <Check
@@ -248,7 +248,6 @@ export default function TravelGlobe({ itineraries }: TravelGlobeProps) {
           pointColor={() => (theme === 'dark' ? '#3B82F6' : '#2563EB')}
           pointAltitude={0}
           pointRadius={0.2}
-          pointsMerge={true}
           pathsData={paths.slice(0, pathIndex + 1)}
           pathPoints="points"
           pathColor={() => (theme === 'dark' ? '#3B82F6' : '#2563EB')}
