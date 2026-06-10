@@ -42,7 +42,7 @@ export default async function DesignPage({
     <div className="container mx-auto max-w-4xl px-4 py-8">
       <div className="mb-8 space-y-4">
         <h1 className="text-4xl font-bold tracking-tight">Design Portfolio</h1>
-        <p className="text-lg text-muted-foreground">
+        <p className="text-muted-foreground text-lg">
           A collection of my design work, case studies, and experiments.
         </p>
       </div>
@@ -50,7 +50,7 @@ export default async function DesignPage({
       {/* Featured Project */}
       {latestProject && (
         <Link href={`/design/${latestProject.slug}`}>
-          <Card className="card-glow group mb-12 overflow-hidden shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+          <Card className="card-glow group mb-12 overflow-hidden py-0 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
             <div className="grid gap-6 md:grid-cols-2">
               <div className="relative h-64 md:h-full">
                 {latestProject.coverImage || latestProject.images[0] ? (
@@ -69,21 +69,21 @@ export default async function DesignPage({
                     className="object-cover transition-all duration-300 group-hover:scale-105 group-hover:brightness-105"
                   />
                 ) : (
-                  <div className="flex h-full w-full items-center justify-center bg-muted">
-                    <ImageIcon className="h-16 w-16 text-muted-foreground" />
+                  <div className="bg-muted flex h-full w-full items-center justify-center">
+                    <ImageIcon className="text-muted-foreground h-16 w-16" />
                   </div>
                 )}
               </div>
               <div className="flex flex-col p-6">
                 <div className="mb-4">
-                  <span className="mb-2 inline-block rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
+                  <span className="bg-primary/10 text-primary mb-2 inline-block rounded-full px-3 py-1 text-sm font-medium">
                     Latest Project
                   </span>
                 </div>
-                <h2 className="mb-4 text-2xl font-bold tracking-tight transition-colors duration-200 group-hover:text-primary">
+                <h2 className="group-hover:text-primary mb-4 text-2xl font-bold tracking-tight transition-colors duration-200">
                   {latestProject.title}
                 </h2>
-                <div className="mb-4 inline-flex items-center gap-1.5 text-sm text-muted-foreground">
+                <div className="text-muted-foreground mb-4 inline-flex items-center gap-1.5 text-sm">
                   <Calendar className="h-4 w-4" />
                   {latestProject.publishedDate
                     ? formatDate(latestProject.publishedDate)
@@ -95,18 +95,18 @@ export default async function DesignPage({
                     {latestProject.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="inline-flex items-center rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary transition-transform duration-200 hover:scale-105"
+                        className="bg-primary/10 text-primary inline-flex items-center rounded-md px-2 py-1 text-xs font-medium transition-transform duration-200 hover:scale-105"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
                 )}
-                <p className="mb-6 flex-1 text-muted-foreground">
+                <p className="text-muted-foreground mb-6 flex-1">
                   {latestProject.description}
                 </p>
                 <div className="mt-auto">
-                  <div className="flex items-center text-primary">
+                  <div className="text-primary flex items-center">
                     View project
                     <ChevronRight className="ml-1 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
                   </div>
@@ -121,7 +121,7 @@ export default async function DesignPage({
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {paginatedProjects.map((project) => (
           <Link key={project.id} href={`/design/${project.slug}`}>
-            <Card className="card-glow group h-full overflow-hidden shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <Card className="card-glow group h-full overflow-hidden pt-0 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
               <div className="relative h-48 w-full">
                 {project.coverImage || project.images[0] ? (
                   <Image
@@ -137,14 +137,14 @@ export default async function DesignPage({
                     className="object-cover transition-all duration-300 group-hover:scale-105 group-hover:brightness-105"
                   />
                 ) : (
-                  <div className="flex h-full w-full items-center justify-center bg-muted">
-                    <ImageIcon className="h-12 w-12 text-muted-foreground" />
+                  <div className="bg-muted flex h-full w-full items-center justify-center">
+                    <ImageIcon className="text-muted-foreground h-12 w-12" />
                   </div>
                 )}
               </div>
-              <div className="flex h-[calc(100%-12rem)] flex-col">
+              <div className="flex flex-1 flex-col gap-6">
                 <CardHeader>
-                  <CardTitle className="line-clamp-2 text-lg transition-colors duration-200 group-hover:text-primary">
+                  <CardTitle className="group-hover:text-primary line-clamp-2 text-lg transition-colors duration-200">
                     {project.title}
                   </CardTitle>
                   <CardDescription>
@@ -160,7 +160,7 @@ export default async function DesignPage({
                         {project.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="inline-flex items-center rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary"
+                            className="bg-primary/10 text-primary inline-flex items-center rounded-md px-2 py-1 text-xs font-medium"
                           >
                             {tag}
                           </span>
@@ -168,14 +168,14 @@ export default async function DesignPage({
                       </div>
                     )}
                     {project.description && (
-                      <p className="line-clamp-2 text-sm text-muted-foreground">
+                      <p className="text-muted-foreground line-clamp-2 text-sm">
                         {project.description}
                       </p>
                     )}
                   </CardDescription>
                 </CardHeader>
                 <CardFooter className="mt-auto justify-end">
-                  <div className="flex items-center text-sm text-primary">
+                  <div className="text-primary flex items-center text-sm">
                     View project
                     <ChevronRight className="ml-1 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
                   </div>

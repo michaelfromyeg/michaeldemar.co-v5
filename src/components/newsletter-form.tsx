@@ -11,7 +11,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { useToast } from '@/hooks/use-toast'
+import { toast } from 'sonner'
 import { cn } from '@/lib/utils'
 
 interface NewsletterFormProps {
@@ -27,7 +27,6 @@ export const NewsletterForm = ({
 }: NewsletterFormProps) => {
   const [email, setEmail] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-  const { toast } = useToast()
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -42,21 +41,17 @@ export const NewsletterForm = ({
       form.submit()
 
       // Show success toast
-      toast({
-        title: 'Success!',
+      toast.success('Success!', {
         description:
           'Thanks for subscribing! Please check your email to confirm.',
-        variant: 'default',
       })
 
       // Reset form
       setEmail('')
     } catch (error) {
       console.error(error)
-      toast({
-        title: 'Something went wrong.',
+      toast.error('Something went wrong.', {
         description: 'Please try again later.',
-        variant: 'destructive',
       })
     } finally {
       setIsLoading(false)
@@ -66,7 +61,7 @@ export const NewsletterForm = ({
   return (
     <Card
       className={cn(
-        'mx-auto w-full max-w-lg border-none bg-muted/50',
+        'bg-muted/50 mx-auto w-full max-w-lg border-none',
         className
       )}
     >
@@ -98,7 +93,7 @@ export const NewsletterForm = ({
           <Button type="submit" className="w-full" disabled={isLoading}>
             {isLoading ? 'Subscribing...' : 'Subscribe'}
           </Button>
-          <p className="text-center text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-center text-sm">
             Powered by{' '}
             <a
               href="https://buttondown.com/refer/michaelfromyeg"

@@ -31,7 +31,7 @@ interface TripCardProps {
 }
 
 const TripCard = ({ itinerary }: TripCardProps) => (
-  <Card className="group h-full overflow-hidden transition-colors hover:bg-muted/50">
+  <Card className="group hover:bg-muted/50 h-full overflow-hidden pt-0 transition-colors">
     {itinerary.coverImage ? (
       <div className="relative h-48 w-full">
         <Image
@@ -44,12 +44,12 @@ const TripCard = ({ itinerary }: TripCardProps) => (
         />
       </div>
     ) : (
-      <div className="flex h-48 w-full items-center justify-center bg-muted">
-        <ImageIcon className="h-12 w-12 text-muted-foreground" />
+      <div className="bg-muted flex h-48 w-full items-center justify-center">
+        <ImageIcon className="text-muted-foreground h-12 w-12" />
       </div>
     )}
 
-    <div className="flex h-[calc(100%-12rem)] flex-col">
+    <div className="flex flex-1 flex-col gap-6">
       <CardHeader>
         <CardTitle className="line-clamp-2 text-lg">
           {itinerary.title}
@@ -75,7 +75,7 @@ const TripCard = ({ itinerary }: TripCardProps) => (
             </div>
           </div>
           {itinerary.description && (
-            <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">
+            <p className="text-muted-foreground mt-2 line-clamp-2 text-sm">
               {itinerary.description}
             </p>
           )}
@@ -83,7 +83,7 @@ const TripCard = ({ itinerary }: TripCardProps) => (
       </CardHeader>
 
       <CardFooter className="mt-auto">
-        <div className="flex items-center text-sm text-primary">
+        <div className="text-primary flex items-center text-sm">
           View itinerary
           <ChevronRight className="ml-1 h-4 w-4" />
         </div>
@@ -102,12 +102,12 @@ export default function TravelPage() {
     <div className="container mx-auto max-w-4xl px-4 py-8">
       <div className="mb-8 space-y-4">
         <h1 className="text-4xl font-bold tracking-tight">Travel</h1>
-        <p className="text-lg text-muted-foreground">
+        <p className="text-muted-foreground text-lg">
           Adventures and detailed itineraries from around the world.
         </p>
       </div>
 
-      <Card className="mb-12">
+      <Card className="mb-12 py-0">
         <CardContent className="p-8">
           <div className="flex w-full justify-center">
             <TravelGlobe itineraries={travelData.itineraries} />

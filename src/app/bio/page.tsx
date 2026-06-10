@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 const BioPage = () => {
   return (
-    <div className="min-h-screen bg-background p-8">
+    <div className="bg-background min-h-screen p-8">
       <div className="mx-auto max-w-2xl space-y-6">
         <div className="flex flex-col items-start gap-8 md:flex-row">
           <div className="relative h-48 w-48 shrink-0 overflow-hidden rounded-lg">

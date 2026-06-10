@@ -56,7 +56,7 @@ const FeedView = ({ posts }: FeedViewProps) => {
     <div className="space-y-10">
       {posts.map((post) => (
         <Link key={post.id} href={`/blog/${post.slug}`} className="block">
-          <article className="group rounded-lg border border-border/50 p-6 transition-all duration-300 hover:border-accent hover:bg-muted/50">
+          <article className="group border-border/50 hover:border-accent hover:bg-muted/50 rounded-lg border p-6 transition-all duration-300">
             <div className="flex items-start gap-6">
               {post.coverImage && (
                 <div className="relative hidden h-44 w-64 shrink-0 overflow-hidden rounded-lg sm:block">
@@ -76,24 +76,24 @@ const FeedView = ({ posts }: FeedViewProps) => {
                     {post.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="inline-flex items-center rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary transition-transform duration-200 hover:scale-105"
+                        className="bg-primary/10 text-primary inline-flex items-center rounded-md px-2 py-1 text-xs font-medium transition-transform duration-200 hover:scale-105"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
-                  <h3 className="text-2xl font-semibold tracking-tight transition-colors duration-200 group-hover:text-primary">
+                  <h3 className="group-hover:text-primary text-2xl font-semibold tracking-tight transition-colors duration-200">
                     {post.title}
                   </h3>
-                  <div className="flex items-center text-sm text-muted-foreground">
+                  <div className="text-muted-foreground flex items-center text-sm">
                     <Calendar className="mr-1.5 h-4 w-4" />
                     {formatDate(post.publishedDate)}
                   </div>
                 </div>
-                <p className="line-clamp-5 text-muted-foreground">
+                <p className="text-muted-foreground line-clamp-5">
                   {getContentPreview(post.content)}
                 </p>
-                <div className="flex items-center text-sm font-medium text-primary">
+                <div className="text-primary flex items-center text-sm font-medium">
                   Read more...
                   <ChevronRight className="ml-1 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
                 </div>
@@ -142,7 +142,7 @@ const BlogViewSwitcher = ({
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {paginatedPosts.map((post) => (
             <Link key={post.id} href={`/blog/${post.slug}`}>
-              <Card className="card-glow group h-full overflow-hidden shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+              <Card className="card-glow group h-full overflow-hidden pt-0 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
                 <div className="relative h-48 w-full overflow-hidden">
                   {post.coverImage ? (
                     <Image
@@ -154,14 +154,14 @@ const BlogViewSwitcher = ({
                       className="object-cover transition-all duration-300 group-hover:scale-105 group-hover:brightness-105"
                     />
                   ) : (
-                    <div className="flex h-full w-full items-center justify-center bg-muted">
-                      <ImageIcon className="h-12 w-12 text-muted-foreground" />
+                    <div className="bg-muted flex h-full w-full items-center justify-center">
+                      <ImageIcon className="text-muted-foreground h-12 w-12" />
                     </div>
                   )}
                 </div>
-                <div className="flex h-[calc(100%-12rem)] flex-col">
+                <div className="flex flex-1 flex-col gap-6">
                   <CardHeader>
-                    <CardTitle className="line-clamp-2 text-lg transition-colors duration-200 group-hover:text-primary">
+                    <CardTitle className="group-hover:text-primary line-clamp-2 text-lg transition-colors duration-200">
                       {post.title}
                     </CardTitle>
                     <CardDescription>
@@ -173,7 +173,7 @@ const BlogViewSwitcher = ({
                         {post.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="inline-flex items-center rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary transition-transform duration-200 hover:scale-105"
+                            className="bg-primary/10 text-primary inline-flex items-center rounded-md px-2 py-1 text-xs font-medium transition-transform duration-200 hover:scale-105"
                           >
                             {tag}
                           </span>
@@ -182,12 +182,12 @@ const BlogViewSwitcher = ({
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="flex-1">
-                    <p className="line-clamp-2 text-sm text-muted-foreground">
+                    <p className="text-muted-foreground line-clamp-2 text-sm">
                       {post.description}
                     </p>
                   </CardContent>
                   <CardFooter className="justify-end">
-                    <div className="flex items-center text-sm text-primary">
+                    <div className="text-primary flex items-center text-sm">
                       Read more
                       <ChevronRight className="ml-1 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
                     </div>

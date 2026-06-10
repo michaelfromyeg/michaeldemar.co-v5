@@ -101,7 +101,7 @@ export function ImageGallery({ images }: ImageGalleryProps) {
           >
             <button
               onClick={() => setSelectedIndex(null)}
-              className="absolute right-4 top-4 text-white transition-colors hover:text-gray-300"
+              className="absolute top-4 right-4 text-white transition-colors hover:text-gray-300"
             >
               <X className="h-6 w-6" />
               <span className="sr-only">Close</span>
@@ -109,7 +109,7 @@ export function ImageGallery({ images }: ImageGalleryProps) {
 
             <button
               onClick={(e) => handleNavigation('prev', e)}
-              className="absolute left-4 top-1/2 -translate-y-1/2 text-white transition-colors hover:text-gray-300"
+              className="absolute top-1/2 left-4 -translate-y-1/2 text-white transition-colors hover:text-gray-300"
             >
               <ChevronLeft className="h-8 w-8" />
               <span className="sr-only">Previous image</span>
@@ -117,7 +117,7 @@ export function ImageGallery({ images }: ImageGalleryProps) {
 
             <button
               onClick={(e) => handleNavigation('next', e)}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-white transition-colors hover:text-gray-300"
+              className="absolute top-1/2 right-4 -translate-y-1/2 text-white transition-colors hover:text-gray-300"
             >
               <ChevronRight className="h-8 w-8" />
               <span className="sr-only">Next image</span>

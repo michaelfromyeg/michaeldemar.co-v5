@@ -4,19 +4,19 @@ import Link from 'next/link'
 
 export default function NotFound() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background p-4">
+    <div className="bg-background flex min-h-screen items-center justify-center p-4">
       <div className="w-full max-w-2xl space-y-8 text-center">
         <div className="space-y-2">
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl">
             404 - Page Not Found
           </h1>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-muted-foreground text-lg">
             Looks like you&apos;ve ventured into uncharted territory.
           </p>
         </div>
 
         <div className="flex justify-center">
-          <Code2 className="h-32 w-32 text-muted-foreground opacity-50" />
+          <Code2 className="text-muted-foreground h-32 w-32 opacity-50" />
         </div>
 
         <div className="space-y-4">

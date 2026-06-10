@@ -202,9 +202,9 @@ export default async function SubdomainsPage() {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    <div className="text-sm text-muted-foreground">
+                    <div className="text-muted-foreground text-sm">
                       Points to:{' '}
-                      <code className="rounded bg-muted/20 px-2 py-1 font-mono text-foreground">
+                      <code className="bg-muted/20 text-foreground rounded px-2 py-1 font-mono">
                         {subdomain.target}
                       </code>
                     </div>
@@ -213,13 +213,13 @@ export default async function SubdomainsPage() {
                         <div className="mb-2 font-medium">Preview:</div>
                         {isApi ? (
                           // Show API response for API endpoints
-                          <pre className="overflow-auto rounded bg-muted p-4">
+                          <pre className="bg-muted overflow-auto rounded p-4">
                             {status.status}
                           </pre>
                         ) : (
                           // Show iframe preview for non-API endpoints
                           <div className="relative">
-                            <div className="overflow-hidden rounded border border-border">
+                            <div className="border-border overflow-hidden rounded border">
                               <iframe
                                 title={`Preview of ${status.preview}`}
                                 src={status.preview}
@@ -232,7 +232,7 @@ export default async function SubdomainsPage() {
                               href={status.preview}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="absolute right-2 top-2 rounded-full bg-background/80 p-2 shadow-xs hover:bg-background"
+                              className="bg-background/80 hover:bg-background absolute top-2 right-2 rounded-full p-2 shadow-xs"
                             >
                               <Maximize2 className="h-4 w-4" />
                             </a>
@@ -243,7 +243,7 @@ export default async function SubdomainsPage() {
                     {status && !status.isUp && (
                       <div className="text-sm">
                         <div className="mb-2 font-medium">Status:</div>
-                        <pre className="overflow-auto rounded bg-muted p-4">
+                        <pre className="bg-muted overflow-auto rounded p-4">
                           <span className="text-destructive">
                             {status.error || status.status}
                           </span>

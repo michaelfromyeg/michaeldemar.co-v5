@@ -101,12 +101,11 @@ interface YouTubeEmbedProps {
 
 const YouTubeEmbed = ({ videoId, className }: YouTubeEmbedProps) => {
   return (
-    <Card className={cn('not-prose my-4 overflow-hidden', className)}>
+    <Card className={cn('not-prose my-4 overflow-hidden py-0', className)}>
       <div className="relative h-0 pb-[56.25%]">
         <iframe
           title="YouTube video player"
           src={`https://www.youtube.com/embed/${videoId}`}
-          title="YouTube video player"
           className="absolute top-0 left-0 h-full w-full"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
@@ -183,7 +182,9 @@ const SmartLink = ({ href, children, inline = false }: SmartLinkProps) => {
             src={href}
             aria-label={typeof children === 'string' ? children : 'Video'}
             className="w-full"
-          />
+          >
+            <track kind="captions" />
+          </video>
         </Card>
       )
     }
@@ -221,7 +222,7 @@ const SmartLink = ({ href, children, inline = false }: SmartLinkProps) => {
     const fileName = href.split('/').pop()
 
     return (
-      <Card className={cn('not-prose group', !inline && 'my-4')}>
+      <Card className={cn('not-prose group py-0', !inline && 'my-4')}>
         <a
           href={href}
           target="_blank"

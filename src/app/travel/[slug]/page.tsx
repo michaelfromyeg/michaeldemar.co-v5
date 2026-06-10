@@ -53,7 +53,7 @@ export default async function TravelItineraryPage({ params }: PageProps) {
     <article className="container mx-auto max-w-3xl px-4 py-8">
       <Link
         href="/travel"
-        className="mb-8 inline-flex items-center text-sm text-muted-foreground hover:text-primary"
+        className="text-muted-foreground hover:text-primary mb-8 inline-flex items-center text-sm"
       >
         <ChevronLeft className="mr-1 h-4 w-4" />
         Back to travel
@@ -64,7 +64,7 @@ export default async function TravelItineraryPage({ params }: PageProps) {
           {itinerary.title}
         </h1>
 
-        <div className="flex flex-wrap items-center gap-4 text-muted-foreground">
+        <div className="text-muted-foreground flex flex-wrap items-center gap-4">
           <div className="flex items-center gap-2">
             <MapPin className="h-4 w-4" />
             {itinerary.region}
@@ -85,13 +85,13 @@ export default async function TravelItineraryPage({ params }: PageProps) {
         </div>
 
         {itinerary.description && (
-          <p className="mt-4 text-lg text-muted-foreground">
+          <p className="text-muted-foreground mt-4 text-lg">
             {itinerary.description}
           </p>
         )}
       </header>
 
-      <div className="prose prose-gray max-w-none dark:prose-invert">
+      <div className="prose prose-gray dark:prose-invert max-w-none">
         <PostContent source={itinerary.content ?? ''} />
       </div>
     </article>
