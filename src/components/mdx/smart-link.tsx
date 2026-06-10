@@ -13,7 +13,7 @@ interface SmartLinkProps {
 }
 
 const parseYouTubeId = (url: string): string | null => {
-  const regExp = /^.*(?:youtu.be\/|v\/|e\/|u\/\w+\/|embed\/|v=)([^#\&\?]*).*/
+  const regExp = /^.*(?:youtu.be\/|v\/|e\/|u\/\w+\/|embed\/|v=)([^#&?]*).*/
   const match = url.match(regExp)
   return match && match[1].length === 11 ? match[1] : null
 }
@@ -83,6 +83,7 @@ const YouTubeEmbed = ({ videoId, className }: YouTubeEmbedProps) => {
     <Card className={cn('my-4 overflow-hidden', className)}>
       <div className="relative h-0 pb-[56.25%]">
         <iframe
+          title="YouTube video player"
           src={`https://www.youtube.com/embed/${videoId}`}
           className="absolute left-0 top-0 h-full w-full"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

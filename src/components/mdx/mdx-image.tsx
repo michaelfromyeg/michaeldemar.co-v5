@@ -29,14 +29,10 @@ const MDXImage = ({
   return (
     <>
       <div className="not-prose my-8">
-        <div
-          className="relative cursor-zoom-in overflow-hidden rounded-lg"
+        <button
+          type="button"
+          className="relative block w-full cursor-zoom-in overflow-hidden rounded-lg"
           onClick={() => setIsOpen(true)}
-          role="button"
-          tabIndex={0}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') setIsOpen(true)
-          }}
         >
           {isLoading && (
             <Skeleton className="absolute inset-0 h-full w-full rounded-lg" />
@@ -54,7 +50,7 @@ const MDXImage = ({
             quality={90}
             onLoad={() => setIsLoading(false)}
           />
-        </div>
+        </button>
         {alt && (
           <div className="mt-2 text-center text-sm text-muted-foreground">
             {alt}

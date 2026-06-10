@@ -221,6 +221,7 @@ export default async function SubdomainsPage() {
                           <div className="relative">
                             <div className="overflow-hidden rounded border border-border">
                               <iframe
+                                title={`Preview of ${status.preview}`}
                                 src={status.preview}
                                 className="h-96 w-full"
                                 sandbox="allow-same-origin allow-scripts"
