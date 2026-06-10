@@ -46,12 +46,7 @@ const CodeBlock = ({ children, className, language }: CodeBlockProps) => {
                 <WrapText className="text-muted-foreground hover:text-primary h-4 w-4" />
               </Button>
             </TooltipTrigger>
-            <TooltipContent
-              side="bottom"
-              className="bg-popover text-popover-foreground rounded-md px-3 py-1.5 text-xs"
-            >
-              Toggle word wrap
-            </TooltipContent>
+            <TooltipContent side="bottom">Toggle word wrap</TooltipContent>
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
@@ -69,12 +64,7 @@ const CodeBlock = ({ children, className, language }: CodeBlockProps) => {
                 )}
               </Button>
             </TooltipTrigger>
-            <TooltipContent
-              side="bottom"
-              className="bg-popover text-popover-foreground rounded-md px-3 py-1.5 text-xs"
-            >
-              Copy code
-            </TooltipContent>
+            <TooltipContent side="bottom">Copy code</TooltipContent>
           </Tooltip>
         </div>
         {language && (

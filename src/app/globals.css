@@ -190,23 +190,24 @@
   --tw-prose-links: var(--primary);
   --tw-prose-code: var(--foreground);
 
-  /* Headers */
-  & :where(h1, h2, h3, h4) {
-    @apply text-foreground scroll-mt-20;
+  /* Headers: plain selectors (0,1,1) so these beat the typography plugin's
+     :where() rules (0,1,0), which otherwise win the cascade tie */
+  & :is(h1, h2, h3, h4) {
+    @apply text-foreground scroll-mt-20 leading-tight;
     font-family: var(--font-teko);
-    font-weight: 500;
+    font-weight: 600;
   }
 
-  & :where(h1) {
-    @apply mt-12 mb-6 text-4xl leading-tight;
+  & h1 {
+    @apply mt-12 mb-6 text-4xl;
   }
 
-  & :where(h2) {
-    @apply mt-10 mb-4 text-3xl leading-tight;
+  & h2 {
+    @apply mt-10 mb-4 text-3xl;
   }
 
-  & :where(h3) {
-    @apply mt-8 mb-3 text-2xl leading-tight;
+  & h3 {
+    @apply mt-8 mb-3 text-2xl;
   }
 
   /* Text elements */

@@ -162,7 +162,7 @@ export default async function SubdomainsPage() {
             return (
               <Card key={subdomain.name}>
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
+                  <CardTitle className="flex items-center gap-2 text-2xl">
                     <a
                       href={`https://${fullDomain}`}
                       target="_blank"
