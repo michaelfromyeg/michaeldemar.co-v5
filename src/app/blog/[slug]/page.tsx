@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import { formatDate } from '@/lib/utils'
+import { TagList } from '@/components/content/content-card'
 import { ChevronLeft, Calendar } from 'lucide-react'
 import Link from 'next/link'
 import { PostContent } from '@/components/mdx/post-content'
@@ -66,16 +67,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             <Calendar className="h-4 w-4" />
             {formatDate(post.publishedDate)}
           </div>
-          <div className="flex gap-2">
-            {post.tags.map((tag) => (
-              <span
-                key={tag}
-                className="bg-primary/10 text-primary inline-flex items-center rounded-md px-2 py-1 text-xs font-medium"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
+          <TagList tags={post.tags} />
         </div>
       </header>
       <div className="prose prose-gray dark:prose-invert max-w-none">
