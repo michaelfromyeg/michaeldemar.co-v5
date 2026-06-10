@@ -1,6 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useMemo, useState, useRef } from 'react'
+import { useRouter } from 'next/navigation'
 import { Search } from 'lucide-react'
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
@@ -12,94 +13,74 @@ import {
   CommandItem,
   CommandEmpty,
 } from '@/components/ui/command'
-import { useSearch } from '@/contexts/search-context'
-import { Skeleton } from '@/components/ui/skeleton'
+import { searchSite, type SearchItem } from '@/lib/search'
 import { useMediaQuery } from '@/hooks/use-media-query'
 
-interface SearchItem {
-  id: string
-  title: string
-  type: string
-  description?: string
-  searchText: string
-  href: string
-  tags?: string[]
-  date?: string
-}
-
-const SEARCH_RESULTS_LIMIT = 20
-const LOADING_SKELETON_COUNT = 3
+const GROUPS: { type: SearchItem['type']; heading: string }[] = [
+  { type: 'page', heading: 'Pages' },
+  { type: 'blog', heading: 'Blog' },
+  { type: 'design', heading: 'Design' },
+  { type: 'travel', heading: 'Travel' },
+]
 
 const SearchButton = ({ onClick }: { onClick: () => void }) => (
   <Button
     variant="ghost"
     size="icon"
-    className="h-9 w-9"
+    className="h-9 w-9 sm:w-auto sm:px-2"
     onClick={onClick}
     aria-label="Open search"
   >
     <Search className="h-4 w-4" />
+    <kbd className="bg-muted text-muted-foreground pointer-events-none hidden rounded border px-1.5 font-mono text-[10px] font-medium sm:inline-block">
+      ⌘K
+    </kbd>
   </Button>
 )
 
-const SearchResults = ({ items }: { items: SearchItem[] }) => (
-  <CommandGroup>
-    {items.map((item) => (
-      <CommandItem
-        key={item.id}
-        value={item.searchText}
-        onSelect={() => {
-          window.location.href = item.href
-        }}
-        className="flex flex-col items-start py-3 text-muted-foreground"
-      >
-        <div className="flex w-full items-center justify-between">
-          <span className="font-medium text-foreground">{item.title}</span>
-          <span className="text-xs text-muted-foreground opacity-80">
-            [{item.type}]
+const SearchResult = ({
+  item,
+  onSelect,
+}: {
+  item: SearchItem
+  onSelect: (href: string) => void
+}) => (
+  <CommandItem
+    value={item.id}
+    onSelect={() => onSelect(item.href)}
+    className="text-muted-foreground flex flex-col items-start py-3"
+  >
+    <span className="text-foreground font-medium">{item.title}</span>
+    {item.description && (
+      <span className="line-clamp-1 text-xs">{item.description}</span>
+    )}
+    {(item.tags?.length || item.date) && (
+      <div className="mt-1 flex flex-wrap gap-1">
+        {item.tags?.map((tag) => (
+          <span
+            key={tag}
+            className="bg-primary/10 text-primary inline-flex items-center rounded-md px-2 py-1 text-xs font-medium"
+          >
+            {tag}
           </span>
-        </div>
-        {item.description && (
-          <span className="line-clamp-1 text-xs">{item.description}</span>
+        ))}
+        {item.date && (
+          <time
+            dateTime={item.date}
+            className="text-muted-foreground/80 text-xs"
+          >
+            {new Date(item.date).toLocaleDateString()}
+          </time>
         )}
-        <div className="mt-1 flex flex-wrap gap-1">
-          {item.tags?.map((tag) => (
-            <span
-              key={tag}
-              className="inline-flex items-center rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary"
-            >
-              {tag}
-            </span>
-          ))}
-          {item.date && (
-            <time
-              dateTime={item.date}
-              className="text-xs text-muted-foreground/80"
-            >
-              {new Date(item.date).toLocaleDateString()}
-            </time>
-          )}
-        </div>
-      </CommandItem>
-    ))}
-  </CommandGroup>
-)
-
-const LoadingSkeleton = () => (
-  <div className="space-y-3 p-4">
-    {Array.from({ length: LOADING_SKELETON_COUNT }).map((_, i) => (
-      <Skeleton
-        key={i}
-        className={`h-4 w-${i === 0 ? 'full' : i === 1 ? '3/4' : '1/2'}`}
-      />
-    ))}
-  </div>
+      </div>
+    )}
+  </CommandItem>
 )
 
 export function SearchModal() {
   const [open, setOpen] = useState(false)
   const [search, setSearch] = useState('')
-  const { searchItems, isLoading } = useSearch()
+  const router = useRouter()
   const inputRef = useRef<HTMLInputElement>(null)
   const isMobile = useMediaQuery('(max-width: 640px)')
   const [isKeyboardVisible, setIsKeyboardVisible] = useState(false)
@@ -133,7 +114,7 @@ export function SearchModal() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === '\\' && (e.metaKey || e.ctrlKey)) {
+      if ((e.key === 'k' || e.key === '\\') && (e.metaKey || e.ctrlKey)) {
         e.preventDefault()
         toggleSearch()
       }
@@ -143,16 +124,24 @@ export function SearchModal() {
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [toggleSearch])
 
-  const filteredItems = useMemo(() => {
-    const searchTerm = search.trim()
-    if (!searchTerm) return []
+  const groups = useMemo(() => {
+    const query = search.trim()
+    if (!query) return []
 
-    return searchItems
-      .filter((item) =>
-        item.searchText.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-      .slice(0, SEARCH_RESULTS_LIMIT)
-  }, [searchItems, search])
+    const results = searchSite(query)
+    return GROUPS.map((group) => ({
+      ...group,
+      items: results.filter((item) => item.type === group.type),
+    })).filter((group) => group.items.length > 0)
+  }, [search])
+
+  const navigate = useCallback(
+    (href: string) => {
+      setOpen(false)
+      router.push(href)
+    },
+    [router]
+  )
 
   return (
     <>
@@ -168,8 +157,11 @@ export function SearchModal() {
           } left-[50%] w-[calc(100%-2rem)] translate-x-[-50%] overflow-hidden p-0 sm:max-w-[550px]`}
         >
           <DialogTitle className="sr-only">Search content</DialogTitle>
-          <Command className="grid h-full grid-rows-[auto_1fr]">
-            <div className="sticky top-0 z-50 border-b bg-background">
+          <Command
+            shouldFilter={false}
+            className="grid h-full grid-rows-[auto_1fr]"
+          >
+            <div className="bg-background sticky top-0 z-50 border-b">
               <CommandInput
                 ref={inputRef}
                 placeholder="Search pages and content..."
@@ -187,20 +179,22 @@ export function SearchModal() {
                   : 'max-h-[300px] min-h-[300px]'
               }`}
             >
-              {isLoading ? (
-                <LoadingSkeleton />
-              ) : (
-                <div className="h-full">
-                  {filteredItems.length === 0 && (
-                    <CommandEmpty className="py-6 text-center text-sm text-muted-foreground">
-                      No results found.
-                    </CommandEmpty>
-                  )}
-                  {filteredItems.length > 0 && (
-                    <SearchResults items={filteredItems} />
-                  )}
-                </div>
+              {groups.length === 0 && (
+                <CommandEmpty className="text-muted-foreground py-6 text-center text-sm">
+                  {search.trim() ? 'No results found.' : 'Start typing...'}
+                </CommandEmpty>
               )}
+              {groups.map((group) => (
+                <CommandGroup key={group.type} heading={group.heading}>
+                  {group.items.map((item) => (
+                    <SearchResult
+                      key={item.id}
+                      item={item}
+                      onSelect={navigate}
+                    />
+                  ))}
+                </CommandGroup>
+              ))}
             </CommandList>
           </Command>
         </DialogContent>
