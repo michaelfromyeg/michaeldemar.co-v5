@@ -2,6 +2,7 @@ import './load-env'
 import { generateBlogData } from '../src/lib/notion/blog'
 import { generateDesignData } from '../src/lib/notion/design'
 import { generateTravelData } from '../src/lib/notion/travel'
+import { buildSearchIndex } from './search-index'
 import fs from 'fs/promises'
 import path from 'path'
 
@@ -33,6 +34,18 @@ async function main() {
       fs.writeFile(
         path.join(dataDir, 'travel.json'),
         JSON.stringify(travelData, null, 2)
+      ),
+      fs.writeFile(
+        path.join(dataDir, 'search-index.json'),
+        JSON.stringify(
+          buildSearchIndex(
+            blogData.posts,
+            designData.projects,
+            travelData.itineraries
+          ),
+          null,
+          2
+        )
       ),
     ])
 

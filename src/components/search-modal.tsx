@@ -13,8 +13,10 @@ import {
   CommandItem,
   CommandEmpty,
 } from '@/components/ui/command'
-import { searchSite, type SearchItem } from '@/lib/search'
+import type { searchSite, SearchItem } from '@/lib/search'
 import { useMediaQuery } from '@/hooks/use-media-query'
+
+type SearchFn = typeof searchSite
 
 const GROUPS: { type: SearchItem['type']; heading: string }[] = [
   { type: 'page', heading: 'Pages' },
@@ -23,7 +25,13 @@ const GROUPS: { type: SearchItem['type']; heading: string }[] = [
   { type: 'travel', heading: 'Travel' },
 ]
 
-const SearchButton = ({ onClick }: { onClick: () => void }) => (
+const SearchButton = ({
+  onClick,
+  shortcutHint,
+}: {
+  onClick: () => void
+  shortcutHint: string
+}) => (
   <Button
     variant="ghost"
     size="icon"
@@ -33,7 +41,7 @@ const SearchButton = ({ onClick }: { onClick: () => void }) => (
   >
     <Search className="h-4 w-4" />
     <kbd className="bg-muted text-muted-foreground pointer-events-none hidden rounded border px-1.5 font-mono text-[10px] font-medium sm:inline-block">
-      ⌘K
+      {shortcutHint}
     </kbd>
   </Button>
 )
@@ -43,11 +51,11 @@ const SearchResult = ({
   onSelect,
 }: {
   item: SearchItem
-  onSelect: (href: string) => void
+  onSelect: (item: SearchItem) => void
 }) => (
   <CommandItem
     value={item.id}
-    onSelect={() => onSelect(item.href)}
+    onSelect={() => onSelect(item)}
     className="text-muted-foreground flex flex-col items-start py-3"
   >
     <span className="text-foreground font-medium">{item.title}</span>
@@ -84,11 +92,30 @@ export function SearchModal() {
   const inputRef = useRef<HTMLInputElement>(null)
   const isMobile = useMediaQuery('(max-width: 640px)')
   const [isKeyboardVisible, setIsKeyboardVisible] = useState(false)
+  const [searchFn, setSearchFn] = useState<SearchFn | null>(null)
+  const [isMac, setIsMac] = useState(true)
 
   const toggleSearch = useCallback(() => {
     setOpen((prev) => !prev)
     setSearch('')
   }, [])
+
+  useEffect(() => {
+    setIsMac(/Mac|iPhone|iPad/.test(navigator.platform))
+    // Clean up the cache left behind by the removed SearchProvider; this can
+    // be deleted in a later release.
+    try {
+      localStorage.removeItem('search-data-cache')
+    } catch {}
+  }, [])
+
+  // The search module bundles the content index, so load it only once the
+  // modal is first opened instead of shipping it with every page.
+  useEffect(() => {
+    if (open && !searchFn) {
+      import('@/lib/search').then((mod) => setSearchFn(() => mod.searchSite))
+    }
+  }, [open, searchFn])
 
   useEffect(() => {
     if (open && inputRef.current) {
@@ -126,26 +153,33 @@ export function SearchModal() {
 
   const groups = useMemo(() => {
     const query = search.trim()
-    if (!query) return []
+    if (!query || !searchFn) return []
 
-    const results = searchSite(query)
+    const results = searchFn(query)
     return GROUPS.map((group) => ({
       ...group,
       items: results.filter((item) => item.type === group.type),
     })).filter((group) => group.items.length > 0)
-  }, [search])
+  }, [search, searchFn])
 
   const navigate = useCallback(
-    (href: string) => {
+    (item: SearchItem) => {
       setOpen(false)
-      router.push(href)
+      if (item.external) {
+        window.location.href = item.href
+      } else {
+        router.push(item.href)
+      }
     },
     [router]
   )
 
   return (
     <>
-      <SearchButton onClick={toggleSearch} />
+      <SearchButton
+        onClick={toggleSearch}
+        shortcutHint={isMac ? '⌘K' : 'Ctrl K'}
+      />
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent
           className={`fixed ${
