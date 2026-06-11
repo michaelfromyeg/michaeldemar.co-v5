@@ -1,6 +1,7 @@
 import nextCoreWebVitals from 'eslint-config-next/core-web-vitals'
 import nextTypescript from 'eslint-config-next/typescript'
 import prettier from 'eslint-config-prettier'
+import oxlint from 'eslint-plugin-oxlint'
 
 const eslintConfig = [
   {
@@ -51,6 +52,10 @@ const eslintConfig = [
       'no-console': 'off',
     },
   },
+  // Turn off ESLint rules already handled by oxlint (from .oxlintrc.json) so the
+  // two linters don't double-report. ESLint keeps the Next-specific rules oxlint
+  // doesn't cover; oxlint owns the rest and runs ~50x faster. Must stay last.
+  ...oxlint.buildFromOxlintConfigFile('.oxlintrc.json'),
 ]
 
 export default eslintConfig

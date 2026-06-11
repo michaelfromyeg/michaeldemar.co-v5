@@ -31,7 +31,6 @@ export function Pagination({
 
   return (
     <nav
-      role="navigation"
       aria-label="Pagination"
       className={cn('flex justify-center gap-2', className)}
     >
