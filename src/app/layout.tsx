@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { ThemeProvider } from '@/components/theme-provider'
-import { Providers } from './providers'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
 import { SpeedInsights } from '@vercel/speed-insights/next'
@@ -77,21 +76,19 @@ export default function RootLayout({
       <body
         className={`${montserrat.variable} ${ubuntu.variable} ${teko.variable} flex min-h-screen flex-col antialiased`}
       >
-        <Providers>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Header />
-            <main className="container mx-auto max-w-6xl grow px-4 sm:px-6 lg:px-8">
-              {children}
-            </main>
-            <Footer />
-            <Toaster />
-          </ThemeProvider>
-        </Providers>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Header />
+          <main className="container mx-auto max-w-6xl grow px-4 sm:px-6 lg:px-8">
+            {children}
+          </main>
+          <Footer />
+          <Toaster />
+        </ThemeProvider>
         <SpeedInsights />
         <Analytics />
       </body>

@@ -1,0 +1,545 @@
+[
+  {
+    "id": "37ac4188-fa0e-803d-8a8f-cf34a85ab749",
+    "title": "Physical Media Still Rocks",
+    "href": "/blog/physical-media-still-rocks",
+    "type": "blog",
+    "description": "",
+    "date": "2026-06-08",
+    "tags": [
+      "Newsletter"
+    ],
+    "content": "It’s been a while, happy Monday. This is the Monday Letter for June 8th, 2026. --- Physical Media Still Rocks My move to San Francisco was a bit of a whirlwind. I was lucky enough to get connected with my now-roommates (who are now some of my best friends) before the move, and they ended up securing our place. Only now do I appreciate what a gift that was, getting spared the gauntlet that is the San Francisco housing market. My only preview of our home was a brief Messenger video call where I could make out a few pixels of our space. I didn’t know the neighborhood at all, nor the city, so I had no real sense of what I was walking into. Since then it’s been full of pleasant surprises. One of my favorites has been how quickly the library became part of my life here. I was always going to spend some amount of time at SFPL—my mom is a librarian, after all. Reading is one of my favorite hobbies, and a good library is a small civic miracle: a public, quiet, generous place that makes it easie"
+  },
+  {
+    "id": "348c4188-fa0e-80e9-b2bb-eac53c7c000c",
+    "title": "Geno Is Score",
+    "href": "/blog/geno-is-score",
+    "type": "blog",
+    "description": "In a world filled with challenges, channel your anger like Evgeni Malkin to compete and thrive, just as the sports world inspires us to score big in life.",
+    "date": "2026-04-20T00:02:00.000-07:00",
+    "tags": [
+      "Newsletter"
+    ],
+    "content": "Happy 4/20. Here’s your Monday Letter for April 20th, 2026. --- Geno Is Score I’ll start by saying something controversial: I like sports. You might think that is not controversial at all, but I’m not sure it’s safe to say in San Francisco. There’s a place called “Sports Basement” where you can, sure, buy hiking boots, but good luck finding a football (of any variety). I get visceral enjoyment, and real inspiration, from watching a bunch of sweaty dudes I’ve never met try to put an object into a target. I’ll never forget waking up at 7am Pacific to watch Lionel Messi take his final step and earn World Cup glory. Or the heartbreak of rolling out of bed at five in the morning to watch Team Canada get crushed in this year’s Winter Olympics. There’s nothing like sport. As a kid, the Edmonton Oilers (my hometown hockey team) were miserable. They finished dead last in the NHL year after year, and despite a litany of first round draft picks, nothing really changed (…until 2015, that is). So I"
+  },
+  {
+    "id": "339c4188-fa0e-8062-b2b3-fe90d55feb12",
+    "title": "Line Dancing, Nostalgia, and Dave",
+    "href": "/blog/line-dancing-nostalgia-and-dave",
+    "type": "blog",
+    "description": "Join me on a nostalgic journey through line dancing, movie memories, and a fantastic concert experience with Dave!",
+    "date": "2026-04-06T23:35:00.000-07:00",
+    "tags": [
+      "Newsletter"
+    ],
+    "content": "It’s April. Did you get pranked on the first? My friend did, by a Waymo. The car told its riders to start humming to help the vehicle “calibrate” before the ride could start. Ha. Ha. Here’s the Monday Letter for April 6th, 2026. --- Line Dancing Line dancing is one of the best new things I’ve been doing this year. Every Sunday night, I stroll down to Lower Haight to join friends at the aptly named Lower Haight Line Dancing (\"LHLD\" from here on out, because that’s a mouthful). From 6 to 10pm, a handful of instructors run a line dancing class out of their garage, and it’s an absolute blast. There’s a great crowd, the dances are a ton of fun, and the song choices are great too. As an Albertan, country bars and line dancing are a core part of the cultural makeup. In middle school, the go-to was always “Cadillac Ranch.” (I looked it up and the first result was a tutorial from the Calgary Stampede organizers, so yeah, Albertan.) I love a good country bar, but that part of my identity faded a"
+  },
+  {
+    "id": "332c4188-fa0e-80cc-929f-db49a56e4503",
+    "title": "The Autobahn, Issue Tracking, and Jon Bernthal",
+    "href": "/blog/the-autobahn-issue-tracking-and-jon-bernthal",
+    "type": "blog",
+    "description": "In this post, I explore the need for a new approach in SaaS to unleash the full potential of AI agents, drawing parallels to autonomous driving and my recent adventures in New York City.",
+    "date": "2026-03-29T17:09:00.000-07:00",
+    "tags": [
+      "Newsletter"
+    ],
+    "content": "And… we’re back! I’ve had a busy last couple of weeks, with trips to Whistler and New York. Lots to talk about. This is the Monday Letter for March 30th, 2026 (and March 23rd and March 16th). --- Give the agents an Autobahn Issue tracking is dead. Or so says the CEO of the hottest issue tracking company. As someone who works at another sort of issue tracking company (really, an everything tracking company), I don’t fully agree, but there’s some truth to it. What I think is dead is the how, more than the what. The “what” is fine. A system of record is still critical. Teams that are extremely organized dramatically leapfrog unorganized teams in the agent-driven era we find ourselves in. There’s still a cold-start problem with agents (you can’t just tell Claude, “build a sustainable business; make no mistakes”… yet), so a clear backlog with well-defined tasks is beneficial. But we keep forcing agents to work like us. There’s no point to the Kanban board anymore, unfortunately. (Candidly, "
+  },
+  {
+    "id": "31fc4188-fa0e-80ed-ad70-f967a0516cdf",
+    "title": "Slopes and Systems",
+    "href": "/blog/slopes-and-systems",
+    "type": "blog",
+    "description": "Michael reflects on the importance of consistent practice in honing skills while sharing insights from his weekend skiing trip and current reading pursuits.",
+    "date": "2026-03-09T23:51:00.000-07:00",
+    "tags": [
+      "Newsletter"
+    ],
+    "content": "Hello from thirty-four thousand, nine hundred and ninety-one feet. I’m on a return flight from Vancouver to San Francisco, and it is four hours to midnight, so it’s probably time for a letter. --- Slopes I spent this past weekend in Whistler, BC. It felt great to be back in Canada, and I felt great on the skis this time around. I’m a fairly average skier: comfortable on all blues, most blacks, and in solid conditions, I’ll occasionally attempt a double-black. I had the chance to ski with some great skiers. They all had the background you’d expect: a childhood close to a mountain, parents who were bought in (both figuratively and literally), and a real commitment to the craft. The common thread was simple: lots of hours on the slopes. It was an inspiring reminder that to be good at a thing, you need to do the thing. I get tripped up by the “slope” of my practice. I’ll optimize how I’m practicing, tweak equipment, read about technique, and generally do everything adjacent to the thing. W"
+  },
+  {
+    "id": "317c4188-fa0e-8057-9ad1-c3d1b468cc33",
+    "title": "The Critical Path and Shaky Knees",
+    "href": "/blog/the-critical-path-and-shaky-knees",
+    "type": "blog",
+    "description": "In this first edition of ",
+    "date": "2026-03-02T00:44:00.000-08:00",
+    "tags": [
+      "Newsletter"
+    ],
+    "content": "Hello! It’s been a while. I hope you’re doing well. One of my big goals for 2026 is to create more, and one of my favorite ways to create is to write. It’s March, so it feels like high time to get started. To reboot my newsletter, I’ll be sharing some thoughts, plus what I’m reading, watching, or listening to, in a short weekly letter, on Mondays (though if I’m late for that, I’ll probably publish mid-week anyway). Here’s the first edition of The Monday Letter. Enjoy! --- Put yourself on the critical path Early in your career, optimizing for learning matters more than optimizing for comfort (don’t take this too far, but still). Critical-path work tends to maximize learning because it sits closest to what really drives the business. A handful of my friends are on the job market right now, and it’s had me reflecting on what I love about my current job and what I’ve, uh, loved less about past jobs. One of the defining characteristics of a great role for me is working on something that put"
+  },
+  {
+    "id": "1fec4188-fa0e-8099-b068-f6e0a3b978f8",
+    "title": "Reviewing some of Google’s attempts to make Gemini useful",
+    "href": "/blog/reviewing-some-of-googles-attempts-to-make-gemini-useful",
+    "type": "blog",
+    "description": "Despite the impressive technology behind Gemini, Google struggles to integrate it effectively across its products, leaving users disappointed by half-baked features and limited capabilities.",
+    "date": "2025-05-25T21:26:00.000-07:00",
+    "tags": [
+      "Blog",
+      "Product"
+    ],
+    "content": "(And how I discovered—I think—the Google Messages Gemini assistant's system prompt.) --- Gemini is brilliant technology. As the first model to outperform humans on MMLU, with its million-token windows and impressive results on SWE-Bench 2.5—the talented team at DeepMind is achieving remarkable things. So, why hasn't this technical excellence translated into meaningful improvements across Google's product ecosystem? As a long-time Android user (from the HTC era through acquisition—I had the HTC One M9—to the Pixel 1, Pixel 3XL, Pixel 5, and now Pixel 8 Pro) and Google fanboy generally (with my Pixel Buds, Pixel Buds 2, Pixel Watch, and Samsung tablet), I have a front-row seat to Google's countless attempts to leverage Gemini across its products. The results? Depressing. Google's product teams seem addicted to the ✨ sparkles ✨. Instead of creating genuinely useful experiences, they simply slap a ✨ button somewhere in the product and call it done. It's painful to watch, especially knowing"
+  },
+  {
+    "id": "1f6c4188-fa0e-8076-8829-cd020be89fdb",
+    "title": "Tuum Est",
+    "href": "/blog/tuum-est",
+    "type": "blog",
+    "description": "As I prepare to graduate and deliver my speech, I reflect on the transformative journey of my undergraduate years and the responsibility we hold to shape the future with purpose and ownership.",
+    "date": "2025-05-17T18:39:00.000-07:00",
+    "tags": [
+      "Blog",
+      "Speech"
+    ],
+    "content": "I need to start with a confession. I don’t actually have a degree yet. But in ten days, I finally will. I know—it’s strange. Haven’t I been working full-time in San Francisco for nearly a year? There's more to the story, of course. Nearly a year ago, I effectively graduated—completing my undergraduate coursework with a final edit to a machine learning survey paper on sparse Mixture-of-Experts (MoEs) (which is most certainly outdated by now). But why didn't I get my degree? It came down to timing. I was scheduled to walk the stage right when my Notion internship was set to begin. After much deliberation over managing both graduation and a move to San Francisco, I had to declare bankruptcy on my time. I decided to focus solely on the move and postpone graduation until the following year. (Thankfully, this worked out fine—UBC provided a letter confirming I'd completed my coursework, even without the physical degree. That satisfied immigration requirements.) A year later, graduation is fin"
+  },
+  {
+    "id": "16dc4188-fa0e-80a4-ba08-d5a601880655",
+    "title": "Re-writing my blog in Next.js 15",
+    "href": "/blog/re-writing-my-blog-in-nextjs-15",
+    "type": "blog",
+    "description": "This winter, I revamped my personal website using Next.js 15, moving away from Gatsby to embrace modern web development practices and enhance my blogging experience!",
+    "date": "2024-12-31T15:48:00.000-07:00",
+    "tags": [
+      "Blog",
+      "Technical"
+    ],
+    "content": "This winter break, I re-wrote my personal website. It went great. Here’s the behind-the-scenes story. Motivation In the summer of 2020 (—in the midst of the COVID-19 pandemic, locked in my parent’s basement), I, as a bright-eyed computer science freshman, decided to take on a nobel endeavor: re-writing my personal website. My previous instances (v1, v2, and v3) had used Jekyll (i.e., a lot of mangled HTML and CSS, managed with Ruby). I had recently learned React, and was overall a much more component developer. It was time for an upgrade! I shopped around for frameworks. I knew I wanted something with built-in static site generation, since I was probably going to blog. I remember evaluating things like Hugo (Go), Pelican (Python), and Next.js, but ultimately settled on a lil’ ol’ framework called Gatsby. That was not a very good idea. I subsequently endured 4 years of errors like… …or… Not fun. I had to perform maintaince constantly, and it felt like there was always something to upgra"
+  },
+  {
+    "id": "166c4188-fa0e-80e2-830b-d87d99d95caf",
+    "title": "So you want to be a computer scientist?",
+    "href": "/blog/so-you-want-to-be-a-computer-scientist",
+    "type": "blog",
+    "description": "Discover practical steps and resources to kickstart your journey in computer science through hands-on projects and community engagement.",
+    "date": "2024-12-30T11:24:00.000-07:00",
+    "tags": [
+      "Guides",
+      "Technical"
+    ],
+    "content": "If I got hit by a bus and forgot everything I knew about computer science [1], here is how’d I re-learn it [2]. Inspired by Robert Heaton’s “Projects for Advanced Beginners” (link) and a bunch of random knowledge I’ve accumulated over time. ‼️ Are you already someone with knowledge in the field of computer science, and looking for resources or opportunities? I encourage you to look at csjobs2 instead. This is my curated list of every-resource-ever I considered in undergrad, and has suggestions for wannabe engineers, PMs, VCs, etc. Let’s get to it. First: the number one thing to understand is ‘coding’ is something you learn by doing. There is a lot of theoretical stuff to know (—whose importance varies with your goals), but fundamentally you need to code. A lot. So, let’s “learn by doing.” To give that some structure, your curriculum will come as a curated list of projects. This will be supplemented by things to read or look at when you get board. And then some philosophical advice how "
+  },
+  {
+    "id": "169c4188-fa0e-8003-a494-dace58eb9112",
+    "title": "Makefiles",
+    "href": "/blog/makefiles",
+    "type": "blog",
+    "description": "Dive into this comprehensive guide on Makefiles and discover how to effectively use GNU's ",
+    "date": "2024-12-28T18:58:00.000-07:00",
+    "tags": [
+      "Guides",
+      "Technical"
+    ],
+    "content": "A brief guide to GNU's make. Check it out here! It’s since been migrated here! I used to use make often in small-to-medium sized code snippets in CPSC 213 (\"Introduction to Computer Systems\") at UBC as a part of the teaching team. Hopefully this guide can serve students well and provide some clarity on this somewhat arcane build tool! Makefiles 🐐 A guide to Makefiles. Designed to be useful for students I taught at the University of British Columbia (UBC), but also hopefully more broadly applicable to other developers. (I've read a lot of Makefile tutorials, and most of them are a bit confusing. So, hopefully this rendition is a bit clearly for undergraduates.) The content here is mostly just a more accessible version of Chapter 2 of the make manual, \"An Introduction to Makefiles,\" with some extra tidbits here and there. Now, without further ado, Motivations make is a command line program that, in tandem with a Makefile, allows one to 'compile' and 'link' small, medium, and large progr"
+  },
+  {
+    "id": "141c4188-fa0e-8082-b413-ed132c1dd339",
+    "title": "A decade of scrap booking",
+    "href": "/blog/a-decade-of-scrap-booking",
+    "type": "blog",
+    "description": "Join me as I reflect on a decade of scrapbooking, exploring how this creative hobby has transformed my memories into a vibrant tapestry of life's highs and lows.",
+    "date": "2024-11-17",
+    "tags": [
+      "Blog"
+    ],
+    "content": "In my first year of high school, I had the luxury of spending an all-inclusive weekend in Lacombe, Alberta. In case you’re not familiar, Lacombe is a city in central Alberta, 125 kilometers south of Edmonton and home of the Len Thompson Manufacturing Plant (that part, of course, you already knew). In 2017, it was home to the Alberta Student Leadership Conference. The website is still up, here. I went, starry eyed, to learn how to lead. And learn I did! (My whole leadership experience in high school would be a blog post on its own.) I attended countless workshops, keynotes, and lunches. And what did I get at each of them? (Besides, you know, leadership skills.) Paper. In some form or another: pamphlets, brochures, photos, postcards, name tags, bookmarks. You name it, I got one. Coming home, I was faced with a serious dilemma. How was I going to possibly save all of this essential learning material? My printed-out-Polaroids? Or further still, my conference badge?! My mother (as always) h"
+  },
+  {
+    "id": "16ac4188-fa0e-8039-af80-e08e9185783d",
+    "title": "RapViz",
+    "href": "/blog/rapviz",
+    "type": "blog",
+    "description": "RapViz is an innovative web app that analyzes rap lyrics to highlight rhymes, leveraging Spotify and NLP for an engaging user experience.",
+    "date": "2024-07-06T18:58:00.000-06:00",
+    "tags": [
+      "Project",
+      "Technical"
+    ],
+    "content": "See your bars broken down right in the browser. Powered by Spotify, Genius, and Google Cloud. Check out the GitHub repository here! Background There are loads of videos online that inspired this project. Take a look at Genius' version, Check The Rhyme, or Vox's, Rapping, deconstructed: The best rhymers of all time. These videos get millions, and I mean millions of hits online. Why? Well, it's fun! And it's cool. The basic concept is that rap lyrics are \"broken down\" and the rhyming groups are highlighted. Often the videos will do this on a syllable-by-syllable basis, but also sometimes do multi-word rhymes! For this project, we wanted to start simple and focus on single, whole word rhymes. We thought we could leverage NLP, a couple of freely available APIs, and some basic React so create a website that generates these kinds of \"highlighted\" rhymes. So what happened? Usage The user is presented with one of two options. They may either submit their own bars into a text field, or they can"
+  },
+  {
+    "id": "169c4188-fa0e-801f-bb54-e4c506a127de",
+    "title": "I’m bad at flying",
+    "href": "/blog/im-bad-at-flying",
+    "type": "blog",
+    "description": "Join me on my chaotic journey of flying mishaps, from expired licenses to unexpected train rides, as I hilariously navigate the challenges of traveling as a passenger.",
+    "date": "2023-10-29",
+    "tags": [
+      "Blog"
+    ],
+    "content": "📅 Despite the edited date, this post was actually written and published on October 29th, 2023. Story time. I'm bad at flying. But I don't mean the act of flying, as a pilot. I mean as a passenger. How can you be bad at packing your bags, going to the airport, filing through security, and hopping on a plane? Great question! I'm not sure, but after reading this, I think you'll be inclined to agree. Right now, I'm sitting in the Victoria airport after trying to board a short-haul flight to my hometown of Edmonton, having it cancelled and rebooked (instead through a three-way connection from Vancouver-Victoria-Calgary-Edmonton), then illegally boarding my first flight with an expired license, only to get flagged in Victoria. That's right. I'm now stranded in YYJ all because I wanted to watch some Heritage Classic hockey. And for turning 22. This morning was hell from start to finish. I woke up with a blistering hangover at the crack of dawn. The past night I'd spent Hall-o-weekend-ing and"
+  },
+  {
+    "id": "168c4188-fa0e-805c-9a31-d088de638da2",
+    "title": "Day One: My internship at Amazon",
+    "href": "/blog/day-one-my-internship-at-amazon",
+    "type": "blog",
+    "description": "Reflecting on my transformative summer internship at Amazon, I share key insights and lessons learned while navigating the complexities of big tech.",
+    "date": "2022-08-23",
+    "tags": [
+      "Blog",
+      "Technical"
+    ],
+    "content": "📅 Despite the edited date, this post was actually written and published on August 23rd, 2022. It's been about two weeks since I wrapped up my position as a Software Development Engineer (SDE) Intern at Amazon, and I wanted to reflect on my time there this summer. I often get asked about the full end-to-end experience of my time at Amazon, so before I get into what I worked on and what I learned, I'll first do a full re-wind to my initial application. Working towards a FAANG offer In recruiting for my third co-op term at UBC, I laid out definitive guidelines for the kind of position I was after. My primary objective was to work at a company solving complex, 'technically engaging' problems, to grow quickly as an early-career engineer. In addition to at-work complexity, I was also very interested in moving to a new city in Canada or the US, to grow personally and get a chance to travel to new places. I applied to Amazon in early August as soon as their applications opened. (For those of "
+  },
+  {
+    "id": "169c4188-fa0e-807c-b7bd-f22056b73ac1",
+    "title": "The rescinded internship offer playbook",
+    "href": "/blog/the-rescinded-internship-offer-playbook",
+    "type": "blog",
+    "description": "After having my internship offer rescinded, I’m sharing my game plan for bouncing back in the tech industry with essential tips on networking, perseverance, gratitude, and continuous building.",
+    "date": "2022-07-17T23:55:00.000-06:00",
+    "tags": [
+      "Blog",
+      "Technical"
+    ],
+    "content": "📅 Despite the edited date, this post was actually written and published on July 17th, 2022. This upcoming fall, I was set on making a number of fairly major life changes. Firstly, I was about to move from one of the world's largest technology companies to a cryptocurrency start-up. Secondly, I was going to pack my bags and move from Canada to Palo Alto, California. And thirdly, I was going to do it all basically on my own. As of Thursday, I've been thrown back to square zero. Due to pressures in the cryptocurrency space, coined (pun-intended) a \"crypto winter\" (though frankly it seems pretty sunny in Toronto these days...), my offer at BitGo was rescinded. To be totally candid, I had kind of seen this coming. There were a number of major shake-ups with the early talent team that had recruited me in the first place, and I'd already seen the likes of Coinbase and Shopify pull similar moves. It's an unfortunate reality of working in an emerging industry, and I was aware of the risk in ac"
+  },
+  {
+    "id": "169c4188-fa0e-8062-87fb-cc0fc275b670",
+    "title": "Fill your cup",
+    "href": "/blog/fill-your-cup",
+    "type": "blog",
+    "description": "Discover how to fill your cup with daily highlights that bring warmth and joy amidst life's chaos, and reflect on your favorite moments to boost your mental health.",
+    "date": "2022-07-03",
+    "tags": [
+      "Blog"
+    ],
+    "content": "📅 Despite the edited date, this post was actually written and published on July 3rd, 2022. Every single day, you start out as an empty cup. Humbling, right? Beyond your laundry list of personal to-dos, slog of tasks at work, and mountain of messages to which you need to respond, you actually need to focus on just one thing each day. And that's filling your cup. The inspiration I came across an idea loosely linked to this end product from YouTuber Ali Abdaal. His rather simple, but genius suggestion was to mark a highlight each and every day of your life. \"Mark\" can look differently depending on your routine; my weapon of choice is inscribing an \"H\" beside an item from my bullet journal. In some way, though, you should be tracking your highlights for easy reflection. Having a \"highlight\" each day doesn't mean spending every day at a concert, or a sports game, or at the hottest club. Rather, it's something that brings you a bit of needed warmth when life's natural chaos ensues. It can b"
+  },
+  {
+    "id": "169c4188-fa0e-80a9-b30a-fbd22565ada7",
+    "title": "Predicting Credit Card Defaults",
+    "href": "/blog/predicting-credit-card-defaults",
+    "type": "blog",
+    "description": "This blog post explores the application of machine learning to predict credit card defaults, using a dataset to develop a LightGBM model that achieved an 82% accuracy rate.",
+    "date": "2022-04-18T18:58:00.000-06:00",
+    "tags": [
+      "Project",
+      "Technical",
+      "School"
+    ],
+    "content": "The following blog post was written for the final homework submission of CPSC 330, UBC's \"Applied Machine Learning\" course. In the course, my partner Max and I got a hands-on introduction to machine learning with Python via sklearn. hw6.pdf Problem Defaulting on a credit card payment is a challenging situation for all those involved. The individual who defaulted is tasked with rebuilding their credit score, and the issuer is laden with the debt. Ideally, a financial institution could predict whether or not someone will default ahead of time, and prevent it from happening in the first place. While this is a daunting task—and one that requires sensitivity given the fact we are dealing with people's financial livelihoods—this is a situation where machine learning can be of use. Question We'll apply machine learning techniques to answer the following question. Will this person default next month on their credit card payment? With data relating to that person's demographics, payment history"
+  },
+  {
+    "id": "169c4188-fa0e-80b5-9006-c1f1c0f4d3f5",
+    "title": "jCite",
+    "href": "/blog/jcite",
+    "type": "blog",
+    "description": "Simplify your citation management with jCite, a user-friendly tool designed to help you effortlessly track and organize your references for academic assignments!",
+    "date": "2021-06-04T18:58:00.000-06:00",
+    "tags": [
+      "Project",
+      "Technical",
+      "School"
+    ],
+    "content": "Create and manage your citations without all the headaches! Background This project was made for CPSC 210, a UBC second-year course focused on software construction. The course uses Java, and likewise this project was made using Java and JavaFX for the UI. I asked my girlfriend if she had any project ideas, and she mentioned she struggled keeping track of citations for her assignments, so I wanted to build a tool that could meet her needs. I felt the exact same feeling when I wrote my 4,000 word Extended Essay in high school. Trying to remember and keep track of citations can be hard if you're not an experienced writer. Usage A user can create an account and manage a list of assignments. With each assignment, they can paragraph-by-paragraph manage citations (e.g., who are you citing, what page number, etc.) and then automatically generate a works-cited page with reported \"confidence.\" How it's made The project is made with vanilla Java and JavaFX. Challenges I struggled quite a bit wit"
+  },
+  {
+    "id": "169c4188-fa0e-8043-9009-e3c299828b86",
+    "title": "groUber",
+    "href": "/blog/grouber",
+    "type": "blog",
+    "description": "Transform event planning with groUber, the ultimate carpool scheduling tool that takes the hassle out of organizing rides for your group!",
+    "date": "2020-08-06T18:58:00.000-06:00",
+    "tags": [
+      "Project",
+      "Technical"
+    ],
+    "content": "groups + Uber = groUber. Source code available here. groUber is aimed to help event planners create carpools and was built for To the Moon and Hack, an MLH event. (If you're going to use this project to plan your event, remember to stay 6ft apart!) Motivation This project was built by a group of 5 students from UBC in Vancouver, BC who love automating things. And one horrific task all of us have run into when planning our events is creating a workable carpool schedule. It's a great option for getting your group together: whether it be parents figuring out how best to get their kids to soccer practice, or friends accommodating those without access to a car, carpooling is common, but creating a plan can be painful, to say the least. You finally come up with a workable schedule: everyone can make it to the event, no driver has to go in annoying, wasteful loops, and everything can start on time. Then a driver with 4 seats drops out. And you have to do it all over again. No, thanks. Introdu"
+  },
+  {
+    "id": "169c4188-fa0e-80e9-b1df-e36f4325a24e",
+    "title": "My COVID summer",
+    "href": "/blog/my-covid-summer",
+    "type": "blog",
+    "description": "Reflecting on my unexpected and transformative experiences during a summer defined by COVID-19, I navigated online classes, adapted to new opportunities, and learned to thrive amidst uncertainty.",
+    "date": "2020-07-18T00:07:00.000-06:00",
+    "tags": [
+      "Blog"
+    ],
+    "content": "📅 Despite the edited date, this post was actually written and published on July 18th, 2020. It's a Friday after classes. I'm grabbing a quick bite at one of UBC's only on-campus sit-down restaurants with a close friend, and a Gmail notification appears on my phone. As soon as I saw \"UBC\" in the subject line, I already knew what it was going to be. Students had already been buzzing about it for the past week, and I even tweeted about it. We were finally going online. Classes are suspended at the UofA, UofT, McGill, Stanford, Western, UDub, Harvard, and UBC is still open... Pumped to go earn my 2% iClicker participation marks today. —Michael DeMarco (@michaelfromyeg) March 13, 2020 Trailing behind the universities I mentioned in my Tweet, all of our classes were going remote starting the following Monday. Even though I had seen it coming, I was still a bit shell shocked. I think everyone had their \"COVID-19 moment\", where it stopped being a headline you read about in the news, and start"
+  },
+  {
+    "id": "169c4188-fa0e-80be-8567-dbd1c556f154",
+    "title": "Massive Volunteering",
+    "href": "/blog/massive-volunteering",
+    "type": "blog",
+    "description": "Connect high school students with volunteer opportunities through a user-friendly website designed to bridge the gap between eager volunteers and organizations in need.",
+    "date": "2020-05-03T18:58:00.000-06:00",
+    "tags": [
+      "Project",
+      "Technical"
+    ],
+    "content": "A website built to connect high school students with organizations actively searching for volunteers. Here's the GitHub repository. Background In high school, I completed the IB program. For my Computer Science Internal Assessment (IA) I decided to build a website for a club I was also helping lead. The basic goal was to be able to allow organizations looking for volunteers to advertise opportunities directly to high school students. Usage Volunteers can create an account and profile. Organizations can as well. There's a blog-style feed of opportunities that appears in the user's feed. How it's made The project is built using Python Flask and Bootstrap for the styling. Challenges This was the first real web project I ever built, so I had hard time building things without being reliant on tutorials. Accomplishments The app works pretty nicely, and it received a \\$500 grant from the Edmonton Community Foundation! I hope to deploy it Summer 2020. Future I need to add the organization \"flo"
+  },
+  {
+    "id": "169c4188-fa0e-8039-a7f6-e9d09e908104",
+    "title": "CSV Upload Tool",
+    "href": "/blog/csv-upload-tool",
+    "type": "blog",
+    "description": "Easily upload and match your CSV data with this practical tool designed for seamless integration into larger projects!",
+    "date": "2020-04-29T18:58:00.000-06:00",
+    "tags": [
+      "Project",
+      "Technical",
+      "Work"
+    ],
+    "content": "Upload and match CSV data. Simple, but practical! Check out the project for yourself, here. Background This project was made for Artesian software, to be used in a more large scale project. Usage A user can upload a CSV file with any data, and then can match their \"headers\" (the columns) to the one's anticipated by the app. With these pairings, the app then \"reassigns\" the user's data with the new headings and saves it to a SQLite database. Check out some screenshots below! How it's made The project was made using React, Flask, and SQLite. I used Bootstrap to style the components. Challenges I struggled a decent amount to get SQLAlchemy to accept JSON data. Turns out they have a column type specifically for JSON. Consider this your friendly reminder to read the docs carefully! Accomplishments I think the user experience is really smooth, and the app is visually quite appealing! Future It'd be great to implement drag and drop."
+  },
+  {
+    "id": "169c4188-fa0e-806d-b551-c51ab6782d6d",
+    "title": "ARPro",
+    "href": "/blog/arpro",
+    "type": "blog",
+    "description": "Experience the convenience of visualizing Best Buy products in your home with the innovative ARPro app, developed during the BizHacks 2020 hackathon.",
+    "date": "2020-01-30T18:58:00.000-07:00",
+    "tags": [
+      "Project",
+      "Technical"
+    ],
+    "content": "An AR Android application to let you view the latest Best Buy product in your home, from the comfort of your pyjamas. Background This project was developed by Michael DeMarco and Liang Liu, and backed by a business model developed by Benji Li, Daniel Frydman, and Ophir Greif. It was built at BizHacks 2020, a business-oriented hackathon sponsored by Best Buy and hosted at UBC. My team and I developed a business solution for Best Buy, and took home the 2nd place prize out of over 50 teams. Usage The project allowed users to determine what product dimensions were right for them from the comfort of their own home. Not sure if a 60\" or 62\" TV is right for you? Use our app to increment sizes of a mock TV displayed right on your wall, courtesy of the latest AR technology, or do a side-by-side comparison, or even enter a custom amount of inches! Check it out below! How it's made This project was built using Java and ARCore. Challenges Getting the AR to work properly was quite tricky; we ran in"
+  },
+  {
+    "id": "169c4188-fa0e-80ad-a19b-e768057804ed",
+    "title": "Michael's Declassified School Survival Guide",
+    "href": "/blog/michaels-declassified-school-survival-guide",
+    "type": "blog",
+    "description": "Master the art of high school survival with these three essential tips on scheduling, learning strategies, and maintaining a balanced life to boost your productivity and well-being.",
+    "date": "2019-08-10T23:45:00.000-06:00",
+    "tags": [
+      "Blog"
+    ],
+    "content": "📅 Despite the edited date, this post was actually written and published on August 10th, 2019. High school is complicated in more ways than one. From Degrassi-esque social drama to life-altering career decisions, it can be seriously difficult to maintain your grades. However, there are some simple tricks to ease the learning process and make your education systematic-that is, without all the overhead of figuring how to do this whole school thing. By following these three tips, you'll surely see a boost in your productivity and an ease in your hectic high school life. First, the schedule. Scheduling is no easy task! But nothing will hinder your high school experience more than not even being able to see what's in front of you. Scheduling has a myriad of benefits, from being able to see hectic exams days in advance, giving yourself free-time, and preventing yourself from double booking. One of the most common high school troubles is when teachers schedule numerous projects and exams for "
+  },
+  {
+    "id": "169c4188-fa0e-8040-9d93-e4897991b171",
+    "title": "Ikigai",
+    "href": "/blog/ikigai",
+    "type": "blog",
+    "description": "Discover how the Japanese concept of ikigai can guide you in choosing a fulfilling career by balancing your passions, skills, and the needs of the world.",
+    "date": "2019-05-06T23:49:00.000-06:00",
+    "tags": [
+      "Blog"
+    ],
+    "content": "📅 Despite the edited date, this post was actually written and published on May 6th, 2019. Some of my readers may know that I recently decided what I'll be doing past high school: studying computer science. This is very exciting as I now feel much more focused and fulfilled. I do find now that it is strange sitting in English classes and the like and trying to stay as motivated as I was. I now know that this subject won't be consequential to my life. However, I still enjoy all of my classes and have loved my school year so far. Something I want to touch on in this piece is how I came to that decision. It's a very muggy thing, trying to decide what you're going to do after high school, and there's mounds of questionable advice out there. \"Follow your passion!\" is one quip I hear a lot. This is terrible advice. Your passion alone should not inform what you do, because it might not make sense with a few others things: what you're good at, what the world actually needs, and what you can ma"
+  },
+  {
+    "id": "169c4188-fa0e-80d7-bb7c-d5e7ef53f546",
+    "title": "10 newsletters to make your inbox more interesting",
+    "href": "/blog/10-newsletters-to-make-your-inbox-more-interesting",
+    "type": "blog",
+    "description": "Discover ten fascinating newsletters that will transform your inbox from mundane to engaging!",
+    "date": "2019-03-05T00:09:00.000-07:00",
+    "tags": [
+      "Blog"
+    ],
+    "content": "📅 Despite the edited date, this post was actually written and published on March 5th, 2019. I have an addiction to e-mail newsletters. So I thought I'd put it to good use and share some of my favorites. Here are ten newsletters to brighten up your dreary inbox. The Daily Pnut… The best newsletter, hands down The Daily Pnut describes itself as a newsletter about world affairs that will \"make you sound marginally more intelligent.\" It's my all-time favorite newsletter. With gripping and poignant articles about current events with a (refreshing) non-American lens, The Daily Pnut captures our rapidly changing world in an enjoyable, daily newsletter. It's a must-subscribe. Morning Brew… Business news I can actually tolerate Bringing you the latest from \"Wall Street to Silicon Valley,\" the Morning Brew is a great financial newsletter for people less knowledgeable on the jargon, but still curious. It's consistently entertaining and lively. If you're interested in the financial world, the Mor"
+  },
+  {
+    "id": "169c4188-fa0e-80ba-b8f9-ee3d17f3a300",
+    "title": "All about hackathons",
+    "href": "/blog/all-about-hackathons",
+    "type": "blog",
+    "description": "Discover the exciting world of hackathons, where you can learn new technologies, collaborate with peers, and network with industry professionals—all while creating something amazing in just 24 hours!",
+    "date": "2017-07-01T23:35:00.000-06:00",
+    "tags": [
+      "Blog",
+      "Technical"
+    ],
+    "content": "📅 Despite the edited date, this post was actually written and published on July 1st, 2017. Last weekend, I participated in my first ever hackathon. HackED 2019 is put on by the Computer Engineering Club at the University of Alberta, and follows a similar format to most hackathons. First, there was an opening ceremony to introduce various sponsors, prizes, and relevant information to the competition. Then, we were released into the wild for twenty-four straight hours to produce a piece of software that did a cool thing. And finally, after all was said and done, us bleary-eyed programmers faced the judges and showed off our product. Michael from the future here! We created this very vintage Java application for tracking student grades. If you're bored, feel free to poke around the repository here. It was my first interaction with Java, Swing, and OOP on a sizeable project. So that's the gist: 24 hours, code something cool, try to win. Let's cut to the chase: why should you do it? First "
+  },
+  {
+    "id": "16bc4188-fa0e-80f7-ad6a-e4aa97326a5b",
+    "title": "Hockey Poster",
+    "href": "/design/hockey-poster",
+    "type": "design",
+    "description": "Created a custom hockey poster as a thoughtful secret Santa gift for a teammate in my fraternity.",
+    "date": "2024-12-28",
+    "tags": [
+      "Design"
+    ],
+    "content": "Did this as a secret Santa gift for one of the guys on my fraternity hockey team."
+  },
+  {
+    "id": "169c4188-fa0e-8084-905e-e8005bb5762c",
+    "title": "Orchard Commons",
+    "href": "/design/orchard-commons",
+    "type": "design",
+    "description": "A showcase of my graphic design projects from my first year serving on the house council at Orchard Commons, including campaign posters and creative challenges.",
+    "date": "2020-05-02",
+    "tags": [
+      "Design"
+    ],
+    "content": "I served on my residence's house council in first year and did a lot of neat graphic design projects!"
+  },
+  {
+    "id": "169c4188-fa0e-8004-a830-efe5b008da9f",
+    "title": "Science Undergraduate Society",
+    "href": "/design/science-undergraduate-society",
+    "type": "design",
+    "description": "As a member of the Science Undergraduate Society at UBC, I had the opportunity to design and plan exciting events that showcased my creativity and organizational skills.",
+    "date": "2020-04-30",
+    "tags": [
+      "Design"
+    ],
+    "content": "I joined SUS FYC in my first-year at UBC. Here are some cool things I made planning events with them!"
+  },
+  {
+    "id": "169c4188-fa0e-80bc-9e83-e01dcba31b90",
+    "title": "The Gateway",
+    "href": "/design/the-gateway",
+    "type": "design",
+    "description": "Contributed to \"The Gateway,\" the University of Alberta's student-run newspaper, by helping secure additional funding through impactful campaign materials.",
+    "date": "2020-03-02",
+    "tags": [
+      "Design"
+    ],
+    "content": "The Gateway is the University of Alberta's student-run newspaper. I assisted on their campaign for additional funding."
+  },
+  {
+    "id": "169c4188-fa0e-8011-ae05-ef9470cce4e8",
+    "title": "SUNIA",
+    "href": "/design/sunia",
+    "type": "design",
+    "description": "Check out my creative marketing work for SUNIA during the 2018/19 year, featuring a variety of banners, ads, and posters that capture our vibrant brand identity!",
+    "date": "2019-12-01",
+    "tags": [
+      "Design"
+    ],
+    "content": "I served as SUNIA's Marketing for our 2018/19 year. Here's some things I made in the role!"
+  },
+  {
+    "id": "169c4188-fa0e-80e6-bf14-ebaf368b2eae",
+    "title": "The Canadian Student Leadership Conference",
+    "href": "/design/the-canadian-student-leadership-conference",
+    "type": "design",
+    "description": "I contributed to the Canadian Student Leadership Conference by organizing a logo contest, where my design served as inspiration for the final logo.",
+    "date": "2019-09-27",
+    "tags": [
+      "Design"
+    ],
+    "content": "CSLC is an event I helped organize. At the beginning of the year, we had a logo contest. My submission was used to inspire the final design."
+  },
+  {
+    "id": "169c4188-fa0e-8011-a6a5-e3ea5fa6eb39",
+    "title": "McNally, Graduation 2019",
+    "href": "/design/mcnally-graduation-2019",
+    "type": "design",
+    "description": "Created engaging promotional materials for our high school graduation, including a pamphlet and a Snapchat filter for prom, to enhance the celebratory experience.",
+    "date": "2019-05-30",
+    "tags": [
+      "Design"
+    ],
+    "content": "I created advertising to support funding our high school graduation, a Snapchat filter for our prom, and the pamphlet distributed at commencement."
+  },
+  {
+    "id": "169c4188-fa0e-8080-a342-d558cf457beb",
+    "title": "McNally, Wrestling Club",
+    "href": "/design/mcnally-wrestling-club",
+    "type": "design",
+    "description": "Showcasing a series of logos designed for the McNally Wrestling Club, highlighting the final selection that was used.",
+    "date": "2019-04-05",
+    "tags": [
+      "Design"
+    ],
+    "content": ""
+  },
+  {
+    "id": "169c4188-fa0e-8016-99d2-c83e53040cb7",
+    "title": "Edmonton Public School Board (EPSB), Student Senate",
+    "href": "/design/edmonton-public-school-board-epsb-student-senate",
+    "type": "design",
+    "description": "During my time on the Edmonton Public School Board's Student Senate in grades 11 and 12, I utilized my graphic design skills to create informative brochures focused on time management.",
+    "date": "2019-03-05",
+    "tags": [
+      "Design"
+    ],
+    "content": "In grade 11 and 12 I served on my school board's Student Senate. In grade 11, I did graphic design work for my committee; I created brochures about time management."
+  },
+  {
+    "id": "169c4188-fa0e-8020-9f5e-e53666223e6a",
+    "title": "McNally, Massive Volunteering (Club)",
+    "href": "/design/mcnally-massive-volunteering-club",
+    "type": "design",
+    "description": "Managed a high school student volunteer club and created engaging advertising materials, showcasing teamwork and creativity.",
+    "date": "2018-09-15",
+    "tags": [
+      "Design"
+    ],
+    "content": "I assisted managing a student volunteer club in high school. Here's some example advertising I created. Note that I didn't design this version of the logo; a close friend of mine did!"
+  },
+  {
+    "id": "169c4188-fa0e-802d-9f57-ce1739ff8467",
+    "title": "McNally, Miscellaneous Projects",
+    "href": "/design/mcnally-miscellaneous-projects",
+    "type": "design",
+    "description": "A collection of my graphic design work for school projects, showcasing creativity and growth in various subjects.",
+    "date": "2018-09-07",
+    "tags": [
+      "Design"
+    ],
+    "content": "I occasionally did graphic design for school projects. Some of them turned out okay!"
+  },
+  {
+    "id": "169c4188-fa0e-8072-a806-d21a755d2928",
+    "title": "McNally, Bike-a-thon",
+    "href": "/design/mcnally-bike-a-thon",
+    "type": "design",
+    "description": "Showcasing my creative designs for McNally's Bike-a-thon, an impactful annual fundraiser supporting Kids With Cancer.",
+    "date": "2018-05-24",
+    "tags": [
+      "Design"
+    ],
+    "content": "McNally's Bike-a-thon is an annual fundraiser for Kids With Cancer. Here are a couple of designs I made for the initiative and for my team!"
+  },
+  {
+    "id": "169c4188-fa0e-8028-a11d-f9e435a9217e",
+    "title": "McNally, MVPLead",
+    "href": "/design/mcnally-mvplead",
+    "type": "design",
+    "description": "In grade 10, I organized the MVPLead junior-high leadership conference and designed its logo and banner, showcasing my skills in event branding.",
+    "date": "2018-04-28",
+    "tags": [
+      "Design"
+    ],
+    "content": "MVPLead was a junior-high leadership conference I helped organized in grade 10. I was tasked with creating the logo—here's how it went!"
+  },
+  {
+    "id": "169c4188-fa0e-8012-891f-fac8ae1edc33",
+    "title": "McNally, Photography",
+    "href": "/design/mcnally-photography",
+    "type": "design",
+    "description": "I'm proud to showcase my favorite design yet: a logo I created for my school's photography club.",
+    "date": "2017-10-13",
+    "tags": [
+      "Design"
+    ],
+    "content": "To date, this is probably my favorite thing I've ever designed. I made a logo for my school's photography club."
+  },
+  {
+    "id": "169c4188-fa0e-806b-abc8-db31c6c60c3e",
+    "title": "McNally, Heritage Festival",
+    "href": "/design/mcnally-heritage-festival",
+    "type": "design",
+    "description": "I designed an engaging infographic for my Heritage Festival booth, showcasing the cultural highlights of Greece and Italy.",
+    "date": "2017-05-04",
+    "tags": [
+      "Design"
+    ],
+    "content": "I created a infographic for my Heritage Festival booth and posters to be displayed at the other countries."
+  },
+  {
+    "id": "59a8cec5-217b-4c2e-be33-bb4d820bf22a",
+    "title": "Beautiful British Columbia with Tyne and Michael",
+    "href": "/travel/beautiful-british-columbia-with-tyne-and-michael",
+    "type": "travel",
+    "description": "A cheeky post-grad carpacking trip.",
+    "date": "2024-08-28",
+    "content": "Vancouver Keith’s Hut Bull Canyon Bowron Lake Wells Gray Park Hope Tyne and Michael explore “Beautiful British Columbia” (BBC). Who What Hoping to have a new truck by then (can still rent if need be) but it'll defs be not great on gas so thinking maybe we try n stay in the radius of like Kelowna/Kamloops/100 mile house sorta vibe, so maybe a loop up north and then down and along the Choquihalla or smtn like that with a combo of car camping and backpacking (and climbing 👀). We can always go further afield but just guna start gettin real steep on gas if we're gettin into the Rockies and shit Packing 🎒 Make sure to charge all electronics. - General - [x] Shirts - [x] Jeans - [x] Casual shoes - [x] Water bottle—Nalgene - [x] Backpack - [x] Computer (with charger) + crappy mouse - [x] Camera (with charger) - [x] GoPro (with gear), clear some memory - [x] Drone (with gear), test it out - [x] Watch (with charger) - [x] Battery pack - [x] Kindle - [x] Bullet journal - [x] Empty journal or notebook - [ ] Running gear (and also stuff to climb in) - [x] Stuff"
+  }
+]
