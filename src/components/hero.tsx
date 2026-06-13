@@ -28,7 +28,7 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.6, ease: 'easeOut' }}
       >
-        <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
+        <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
           Welcome to my over-engineered corner of the Internet.
         </p>
       </motion.div>

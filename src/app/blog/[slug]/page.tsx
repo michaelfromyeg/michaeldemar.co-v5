@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import { formatDate } from '@/lib/utils'
+import { TagList } from '@/components/content/content-card'
 import { ChevronLeft, Calendar } from 'lucide-react'
 import Link from 'next/link'
 import { PostContent } from '@/components/mdx/post-content'
@@ -54,31 +55,22 @@ export default async function BlogPostPage({ params }: PageProps) {
     <article className="container mx-auto max-w-3xl px-4 py-8">
       <Link
         href="/blog"
-        className="mb-8 inline-flex items-center text-sm text-muted-foreground hover:text-primary"
+        className="text-muted-foreground hover:text-primary mb-8 inline-flex items-center text-sm"
       >
         <ChevronLeft className="mr-1 h-4 w-4" />
         Back to blog
       </Link>
       <header className="mb-8">
         <h1 className="mb-2 text-4xl font-bold tracking-tight">{post.title}</h1>
-        <div className="flex items-center gap-4 text-muted-foreground">
+        <div className="text-muted-foreground flex items-center gap-4">
           <div className="flex items-center gap-2">
             <Calendar className="h-4 w-4" />
             {formatDate(post.publishedDate)}
           </div>
-          <div className="flex gap-2">
-            {post.tags.map((tag) => (
-              <span
-                key={tag}
-                className="inline-flex items-center rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
+          <TagList tags={post.tags} />
         </div>
       </header>
-      <div className="prose prose-gray max-w-none dark:prose-invert">
+      <div className="prose prose-gray dark:prose-invert max-w-none">
         <PostContent source={post.content ?? ''} />
       </div>
       <Comments slug={slug} title={post.title} />

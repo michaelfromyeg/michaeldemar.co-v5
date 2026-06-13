@@ -56,7 +56,7 @@ export default async function DesignProjectPage({ params }: PageProps) {
     <article className="container mx-auto max-w-3xl px-4 py-8">
       <Link
         href="/design"
-        className="mb-8 inline-flex items-center text-sm text-muted-foreground hover:text-primary"
+        className="text-muted-foreground hover:text-primary mb-8 inline-flex items-center text-sm"
       >
         <ChevronLeft className="mr-1 h-4 w-4" />
         Back to portfolio
@@ -67,11 +67,11 @@ export default async function DesignProjectPage({ params }: PageProps) {
           {project.title}
         </h1>
         {project.description && (
-          <p className="mb-4 text-lg text-muted-foreground">
+          <p className="text-muted-foreground mb-4 text-lg">
             {project.description}
           </p>
         )}
-        <div className="flex items-center gap-4 text-muted-foreground">
+        <div className="text-muted-foreground flex items-center gap-4">
           {project.publishedDate && (
             <div className="flex items-center gap-2">
               <Calendar className="h-4 w-4" />
@@ -88,7 +88,7 @@ export default async function DesignProjectPage({ params }: PageProps) {
       </header>
 
       {project.content && (
-        <div className="prose prose-gray mb-12 max-w-none dark:prose-invert">
+        <div className="prose prose-gray dark:prose-invert mb-12 max-w-none">
           <PostContent source={project.content} />
         </div>
       )}

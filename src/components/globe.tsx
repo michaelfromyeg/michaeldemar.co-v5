@@ -154,16 +154,16 @@ export default function TravelGlobe({ itineraries }: TravelGlobeProps) {
         onPointClick={(point: object) => setActivePoint(point as GlobePoint)}
       />
       {activePoint && (
-        <Card className="absolute right-4 top-4 w-72">
+        <Card className="absolute top-4 right-4 w-72 py-0">
           <CardContent className="p-4">
             <h3 className="mb-2 font-semibold">{activePoint.name}</h3>
-            <p className="mb-1 text-sm text-muted-foreground">
+            <p className="text-muted-foreground mb-1 text-sm">
               Part of: {activePoint.itineraryTitle}
             </p>
-            <p className="mb-1 text-sm text-muted-foreground">
+            <p className="text-muted-foreground mb-1 text-sm">
               Region: {activePoint.region}
             </p>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               Date: {formatDate(activePoint.date)}
               {activePoint.duration > 0 && (
                 <>

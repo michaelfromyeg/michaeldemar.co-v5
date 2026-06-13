@@ -34,60 +34,50 @@ const CodeBlock = ({ children, className, language }: CodeBlockProps) => {
   return (
     <TooltipProvider delayDuration={300}>
       <div className="group relative">
-        <div className="absolute right-4 top-4 flex items-center gap-2">
+        <div className="absolute top-4 right-4 flex items-center gap-2">
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-6 w-6 p-0 hover:bg-muted-foreground/10"
+                className="hover:bg-muted-foreground/10 h-6 w-6 p-0"
                 onClick={() => setWrap(!wrap)}
               >
-                <WrapText className="h-4 w-4 text-muted-foreground hover:text-primary" />
+                <WrapText className="text-muted-foreground hover:text-primary h-4 w-4" />
               </Button>
             </TooltipTrigger>
-            <TooltipContent
-              side="bottom"
-              className="rounded-md bg-popover px-3 py-1.5 text-xs text-popover-foreground"
-            >
-              Toggle word wrap
-            </TooltipContent>
+            <TooltipContent side="bottom">Toggle word wrap</TooltipContent>
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-6 w-6 p-0 hover:bg-muted-foreground/10"
+                className="hover:bg-muted-foreground/10 h-6 w-6 p-0"
                 onClick={onCopy}
                 aria-label="Copy code"
               >
                 {copied ? (
-                  <Check className="h-4 w-4 text-muted-foreground hover:text-primary" />
+                  <Check className="text-muted-foreground hover:text-primary h-4 w-4" />
                 ) : (
-                  <Copy className="h-4 w-4 text-muted-foreground hover:text-primary" />
+                  <Copy className="text-muted-foreground hover:text-primary h-4 w-4" />
                 )}
               </Button>
             </TooltipTrigger>
-            <TooltipContent
-              side="bottom"
-              className="rounded-md bg-popover px-3 py-1.5 text-xs text-popover-foreground"
-            >
-              Copy code
-            </TooltipContent>
+            <TooltipContent side="bottom">Copy code</TooltipContent>
           </Tooltip>
         </div>
         {language && (
-          <div className="absolute right-24 top-4 text-xs text-muted-foreground">
+          <div className="text-muted-foreground absolute top-4 right-24 text-xs">
             {language}
           </div>
         )}
         <pre
           ref={preRef}
           className={cn(
-            'mb-4 mt-6 overflow-x-auto rounded-lg bg-muted px-4 py-4',
-            'border border-muted-foreground/20',
-            wrap ? 'whitespace-pre-wrap break-all' : 'whitespace-pre',
+            'bg-muted mt-6 mb-4 overflow-x-auto rounded-lg px-4 py-4',
+            'border-muted-foreground/20 border',
+            wrap ? 'break-all whitespace-pre-wrap' : 'whitespace-pre',
             className
           )}
         >

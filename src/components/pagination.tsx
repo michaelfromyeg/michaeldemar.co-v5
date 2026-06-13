@@ -38,9 +38,9 @@ export function Pagination({
         href={createPageUrl(currentPage - 1)}
         className={cn(
           'inline-flex h-8 items-center justify-center rounded-md px-3',
-          'text-sm font-medium ring-offset-background transition-colors',
+          'ring-offset-background text-sm font-medium transition-colors',
           'hover:bg-muted hover:text-muted-foreground',
-          'focus-visible:outline-hidden focus-visible:ring-2',
+          'focus-visible:ring-2 focus-visible:outline-hidden',
           'focus-visible:ring-ring focus-visible:ring-offset-2',
           currentPage <= 1 ? 'pointer-events-none opacity-50' : 'bg-muted'
         )}
@@ -54,7 +54,7 @@ export function Pagination({
       {currentPage > 2 && (
         <Link
           href={createPageUrl(1)}
-          className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-muted hover:bg-muted/80"
+          className="bg-muted hover:bg-muted/80 inline-flex h-8 w-8 items-center justify-center rounded-md"
           aria-label="Go to first page"
         >
           1
@@ -95,7 +95,7 @@ export function Pagination({
       {currentPage < totalPages - 1 && (
         <Link
           href={createPageUrl(totalPages)}
-          className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-muted hover:bg-muted/80"
+          className="bg-muted hover:bg-muted/80 inline-flex h-8 w-8 items-center justify-center rounded-md"
           aria-label="Go to last page"
         >
           {totalPages}
@@ -106,9 +106,9 @@ export function Pagination({
         href={createPageUrl(currentPage + 1)}
         className={cn(
           'inline-flex h-8 items-center justify-center rounded-md px-3',
-          'text-sm font-medium ring-offset-background transition-colors',
+          'ring-offset-background text-sm font-medium transition-colors',
           'hover:bg-muted hover:text-muted-foreground',
-          'focus-visible:outline-hidden focus-visible:ring-2',
+          'focus-visible:ring-2 focus-visible:outline-hidden',
           'focus-visible:ring-ring focus-visible:ring-offset-2',
           currentPage >= totalPages
             ? 'pointer-events-none opacity-50'

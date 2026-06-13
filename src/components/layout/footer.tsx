@@ -24,11 +24,11 @@ export default function Footer() {
       <div className="container mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-10 sm:px-6 md:h-auto md:flex-row md:py-4 lg:px-8">
         <div className="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
           <div className="flex flex-col items-center gap-2 md:items-start">
-            <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
+            <p className="text-muted-foreground text-center text-sm leading-loose md:text-left">
               {`© Michael DeMarco ${year}`}
             </p>
             <Popover>
-              <PopoverTrigger className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
+              <PopoverTrigger className="text-muted-foreground hover:text-foreground flex items-center gap-1 text-sm">
                 <History className="h-4 w-4" />
                 <code>Go back in time</code>
               </PopoverTrigger>
@@ -40,7 +40,7 @@ export default function Footer() {
                       href={`https://michaelfromyeg.github.io/michaeldemar.co-v${version}`}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-sm text-muted-foreground hover:text-foreground"
+                      className="text-muted-foreground hover:text-foreground text-sm"
                     >
                       v{version}
                     </Link>
@@ -55,7 +55,7 @@ export default function Footer() {
             href="https://michaelfromorg.github.io/ubc-webring/"
             target="_blank"
             rel="noreferrer"
-            className="rounded-2xl p-2 hover:bg-accent"
+            className="hover:bg-accent rounded-2xl p-2"
           >
             <Image
               src="/ubc-coa.svg"
@@ -70,7 +70,7 @@ export default function Footer() {
             href="https://github.com/michaelfromyeg"
             target="_blank"
             rel="noreferrer"
-            className="rounded-2xl p-2 hover:bg-accent"
+            className="hover:bg-accent rounded-2xl p-2"
           >
             <FaGithub className="h-5 w-5" />
             <span className="sr-only">GitHub</span>
@@ -79,7 +79,7 @@ export default function Footer() {
             href="https://twitter.com/michaelfromyeg"
             target="_blank"
             rel="noreferrer"
-            className="rounded-2xl p-2 hover:bg-accent"
+            className="hover:bg-accent rounded-2xl p-2"
           >
             <FaXTwitter className="h-5 w-5" />
             <span className="sr-only">Twitter</span>
@@ -88,7 +88,7 @@ export default function Footer() {
             href="https://linkedin.com/in/michaelfromyeg"
             target="_blank"
             rel="noreferrer"
-            className="rounded-2xl p-2 hover:bg-accent"
+            className="hover:bg-accent rounded-2xl p-2"
           >
             <FaLinkedin className="h-5 w-5" />
             <span className="sr-only">LinkedIn</span>
@@ -97,7 +97,7 @@ export default function Footer() {
             href="https://facebook.com/michaelfromyeg"
             target="_blank"
             rel="noreferrer"
-            className="rounded-2xl p-2 hover:bg-accent"
+            className="hover:bg-accent rounded-2xl p-2"
           >
             <FaFacebook className="h-5 w-5" />
             <span className="sr-only">Facebook</span>
@@ -106,7 +106,7 @@ export default function Footer() {
             href="https://instagram.com/michaelfromyeg"
             target="_blank"
             rel="noreferrer"
-            className="rounded-2xl p-2 hover:bg-accent"
+            className="hover:bg-accent rounded-2xl p-2"
           >
             <FaInstagram className="h-5 w-5" />
             <span className="sr-only">Instagram</span>
@@ -115,7 +115,7 @@ export default function Footer() {
             href="https://youtube.com/@michaelfromyeg"
             target="_blank"
             rel="noreferrer"
-            className="rounded-2xl p-2 hover:bg-accent"
+            className="hover:bg-accent rounded-2xl p-2"
           >
             <FaYoutube className="h-5 w-5" />
             <span className="sr-only">YouTube</span>
@@ -124,7 +124,7 @@ export default function Footer() {
             href="https://stackoverflow.com/users/10660585/michael-demarco"
             target="_blank"
             rel="noreferrer"
-            className="rounded-2xl p-2 hover:bg-accent"
+            className="hover:bg-accent rounded-2xl p-2"
           >
             <MessageSquare className="h-5 w-5" />
             <span className="sr-only">Stack Overflow</span>
@@ -133,7 +133,7 @@ export default function Footer() {
             href="mailto:michaelfromyeg@gmail.com"
             target="_blank"
             rel="noreferrer"
-            className="rounded-2xl p-2 hover:bg-accent"
+            className="hover:bg-accent rounded-2xl p-2"
           >
             <Mail className="h-5 w-5" />
             <span className="sr-only">E-mail</span>

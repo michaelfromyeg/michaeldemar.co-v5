@@ -52,7 +52,7 @@ const MDXImage = ({
           />
         </button>
         {alt && (
-          <div className="mt-2 text-center text-sm text-muted-foreground">
+          <div className="text-muted-foreground mt-2 text-center text-sm">
             {alt}
           </div>
         )}
@@ -64,7 +64,7 @@ const MDXImage = ({
             <Button
               variant="ghost"
               size="icon"
-              className="absolute right-2 top-2 z-50 bg-background/80 hover:bg-background/90"
+              className="bg-background/80 hover:bg-background/90 absolute top-2 right-2 z-50"
               onClick={() => setIsOpen(false)}
             >
               <X className="h-4 w-4" />

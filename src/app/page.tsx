@@ -25,7 +25,7 @@ export default function Home() {
       <section className="relative flex h-[calc(100vh-64px)] flex-col overflow-hidden">
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
           <div className="relative h-[90vh] w-[90vh]">
-            <Logo className="absolute inset-0 h-full w-full fill-foreground object-contain opacity-10 transition-opacity duration-200 dark:opacity-5" />
+            <Logo className="fill-foreground absolute inset-0 h-full w-full object-contain opacity-10 transition-opacity duration-200 dark:opacity-5" />
           </div>
         </div>
         <div className="container mx-auto flex h-full flex-col px-4 sm:px-6 lg:px-8">
@@ -34,7 +34,7 @@ export default function Home() {
           </div>
           <div className="relative z-10 mb-8 flex justify-center">
             <ChevronDown
-              className={`h-6 w-6 animate-bounce text-muted-foreground transition-opacity duration-1000 ${
+              className={`text-muted-foreground h-6 w-6 animate-bounce transition-opacity duration-1000 ${
                 showChevron ? 'opacity-100' : 'opacity-0'
               }`}
             />
@@ -43,7 +43,7 @@ export default function Home() {
       </section>
       <section className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto mb-16 grid max-w-4xl grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-12">
-          <div className="text-lg text-muted-foreground md:order-1">
+          <div className="text-muted-foreground text-lg md:order-1">
             <p className="mb-2">
               I&apos;m a toolmaker, tinkerer, and teacher. This corner of the
               Internet is home to my{' '}

@@ -1,10 +1,6 @@
 import { Metadata } from 'next'
-import { formatDate } from '@/lib/utils'
-import { Card } from '@/components/ui/card'
-import { ChevronRight, Calendar, Image as ImageIcon } from 'lucide-react'
+import { FeaturedCard } from '@/components/content/content-card'
 import { Pagination } from '@/components/pagination'
-import Link from 'next/link'
-import Image from 'next/image'
 import blogData from '@/data/blog.json'
 import NewsletterForm from '@/components/newsletter-form'
 import BlogViewSwitcher from '@/components/blog-view-switcher'
@@ -40,57 +36,22 @@ export default async function BlogPage({
     <div className="container mx-auto max-w-4xl px-4 py-8">
       <div className="mb-8 space-y-4">
         <h1 className="text-4xl font-bold tracking-tight">Blog</h1>
-        <p className="text-lg text-muted-foreground">
+        <p className="text-muted-foreground text-lg">
           My thoughts on software development, design, and life.
         </p>
       </div>
 
       {/* Featured Post */}
-      <Link href={`/blog/${latestPost.slug}`}>
-        <Card className="card-glow group mb-12 overflow-hidden shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-          <div className="grid gap-6 md:grid-cols-2">
-            <div className="relative h-64 md:h-full">
-              {latestPost.coverImage ? (
-                <Image
-                  src={latestPost.coverImage}
-                  alt={`Cover image for ${latestPost.title}`}
-                  fill
-                  placeholder="blur"
-                  blurDataURL={latestPost.blurDataURL ?? ''}
-                  className="object-cover transition-all duration-300 group-hover:scale-105 group-hover:brightness-105"
-                />
-              ) : (
-                <div className="flex h-full w-full items-center justify-center bg-muted">
-                  <ImageIcon className="h-16 w-16 text-muted-foreground" />
-                </div>
-              )}
-            </div>
-            <div className="flex flex-col p-6">
-              <div className="mb-4">
-                <span className="mb-2 inline-block rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
-                  Latest Post
-                </span>
-              </div>
-              <h2 className="mb-4 text-2xl font-bold tracking-tight transition-colors duration-200 group-hover:text-primary">
-                {latestPost.title}
-              </h2>
-              <div className="mb-4 flex items-center text-sm text-muted-foreground">
-                <Calendar className="mr-1.5 h-4 w-4" />
-                {formatDate(latestPost.publishedDate)}
-              </div>
-              <p className="mb-6 flex-1 text-muted-foreground">
-                {latestPost.description}
-              </p>
-              <div className="mt-auto">
-                <div className="flex items-center text-primary">
-                  Read post
-                  <ChevronRight className="ml-1 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </Card>
-      </Link>
+      <FeaturedCard
+        href={`/blog/${latestPost.slug}`}
+        label="Latest Post"
+        title={latestPost.title}
+        date={latestPost.publishedDate}
+        description={latestPost.description}
+        coverImage={latestPost.coverImage}
+        coverBlurDataURL={latestPost.blurDataURL}
+        ctaLabel="Read post"
+      />
 
       {/* View Switcher */}
       <BlogViewSwitcher

@@ -58,7 +58,7 @@ function MobileNavLink({
         {isActive && (
           <motion.span
             layoutId="mobile-nav-indicator"
-            className="absolute -left-4 top-1/2 h-8 w-1 -translate-y-1/2 rounded-full bg-accent"
+            className="bg-accent absolute top-1/2 -left-4 h-8 w-1 -translate-y-1/2 rounded-full"
             transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
           />
         )}
@@ -118,7 +118,7 @@ export function MobileNav({ navigation }: MobileNavProps) {
       </SheetTrigger>
       <SheetContent
         side="right"
-        className="w-full max-w-[300px] bg-background/80 backdrop-blur-xs sm:max-w-[400px]"
+        className="bg-background/80 w-full max-w-[300px] p-6 backdrop-blur-xs sm:max-w-[400px]"
       >
         <nav className="mt-8 flex flex-col gap-2">
           <AnimatePresence>

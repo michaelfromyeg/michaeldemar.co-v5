@@ -120,11 +120,11 @@ function RouteTree({
   level?: number
 }) {
   return (
-    <ul className={`space-y-2 ${level === 0 ? '' : 'ml-6 mt-2'}`}>
+    <ul className={`space-y-2 ${level === 0 ? '' : 'mt-2 ml-6'}`}>
       {routes.map((route) => (
         <li key={route.path} className="group">
-          <div className="flex items-start gap-2 rounded-md p-2 transition-colors hover:bg-muted/30">
-            <span className="mt-1 text-muted-foreground group-hover:text-foreground">
+          <div className="hover:bg-muted/30 flex items-start gap-2 rounded-md p-2 transition-colors">
+            <span className="text-muted-foreground group-hover:text-foreground mt-1">
               {route.children.length > 0 ? (
                 <Folder className="h-4 w-4" />
               ) : route.type === 'blog' ? (
@@ -140,12 +140,12 @@ function RouteTree({
             <div className="flex flex-col">
               <a
                 href={route.path}
-                className="font-mono text-sm text-muted-foreground transition-colors group-hover:text-foreground"
+                className="text-muted-foreground group-hover:text-foreground font-mono text-sm transition-colors"
               >
                 {route.path}
               </a>
               {route.lastmod && (
-                <p className="mt-1 font-sans text-sm text-muted-foreground">
+                <p className="text-muted-foreground mt-1 font-sans text-sm">
                   Last modified: {new Date(route.lastmod).toLocaleDateString()}
                 </p>
               )}

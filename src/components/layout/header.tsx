@@ -57,7 +57,7 @@ function NavLink({
         {isActive && (
           <motion.span
             layoutId="nav-pill"
-            className="absolute inset-0 -mx-2 -my-1 rounded-md bg-primary/10"
+            className="bg-primary/10 absolute inset-0 -mx-2 -my-1 rounded-md"
             transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
           />
         )}
@@ -109,12 +109,12 @@ export default function Header() {
   }, [])
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-sm supports-backdrop-filter:bg-background/60">
+    <header className="bg-background/95 supports-backdrop-filter:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur-sm">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Link
             href="/"
-            className="group relative flex items-center gap-2 text-lg font-semibold text-foreground"
+            className="group text-foreground relative flex items-center gap-2 text-lg font-semibold"
             onMouseEnter={() => setLogoHovered(true)}
             onMouseLeave={() => setLogoHovered(false)}
           >
@@ -136,7 +136,7 @@ export default function Header() {
             <span className="relative">
               michaeldemar.co
               <motion.span
-                className="absolute -bottom-0.5 left-0 h-0.5 w-full origin-left bg-accent"
+                className="bg-accent absolute -bottom-0.5 left-0 h-0.5 w-full origin-left"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: logoHovered ? 1 : 0 }}
                 transition={{ duration: 0.25, ease: 'easeOut' }}

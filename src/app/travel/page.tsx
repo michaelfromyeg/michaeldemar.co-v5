@@ -1,22 +1,7 @@
 import { Metadata } from 'next'
-import { formatDate } from '@/lib/utils'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
-import {
-  ChevronRight,
-  Calendar,
-  Clock,
-  MapPin,
-  Image as ImageIcon,
-} from 'lucide-react'
-import Link from 'next/link'
-import Image from 'next/image'
+import { Card, CardContent } from '@/components/ui/card'
+import { CardGrid, ContentCard } from '@/components/content/content-card'
+import { Clock, MapPin } from 'lucide-react'
 import travelData from '@/data/travel.json'
 import TravelGlobe from '@/components/globe'
 import type { TravelItinerary } from '@/lib/notion/types'
@@ -31,65 +16,32 @@ interface TripCardProps {
 }
 
 const TripCard = ({ itinerary }: TripCardProps) => (
-  <Card className="group h-full overflow-hidden transition-colors hover:bg-muted/50">
-    {itinerary.coverImage ? (
-      <div className="relative h-48 w-full">
-        <Image
-          src={itinerary.coverImage}
-          alt={`Cover image for ${itinerary.title}`}
-          fill
-          placeholder="blur"
-          blurDataURL={itinerary.blurDataURL ?? ''}
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
-        />
-      </div>
-    ) : (
-      <div className="flex h-48 w-full items-center justify-center bg-muted">
-        <ImageIcon className="h-12 w-12 text-muted-foreground" />
-      </div>
-    )}
-
-    <div className="flex h-[calc(100%-12rem)] flex-col">
-      <CardHeader>
-        <CardTitle className="line-clamp-2 text-lg">
-          {itinerary.title}
-        </CardTitle>
-        <CardDescription>
-          <div className="flex flex-col gap-1.5">
-            <div className="inline-flex items-center gap-1.5">
-              <MapPin className="h-3.5 w-3.5" />
-              <span className="text-sm">{itinerary.region}</span>
-            </div>
-            <div className="inline-flex items-center gap-1.5">
-              <Calendar className="h-3.5 w-3.5" />
-              <span className="text-sm">{formatDate(itinerary.startDate)}</span>
-            </div>
-            <div className="inline-flex items-center gap-1.5">
-              <Clock className="h-3.5 w-3.5" />
-              <span className="text-sm">
-                {new Date(itinerary.endDate).getDate() -
-                  new Date(itinerary.startDate).getDate() +
-                  1}{' '}
-                days
-              </span>
-            </div>
-          </div>
-          {itinerary.description && (
-            <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">
-              {itinerary.description}
-            </p>
-          )}
-        </CardDescription>
-      </CardHeader>
-
-      <CardFooter className="mt-auto">
-        <div className="flex items-center text-sm text-primary">
-          View itinerary
-          <ChevronRight className="ml-1 h-4 w-4" />
+  <ContentCard
+    href={`/travel/${itinerary.slug}`}
+    title={itinerary.title}
+    date={itinerary.startDate}
+    description={itinerary.description}
+    coverImage={itinerary.coverImage}
+    coverBlurDataURL={itinerary.blurDataURL}
+    ctaLabel="View itinerary"
+    meta={
+      <>
+        <div className="flex items-center gap-1.5">
+          <MapPin className="h-3.5 w-3.5" />
+          {itinerary.region}
         </div>
-      </CardFooter>
-    </div>
-  </Card>
+        <div className="flex items-center gap-1.5">
+          <Clock className="h-3.5 w-3.5" />
+          {Math.round(
+            (new Date(itinerary.endDate).getTime() -
+              new Date(itinerary.startDate).getTime()) /
+              86_400_000
+          ) + 1}{' '}
+          days
+        </div>
+      </>
+    }
+  />
 )
 
 export default function TravelPage() {
@@ -102,12 +54,12 @@ export default function TravelPage() {
     <div className="container mx-auto max-w-4xl px-4 py-8">
       <div className="mb-8 space-y-4">
         <h1 className="text-4xl font-bold tracking-tight">Travel</h1>
-        <p className="text-lg text-muted-foreground">
+        <p className="text-muted-foreground text-lg">
           Adventures and detailed itineraries from around the world.
         </p>
       </div>
 
-      <Card className="mb-12">
+      <Card className="mb-12 py-0">
         <CardContent className="p-8">
           <div className="flex w-full justify-center">
             <TravelGlobe itineraries={travelData.itineraries} />
@@ -115,13 +67,11 @@ export default function TravelPage() {
         </CardContent>
       </Card>
 
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <CardGrid>
         {sortedItineraries.map((itinerary) => (
-          <Link key={itinerary.id} href={`/travel/${itinerary.slug}`}>
-            <TripCard itinerary={itinerary} />
-          </Link>
+          <TripCard key={itinerary.id} itinerary={itinerary} />
         ))}
-      </div>
+      </CardGrid>
     </div>
   )
 }

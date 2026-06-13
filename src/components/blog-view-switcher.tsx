@@ -3,14 +3,11 @@
 import React from 'react'
 import { formatDate } from '@/lib/utils'
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
-import { Calendar, ChevronRight, Image as ImageIcon } from 'lucide-react'
+  CardGrid,
+  ContentCard,
+  TagList,
+} from '@/components/content/content-card'
+import { Calendar, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
@@ -56,7 +53,7 @@ const FeedView = ({ posts }: FeedViewProps) => {
     <div className="space-y-10">
       {posts.map((post) => (
         <Link key={post.id} href={`/blog/${post.slug}`} className="block">
-          <article className="group rounded-lg border border-border/50 p-6 transition-all duration-300 hover:border-accent hover:bg-muted/50">
+          <article className="group border-border/50 hover:border-accent hover:bg-muted/50 rounded-lg border p-6 transition-all duration-300">
             <div className="flex items-start gap-6">
               {post.coverImage && (
                 <div className="relative hidden h-44 w-64 shrink-0 overflow-hidden rounded-lg sm:block">
@@ -72,28 +69,19 @@ const FeedView = ({ posts }: FeedViewProps) => {
               )}
               <div className="flex-1 space-y-4">
                 <div className="space-y-2">
-                  <div className="flex flex-wrap gap-2">
-                    {post.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="inline-flex items-center rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary transition-transform duration-200 hover:scale-105"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <h3 className="text-2xl font-semibold tracking-tight transition-colors duration-200 group-hover:text-primary">
+                  <TagList tags={post.tags} />
+                  <h3 className="group-hover:text-primary text-2xl font-semibold tracking-tight transition-colors duration-200">
                     {post.title}
                   </h3>
-                  <div className="flex items-center text-sm text-muted-foreground">
+                  <div className="text-muted-foreground flex items-center text-sm">
                     <Calendar className="mr-1.5 h-4 w-4" />
                     {formatDate(post.publishedDate)}
                   </div>
                 </div>
-                <p className="line-clamp-5 text-muted-foreground">
+                <p className="text-muted-foreground line-clamp-5">
                   {getContentPreview(post.content)}
                 </p>
-                <div className="flex items-center text-sm font-medium text-primary">
+                <div className="text-primary flex items-center text-sm font-medium">
                   Read more...
                   <ChevronRight className="ml-1 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
                 </div>
@@ -139,64 +127,21 @@ const BlogViewSwitcher = ({
         <FeedView posts={paginatedPosts} />
       </TabsContent>
       <TabsContent value="grid">
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <CardGrid>
           {paginatedPosts.map((post) => (
-            <Link key={post.id} href={`/blog/${post.slug}`}>
-              <Card className="card-glow group h-full overflow-hidden shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-                <div className="relative h-48 w-full overflow-hidden">
-                  {post.coverImage ? (
-                    <Image
-                      src={post.coverImage}
-                      alt={`Cover image for ${post.title}`}
-                      fill
-                      placeholder="blur"
-                      blurDataURL={post.blurDataURL ?? ''}
-                      className="object-cover transition-all duration-300 group-hover:scale-105 group-hover:brightness-105"
-                    />
-                  ) : (
-                    <div className="flex h-full w-full items-center justify-center bg-muted">
-                      <ImageIcon className="h-12 w-12 text-muted-foreground" />
-                    </div>
-                  )}
-                </div>
-                <div className="flex h-[calc(100%-12rem)] flex-col">
-                  <CardHeader>
-                    <CardTitle className="line-clamp-2 text-lg transition-colors duration-200 group-hover:text-primary">
-                      {post.title}
-                    </CardTitle>
-                    <CardDescription>
-                      <div className="flex items-center">
-                        <Calendar className="mr-1.5 h-3.5 w-3.5" />
-                        {formatDate(post.publishedDate)}
-                      </div>
-                      <div className="mt-2 flex flex-wrap gap-2">
-                        {post.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="inline-flex items-center rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary transition-transform duration-200 hover:scale-105"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="flex-1">
-                    <p className="line-clamp-2 text-sm text-muted-foreground">
-                      {post.description}
-                    </p>
-                  </CardContent>
-                  <CardFooter className="justify-end">
-                    <div className="flex items-center text-sm text-primary">
-                      Read more
-                      <ChevronRight className="ml-1 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-                    </div>
-                  </CardFooter>
-                </div>
-              </Card>
-            </Link>
+            <ContentCard
+              key={post.id}
+              href={`/blog/${post.slug}`}
+              title={post.title}
+              date={post.publishedDate}
+              description={post.description}
+              tags={post.tags}
+              coverImage={post.coverImage}
+              coverBlurDataURL={post.blurDataURL}
+              ctaLabel="Read more"
+            />
           ))}
-        </div>
+        </CardGrid>
       </TabsContent>
     </Tabs>
   )

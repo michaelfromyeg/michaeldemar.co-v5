@@ -11,11 +11,11 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div className="container mx-auto max-w-4xl px-4 py-8">
-      <div className="prose prose-gray max-w-none dark:prose-invert">
+      <div className="prose prose-gray dark:prose-invert max-w-none">
         <h1 className="mb-8 text-4xl font-bold">About</h1>
         {/* Main content card with improved spacing */}
         <Card>
-          <CardContent className="pl-6 pr-6">
+          <CardContent className="pr-6 pl-6">
             <div>
               <p>
                 Hey there! I&apos;m Michael, an Honours Computer Science
@@ -174,7 +174,7 @@ export default function AboutPage() {
                 priority
               />
             </div>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               My face! (July 2024)
             </p>
           </div>
@@ -189,7 +189,7 @@ export default function AboutPage() {
                 priority
               />
             </div>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               From the blog. (Jan 2021)
             </p>
           </div>
@@ -203,7 +203,7 @@ export default function AboutPage() {
                 className="h-full w-full object-cover"
               />
             </div>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               My pet tortoise Leo! (Jun 2020)
             </p>
           </div>

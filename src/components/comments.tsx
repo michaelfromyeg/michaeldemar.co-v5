@@ -52,7 +52,7 @@ export function Comments({ slug }: CommentsProps) {
   return (
     <Card className="mt-8">
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
+        <CardTitle className="flex items-center gap-2 text-2xl">
           <MessageCircle className="h-5 w-5" />
           Comments
         </CardTitle>
