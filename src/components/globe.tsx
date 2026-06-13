@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState, useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import { useTheme } from 'next-themes'
-import { Check, ChevronsUpDown } from 'lucide-react'
+import { Check, ChevronsUpDown, RotateCcw } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import {
@@ -31,6 +31,10 @@ const Globe = dynamic(() => import('react-globe.gl'), {
     </div>
   ),
 })
+
+// Camera altitude (in globe radii) the globe rests at; auto-rotation only
+// runs at this zoom, and the reset button returns here.
+const DEFAULT_ALTITUDE = 1.5
 
 interface GlobePoint {
   lat: number
@@ -62,6 +66,13 @@ export default function TravelGlobe({ itineraries }: TravelGlobeProps) {
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const [globeReady, setGlobeReady] = useState(false)
   const [webglSupported, setWebglSupported] = useState<boolean | null>(null)
+  const [zoomed, setZoomed] = useState(false)
+  // Mirrors `zoomed` for the controls listener so it can detect transitions
+  // without re-subscribing on every state change.
+  const zoomedRef = useRef(false)
+  // Ignore the camera until the opening fly-to settles at DEFAULT_ALTITUDE,
+  // so the initial zoom-in doesn't flash the reset button.
+  const settledRef = useRef(false)
 
   // Mount the globe only once WebGL support is confirmed; three.js
   // throws (and takes the whole page down) on WebGL-less browsers
@@ -156,16 +167,44 @@ export default function TravelGlobe({ itineraries }: TravelGlobeProps) {
     return () => observer.disconnect()
   }, [])
 
-  // Auto-rotate and fly to the selected trip's first waypoint
+  // Spin the globe, but only while it sits at the default zoom. The moment the
+  // user zooms in or out, auto-rotation stops and a reset control appears;
+  // returning to the default altitude (manually or via reset) resumes it.
+  useEffect(() => {
+    const globe = globeRef.current
+    if (!globeReady || !globe) return
+
+    const controls = globe.controls()
+    controls.autoRotateSpeed = 0.3
+    controls.autoRotate = true
+
+    const handleChange = () => {
+      const atDefault =
+        Math.abs(globe.pointOfView().altitude - DEFAULT_ALTITUDE) < 0.05
+      // Wait for the opening fly-to to land before tracking zoom.
+      if (!settledRef.current) {
+        if (atDefault) settledRef.current = true
+        return
+      }
+      controls.autoRotate = atDefault
+      if (zoomedRef.current === atDefault) {
+        zoomedRef.current = !atDefault
+        setZoomed(!atDefault)
+      }
+    }
+
+    controls.addEventListener('change', handleChange)
+    return () => controls.removeEventListener('change', handleChange)
+  }, [globeReady])
+
+  // Fly to the selected trip's first waypoint at the default zoom
   useEffect(() => {
     if (globeReady && globeRef.current && points.length > 0) {
-      globeRef.current.controls().autoRotate = true
-      globeRef.current.controls().autoRotateSpeed = 0.3
       globeRef.current.pointOfView(
         {
           lat: points[0].lat,
           lng: points[0].lng,
-          altitude: 1.5,
+          altitude: DEFAULT_ALTITUDE,
         },
         1000
       )
@@ -177,6 +216,15 @@ export default function TravelGlobe({ itineraries }: TravelGlobeProps) {
     setPathIndex(0)
     setActivePoint(null)
     setPickerOpen(false)
+  }
+
+  // Restore the default zoom without changing the current orientation; the
+  // controls listener picks up the altitude change and resumes auto-rotation.
+  function resetView() {
+    const globe = globeRef.current
+    if (!globe) return
+    const { lat, lng } = globe.pointOfView()
+    globe.pointOfView({ lat, lng, altitude: DEFAULT_ALTITUDE }, 750)
   }
 
   if (!itinerary) {
@@ -287,6 +335,17 @@ export default function TravelGlobe({ itineraries }: TravelGlobeProps) {
               setActivePoint(point as GlobePoint)
             }
           />
+        )}
+        {zoomed && (
+          <Button
+            variant="secondary"
+            size="sm"
+            onClick={resetView}
+            className="absolute top-4 left-4 gap-1.5 shadow-md"
+          >
+            <RotateCcw className="h-4 w-4" />
+            Reset view
+          </Button>
         )}
         {activePoint && (
           <Card className="absolute top-4 right-4 w-72 py-0">
