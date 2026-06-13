@@ -29,6 +29,53 @@ export const n2m = new NotionToMarkdown({
   >[0]['notionClient'],
 })
 
+// notion-to-md titles these blocks with the literal block type, e.g.
+// [embed](url). Emit the caption (or the URL itself) as the link text instead,
+// as a standalone paragraph, so MDX's single-link-paragraph path can render a
+// preview card or embed.
+type LinkBlockContent = {
+  url?: string
+  caption?: Array<{ plain_text: string }>
+  type?: 'external' | 'file'
+  external?: { url: string }
+  file?: { url: string }
+}
+
+function markdownLink(content: LinkBlockContent | undefined): string | false {
+  if (!content) return false
+  const isFile = content.type === 'file'
+  const url =
+    content.url ?? (isFile ? content.file?.url : content.external?.url)
+  if (!url) return false
+  const caption = content.caption
+    ?.map((item) => item.plain_text)
+    .join('')
+    .trim()
+  return `[${caption || fallbackLinkText(url, isFile)}](${url})`
+}
+
+// Signed Notion file URLs are huge and expire, and bare external URLs carry
+// tracking params; fall back to the filename or the query-stripped URL.
+function fallbackLinkText(url: string, isFile: boolean): string {
+  if (isFile || url.includes('prod-files-secure.s3')) {
+    const { basename, extension } = extractFilename(url)
+    return `${basename}${extension}`
+  }
+  try {
+    const { origin, pathname } = new URL(url)
+    return origin + pathname
+  } catch {
+    return url
+  }
+}
+
+for (const type of ['embed', 'bookmark', 'link_preview', 'video'] as const) {
+  n2m.setCustomTransformer(type, (block) => {
+    const content = (block as unknown as Record<string, LinkBlockContent>)[type]
+    return markdownLink(content)
+  })
+}
+
 // As of API version 2025-09-03 a database is queried through one of its data
 // sources, not the database id. Resolve and cache databaseId -> dataSourceId.
 const dataSourceIdCache = new Map<string, string>()
@@ -65,7 +112,7 @@ export function normalizeContent(content: string | undefined): string {
   return content
     .replace(/\n{3,}/g, '\n\n')
     .replace(/\n(#{1,6}.*)\n/g, '\n\n$1\n\n')
-    .replace(/\n([*-].*)\n/g, '\n\n$1\n')
+    .replace(/^(?![-*] )(\S.*)\n(?=[-*] )/gm, '$1\n\n')
     .trim()
 }
 

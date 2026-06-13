@@ -3,6 +3,7 @@ import { MDXComponents } from 'mdx/types'
 import CodeBlock from '@/components/mdx/code-block'
 import MDXImage from '@/components/mdx/mdx-image'
 import SmartLink from '@/components/mdx/smart-link'
+import { cn } from '@/lib/utils'
 
 const isLink = (element: React.ReactNode): element is React.ReactElement => {
   return (
@@ -53,5 +54,26 @@ export const mdxComponents: MDXComponents = {
   // Regular inline links
   a: (props) => {
     return <SmartLink {...props} inline={true} />
+  },
+  // GFM task-list items: drop the disc marker so the checkbox is the only one
+  li: ({ className, ...props }) => {
+    if (className?.includes('task-list-item')) {
+      return <li className={cn(className, 'my-1 list-none')} {...props} />
+    }
+    return <li className={className} {...props} />
+  },
+  input: ({ className, ...props }) => {
+    if (props.type === 'checkbox') {
+      return (
+        <input
+          {...props}
+          className={cn(
+            className,
+            'accent-primary mr-2 h-4 w-4 cursor-default align-text-bottom'
+          )}
+        />
+      )
+    }
+    return <input className={className} {...props} />
   },
 }
