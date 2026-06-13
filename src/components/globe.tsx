@@ -289,7 +289,7 @@ export default function TravelGlobe({ itineraries }: TravelGlobeProps) {
           />
         )}
         {activePoint && (
-          <Card className="absolute top-4 right-4 w-72">
+          <Card className="absolute top-4 right-4 w-72 py-0">
             <CardContent className="p-4">
               <h3 className="mb-2 font-semibold">{activePoint.name}</h3>
               <p className="text-muted-foreground mb-1 text-sm">
