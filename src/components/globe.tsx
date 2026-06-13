@@ -123,7 +123,10 @@ export default function TravelGlobe({ itineraries }: TravelGlobeProps) {
     return allPaths
   }, [sortedWaypoints])
 
-  // Animation control
+  // Animation control. Keyed on the trip id as well so switching trips
+  // restarts the interval from a clean phase — otherwise a switch to a
+  // same-length trip leaves the old timer running and the pathIndex reset
+  // in selectItinerary is overwritten on the next tick.
   useEffect(() => {
     const interval = setInterval(() => {
       setPathIndex((prev) => {
@@ -133,7 +136,7 @@ export default function TravelGlobe({ itineraries }: TravelGlobeProps) {
     }, 3000) // Change path every 3 seconds
 
     return () => clearInterval(interval)
-  }, [paths.length])
+  }, [paths.length, itinerary?.id])
 
   // Size the globe to its container
   useEffect(() => {
@@ -203,7 +206,7 @@ export default function TravelGlobe({ itineraries }: TravelGlobeProps) {
           <PopoverTrigger asChild>
             <Button
               variant="outline"
-              role="combobox"
+              aria-haspopup="listbox"
               aria-expanded={pickerOpen}
               className="w-full justify-between sm:w-80"
             >
