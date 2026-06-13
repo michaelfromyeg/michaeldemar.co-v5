@@ -66,8 +66,8 @@ export function ContentCard({
               src={coverImage}
               alt={coverAlt ?? `Cover image for ${title}`}
               fill
-              placeholder="blur"
-              blurDataURL={coverBlurDataURL ?? ''}
+              placeholder={coverBlurDataURL ? 'blur' : 'empty'}
+              {...(coverBlurDataURL ? { blurDataURL: coverBlurDataURL } : {})}
               className="object-cover transition-all duration-300 group-hover:scale-105 group-hover:brightness-105"
             />
           ) : (
@@ -146,8 +146,8 @@ export function FeaturedCard({
                 src={coverImage}
                 alt={coverAlt ?? `Cover image for ${title}`}
                 fill
-                placeholder="blur"
-                blurDataURL={coverBlurDataURL ?? ''}
+                placeholder={coverBlurDataURL ? 'blur' : 'empty'}
+                {...(coverBlurDataURL ? { blurDataURL: coverBlurDataURL } : {})}
                 className="object-cover transition-all duration-300 group-hover:scale-105 group-hover:brightness-105"
               />
             ) : (

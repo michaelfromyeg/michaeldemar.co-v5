@@ -14,6 +14,7 @@ import {
   CommandEmpty,
 } from '@/components/ui/command'
 import type { searchSite, SearchItem } from '@/lib/search'
+import { TagList } from '@/components/content/content-card'
 import { useMediaQuery } from '@/hooks/use-media-query'
 
 type SearchFn = typeof searchSite
@@ -63,15 +64,8 @@ const SearchResult = ({
       <span className="line-clamp-1 text-xs">{item.description}</span>
     )}
     {(item.tags?.length || item.date) && (
-      <div className="mt-1 flex flex-wrap gap-1">
-        {item.tags?.map((tag) => (
-          <span
-            key={tag}
-            className="bg-primary/10 text-primary inline-flex items-center rounded-md px-2 py-1 text-xs font-medium"
-          >
-            {tag}
-          </span>
-        ))}
+      <div className="mt-1 flex flex-wrap items-center gap-1">
+        {item.tags && item.tags.length > 0 && <TagList tags={item.tags} />}
         {item.date && (
           <time
             dateTime={item.date}
