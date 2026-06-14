@@ -82,7 +82,7 @@
       "Blog",
       "Product"
     ],
-    "content": "(And how I discovered—I think—the Google Messages Gemini assistant's system prompt.) --- Gemini is brilliant technology. As the first model to outperform humans on MMLU, with its million-token windows and impressive results on SWE-Bench 2.5—the talented team at DeepMind is achieving remarkable things. So, why hasn't this technical excellence translated into meaningful improvements across Google's product ecosystem? As a long-time Android user (from the HTC era through acquisition—I had the HTC One M9—to the Pixel 1, Pixel 3XL, Pixel 5, and now Pixel 8 Pro) and Google fanboy generally (with my Pixel Buds, Pixel Buds 2, Pixel Watch, and Samsung tablet), I have a front-row seat to Google's countless attempts to leverage Gemini across its products. The results? Depressing. Google's product teams seem addicted to the ✨ sparkles ✨. Instead of creating genuinely useful experiences, they simply slap a ✨ button somewhere in the product and call it done. It's painful to watch, especially knowing"
+    "content": ""
   },
   {
     "id": "1f6c4188-fa0e-8076-8829-cd020be89fdb",
@@ -237,7 +237,7 @@
       "Technical",
       "School"
     ],
-    "content": ""
+    "content": "Create and manage your citations without all the headaches! Background This project was made for CPSC 210, a UBC second-year course focused on software construction. The course uses Java, and likewise this project was made using Java and JavaFX for the UI. I asked my girlfriend if she had any project ideas, and she mentioned she struggled keeping track of citations for her assignments, so I wanted to build a tool that could meet her needs. I felt the exact same feeling when I wrote my 4,000 word Extended Essay in high school. Trying to remember and keep track of citations can be hard if you're not an experienced writer. Usage A user can create an account and manage a list of assignments. With each assignment, they can paragraph-by-paragraph manage citations (e.g., who are you citing, what page number, etc.) and then automatically generate a works-cited page with reported \"confidence.\" How it's made The project is made with vanilla Java and JavaFX. Challenges I struggled quite a bit wit"
   },
   {
     "id": "169c4188-fa0e-8043-9009-e3c299828b86",
@@ -275,7 +275,7 @@
       "Project",
       "Technical"
     ],
-    "content": "A website built to connect high school students with organizations actively searching for volunteers. Here's the GitHub repository. Background In high school, I completed the IB program. For my Computer Science Internal Assessment (IA) I decided to build a website for a club I was also helping lead. The basic goal was to be able to allow organizations looking for volunteers to advertise opportunities directly to high school students. Usage Volunteers can create an account and profile. Organizations can as well. There's a blog-style feed of opportunities that appears in the user's feed. How it's made The project is built using Python Flask and Bootstrap for the styling. Challenges This was the first real web project I ever built, so I had hard time building things without being reliant on tutorials. Accomplishments The app works pretty nicely, and it received a \\$500 grant from the Edmonton Community Foundation! I hope to deploy it Summer 2020. Future I need to add the organization \"flo"
+    "content": ""
   },
   {
     "id": "169c4188-fa0e-8039-a7f6-e9d09e908104",
@@ -375,7 +375,7 @@
     "tags": [
       "Design"
     ],
-    "content": "I served on my residence's house council in first year and did a lot of neat graphic design projects!"
+    "content": ""
   },
   {
     "id": "169c4188-fa0e-8004-a830-efe5b008da9f",
@@ -531,7 +531,7 @@
     "tags": [
       "Design"
     ],
-    "content": "I created a infographic for my Heritage Festival booth and posters to be displayed at the other countries."
+    "content": ""
   },
   {
     "id": "59a8cec5-217b-4c2e-be33-bb4d820bf22a",
@@ -549,7 +549,7 @@
     "type": "travel",
     "description": "Eleven days north to south, from Hanoi and the Ha Giang loop down to Saigon.",
     "date": "2023-04-07",
-    "content": "Hanoi Ha Giang Cat Ba Ninh Binh Ho Chi Minh City Eleven days up and down Vietnam over the April break on exchange. It ran north to south, from Hanoi out to the mountains and then down to Saigon. Hanoi came first: a free walking tour of the Old Quarter, egg coffee, Train Street, and the (muggy) views from the Lotte observation deck. Then the big one, the Ha Giang loop, a few days riding the mountain roads up near the Chinese border. After that an overnight bus to Cat Ba for a boat cruise with Cat Ba Ventures, the most chill day of the trip, and a stop in Ninh Binh for another boat through Trang An plus the Mua Caves in the fog. I flew down to Ho Chi Minh City to finish: Pizza 4P's, the War Remnants Museum, the Bitexco sky deck, a night on Bui Vien, and the Cu Chi tunnels the next morning, before flying home to Singapore. Route - Hanoi (Apr 7–9) - Ha Giang loop (Apr 10–12) - Cat Ba (Apr 13) - Ninh Binh (Apr 14) - Ho Chi Minh City (Apr 15–16)"
+    "content": "Hanoi Ha Giang Cat Ba Ninh Binh Ho Chi Minh City Eleven days up and down Vietnam over the April break on exchange. It ran north to south, from Hanoi out to the mountains and then down to Saigon. Hanoi came first: a free walking tour of the Old Quarter, egg coffee, Train Street, and the (muggy) views from the Lotte observation deck. Then the big one, the Ha Giang loop, a few days riding the mountain roads up near the Chinese border. After that an overnight bus to Cat Ba for a boat cruise with Cat Ba Ventures, the most chill day of the trip, and a stop in Ninh Binh for another boat through Trang An plus the Mua Caves in the fog. I flew down to Ho Chi Minh City to finish: Pizza 4P's, the War Remnants Museum, the Bitexco sky deck, a night on Bui Vien, and the Cu Chi tunnels the next morning, before flying home to Singapore. Route - Hanoi (Apr 7–9) - Ha Giang loop (Apr 10–12) - Cat Ba (Apr 13) - Ninh Binh (Apr 14) - Ho Chi Minh City (Apr 15–16) Where I stayed - Hanoi: Hanoi House, then Hanoi Backpackers - Ninh Binh: Green Mountain Homesta"
   },
   {
     "id": "caf028d7-8bce-4c59-84eb-148457795c68",
@@ -558,7 +558,7 @@
     "type": "travel",
     "description": "Six days of sightseeing wedged between paper deadlines on exchange.",
     "date": "2023-04-03",
-    "content": "Hong Kong Island Kowloon Lantau Island Six days in Hong Kong over the April break on exchange, mostly working on a paper between sightseeing, with a friend showing me around for part of it. I was based on Hong Kong Island: Causeway Bay, the Monster Building and the Quarry Bay promenade, the Central-Mid-Levels escalators, and a fair bit of laptop time in cafes and British pubs. One day I spent with my friend Jacky, ending at the horse racing. Over in Kowloon there was the waterfront and the Symphony of Lights. The best day was out on Lantau: the Ngong Ping 360 cable car up to the Tian Tan Buddha and the Wisdom Path, then the old fishing village at Tai O. I flew out late on the last night, landing in Hanoi around 1am to start the next trip. Route - Hong Kong Island (Apr 3–4) - Kowloon (Apr 5) - Lantau Island (Apr 6)"
+    "content": "Hong Kong Island Kowloon Lantau Island Six days in Hong Kong over the April break on exchange, mostly working on a paper between sightseeing, with a friend showing me around for part of it. I was based on Hong Kong Island at Check Inn: Causeway Bay, the Monster Building and the Quarry Bay promenade, the Central-Mid-Levels escalators, and a fair bit of laptop time in cafes and British pubs. One day I spent with my friend Jacky, ending at the horse racing. Over in Kowloon there was the waterfront and the Symphony of Lights. The best day was out on Lantau: the Ngong Ping 360 cable car up to the Tian Tan Buddha and the Wisdom Path, then the old fishing village at Tai O. I flew out late on the last night, landing in Hanoi around 1am to start the next trip. Route - Hong Kong Island (Apr 3–4) - Kowloon (Apr 5) - Lantau Island (Apr 6) Where I stayed - Hong Kong Island: Check Inn"
   },
   {
     "id": "34af80f3-f6ba-48ee-b9e0-51233cad5acf",
@@ -567,7 +567,7 @@
     "type": "travel",
     "description": "A week of island-hopping and diving through the Visayas.",
     "date": "2023-03-23",
-    "content": "Cebu City Panglao Moalboal A week island-hopping the Philippines with a friend, over the March break on exchange. It was mostly built around diving in the Visayas. We flew into Cebu before dawn and dove around Mactan, then ferried over to Bohol for Chocolate Hills, tarsiers, and a couple of days diving off Panglao. The plan had been to stop in Oslob for the whale sharks on the way south, but the ferry broke down, so we skipped it and pushed on to Moalboal. That turned out fine: the sardine run just off the beach, and canyoneering at Kawasan Falls. From there it was back up to Cebu City for a 3am flight onward to Malaysia. Palawan and El Nido were on the original plan and didn't survive the final cut; saving those for another lifetime. Route - Cebu / Mactan (Mar 23) - Bohol / Panglao (Mar 24–26) - Moalboal (Mar 27–28)"
+    "content": "Cebu City Panglao Moalboal A week island-hopping the Philippines with a friend, over the March break on exchange. It was mostly built around diving in the Visayas. We flew into Cebu before dawn and dove around Mactan, then ferried over to Bohol for Chocolate Hills, tarsiers, and a couple of days diving off Panglao. The plan had been to stop in Oslob for the whale sharks on the way south, but the ferry broke down, so we skipped it and pushed on to Moalboal. That turned out fine: the sardine run just off the beach, and canyoneering at Kawasan Falls. From there it was back up to Cebu City for a 3am flight onward to Malaysia. Palawan and El Nido were on the original plan and didn't survive the final cut; saving those for another lifetime. Route - Cebu / Mactan (Mar 23) - Bohol / Panglao (Mar 24–26) - Moalboal (Mar 27–28) Where I stayed - Cebu: Cebu Backpacker's Hostel, by the pier"
   },
   {
     "id": "dbde8481-6e5a-4828-9aca-71024feaf65c",
@@ -576,7 +576,7 @@
     "type": "travel",
     "description": "Temples up in Bangkok, then islands down south; eight days over a break on exchange.",
     "date": "2023-02-18",
-    "content": "Bangkok Koh Samui Krabi Eight days through Thailand while I was on exchange in Singapore, with a couple of friends joining partway. It split cleanly into temples up north and islands down south. I started in Bangkok for the big sights: Wat Pho, the Grand Palace and Wat Arun, the Chatuchak weekend market, and a day trip out to the old ruins at Ayutthaya. Evenings went to Khao San Road. From there I took the overnight train down to Surat Thani and crossed to Koh Samui for a couple of slow beach days. The trip finished in Krabi, based in Ao Nang, with a day out to the Phi Phi islands before flying back to Singapore via Kuala Lumpur. Route - Bangkok (Feb 18–20) - Koh Samui (Feb 21–22) - Krabi / Ao Nang (Feb 23–25)"
+    "content": "Bangkok Koh Samui Krabi Eight days through Thailand while I was on exchange in Singapore, with a couple of friends joining partway. It split cleanly into temples up north and islands down south. I started in Bangkok for the big sights: Wat Pho, the Grand Palace and Wat Arun, the Chatuchak weekend market, and a day trip out to the old ruins at Ayutthaya. Evenings went to Khao San Road. From there I took the overnight train down to Surat Thani and crossed to Koh Samui for a couple of slow beach days. The trip finished in Krabi, based in Ao Nang, with a day out to the Phi Phi islands before flying back to Singapore via Kuala Lumpur. Route - Bangkok (Feb 18–20) - Koh Samui (Feb 21–22) - Krabi / Ao Nang (Feb 23–25) Where I stayed - Bangkok: Revolution Hostel, near Asok - Koh Samui: P&T Hostel - Krabi: K-Bunk, in Ao Nang"
   },
   {
     "id": "812aa5bc-1fd8-476a-b850-ac03b51c2781",
@@ -585,7 +585,7 @@
     "type": "travel",
     "description": "A week of temples and volcanoes across Java and Bali, on not much sleep.",
     "date": "2023-02-03",
-    "content": "Yogyakarta Malang Mount Bromo Mount Ijen Bali A week across Java and Bali with a friend, over a reading break on exchange. The pitch was temples and volcanoes, and it delivered on both; not much sleep was involved. We started in Yogyakarta for the two big temples, Prambanan and Borobudur, then took an overnight train east to Malang to reach the Tumpak Sewu waterfall. From there it was the classic East Java run: a pre-dawn jeep up Mount Bromo for sunrise over the caldera, then a midnight hike up Mount Ijen for the crater and its sulphur fires. We crossed by ferry to Bali to finish, with a day trip to Nusa Penida and sunset at Uluwatu before flying back to Singapore. It was rainy season the whole way and the early starts were brutal, but the volcanoes made it. Route - Yogyakarta (Feb 3–4) - Malang / Tumpak Sewu (Feb 5) - Mount Bromo (Feb 6) - Mount Ijen (Feb 7) - Bali (Feb 8–9)"
+    "content": "Yogyakarta Malang Mount Bromo Mount Ijen Bali A week across Java and Bali with a friend, over a reading break on exchange. The pitch was temples and volcanoes, and it delivered on both; not much sleep was involved. We started in Yogyakarta for the two big temples, Prambanan and Borobudur, then took an overnight train east to Malang to reach the Tumpak Sewu waterfall. From there it was the classic East Java run: a pre-dawn jeep up Mount Bromo for sunrise over the caldera, then a midnight hike up Mount Ijen for the crater and its sulphur fires; we ran the Tumpak Sewu and Bromo legs with TrippyTrip Tour. We crossed by ferry to Bali to finish, with a day trip to Nusa Penida and sunset at Uluwatu before flying back to Singapore. It was rainy season the whole way and the early starts were brutal, but the volcanoes made it. Route - Yogyakarta (Feb 3–4) - Malang / Tumpak Sewu (Feb 5) - Mount Bromo (Feb 6) - Mount Ijen (Feb 7) - Bali (Feb 8–9) Where I stayed - Mount Bromo: Café Lava Hostel - Mount Ijen: Ijen Backpacker"
   },
   {
     "id": "7b967420-d619-4f12-bc33-c50e63edd9cc",
@@ -594,6 +594,6 @@
     "type": "travel",
     "description": "Penang and the Cameron Highlands over a Chinese New Year weekend.",
     "date": "2023-01-20",
-    "content": "Penang Cameron Highlands Malaysia was the easy one to reach from Singapore, just over the causeway, so I ended up going a few times. This was the big loop, over the Chinese New Year long weekend in January. I crossed through Johor and took an overnight bus up to Penang. George Town is the draw: street art, hawker food in Little India, the Kek Lok Si temple, and a hike out to Monkey Beach in the national park. I caught the Chinese New Year fireworks there. From Penang I headed inland and up to the Cameron Highlands, where the afternoon went to a tea plantation above Tanah Rata. My notes for the back half of this trip never got written up, so I'll leave it there; Kuala Lumpur and Melaka were on the list and are worth their own visit. Route - Penang / George Town (Jan 21) - Cameron Highlands (Jan 22)"
+    "content": "Penang Cameron Highlands Malaysia was the easy one to reach from Singapore, just over the causeway, so I ended up going a few times. This was the big loop, over the Chinese New Year long weekend in January. I crossed through Johor and took an overnight bus up to Penang. George Town is the draw: street art, hawker food in Little India, the Kek Lok Si temple, and a hike out to Monkey Beach in the national park. I caught the Chinese New Year fireworks there. From Penang I headed inland and up to the Cameron Highlands, where the afternoon went to a tea plantation above Tanah Rata. My notes for the back half of this trip never got written up, so I'll leave it there; Kuala Lumpur and Melaka were on the list and are worth their own visit. Route - Penang / George Town (Jan 21) - Cameron Highlands (Jan 22) Where I stayed - Cameron Highlands: Hiker's Sleep Port, in Tanah Rata"
   }
 ]
