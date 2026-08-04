@@ -1,5 +1,41 @@
 [
   {
+    "id": "3b2c4188-fa0e-80f7-937b-ccd5647a9b60",
+    "title": "Stoop Coffee!",
+    "href": "/blog/stoop-coffee",
+    "type": "blog",
+    "description": "A simple stoop‑side coffee hub turns the front step into a vibrant, low‑cost community gathering spot.",
+    "date": "2026-08-03T22:36:00.000-07:00",
+    "tags": [
+      "Newsletter"
+    ],
+    "content": "It’s August! It’s Monday! That means it’s time for a Monday Letter. --- Stoop Coffee! About a year ago, I read this article about drinking coffee on your stoop. It’s a simple, brilliant idea: if you’re going to have a morning coffee anyway, why not take it out to your front step and say hello to the neighbors? And while San Francisco has the right population density for this (it’s 1/6th the land area of my hometown, with the same population), it can feel surprisingly insular. Everyone’s enamored with their devices, building the next billion-dollar business. And regardless of where you are, community has to be built. It doesn’t come for free. After reading it, I immediately knew I had to try it in my neighborhood. I live in a prime location to host, and I love coffee. I texted my roommates, and we were set. On the occasional weekend when the weather has been nice, we drag a few IKEA LACK tables out to the street, pull up our Wayfair dining room chairs, and start gabbing. This past weeke"
+  },
+  {
+    "id": "33fc4188-fa0e-808e-98d9-d1b14e262409",
+    "title": "A Liminal Office Space",
+    "href": "/blog/a-liminal-office-space",
+    "type": "blog",
+    "description": "AI‑driven bureaucracy is stealing work’s meaning, so we must choose what makes a job worth our time—while I share my latest sports, TV, books, and movie obsessions.",
+    "date": "2026-07-06T11:42:00.000-07:00",
+    "tags": [
+      "Newsletter"
+    ],
+    "content": "It’s Monday! It’s July! Here’s a letter for Monday, July 6th. --- A Liminal Office Space If you’ve spent enough time around me, you’ve probably heard me ask, more than once, “Have you seen Office Space?” The 1999 film by Mike Judge (who also created the hit TV series Silicon Valley) follows a guy who wakes up one day and decides to stop going to work. Chaos follows, but at its core the movie is about rejecting the social contract and giving in to your (presumably) hedonistic inner voice: moving through life in a Camus-style Absurd way, doing and saying whatever you feel like. All because you’ve been asked to include a cover sheet on your TPS reports one too many times. Now, despite my love for this movie, I really do enjoy my job. I’m fortunate enough to be around great colleagues and contribute to a mission that I think really matters (that is, malleable software). Still, this movie hits such a nerve for me; there’s no completely escaping the occasional preposterousness of the modern "
+  },
+  {
+    "id": "381c4188-fa0e-80f1-8dd9-c0769cecb505",
+    "title": "The Knicks, The Canes, and The World Cup ",
+    "href": "/blog/the-knicks-the-canes-and-the-world-cup",
+    "type": "blog",
+    "description": "From World Cup excitement to Knicks and Hurricanes victories, I’m sharing my summer of sports, movies, and music in one passionate recap.",
+    "date": "2026-06-15T23:40:00.000-07:00",
+    "tags": [
+      "Newsletter"
+    ],
+    "content": "Hello! So much in the world of sports recently. Lots to chat about. Here’s the Monday Letter for June 15th, 2026. --- The World’s Cup Summer 2026 has arrived in style. The World Cup is in full swing, and it’s been a treat to watch the world come together in celebration. Folks in San Francisco’s tech scene are generally apathetic to sports, which is (in two words) extremely lame. I’m an avid sports fan. I rep my hometown Edmonton Oilers the most, but I also follow a handful of Bay Area franchises across the major leagues, adopted the Vancouver Whitecaps as my MLS club in college, and keep up with a bit of F1 and UFC as well. For me, elite competition is a steady source of inspiration, both for my own play in soccer and hockey and in life. With the World Cup, it’s been fun to see that energy spread far and wide, so casual fans can get a taste of how great the atmosphere can be. Look no further than the Dutch fans marching through Dallas in a sea of orange on their way to AT&T Stadium. Ev"
+  },
+  {
     "id": "37ac4188-fa0e-803d-8a8f-cf34a85ab749",
     "title": "Physical Media Still Rocks",
     "href": "/blog/physical-media-still-rocks",
@@ -82,7 +118,7 @@
       "Blog",
       "Product"
     ],
-    "content": ""
+    "content": "(And how I discovered—I think—the Google Messages Gemini assistant's system prompt.) --- Gemini is brilliant technology. As the first model to outperform humans on MMLU, with its million-token windows and impressive results on SWE-Bench 2.5—the talented team at DeepMind is achieving remarkable things. So, why hasn't this technical excellence translated into meaningful improvements across Google's product ecosystem? As a long-time Android user (from the HTC era through acquisition—I had the HTC One M9—to the Pixel 1, Pixel 3XL, Pixel 5, and now Pixel 8 Pro) and Google fanboy generally (with my Pixel Buds, Pixel Buds 2, Pixel Watch, and Samsung tablet), I have a front-row seat to Google's countless attempts to leverage Gemini across its products. The results? Depressing. Google's product teams seem addicted to the ✨ sparkles ✨. Instead of creating genuinely useful experiences, they simply slap a ✨ button somewhere in the product and call it done. It's painful to watch, especially knowing"
   },
   {
     "id": "1f6c4188-fa0e-8076-8829-cd020be89fdb",
@@ -275,7 +311,7 @@
       "Project",
       "Technical"
     ],
-    "content": ""
+    "content": "A website built to connect high school students with organizations actively searching for volunteers. Here's the GitHub repository. Background In high school, I completed the IB program. For my Computer Science Internal Assessment (IA) I decided to build a website for a club I was also helping lead. The basic goal was to be able to allow organizations looking for volunteers to advertise opportunities directly to high school students. Usage Volunteers can create an account and profile. Organizations can as well. There's a blog-style feed of opportunities that appears in the user's feed. How it's made The project is built using Python Flask and Bootstrap for the styling. Challenges This was the first real web project I ever built, so I had hard time building things without being reliant on tutorials. Accomplishments The app works pretty nicely, and it received a \\$500 grant from the Edmonton Community Foundation! I hope to deploy it Summer 2020. Future I need to add the organization \"flo"
   },
   {
     "id": "169c4188-fa0e-8039-a7f6-e9d09e908104",
@@ -375,7 +411,7 @@
     "tags": [
       "Design"
     ],
-    "content": ""
+    "content": "I served on my residence's house council in first year and did a lot of neat graphic design projects!"
   },
   {
     "id": "169c4188-fa0e-8004-a830-efe5b008da9f",
@@ -531,7 +567,7 @@
     "tags": [
       "Design"
     ],
-    "content": ""
+    "content": "I created a infographic for my Heritage Festival booth and posters to be displayed at the other countries."
   },
   {
     "id": "59a8cec5-217b-4c2e-be33-bb4d820bf22a",
